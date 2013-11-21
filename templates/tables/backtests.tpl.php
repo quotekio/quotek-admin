@@ -65,6 +65,25 @@
 
   <script type="text/javascript">
 
+    $('.btn-adambacktest-edit').each(function() {
+
+       var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/backtest-line-/g,""));
+       $(this).off();
+       $(this).click(function() {
+          adamShowBacktestEditor();
+          $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_edit_title']  ?>");
+          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
+          adamGetBacktestDataToEdit(bid)
+          $('#editor-action').off();
+          $('#editor-action').click(function() {
+            adamSaveBacktest(bid);
+          });
+
+       });
+
+     });
+    
+
     $('.table-backtests a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
 
     $('.btn-toggle-backtest').each(function(){

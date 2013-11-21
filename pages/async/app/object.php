@@ -259,6 +259,13 @@
 
       }
 
+      else if ($action == 'get') {
+          $obj = new backtest();
+          $obj->id = $_REQUEST['id'];
+          $obj->load();
+          echo json_encode($obj);
+      }
+
       else if ($action == 'del') {
           $obj = new backtest();
           $obj->id = $_REQUEST['id'];
@@ -266,6 +273,7 @@
           $response['message'] = 'Backtest ' . $obj->id . ' successfully deleted';
           echo json_encode($response);
       }
+
 
       else if ($action == 'dup') {
  

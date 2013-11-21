@@ -429,6 +429,21 @@ function adamActivateStrat(sid) {
    }
 }
 
+function adamGetBacktestDataToEdit(bid) {
+
+  var backtest = adamObject('get','backtest',{},bid);
+  $('#input-backtest-name').val(backtest.name);
+  $('#input-backtest-type').val(backtest.type);
+  $('#input-backtest-start').val(formatDate2(backtest.start));
+  $('#input-backtest-end').val(formatDate2(backtest.end));
+  $('#input-backtest-config_id').val(backtest.config_id);
+  $('#input-backtest-strategy_id').val(backtest.strategy_id);
+  $('#input-backtest-genetics_population').val(backtest.genetics_population);
+  $('#input-backtest-genetics_survivors').val(backtest.genetics_survivors);
+  $('#input-backtest-genetics_converge_thold').val(backtest.converge_thold);
+  $('#input-backtest-genetics_max_generations').val(backtest.max_generations);
+}
+
 
 function adamSaveBacktest(id) {
 
@@ -448,7 +463,7 @@ function adamSaveBacktest(id) {
   backtest.type = $('#input-backtest-type').val();
   backtest.start = strtotime($('#input-backtest-start').val());
   backtest.end = strtotime($('#input-backtest-end').val());
-  backtest.type = $('#input-backtest-type').val();
+  //backtest.type = $('#input-backtest-type').val();
   backtest.config_id = $('#input-backtest-config_id').val();
   backtest.strategy_id = $('#input-backtest-strategy_id').val();
   backtest.genetics_population = $('#input-backtest-genetics_population').val();
@@ -504,7 +519,7 @@ function adamObject(action,objtype,params,id) {
                     cache: false});
 
    //adamDebug(r.responseText);
-   return $.parseJSON(r.responseText);
+   return $.parseJSON($.trim(r.responseText));
 
 }
 
@@ -861,12 +876,30 @@ function adamCheckBTStatus(backtest_id) {
 }
 
 
+function padStr(i) {
+    return (i < 10) ? "0" + i : "" + i;
+}
+
 function formatDate(obj) {
    var t_epoch = obj.html();
    var d = new Date(0);
    d.setUTCSeconds(parseInt(t_epoch));
    obj.html(d.toLocaleString().replace(/(CET|CEST|EST|PST)/g,''));
 
+}
+
+
+function formatDate2(dt) {
+   var temp = new Date(0);
+   temp.setUTCSeconds(parseInt(dt));
+
+   var datestr = padStr(temp.getFullYear()) + "-" +
+                  padStr(1 + temp.getMonth()) + "-" +
+                  padStr(temp.getDate()) + " " +
+                  padStr(temp.getHours()) + ":" +
+                  padStr(temp.getMinutes()) + ":" +
+                  padStr(temp.getSeconds());
+   return datestr;
 }
 
 function modalDest() {

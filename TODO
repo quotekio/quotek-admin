@@ -1,6 +1,6 @@
 PRIO
 ====
- * edition on backtests
+
  * Poll status of all registred backtests
  * favicon 
  * backtest viewer bug setInterval
@@ -9,7 +9,6 @@ PRIO
 OTHER
 =====
 * fix update dates
-* Edtion on all the objects
 * modules handling
 * snapshots
 * bulk actions
