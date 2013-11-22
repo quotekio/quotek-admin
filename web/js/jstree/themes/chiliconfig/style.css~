@@ -1,0 +1,65 @@
+/*
+ * jsTree chiliconfig theme 0.1
+ * Supported features: dots/no-dots, icons/no-icons, focused, loading
+ * Supported plugins: ui (hovered, clicked), checkbox, contextmenu, search
+ */
+
+
+.jstree-chiliconfig > ul { background:transparent;color:#f26024 }
+.jstree-chiliconfig li, 
+.jstree-chiliconfig ins { background-image:url("d.png"); background-repeat:no-repeat; background-color:transparent;}
+.jstree-chiliconfig li { background-position:-90px 0; background-repeat:repeat-y; color:#f26024}
+.jstree-chiliconfig li.jstree-last { background:transparent; color:black }
+.jstree-chiliconfig .jstree-open > ins { background-position:-72px 0; }
+.jstree-chiliconfig .jstree-closed > ins { background-position:-54px 0; }
+.jstree-chiliconfig .jstree-leaf > ins { background-position:-36px 0;}
+
+.jstree-chiliconfig a { color:#EF8F00; font-size:14px; font-weight:bold; }
+.jstree-chiliconfig a:hover { color:#1C97D2;}
+
+.jstree-chiliconfig .jstree-hovered { background:yellow; border:1px solid #d8f0fa; padding:0 3px 0 1px;}
+
+.jstree-chiliconfig a .jstree-clicked { background:green; border:1px solid #99defd; padding:0 3px 0 1px;}
+.jstree-chiliconfig a .jstree-icon { background-position:-56px -20px; }
+.jstree-chiliconfig a.jstree-loading .jstree-icon { background:url("throbber.gif") center center no-repeat !important; }
+
+.jstree-chiliconfig.jstree-focused { background:transparent; }
+
+.jstree-chiliconfig .jstree-no-dots li, 
+.jstree-chiliconfig .jstree-no-dots .jstree-leaf > ins { background:transparent; }
+.jstree-chiliconfig .jstree-no-dots .jstree-open > ins { background-position:-18px 0; }
+.jstree-chiliconfig .jstree-no-dots .jstree-closed > ins { background-position:0 0; }
+
+.jstree-chiliconfig .jstree-no-icons a .jstree-icon { display:none; }
+
+.jstree-chiliconfig .jstree-search { font-style:italic; }
+
+.jstree-chiliconfig .jstree-no-icons .jstree-checkbox { display:inline-block; }
+.jstree-chiliconfig .jstree-no-checkboxes .jstree-checkbox { display:none !important; }
+.jstree-chiliconfig .jstree-checked > a > .jstree-checkbox { background-position:-38px -19px; }
+.jstree-chiliconfig .jstree-unchecked > a > .jstree-checkbox { background-position:-2px -19px; }
+.jstree-chiliconfig .jstree-undetermined > a > .jstree-checkbox { background-position:-20px -19px; }
+.jstree-chiliconfig .jstree-checked > a > .checkbox:hover { background-position:-38px -37px; }
+.jstree-chiliconfig .jstree-unchecked > a > .jstree-checkbox:hover { background-position:-2px -37px; }
+.jstree-chiliconfig .jstree-undetermined > a > .jstree-checkbox:hover { background-position:-20px -37px; }
+
+#vakata-dragged.jstree-chiliconfig ins { background:transparent !important; }
+#vakata-dragged.jstree-chiliconfig .jstree-ok { background:url("d.png") -2px -53px no-repeat !important; }
+#vakata-dragged.jstree-chiliconfig .jstree-invalid { background:url("d.png") -18px -53px no-repeat !important; }
+#jstree-marker.jstree-chiliconfig { background:url("d.png") -41px -57px no-repeat !important; text-indent:-100px; }
+
+.jstree-chiliconfig a.jstree-search { color:blue; }
+.jstree-chiliconfig .jstree-locked a { color:red; cursor:default; }
+
+#vakata-contextmenu.jstree-chiliconfig-context, 
+#vakata-contextmenu.jstree-chiliconfig-context li ul { background:#333; border:1px solid #979797; -moz-box-shadow: 1px 1px 2px #999; -webkit-box-shadow: 1px 1px 2px #999; box-shadow: 1px 1px 2px #999; }
+#vakata-contextmenu.jstree-chiliconfig-context li { }
+#vakata-contextmenu.jstree-chiliconfig-context a { color:black; }
+#vakata-contextmenu.jstree-chiliconfig-context a:hover, 
+#vakata-contextmenu.jstree-chiliconfig-context .vakata-hover > a { padding:0 5px; background:purple; border:1px solid #aecff7; color:black; -moz-border-radius:2px; -webkit-border-radius:2px; border-radius:2px; }
+#vakata-contextmenu.jstree-chiliconfig-context li.jstree-contextmenu-disabled a, 
+#vakata-contextmenu.jstree-chiliconfig-context li.jstree-contextmenu-disabled a:hover { color:red; background:transparent; border:0; padding:1px 4px; }
+#vakata-contextmenu.jstree-chiliconfig-context li.vakata-separator { background:white; border-top:1px solid #e0e0e0; margin:0; }
+#vakata-contextmenu.jstree-chiliconfig-context li ul { margin-left:-4px; }
+
+/* TODO: IE6 support - the `>` selectors */

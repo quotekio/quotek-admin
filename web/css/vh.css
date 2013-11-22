@@ -1,0 +1,122 @@
+body {
+  margin:0px;
+  padding:0px;
+}
+
+#landing {
+  background: url('/img/chili-bg.jpg') no-repeat;
+  background-color:#34261d;
+  background-position: center 0px;
+  padding-top:110px;
+}
+
+#landing header h1,#landing header h1 small {
+  color:white;
+}
+
+#supported_products {
+  width:100%;
+  background:black;
+  opacity:.6;
+  overflow:hidden;
+}
+
+.alter_panel {
+  background:#E9E9EB;
+  border-top:1px solid #cccccc;
+}
+
+
+#mnav { 
+  margin-top:10px;
+}
+
+#mnav a {
+  color:#FF993A;
+  font-weight: bold;
+  padding:5px;
+
+}
+
+
+.lang-links {
+  overflow: hidden;
+}
+
+.lang-links a {
+  font-weight:normal !important;
+}
+
+.lang-links a:hover {
+  background:transparent !important;
+  color:#FF993A !important;
+  text-decoration:underline !important;  
+
+}
+
+#mnav a:hover {
+  background:#FF993A;
+  border-radius:5px;
+  color:white;
+  text-decoration: none;
+}
+
+.btn-xlarge {
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+}
+
+.btn-xxlarge {
+  padding: 22px 34px;
+  font-size: 26px;
+  line-height: normal;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20 px;
+}
+
+#social_container {
+  padding:15px;
+  border-radius:8px;
+  width:600px;
+  margin-top:10px;
+  margin-bottom:40px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.chili-bgwrapper {
+  background:url('../img/chili-banner-top2-bg.jpg') repeat-x;
+  
+}
+
+.chili-container {
+  background: url('../img/chili-banner-top2.jpg') no-repeat;
+  background-position: center 0px;
+  height:149px;
+  padding-top:60px;
+}
+
+.chili-horiz-splitter {
+
+  width:400px;
+  margin-left:auto;
+  margin-right:auto;
+  height:40px;
+  
+  background-image: -moz-radial-gradient(center top , ellipse farthest-side, rgba(100, 100, 100, 0.5), rgba(100, 100, 100, 0) 75%), -moz-radial-gradient(center top , ellipse farthest-side, rgba(200, 200, 200, 0.5), rgba(200, 200, 200, 0)), -moz-radial-gradient(center top , ellipse farthest-side, rgba(200, 200, 200, 0.3), rgba(200, 200, 200, 0)); background-repeat: no-repeat; background-size: 100% 5px, 100% 10px, 100% 15%;
+
+}
+
+.social-pages-btn {
+
+ border-radius:60px!important;
+ width:95px!important;
+ margin-left:20px;
+ padding-left:0px;
+ padding-right:0px;
+}

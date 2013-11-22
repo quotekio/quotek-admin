@@ -1,0 +1,20 @@
+PRIO
+====
+ * edition on backtests
+ * Poll status of all registred backtests
+ * favicon 
+ * backtest viewer bug setInterval
+ * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
+ 
+OTHER
+=====
+* fix update dates
+* Edtion on all the objects
+* Cloning on all the objects
+* modules handling
+* snapshots
+* bulk actions
+* paging
+* Vstore/ live prices Viewer
+
+
