@@ -44,7 +44,7 @@
                  title="<?= $lang_array['app']['corecfg_actions_edit'] ?>">
                 <i class="icon-white icon-edit"></i>
               </a>
-              <a class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_clone'] ?>">
+              <a onclick="$(this).tooltip('hide');adamCloneCoreCfg(<?= $ccfg->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_clone'] ?>">
                 <i class="icon-white icon-leaf"></i>
               </a>
               <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-corecfg" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_delete'] ?>">

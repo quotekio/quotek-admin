@@ -176,6 +176,15 @@ function adamSaveCoreCfg(ccid) {
 }
 
 
+function adamCloneCoreCfg(cid) {
+  
+  var r = adamObject('dup','corecfg',{},cid);
+   if (r.answer == 'OK') {
+       adamRefreshTable('corecfg-table');
+   }
+}
+
+
 function adamDelCoreCfg(cid) {
 
     var r = adamObject('del','corecfg',{},cid);

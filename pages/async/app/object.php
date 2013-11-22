@@ -66,6 +66,23 @@
           echo json_encode($obj);
       }
 
+      else if ($action == 'dup') {
+ 
+         $obj = new corecfg();
+         $obj->id = $_REQUEST['id'];
+         $obj->load();
+         $obj->values = array();
+         $vobjs = getCfgValues($obj->id);
+         foreach($vobjs as $vobj) {
+           $obj->values[] = $vobj->id;
+         }
+         unset($obj->id);
+         unset($obj->active);
+         $obj->duplicate($obj->name . " (copy)" );
+         echo json_encode($response);
+      }
+
+
       else if ($action == 'getall') {
          $objs = getCoreConfigs();
          echo json_encode($objs);

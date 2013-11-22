@@ -62,7 +62,12 @@ class corecfg  extends adamobject {
 
      global $dbhandler;
      $res = $dbhandler->query("DELETE FROM valuecfg_map WHERE config_id = '" . $this->id . "';");
-     $varray = json_decode($values);
+     if (!is_array($values)) {
+       $varray = json_decode($values);
+     }
+     else {
+       $varray = $values;
+     }
 
      foreach($varray as $v) {
         $query = sprintf("INSERT INTO valuecfg_map (config_id,indice_id)  VALUES ('%d','%d');", $this->id ,$v);
@@ -116,7 +121,7 @@ function getActiveCfg() {
 }
 
 function getCfgValues($cfg_id) {
-
+   
    $values = array();
    global $dbhandler;
    $dbh = $dbhandler->query("SELECT indice_id FROM valuecfg_map WHERE config_id = '$cfg_id';");
