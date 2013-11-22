@@ -1,0 +1,13 @@
+*.o
+data/dumps/*
+data/vstore.sqlite
+CMakeCache.txt
+CMakeFiles
+./adam
+./csv2dump
+./libigmgw.so
+./signal
+modules/vstore/vstore2dump
+modules/vstore/dump2vstore
+modules/vstore/libvstore.so
+

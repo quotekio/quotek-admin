@@ -2,17 +2,15 @@ PRIO
 ====
 
  * Poll status of all registred backtests
- * favicon 
- * backtest viewer bug setInterval
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
- 
+
 OTHER
 =====
 * fix update dates
 * modules handling
-* snapshots
-* bulk actions
+* bulk
+* snapshots actions
 * paging
-* Vstore/ live prices Viewer
+* Vstore/live prices Viewer
 
 

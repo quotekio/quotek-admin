@@ -888,7 +888,6 @@ function formatDate(obj) {
 
 }
 
-
 function formatDate2(dt) {
    var temp = new Date(0);
    temp.setUTCSeconds(parseInt(dt));
