@@ -4,7 +4,6 @@
   @require_once('classes/valuecfg.php');
   @require_once('classes/corecfg.php');
 
-
   $lang = 'en';
   selectLanguage();
 
@@ -15,34 +14,37 @@
 
   if (!verifyAuth()) die('You are not logged');  
   if (!isset($_REQUEST['action'])) die('No action provided!');
-  if (!isset($_REQUEST['id'])) die('No Backtest ID Provided!');
+  
+  if (isset($_REQUEST['id'])) {
 
-  $btest = new backtest();
-  $btest->id = $_REQUEST['id'];
-  $btest->load();
+    $btest = new backtest();
+    $btest->id = $_REQUEST['id'];
+    $btest->load();
 
-  $bctl = new backtestctl();
-  $bctl->setBacktestID($btest->id);
+    $bctl = new backtestctl();
+    $bctl->setBacktestID($btest->id);
 
-  $hash = $btest->generateDumpSig();
-  $dumpfile = $ADAM_BT_EXPORTS . "/" . $hash;
+    $hash = $btest->generateDumpSig();
+    $dumpfile = $ADAM_BT_EXPORTS . "/" . $hash;
 
-  /* Generate Backtest Arguments */
-  $bt_args = array();
-  $bt_args[] = "-p " . ($ADAM_AEP_PORT + $btest->id );  
-  if ($btest->type == 'normal') {
-      $bt_args[] = '--backtest';
+    /* Generate Backtest Arguments */
+    $bt_args = array();
+    $bt_args[] = "-p " . ($ADAM_AEP_PORT + $btest->id );  
+    if ($btest->type == 'normal') {
+        $bt_args[] = '--backtest';
+    }
+    else if ($btest->type == 'genetics') {
+        $bt_args[] = '--genetics';
+    }
+
+    $bt_args[] = '--backtest-dump ' . $dumpfile;
+    $bt_args[] = '--backtest-speed ' . $btest->speed;
+    $bt_args[] = '--backtest-result ' .  $ADAM_TMP . "/backtests/" .  $btest->id . "/results/" . time() ;
+    $bt_args[] = "$ADAM_TMP/backtests/" . $btest->id . "/adam.conf";
+    /* */
   }
-  else if ($btest->type == 'genetics') {
-      $bt_args[] = '--genetics';
-  }
-
-  $bt_args[] = '--backtest-dump ' . $dumpfile;
-  $bt_args[] = '--backtest-speed ' . $btest->speed;
-  $bt_args[] = '--backtest-result ' .  $ADAM_TMP . "/backtests/" .  $btest->id . "/results/" . time() ;
-  $bt_args[] = "$ADAM_TMP/backtests/" . $btest->id . "/adam.conf";
-  /* */
-
+  
+  
   if ( $_REQUEST['action'] == 'start') {
 
     if (!is_dir("$ADAM_TMP/backtests/" . $btest->id) ) $btest->createTree();
@@ -63,6 +65,7 @@
   }
 
   else if ( $_REQUEST['action'] == 'getStatus') {
+
     $state = $bctl->checkStatus($bctl->supid);
     $message = $lang_array['app']['adam_mode']["$state"];
     $res = array('state' => $state, 'message' => $message);
@@ -79,7 +82,6 @@
       echo "{}";
     }
   }  
-
 
   else if ($_REQUEST['action'] == 'getProgress') {
     
@@ -107,6 +109,26 @@
     $response['result'] = $btest->getResult($_REQUEST['result']);
     echo json_encode($response);
   }
+
+  else if ($_REQUEST['action'] == 'getAllStatus') {
+
+    $res = array();
+    $btests = getBacktests();
+    foreach($btests as $bt) {
+      $backctl = new backtestctl();
+      $backctl->setBacktestID($bt->id);
+      
+      if ($backctl->checkStatus($backctl->expid) == "real") {
+        $state = "preparing";
+      }
+      else $state = $backctl->checkStatus($backctl->supid);
+
+      $res[] = array('id' => $bt->id , 'state' => $state, 'hasresult' => $bt->hasResult() );
+
+    }
+    echo json_encode($res);
+  }
+
   /*
   else if ($_REQUEST['action'] == 'getPosList') {
     if ($ac->AEPStartCLient()) {

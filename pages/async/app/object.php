@@ -266,6 +266,7 @@
           echo json_encode($obj);
       }
 
+
       else if ($action == 'del') {
           $obj = new backtest();
           $obj->id = $_REQUEST['id'];

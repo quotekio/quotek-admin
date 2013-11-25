@@ -169,6 +169,13 @@ class backtest extends adamobject {
     return $res_string;
   }
 
+
+
+  function hasResult() {
+    if (count($this->getResultsList()) > 0 ) return true;
+    return false;
+  }
+
   function getResultsList() {
 
     global $ADAM_TMP;
