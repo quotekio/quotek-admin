@@ -78,5 +78,4 @@
       echo $ac->AEPIssueCmd('poslist');
     }  
   }
-  
 ?>

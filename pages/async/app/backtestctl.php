@@ -55,11 +55,11 @@
   }
 
   else if ( $_REQUEST['action'] == 'stop') {
-    $bctl->stop();
+    $bctl->stopBT();
   }
   
   else if ( $_REQUEST['action'] == 'restart') {
-    $bctl->stop();
+    $bctl->stopBT();
     exportCfg();
     $bctl->startBT();
   }
@@ -121,9 +121,12 @@
       if ($backctl->checkStatus($backctl->expid) == "real") {
         $state = "preparing";
       }
+
       else $state = $backctl->checkStatus($backctl->supid);
 
       $res[] = array('id' => $bt->id , 'state' => $state, 'hasresult' => $bt->hasResult() );
+      //echo "SUPID:" . $backctl->supid; 
+
 
     }
     echo json_encode($res);

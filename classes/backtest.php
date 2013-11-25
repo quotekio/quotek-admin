@@ -8,8 +8,8 @@ class backtestctl extends adamctl {
 
   function __construct() {
     $this->supid = 'none';
-    $this->mode = 'off';
     $this->expid = 'none';
+    $this->mode = 'off';
   }
 
   function setBacktestID($backtest_id) {
@@ -18,8 +18,9 @@ class backtestctl extends adamctl {
     $this->backtest_id = $backtest_id;
     $this->supid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
     $this->expid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/exporter.pid");
+
     if ($this->supid != "none") {
-      $this->checkStatus($this->supid);
+      $this->mode = $this->checkStatus($this->supid);
     }
 
     if ($this->expid != "none") {
@@ -79,6 +80,16 @@ class backtestctl extends adamctl {
       $this->setPID($this->supid,"$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
     }
     else echo "ALREADY RUNNING!";
+  }
+
+  function stopBT() {
+
+    global $ADAM_TMP;
+    if ($this->supid =='none') {
+      $this->supid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
+    }
+    exec("sudo kill " . $this->supid );
+    $this->mode = 'off';
   }
 
 /*

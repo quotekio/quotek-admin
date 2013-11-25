@@ -11,7 +11,7 @@
 ?>
 
      <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clearInterval(btupdatenbpos);modalDest();" >&times;</button>
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
      <h3 id="backtest-viewer-title" ><?=  $lang_array['app']['backtest_viewer_title']  ?></h3>
      </div>
      <div class="modal-body" style="padding-bottom:0px">
@@ -79,20 +79,21 @@
                     };
 
       
-
-      adamUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
-      adamUpdateBacktestProgress(<?= $bt->id ?>);
-      adamUpdateBacktestLogs(<?= $bt->id ?>);
-      
-      btupdatenbpos = setInterval(function() {
+      function adamRedreshBacktestInfos() {
 
          adamUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
          adamUpdateBacktestProgress(<?= $bt->id ?>);
          adamUpdateBacktestLogs(<?= $bt->id ?>);
 
-
-      }, 2000);
-
-
-    
+         if ( $('#modal_win').is(':visible') ) {
+           setTimeout('adamRedreshBacktestInfos()',2000);
+         }
+         else return false;
+      }
+        
+      adamUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
+      adamUpdateBacktestProgress(<?= $bt->id ?>);
+      adamUpdateBacktestLogs(<?= $bt->id ?>);
+      setTimeout('adamRedreshBacktestInfos()', 2000);
       </script>
+      

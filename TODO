@@ -1,8 +1,11 @@
 PRIO
 ====
 
+ * Fix Bug on concurrent backtests running for viewer
  * Poll status of all registred backtests
+ * genetics backtests
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
+
 
 OTHER
 =====

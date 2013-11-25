@@ -41,19 +41,38 @@
           <div class="btn-group">
             <a class="btn btn-inverse btn-adambacktest-edit" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
             <a onclick="$(this).tooltip('hide');adamCloneBacktest(<?= $bt->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
-            <a class="btn btn-danger btn-del-backtest" id="btn-del-backtest" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_delete'] ?>"><i class="icon-white icon-remove-sign"></i></a>
+            <a class="btn btn-danger btn-del-backtest" 
+               id="btn-del-backtest" 
+               rel="tooltip" 
+               title="<?= $lang_array['app']['backtest_actions_delete'] ?>"
+               onclick="adamDelBacktest(<?= $bt->id ?>);">
+               <i class="icon-white icon-remove-sign"></i>
+            </a>
           </div>
 
           <div class="btn-group" style="margin-left:5px;">
-            <a class="btn btn-success btn-toggle-backtest" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_start'] ?>"><i class="icon-white icon-play"></i></a>
+            <a class="btn btn-success btn-toggle-backtest"  
+               id="btn-toggle-backtest" rel="tooltip" 
+               title="<?= $lang_array['app']['backtest_actions_start'] ?>"
+               onclick="adamToggleBacktest(<?= $bt->id ?>)">
+               <i class="icon-white icon-play"></i>
+            </a>
           </div>
 
           <div class="btn-group" style="margin-left:5px;width:30px!important">
-            <a class="btn btn-info btn-adambacktest-view" rel="tooltip" 
-            title="<?= $lang_array['app']['backtest_actions_progress'] ?>">
+            <a class="btn btn-info btn-adambacktest-view" 
+               id="btn-adambacktest-view" 
+               rel="tooltip" 
+               title="<?= $lang_array['app']['backtest_actions_progress'] ?>"
+               onclick="adamShowBacktestViewer(<?= $bt->id ?>);">
               <i class="icon-white icon-eye-open"></i>
             </a>
-            <a class="btn btn-info btn-adambacktest-results" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_results'] ?>"><i class="icon-white icon-list"></i></a>
+            <a class="btn btn-info btn-adambacktest-results" 
+               id="btn-adambacktest-results" 
+               rel="tooltip" 
+               title="<?= $lang_array['app']['backtest_actions_results'] ?>" 
+               onclick="adamShowBacktestResults(<?= $bt->id ?>);">
+               <i class="icon-white icon-list"></i></a>
           </div>
 
       	</td>
@@ -64,6 +83,8 @@
   </table>
 
   <script type="text/javascript">
+
+    var UABT = setInterval('adamUpdateAllBacktests()',2000); 
 
     $('.btn-adambacktest-edit').each(function() {
 
@@ -86,6 +107,7 @@
 
     $('.table-backtests a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
 
+    /*
     $('.btn-toggle-backtest').each(function(){
 
       var bid = $(this).parent().parent().parent().attr('id');
@@ -97,9 +119,9 @@
       });             
 
     });
+    */
 
-
-
+    /*
     $('.btn-del-backtest').each(function() {
       var bid = $(this).parent().parent().parent().attr('id');
       bid = parseInt(bid.replace(/backtest-line-/g,""));
@@ -109,8 +131,8 @@
       });
 
     });
-
-
+    */
+    /*
     $('.btn-adambacktest-view').each(function() {
 
       var bid = $(this).parent().parent().parent().attr('id');
@@ -122,7 +144,8 @@
       });
 
     });
-
+    */
+    /*
     $('.btn-adambacktest-results').each(function() {
 
       var bid = $(this).parent().parent().parent().attr('id');
@@ -135,7 +158,7 @@
       });
 
     });
-
+    */
 
 
   </script>

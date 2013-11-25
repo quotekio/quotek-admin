@@ -566,6 +566,21 @@ function adamStartReal() {
   return st.responseText;
 }
 
+
+function adamToggleBacktest(bid) {
+
+  var line = $('#backtest-line-' + bid);
+  if (  $('#btn-toggle-backtest',line).hasClass('btn-success')) {
+    adamStartBacktest(bid);
+  }
+
+  else {
+    adamStopBacktest(bid);
+  }
+
+}
+
+
 function adamStartBacktest(id) {
 
  var st = $.ajax({
@@ -579,7 +594,7 @@ function adamStartBacktest(id) {
  adamShowBacktestViewer(id);
 }
 
-function adamStopBacktest() {
+function adamStopBacktest(id) {
 
   var st = $.ajax({
         url:            '/async/app/backtestctl',
@@ -961,8 +976,80 @@ function showLoginForm() {
 
 }
 
+/* This function makes a full check of all the listed backtests */
+function adamUpdateAllBacktests() {
 
-function adamShowCloneForm() {
+  var bt_statuses_raw = $.ajax({
+        url:            '/async/app/backtestctl',
+        type:           'POST',
+        data:           {'action': 'getAllStatus'},
+        cache:          false,
+        async:          true,
+        success:        function() {
+           var bt_statuses = $.parseJSON($.trim(bt_statuses_raw.responseText));
+
+           for (i=0;i<bt_statuses.length;i++) {
+
+              var bt_status = bt_statuses[i];
+              var line = $('#backtest-line-'+ bt_status.id);
+
+              if (bt_status.hasresult == false) {
+                $('#btn-adambacktest-results',line).off('click');
+                $('#btn-adambacktest-results',line).removeClass('btn-info');
+                $('#btn-adambacktest-results',line).addClass('disabled');
+              }
+              else {
+                $('#btn-adambacktest-results',line).off('click');
+                $('#btn-adambacktest-results',line).click(function() {
+                  adamShowBacktestResults(bt_status.id);
+                });
+                $('#btn-adambacktest-results',line).addClass('btn-info');
+                $('#btn-adambacktest-results',line).removeClass('disabled');
+              }
+
+              //running-state
+              if (bt_status.state == 'real') {
+
+                $('#btn-adambacktest-view',line).addClass('btn-info');
+                $('#btn-adambacktest-view',line).removeClass('disabled');
+                $('#btn-adambacktest-view',line).off('click');
+                $('#btn-adambacktest-view',line).click(
+                function() {
+                  
+                  adamShowBacktestViewer(bt_status.id);
+                });
+
+                $('#btn-toggle-backtest',line).removeClass('btn-success');
+                $('#btn-toggle-backtest',line).addClass('btn-danger');
+                $('#btn-toggle-backtest i',line).removeClass('icon-start');
+                $('#btn-toggle-backtest i',line).addClass('icon-stop');
+
+              }
+
+              //Preparing state (export)
+              else if (bt_status.state == 'preparing') {
+
+              }
+
+              //Off
+              else {
+                $('#btn-adambacktest-view',line).removeClass('btn-info');
+                $('#btn-adambacktest-view',line).addClass('disabled');
+                $('#btn-adambacktest-view',line).off('click');
+                
+                $('#btn-toggle-backtest',line).addClass('btn-success');
+                $('#btn-toggle-backtest',line).removeClass('btn-danger');
+                $('#btn-toggle-backtest i',line).addClass('icon-start');
+                $('#btn-toggle-backtest i',line).removeClass('icon-stop');
+              }
+           }
+        }
+        });
+
+
+
+
+
 
 }
 

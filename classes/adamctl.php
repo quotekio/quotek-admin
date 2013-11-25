@@ -9,7 +9,7 @@ class adamctl {
     $this->supid = $this->getPID();
 
     if ($this->supid != "none") {
-      $this->checkStatus($this->supid);
+      $this->mode = $this->checkStatus($this->supid);
     }  
 
   }
@@ -63,9 +63,7 @@ class adamctl {
   function stop() {
     global $ADAM_PIDFILE;
     exec("sudo kill " . $this->supid );
-    //unlink($ADAM_PIDFILE);
     $this->mode = 'off';
-
   }
 
   function setPID($pid,$pidfile=null) {
@@ -84,6 +82,7 @@ class adamctl {
 
   function getPID($pid_f=null) {
     global $ADAM_PIDFILE;
+    $pid = 'none';
     if ($pid_f == null ) $pidfile = $ADAM_PIDFILE;
     else $pidfile = $pid_f;
 
@@ -92,8 +91,8 @@ class adamctl {
       if (!$fh) return 'none';
       $pid = fgets($fh);
       fclose($fh);
-      return $pid;
     }
+    return $pid;
   }
 
 
@@ -104,17 +103,10 @@ class adamctl {
         $result = shell_exec(sprintf("ps %d", $pid));
 
           if( count(preg_split("/\n/", $result)) > 2){
-            $this->mode = 'real';
             return 'real';
           }
-
-     $this->supid = null;
-     $this->mode = 'off';
      return 'off';
-
     }
   }
 
-}
-
-?>
+}?>
