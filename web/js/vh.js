@@ -1117,53 +1117,94 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
   for (i=0;i<bt_statuses.length;i++) {
     var bt_status = bt_statuses[i];
     var line = $('#backtest-line-'+ bt_status.id);
+    var resbtn = $('#btn-adambacktest-results',line);
 
-    if (bt_status.hasresult == false) {
-      $('#btn-adambacktest-results',line).off('click');
-      $('#btn-adambacktest-results',line).removeClass('btn-info');
-      $('#btn-adambacktest-results',line).addClass('disabled');
-    }
-    else {
-      $('#btn-adambacktest-results',line).off('click');
-      $('#btn-adambacktest-results',line).click(function() {
-        adamShowBacktestResults(bt_status.id);
-      });
-      $('#btn-adambacktest-results',line).addClass('btn-info');
-      $('#btn-adambacktest-results',line).removeClass('disabled');
-    }
-
-    //running-state
-    if (bt_status.state == 'real') {
-
-      $('#btn-adambacktest-view',line).addClass('btn-info');
-      $('#btn-adambacktest-view',line).removeClass('disabled');
-      $('#btn-adambacktest-view',line).off('click');
-      $('#btn-adambacktest-view',line).click(
-      function() {
-        adamShowBacktestViewer(bt_status.id);
-      });
-
-      $('#btn-toggle-backtest',line).removeClass('btn-success');
-      $('#btn-toggle-backtest',line).addClass('btn-danger');
-      $('#btn-toggle-backtest i',line).removeClass('icon-start');
-      $('#btn-toggle-backtest i',line).addClass('icon-stop');
-
+    if (line.attr('hasresult') != bt_status.hasresult) {
+      line.attr('hasresult',bt_status.hasresult);
+  
+      if (bt_status.hasresult == false) {
+        resbtn.off('click');
+        resbtn.removeClass('btn-info');
+        resbtn.addClass('disabled');
+      }
+      else {
+        resbtn.off('click');
+        resbtn.click(function() {
+          adamShowBacktestResults($(this).attr('btid') );
+        });
+        resbtn.addClass('btn-info');
+        resbtn.removeClass('disabled');
+      }
     }
 
-    //Preparing state (export)
-    else if (bt_status.state == 'preparing') {
-    }
+    if (line.attr('state') != bt_status.state) {
+      line.attr('state',bt_status.state);
+      var viewbtn = $('#btn-adambacktest-view',line);
+      var toglbtn = $('#btn-toggle-backtest',line);
+      var statuslbl = $('#statuslbl',line);
+      //running-state
+      if (bt_status.state == 'real') {
 
-    //Off
-    else {
-      $('#btn-adambacktest-view',line).removeClass('btn-info');
-      $('#btn-adambacktest-view',line).addClass('disabled');
-      $('#btn-adambacktest-view',line).off('click');
+        statuslbl.addClass('label-success');
+        statuslbl.removeClass('label-info');
+        statuslbl.removeClass('label-inverse');
+        statuslbl.html( statuslbl.attr('labelrunning'));
+
+        viewbtn.addClass('btn-info');
+        viewbtn.removeClass('disabled');
+        viewbtn.off('click');
+        viewbtn.click(
+        function() {
+          adamShowBacktestViewer($(this).attr('btid'));
+        });
+
+        toglbtn.removeClass('btn-success');
+        toglbtn.addClass('btn-danger');
+        $('i',toglbtn).removeClass('icon-start');
+        $('i',toglbtn).addClass('icon-stop');
+      }
+
+      //Preparing state (export)
+      else if (bt_status.state == 'preparing') {
+        statuslbl.addClass('label-info');
+        statuslbl.removeClass('label-success');
+        statuslbl.removeClass('label-inverse');
+        statuslbl.html( statuslbl.attr('labelpreparing'));
+
+        toglbtn.off('click');
+        toglbtn.addClass('disabled');
+
+        viewbtn.removeClass('btn-info');
+        viewbtn.addClass('disabled');
+        viewbtn.off('click');
+
+      }
+
+      //Off
+      else {
+
+        statuslbl.removeClass('label-success');
+        statuslbl.removeClass('label-info');
+        statuslbl.addClass('label-inverse');
+        statuslbl.html( statuslbl.attr('labelstopped'));
+
+        viewbtn.removeClass('btn-info');
+        viewbtn.addClass('disabled');
+        viewbtn.off('click');
                 
-      $('#btn-toggle-backtest',line).addClass('btn-success');
-      $('#btn-toggle-backtest',line).removeClass('btn-danger');
-      $('#btn-toggle-backtest i',line).addClass('icon-start');
-      $('#btn-toggle-backtest i',line).removeClass('icon-stop');
+                
+        if (toglbtn.hasClass('disabled')) {
+          toglbtn.removeClass('disabled');
+          toglbtn.click( function() {
+            adamToggleBacktest($(this).attr('btid'));
+          });
+        }
+
+        toglbtn.addClass('btn-success');
+        toglbtn.removeClass('btn-danger');
+        $('i',toglbtn).addClass('icon-start');
+        $('i',toglbtn).removeClass('icon-stop');
+      }
     }
   }
 }

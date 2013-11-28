@@ -5,6 +5,7 @@
   $lang_array['app']['loading'] = 'Chargement <small>veuillez patienter</small>';
   $lang_array['app']['builder_reset'] = 'Réinitialiser';
   $lang_array['finish'] = 'Terminer';
+  $lang_array['app']['status'] = 'Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
   $lang_array['app']['name'] = 'Nom';
   $lang_array['yes'] = 'Oui';
   $lang_array['no'] = 'Non';
@@ -12,6 +13,8 @@
   $lang_array['app']['dashboard_subtitle'] = 'Vue générale';
   $lang_array['app']['adam_mode_'] = 'Status';
   $lang_array['app']['adam_mode']['off'] = 'Eteint';
+  $lang_array['app']['adam_mode']['running'] = 'En cours';
+  $lang_array['app']['adam_mode']['preparing'] = 'Préparation';
   $lang_array['app']['adam_mode']['real'] = 'Réel';
   $lang_array['app']['adam_mode']['bt'] = 'Backtest';
   $lang_array['app']['adam_mode']['genetics'] = 'Génétique';

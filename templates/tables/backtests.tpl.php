@@ -27,7 +27,7 @@
       <th><?= $lang_array['app']['type'] ?></th>
       <th><?= $lang_array['app']['period'] ?></th>
       <th><?= $lang_array['app']['strat']?></th>
-     
+      <th><?= $lang_array['app']['status'] ?></th>
       <th><?= $lang_array['app']['actions'] ?></th>
     </tr>
     
@@ -41,15 +41,28 @@
 
     ?>
   
-      <tr id="backtest-line-<?= $bt->id  ?>">
+      <tr id="backtest-line-<?= $bt->id  ?>" state="off">
       	<td><?= $bt->name ?></td>
         <td><?= $bt->type ?></td>
-        <td>
+        <td style="width:200px!important">
           <span class="dtime"><?= $bt->start ?></span><br>
           <span class="dtime"><?= $bt->end ?></span><br>
         </td>
         <!-- <td class="dtime"><?= $bt->end ?></td>  -->     	
-        <td> <?= $strat->name ?></td>
+        <td style="width:220px!important"> <?= $strat->name ?></td>
+
+        <td style="text-align:center">
+          <span class="label label-inverse" 
+                id="statuslbl" 
+                style="width:90px;padding-bottom:5px;padding-top:5px"
+                labelrunning="<?= $lang_array['app']['adam_mode']['running']  ?>" 
+                labelpreparing="<?= $lang_array['app']['adam_mode']['preparing'] ?>"
+                labelstopped="<?= $lang_array['app']['adam_mode']['off'] ?>" 
+           >
+            <?= $lang_array['app']['adam_mode']['off'] ?>
+          </span>
+        </td>
+
       	<td>
 
           <div class="btn-group">
@@ -66,7 +79,9 @@
 
           <div class="btn-group" style="margin-left:5px;">
             <a class="btn btn-success btn-toggle-backtest"  
-               id="btn-toggle-backtest" rel="tooltip" 
+               id="btn-toggle-backtest" 
+               rel="tooltip" 
+               btid="<?= $bt->id ?>"
                title="<?= $lang_array['app']['backtest_actions_start'] ?>"
                onclick="adamToggleBacktest(<?= $bt->id ?>)">
                <i class="icon-white icon-play"></i>
@@ -77,13 +92,15 @@
             <a class="btn btn-info btn-adambacktest-view" 
                id="btn-adambacktest-view" 
                rel="tooltip" 
+               btid="<?= $bt->id ?>" 
                title="<?= $lang_array['app']['backtest_actions_progress'] ?>"
                onclick="adamShowBacktestViewer(<?= $bt->id ?>);">
               <i class="icon-white icon-eye-open"></i>
             </a>
             <a class="btn btn-info btn-adambacktest-results" 
                id="btn-adambacktest-results" 
-               rel="tooltip" 
+               rel="tooltip"
+               btid="<?= $bt->id ?>"  
                title="<?= $lang_array['app']['backtest_actions_results'] ?>" 
                onclick="adamShowBacktestResults(<?= $bt->id ?>);">
                <i class="icon-white icon-list"></i></a>

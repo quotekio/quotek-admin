@@ -14,7 +14,7 @@
 
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
-     <h3 id="backtest-resviewer-title" ><?=  $lang_array['app']['backtest_resviewer_title']  ?></h3>
+     <h3 id="backtest-resviewer-title" ><?=  $lang_array['app']['backtest_resviewer_title']  ?>: <?=  $bt->name  ?></h3>
      </div>
      <div class="modal-body" style="padding-bottom:0px">
          <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
