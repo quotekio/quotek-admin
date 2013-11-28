@@ -37,8 +37,12 @@ function endLoad() {
   $('#app-display').width(dispwidth);
 
   clearInterval(tcontrol);
-  setInterval('adamUpdateStatus()',10000);
-  setInterval('adamUpdateCorestats()',5000);
+
+  adamUpdateAll();
+  setInterval('adamUpdateAll()',3000);
+
+  //setInterval('adamUpdateStatus()',10000);
+  //setInterval('adamUpdateCorestats()',5000);
   
   adamUpdateDBPNLGraph();
   adamUpdateDBNBPOSGraph();
@@ -49,7 +53,7 @@ function endLoad() {
   ce.setTheme("ace/theme/xcode");
   ce.getSession().setMode("ace/mode/c_cpp");
   
-  adamUpdateStatus();
+  //adamUpdateStatus();
 }
 
 /* loading of app js + css */

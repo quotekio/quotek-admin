@@ -73,21 +73,28 @@ class strategy extends adamobject {
 
 }
 
-function getStratsList() {
+function getStratsList($type='all') {
     /* Light list  to avoid xfer of 
     large amount of data */
-    $slist = getStrategies();
+    $slist = getStrategies($type);
     for($i=0;$i<count($slist);$i++ ) {
        $slist[$i]->content = "";
     }
     return $slist;
 }
 
-function getStrategies() {
+function getStrategies($type='all') {
 
   global $dbhandler;
   $slist = array();
-  $dbh = $dbhandler->query("SELECT id FROM strategy;");
+  $dbh = null;
+  if ($type == 'all') {
+    $dbh = $dbhandler->query("SELECT id FROM strategy;");
+  }
+  else {
+    $dbh = $dbhandler->query("SELECT id FROM strategy WHERE type= '$type';"); 
+  }
+
   while($ans = $dbh->fetch()) {
     $s = new strategy();
     $s->id = $ans['id'];

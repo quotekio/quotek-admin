@@ -56,8 +56,3 @@
 
       </div>
 </div>
-
-
-<script type="text/javascript">
-  setInterval('adamUpdateLastLogs(10)',5000);
-</script>

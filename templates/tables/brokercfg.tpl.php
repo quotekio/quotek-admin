@@ -35,7 +35,14 @@
 
             <div class="btn-group" style="margin-left:10px">
               
-              <a onclick="toggleGWBtn(<?= $b->id ?>)" class="btn btn-info btn-togglegw" id="btn-togglegw-<?= $b->id ?>" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_startgw'] ?>">
+              <a onclick="toggleGWBtn(<?= $b->id ?>)" 
+                 class="btn btn-info btn-togglegw" 
+                 id="btn-togglegw-<?= $b->id ?>" 
+                 rel="tooltip" 
+                 title="<?= $lang_array['app']['brokercfg_actions_startgw'] ?>"
+                 titlestart="<?= $lang_array['app']['brokercfg_actions_startgw'] ?>"  
+                 titlestop="<?= $lang_array['app']['brokercfg_actions_stopgw'] ?>"
+                >
                 <i class="icon-white icon-play"></i>
               </a>
             </div>
@@ -81,35 +88,7 @@
      }
 
 
-     function updateGWStatus() {
-       $('.brokercfg-line').each(function(){
-          var bid = parseInt($(this).attr('id').replace(/brokercfg-line-/g,""));
-          var gwbtn = $('#btn-togglegw-' + bid);
-          var running = adamGWIsRunning(bid);
-
-          if ( running && $('i',gwbtn).hasClass('icon-play') ) {
-
-            $('i',gwbtn).removeClass('icon-play');
-            $('i',gwbtn).addClass('icon-stop');
-
-            gwbtn.tooltip('destroy');
-            gwbtn.attr('title', '<?= $lang_array['app']['brokercfg_actions_stopgw'] ?>');
-            gwbtn.tooltip({placement: 'bottom', container: 'body'});
-          }
-
-          else if (! running && $('i',gwbtn).hasClass('icon-stop') ) {
-
-            $('i',gwbtn).removeClass('icon-stop');
-            $('i',gwbtn).addClass('icon-play');
-
-            gwbtn.tooltip('destroy');
-            gwbtn.attr('title','<?= $lang_array['app']['brokercfg_actions_startgw'] ?>');
-            gwbtn.tooltip({placement: 'bottom', container: 'body'});
-          }
-       });
-     }
-
-     $('.btn-adambroker-edit').each(function() {
+    $('.btn-adambroker-edit').each(function() {
 
        var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/brokercfg-line-/g,""));
        $(this).off();
@@ -126,8 +105,6 @@
        });
 
      });
-
-     setInterval('updateGWStatus()',3000);
 
   </script>
 

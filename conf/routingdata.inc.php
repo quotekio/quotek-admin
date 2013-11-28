@@ -17,6 +17,7 @@
                     '/async/resolvemessage' => 'async/resolvemessage.php',
 
                     '/async/app/object' => 'async/app/object.php',
+                    '/async/app/alldata' => 'async/app/alldata.php',
                     '/async/app/gettable' => 'async/app/gettable.php',
                     '/async/app/graphdata' => 'async/app/graphdata.php',
             		'/async/app/getapp' => 'async/app/getapp.php',

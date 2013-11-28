@@ -3,11 +3,27 @@
 include ('classes/corecfg.php');
 include ('classes/strategy.php');
 $cfgs = getCoreConfigs();
-$strats = getStratsList();
+$strats = getStratsList('normal');
+$strats_gen = getStratsList('genetics');
+
+$strats_ct = "";
+$strats_gen_ct = "";
+
+foreach($strats as $strat) {
+  $strats_ct .= '<option value="' . $strat->id . '">' . $strat->name . '</option>';
+}
+
+foreach($strats_gen as $strat) {
+  $strats_gen_ct .= '<option value="' . $strat->id . '">' . $strat->name . '</option>';
+}
+
+ 
 
 ?>
 
+ 
      <div class="modal-header">
+
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
      <h3 id="editor-title" ></h3>
      </div>
@@ -24,7 +40,7 @@ $strats = getStratsList();
                 <a onclick="adamBacktestEditorNav($(this));" class="backtest-editor-navlink" id="period"><?= $lang_array['app']['backtest_period_title'] ?></a>
               </li> 
              <li>
-                <a onclick="adamBacktestEditorNav($(this));" class="backtest-editor-navlink" id="genetics"><?= $lang_array['app']['backtest_genetics_title'] ?></a>
+                <a onclick="adamBacktestEditorNav($(this));" class="backtest-editor-navlink" id="genetics" style="display:none"><?= $lang_array['app']['backtest_genetics_title'] ?></a>
               </li>
              
           </ul>
@@ -62,11 +78,7 @@ $strats = getStratsList();
 
            <label><b><?= $lang_array['app']['strat'] ?></b></label>
            <select id="input-backtest-strategy_id" style="height:27px;width:150px">
-             <?php
-               foreach($strats as $strat) {
-            ?>
-              <option value="<?= $strat->id ?>"><?= $strat->name ?></option>
-            <?php } ?>
+             <?= $strats_ct ?>
            </select>
            <span class="help-block">Indiquez la strategie à tester pour cette simulation.</span>
           
@@ -128,6 +140,10 @@ $strats = getStratsList();
 
      <script type="text/javascript">
 
+         $('#input-backtest-type').change(function() {
+           adamChangeBacktestEditorView();
+         });
+        
          function adamBacktestEditorNav(obj) {
             $('.backtest-editor-frame').hide();
             $('#backtest-editor-' +  obj.attr('id') ).show();

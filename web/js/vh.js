@@ -620,11 +620,37 @@ function adamLoadBTResult(id,result) {
   var tresp = $.trim(br.responseText);
   //alert(tresp);
   var r = $.parseJSON(tresp);
-
   $('#backtest-result-content').html(r.result.replace(/\n/g,"<br>"));
+}
+
+
+
+function adamUpdateAll() {
+
+  var alldata_q = $.ajax({
+        url:            '/async/app/alldata',
+        type:           'GET',
+        cache:          false,
+        async:          true,
+        success:        function() {
+          var alldata = $.parseJSON($.trim(alldata_q.responseText));
+
+          adamUpdateCorestats_NoFetch(alldata.adamcorestats);
+          adamUpdateLastLogs_NoFetch(alldata.adamlastlogs);
+          adamUpdateStatus_NoFetch(alldata.adamstatus);
+          adamUpdateAllBacktests_NoFetch(alldata.backteststatuses);
+          adamUpdateAllGW_NoFetch(alldata.gwstatuses);
+
+        }
+        });
 
 }
 
+
+function adamUpdateCorestats_NoFetch(fdata) {
+  $('#app-corestats-pnl').html(fdata.pnl);
+  $('#app-corestats-nbpos').html(fdata.nbpos); 
+}
 
 function adamUpdateCorestats() {
 
@@ -642,6 +668,18 @@ function adamUpdateCorestats() {
                 }
         });
 
+}
+
+
+function adamUpdateLastLogs_NoFetch(fdata) {
+
+  $('#app-dashboard-lastlogs').html('');
+  var ll_str = "";
+  var i =0;
+  for (i=0;i<fdata.length;i++) {
+    ll_str += fdata[i].entry + "<br>";
+  }
+  $('#app-dashboard-lastlogs').html(ll_str);      
 }
 
 
@@ -668,6 +706,41 @@ function adamUpdateLastLogs(nbe) {
 
 }
 
+
+function adamUpdateStatus_NoFetch(fdata) {
+
+  $('#app-stopadam').off('click');
+  $('#app-startadam').off('click');
+
+  $('#app-stopadam').addClass('disabled');
+  $('#app-stopadam').removeClass('btn-danger');
+  $('#app-startadam').addClass('disabled');
+  $('#app-startadam').removeClass('btn-success');
+
+  if (fdata.state == 'off') {
+
+    $('#app-startadam').addClass('btn-success');
+    $('#app-startadam').removeClass('disabled');
+
+    $('#app-startadam').click(function() { adamStartReal(); } );
+  }
+
+  else {
+    $('#app-stopadam').addClass('btn-danger');
+    $('#app-stopadam').removeClass('disabled');
+    $('#app-stopadam').click(function() { adamStop(); } ); 
+  }
+
+  $('#app-status-label').html(fdata.message);
+
+  //service needs restart
+  if (fdata.needs_restart) {
+    $('#adam-top-notifier').show();
+  }
+  else {
+    $('#adam-top-notifier').hide();
+  }
+}
 
 function adamUpdateStatus() {
 
@@ -976,6 +1049,125 @@ function showLoginForm() {
 
 }
 
+
+function adamGetSelectContent(objs,type) {
+
+  var ret = "";
+  var sc = $.ajax({
+        url:            '/async/gettemplate',
+        type:           'POST',
+        data:           {tpl: 'selectdata','objects': objs ,'type': type},
+        cache:          false,
+        async:          false
+        });
+
+  ret = sc.responseText;
+  //alert("ret:" + ret);
+  return ret;
+
+}
+
+
+function adamChangeBacktestEditorView() {
+  if ( $('#input-backtest-type').val() == 'normal' ) {
+    $('#genetics').hide();
+    $('#input-backtest-strategy_id').html(adamGetSelectContent('strategies','normal') );
+  }
+
+  else {
+    $('#genetics').show();
+    $('#input-backtest-strategy_id').html(adamGetSelectContent('strategies','genetics'));
+  }
+}
+
+
+
+function adamUpdateAllGW_NoFetch(gw_statuses) {
+
+  for (i=0;i<gw_statuses.length;i++) {
+    var gw_status = gw_statuses[i];
+    var line = $('#brokercfg-line-'+ gw_status.id);
+    var gwbtn = $('#btn-togglegw-' + gw_status.id);
+
+    if (gw_status.state == 'real' && $('i',gwbtn).hasClass('icon-play') ) {
+
+      $('i',gwbtn).removeClass('icon-play');
+      $('i',gwbtn).addClass('icon-stop');
+      gwbtn.tooltip('destroy');
+      gwbtn.attr('title',gwbtn.attr('titlestop'));
+      gwbtn.tooltip({placement: 'bottom', container: 'body'});
+    }
+
+    else if (gw_status.state == 'off' && $('i',gwbtn).hasClass('icon-stop') ) {
+  
+      $('i',gwbtn).removeClass('icon-stop');
+      $('i',gwbtn).addClass('icon-play');
+      gwbtn.attr('title',gwbtn.attr('titlestart'));
+      gwbtn.tooltip('destroy');
+      gwbtn.tooltip({placement: 'bottom', container: 'body'});
+
+    }
+  }
+}
+
+     
+/* This function makes a full check of all the listed backtests */
+function adamUpdateAllBacktests_NoFetch(bt_statuses) {
+
+  for (i=0;i<bt_statuses.length;i++) {
+    var bt_status = bt_statuses[i];
+    var line = $('#backtest-line-'+ bt_status.id);
+
+    if (bt_status.hasresult == false) {
+      $('#btn-adambacktest-results',line).off('click');
+      $('#btn-adambacktest-results',line).removeClass('btn-info');
+      $('#btn-adambacktest-results',line).addClass('disabled');
+    }
+    else {
+      $('#btn-adambacktest-results',line).off('click');
+      $('#btn-adambacktest-results',line).click(function() {
+        adamShowBacktestResults(bt_status.id);
+      });
+      $('#btn-adambacktest-results',line).addClass('btn-info');
+      $('#btn-adambacktest-results',line).removeClass('disabled');
+    }
+
+    //running-state
+    if (bt_status.state == 'real') {
+
+      $('#btn-adambacktest-view',line).addClass('btn-info');
+      $('#btn-adambacktest-view',line).removeClass('disabled');
+      $('#btn-adambacktest-view',line).off('click');
+      $('#btn-adambacktest-view',line).click(
+      function() {
+        adamShowBacktestViewer(bt_status.id);
+      });
+
+      $('#btn-toggle-backtest',line).removeClass('btn-success');
+      $('#btn-toggle-backtest',line).addClass('btn-danger');
+      $('#btn-toggle-backtest i',line).removeClass('icon-start');
+      $('#btn-toggle-backtest i',line).addClass('icon-stop');
+
+    }
+
+    //Preparing state (export)
+    else if (bt_status.state == 'preparing') {
+    }
+
+    //Off
+    else {
+      $('#btn-adambacktest-view',line).removeClass('btn-info');
+      $('#btn-adambacktest-view',line).addClass('disabled');
+      $('#btn-adambacktest-view',line).off('click');
+                
+      $('#btn-toggle-backtest',line).addClass('btn-success');
+      $('#btn-toggle-backtest',line).removeClass('btn-danger');
+      $('#btn-toggle-backtest i',line).addClass('icon-start');
+      $('#btn-toggle-backtest i',line).removeClass('icon-stop');
+    }
+  }
+}
+
 /* This function makes a full check of all the listed backtests */
 function adamUpdateAllBacktests() {
 
@@ -1015,7 +1207,7 @@ function adamUpdateAllBacktests() {
                 $('#btn-adambacktest-view',line).off('click');
                 $('#btn-adambacktest-view',line).click(
                 function() {
-                  
+
                   adamShowBacktestViewer(bt_status.id);
                 });
 
@@ -1045,11 +1237,6 @@ function adamUpdateAllBacktests() {
            }
         }
         });
-
-
-
-
-
 
 }
 

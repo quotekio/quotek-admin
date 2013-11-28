@@ -120,7 +120,7 @@ class brokercfg extends adamobject {
 
 
   function requiresGW() {
-    $bmod = getBrokerModule();
+    $bmod = $this->getBrokerModule();
     return $bmod['gateway_cmd'];
   }
 

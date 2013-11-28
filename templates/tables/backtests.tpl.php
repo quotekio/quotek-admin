@@ -4,6 +4,20 @@
   @require_once('strategy.php');
   $backtests = getBackTests();
 
+  $strats = getStratsList('normal');
+  $strats_gen = getStratsList('genetics');
+
+  $strats_ct = "";
+  $strats_gen_ct = "";
+
+  foreach($strats as $strat) {
+    $strats_ct .= '<option value="' . $strat->id . '">' . $strat->name . '</option>';
+  }
+
+  foreach($strats_gen as $strat) {
+    $strats_gen_ct .= '<option value="' . $strat->id . '">' . $strat->name . '</option>';
+  }
+
 ?>
 
 <table class="table table-striped table-bordered backtests-table" id="backtests-table" style="margin-top:20px">
@@ -84,8 +98,6 @@
 
   <script type="text/javascript">
 
-    var UABT = setInterval('adamUpdateAllBacktests()',2000); 
-
     $('.btn-adambacktest-edit').each(function() {
 
        var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/backtest-line-/g,""));
@@ -94,7 +106,8 @@
           adamShowBacktestEditor();
           $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_edit_title']  ?>");
           $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-          adamGetBacktestDataToEdit(bid)
+          adamGetBacktestDataToEdit(bid);
+          adamChangeBacktestEditorView();
           $('#editor-action').off();
           $('#editor-action').click(function() {
             adamSaveBacktest(bid);
