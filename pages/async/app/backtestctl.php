@@ -50,6 +50,11 @@
     if (!is_dir("$ADAM_TMP/backtests/" . $btest->id) ) $btest->createTree();
 
     exportCfg($btest->config_id,$btest->strategy_id,"$ADAM_TMP/backtests/" . $btest->id . "/adam.conf", false);
+
+    if ($btest->type == 'genetics') {
+      $btest->appendGeneticsParams();
+    }
+
     $bctl->setBTArgs($bt_args);
     $bctl->startBT();
   }

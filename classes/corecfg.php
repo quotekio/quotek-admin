@@ -205,7 +205,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fwrite($fh,"mm_max_loss_percentage_per_trade = " . $cfg->mm_max_loss_percentage_per_trade. "\n");
   fwrite($fh,"mm_critical_loss_percentage = " . $cfg->mm_critical_loss_percentage . "\n");
 
-  fwrite($fh,$cfg->extra);
+  fwrite($fh,$cfg->extra . "\n\n");
   fclose($fh);
 
   

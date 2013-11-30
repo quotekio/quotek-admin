@@ -89,12 +89,12 @@
           </div>
 
           <div class="btn-group" style="margin-left:5px;width:30px!important">
-            <a class="btn btn-info btn-adambacktest-view" 
+            <a class="btn disabled btn-adambacktest-view" 
                id="btn-adambacktest-view" 
                rel="tooltip" 
                btid="<?= $bt->id ?>" 
-               title="<?= $lang_array['app']['backtest_actions_progress'] ?>"
-               onclick="adamShowBacktestViewer(<?= $bt->id ?>);">
+               title="<?= $lang_array['app']['backtest_actions_progress'] ?>">
+               
               <i class="icon-white icon-eye-open"></i>
             </a>
             <a class="btn btn-info btn-adambacktest-results" 

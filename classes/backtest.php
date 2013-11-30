@@ -206,6 +206,19 @@ class backtest extends adamobject {
     return $results;
   }
 
+
+  function appendGeneticsParams() {
+    global $ADAM_TMP;
+    $cfgpath = "$ADAM_TMP/backtests/" . $this->id . "/adam.conf";
+
+    $fh = fopen($cfgpath,'a');
+    fwrite($fh,"genetics_population = " . $this->genetics_population . "\n" );
+    fwrite($fh,"genetics_survivors = " . $this->genetics_survivors . "\n" );
+    fwrite($fh,"genetics_converge_thold = " . $this->genetics_converge_thold . "\n" );
+    fwrite($fh,"genetics_max_generations = " . $this->genetics_max_generations . "\n" );
+    fclose($fh);
+  }
+
 }
 
 

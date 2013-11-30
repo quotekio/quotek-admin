@@ -440,8 +440,8 @@ function adamGetBacktestDataToEdit(bid) {
   $('#input-backtest-strategy_id').val(backtest.strategy_id);
   $('#input-backtest-genetics_population').val(backtest.genetics_population);
   $('#input-backtest-genetics_survivors').val(backtest.genetics_survivors);
-  $('#input-backtest-genetics_converge_thold').val(backtest.converge_thold);
-  $('#input-backtest-genetics_max_generations').val(backtest.max_generations);
+  $('#input-backtest-genetics_converge_thold').val(backtest.genetics_converge_thold);
+  $('#input-backtest-genetics_max_generations').val(backtest.genetics_max_generations);
 }
 
 
@@ -649,7 +649,16 @@ function adamUpdateAll() {
 
 function adamUpdateCorestats_NoFetch(fdata) {
   $('#app-corestats-pnl').html(fdata.pnl);
-  $('#app-corestats-nbpos').html(fdata.nbpos); 
+  $('#app-corestats-nbpos').html(fdata.nbpos);
+
+  if (fdata.pnl != "--") {
+    if (parseFloat(fdata.pnl) < 0 ) {
+      $('#pnl_leftpanel').css('color','#FF0000');
+    }
+    else {
+      $('#pnl_leftpanel').css('color','#779148'); 
+    }
+  }
 }
 
 function adamUpdateCorestats() {
@@ -1181,7 +1190,7 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
       }
 
       //Off
-      else {
+      else if (bt_status.state == 'off') {
 
         statuslbl.removeClass('label-success');
         statuslbl.removeClass('label-info');
@@ -1191,7 +1200,6 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
         viewbtn.removeClass('btn-info');
         viewbtn.addClass('disabled');
         viewbtn.off('click');
-                
                 
         if (toglbtn.hasClass('disabled')) {
           toglbtn.removeClass('disabled');

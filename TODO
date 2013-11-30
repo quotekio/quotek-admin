@@ -1,8 +1,8 @@
 PRIO
 ====
  * genetics backtests
+ * translate dates in results forms from tstamp to str
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
- * put pnl data in red when < 0
 
 OTHER
 =====
@@ -12,3 +12,4 @@ OTHER
 * snapshots actions
 * paging
 * Vstore/live prices Viewer
+* improve results format with more metrics

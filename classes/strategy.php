@@ -64,6 +64,8 @@ class strategy extends adamobject {
      $strat_fname = str_replace(" ","_",$this->name);
      $strat_fname = str_replace("/","_", $strat_fname);
      $strat_fname = str_replace("\\","_", $strat_fname);
+     $strat_fname = str_replace("(","_", $strat_fname);
+     $strat_fname = str_replace(")","_", $strat_fname);
     
      $fh = fopen($ADAM_PATH . "/strats/" . $strat_fname . ".ts","w");
      fwrite($fh,$this->content);
