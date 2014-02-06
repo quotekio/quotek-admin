@@ -1291,6 +1291,20 @@ function adamUpdateAllBacktests() {
 
 
 
+function adamShowAbout() {
+
+  var gt = $.ajax({
+        url:            '/async/gettemplate',
+        type:           'POST',
+        data:           {tpl: 'about'},
+        cache:          false,
+        async:          false
+        });
+
+    modalInst(610,520,gt.responseText);
+
+}
+
 function adamShowBacktestEditor() {
 
     var gt = $.ajax({
