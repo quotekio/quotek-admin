@@ -53,27 +53,32 @@
     <a onclick="appLoadDisp('adambacktest');appUpdateLeft($(this));">
       <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
   </li>
-  </ul>
 
-  
-  <div class="accordion" id="app-left-wizzards-accordion">
+
+   <div class="accordion" id="app-left-modules-accordion">
       <div class="accordion-group" style="border:0px">
         <div class="accordion-heading">
 
-          <a onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
+          <a onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-modules-accordion" href="#collapseTwo" style="padding:16px">
             <i class="icon-th icon-white"></i> <?= $lang_array['app']['modules']; ?>
           </a>
         
         </div>
-        <div id="collapseOne" class="accordion-body collapse">
+        <div id="collapseTwo" class="accordion-body collapse">
           <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
       
+
+              <?php
+                 loadVHModuleEntries($vhms)
+              ?>
+
       
           </div>
         </div>
     </div>
   </div>
 
+  </ul>
 
 
   <div style="padding-left:16px;padding-right:20px;color:#6B787F">

@@ -51,6 +51,28 @@ function loadVHModules() {
   return $vhms;
 }
 
+
+
+function loadVHModuleEntries($vhms) {
+
+  global $MODULES_PATH;
+  foreach ($vhms as $vhm) {
+    if (isset($vhm->entries['modules']) ) {
+    ?>
+
+      <li>
+         <a href="Javascript:appLoadDisp('<?= $vhm->name ?>')">
+              <i class="icon-th icon-white"></i> 
+              <?= $vhm->entries['modules']  ?> </a>
+      </li>
+
+    <?php
+    }
+  }
+
+}
+
+
 function loadVHViews($vhms,$empl) {
  
   global $MODULES_PATH;
@@ -60,6 +82,8 @@ function loadVHViews($vhms,$empl) {
     }
   }
 }
+
+
 
 
 
