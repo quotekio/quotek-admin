@@ -21,10 +21,14 @@
 
     case 'left':
       include('templates/app/left.tpl.php');
+      loadVHViews($vhms,'left');
       break;
 
    case 'disp':
      //sleep(1);
+
+     loadVHViews($vhms,'app');
+    
      include ('templates/app/adamcfg-core.tpl.php');
      include ('templates/app/adamcfg-values.tpl.php');
      include ('templates/app/adamcfg-broker.tpl.php');

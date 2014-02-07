@@ -1,6 +1,6 @@
 <?php
   $SITE_ROOT = '/usr/local/adam/admin/web';
-  $MODULES_PATH='/usr/local/adam/admin/modules';
+  $MODULES_PATH='/usr/local/adam/admin/vhmodules';
   $MAIL_FROM = "no-reply@chiliconfig.com";
   $CONTACT_EMAIL = "clement@digi-nation.com";
 
@@ -13,7 +13,7 @@
   $ADAM_AEP_ADDR = "127.0.0.1";
   $ADAM_AEP_PORT = 9999;
   
-  $VH_VERSION = "1.0";
+  $VH_VERSION = "1.1";
   $API_VERSION= "1.0.0";
   $API_LASTMOD = "2013-09-07";
 

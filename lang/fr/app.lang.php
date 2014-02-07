@@ -18,6 +18,7 @@
   $lang_array['app']['adam_mode']['real'] = 'Réel';
   $lang_array['app']['adam_mode']['bt'] = 'Backtest';
   $lang_array['app']['adam_mode']['genetics'] = 'Génétique';
+  $lang_array['app']['modules'] = 'Modules';
 
   $lang_array['app']['adam_start'] = 'Démarrer le robot Adam';
   $lang_array['app']['adam_stop'] = 'Stopper le robot Adam';

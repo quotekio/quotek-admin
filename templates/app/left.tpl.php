@@ -55,6 +55,27 @@
   </li>
   </ul>
 
+  
+  <div class="accordion" id="app-left-wizzards-accordion">
+      <div class="accordion-group" style="border:0px">
+        <div class="accordion-heading">
+
+          <a onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
+            <i class="icon-th icon-white"></i> <?= $lang_array['app']['modules']; ?>
+          </a>
+        
+        </div>
+        <div id="collapseOne" class="accordion-body collapse">
+          <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
+      
+      
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+
   <div style="padding-left:16px;padding-right:20px;color:#6B787F">
     <?= $lang_array['app']['adam_mode_']?><br>
     <h3 id="app-status-label" style="margin-top:3px;padding-top:3px">--</h3>

@@ -20,7 +20,15 @@
                 <td><b>Adam Version:&nbsp;&nbsp;</b></td><td id="about_adamversion">--</td>
               </tr>
               <tr>
-                <td><b>Modules:&nbsp;&nbsp;</b></td><td>[]</td>
+                <td><b>Modules:&nbsp;&nbsp;</b></td><td> <?php
+
+                  foreach($vhms as $vhm) {
+                  ?>
+                   <?= $vhm->longname . " " . $vhm->version ?>,
+                  <?php
+                  }
+                  
+                ?></td>
               </tr>
             </table>
 
