@@ -78,4 +78,13 @@
       echo $ac->AEPIssueCmd('poslist');
     }  
   }
+
+
+   else if ($_REQUEST['action'] == 'getVersion') {
+    if ($ac->AEPStartCLient()) {
+      echo $ac->AEPIssueCmd('version');
+    }  
+  }
+
+
 ?>

@@ -799,6 +799,22 @@ function adamUpdateStatus() {
 }
 
 
+ function adamGetVersion() {
+
+   var s = $.ajax({
+        url:            '/async/app/adamctl',
+        type:           'GET',
+        data:           {action: 'getVersion'},
+        cache:          false,
+        async:          true,
+        success: function() {
+           var r  = $.parseJSON(s.responseText);
+           $('#about_adamversion').html(r.version);
+        }});
+
+ }
+
+
  function adamDrawGraph(gname,data) {
 
     var options = {

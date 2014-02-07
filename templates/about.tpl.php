@@ -17,7 +17,7 @@
                 <td><b>Version:&nbsp;&nbsp;</b></td><td><?= $VH_VERSION ?></td>
               </tr>
               <tr>
-                <td><b>Adam Version:&nbsp;&nbsp;</b></td><td>3.0</td>
+                <td><b>Adam Version:&nbsp;&nbsp;</b></td><td id="about_adamversion">--</td>
               </tr>
               <tr>
                 <td><b>Modules:&nbsp;&nbsp;</b></td><td>[]</td>
@@ -28,5 +28,5 @@
      </div>
 
      <script type="text/javascript">
-
+       adamGetVersion();
      </script>
