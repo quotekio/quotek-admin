@@ -31,6 +31,8 @@ function listVHModules() {
 function loadVHModules() {
 
   global $MODULES_PATH;
+  global $routing;
+
   $vhm_list = listVHModules();
   $vhms = array(); 
 
@@ -47,6 +49,12 @@ function loadVHModules() {
     unset($vhmodule_version);
     unset($vhmodule_entries);
     unset($vhmodule_views);
+
+    if (isset($vhmodule_routing)) {
+      $routing += $vhmodule_routing;
+      unset($vhmodule_routing);
+    }
+    
   }
   return $vhms;
 }
