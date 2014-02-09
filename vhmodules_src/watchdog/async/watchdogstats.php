@@ -29,6 +29,9 @@
       $result['gateway_uptime']++;
     }
     else $result['gateway_nbrestart']++;
+    
+    $result['adam_uptime_10h'][] = array ( $line['tstamp'] * 1000, $line['adam_alive'] );
+    $result['gateway_uptime_10h'][] = array ( $line['tstamp'] * 1000, $line['gateway_alive'] );
 
   }
 
