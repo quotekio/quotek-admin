@@ -620,7 +620,20 @@ function adamLoadBTResult(id,result) {
   var tresp = $.trim(br.responseText);
   //alert(tresp);
   var r = $.parseJSON(tresp);
-  $('#backtest-result-content').html(r.result.replace(/\n/g,"<br>"));
+  var result = $.parseJSON($.trim(r.result));
+
+  $('#result_start').html(result.start);
+  $('#result_stop').html(result.stop);
+  $('#result_pnl').html( result.pnl );
+  $('#result_remainingpos').html( result.remainingpos );
+
+  formatDate($('#result_start'));
+  formatDate($('#result_stop'));
+
+  $.each(result.astats, function(i, item) {
+     $('#result_values_selector').append( new Option( item.name ,item.name) ); 
+  });
+
 }
 
 

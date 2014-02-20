@@ -19,7 +19,7 @@
   $lang_array['app']['adam_mode']['bt'] = 'Backtest';
   $lang_array['app']['adam_mode']['genetics'] = 'Génétique';
   $lang_array['app']['modules'] = 'Modules';
-
+  $lang_array['app']['main'] = 'Principal';
   $lang_array['app']['adam_start'] = 'Démarrer le robot Adam';
   $lang_array['app']['adam_stop'] = 'Stopper le robot Adam';
   $lang_array['app']['adam_restart'] = 'Redémarrer le robot Adam';
@@ -30,6 +30,20 @@
   $lang_array['app']['backtest'] = 'Simulations';  
   $lang_array['app']['pos'] = 'Positions';
   $lang_array['app']['pnl'] = 'Pertes et Profits';
+  $lang_array['app']['takenpos'] = 'Positions Prises';
+  $lang_array['app']['remainingpos'] = 'Positions Restantes';
+
+   $lang_array['app']['highest'] = 'Plus Haut';
+   $lang_array['app']['lowest'] = 'Plus Bas';
+   $lang_array['app']['stddev'] = 'Ecart Type';
+   $lang_array['app']['variation'] = 'Variation';
+   
+
+
+
+
+
+
   $lang_array['app']['stoploss'] = 'Stop Minimum';
   $lang_array['app']['pnlpp'] = 'PP par Point';
   $lang_array['app']['unit'] = 'Unité';

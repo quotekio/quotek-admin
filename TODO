@@ -7,7 +7,6 @@ PRIO
 OTHER
 =====
 * fix update dates
-* modules handling
 * bulk
 * snapshots actions
 * paging
