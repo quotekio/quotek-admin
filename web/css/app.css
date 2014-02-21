@@ -306,6 +306,7 @@ padding:15px;
 #app-left-wizzards-accordion {
   padding:0px;
   margin-bottom:0px;
+  background:black;
 }
 
 #app-left-wizzards-accordion:hover{

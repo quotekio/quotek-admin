@@ -1,7 +1,6 @@
 PRIO
 ====
  * genetics backtests
- * translate dates in results forms from tstamp to str
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
 
 OTHER

@@ -622,17 +622,37 @@ function adamLoadBTResult(id,result) {
   var r = $.parseJSON(tresp);
   var result = $.parseJSON($.trim(r.result));
 
-  $('#result_start').html(result.start);
-  $('#result_stop').html(result.stop);
+  $('#result_from').html(result.from);
+  $('#result_to').html(result.to);
   $('#result_pnl').html( result.pnl );
+  $('#result_takenpos').html( result.positions.length )
   $('#result_remainingpos').html( result.remainingpos );
 
-  formatDate($('#result_start'));
-  formatDate($('#result_stop'));
+  formatDate($('#result_from'));
+  formatDate($('#result_to'));
 
+
+  //shorten result
+
+  var fromct = $('#result_from').html().split(" ");
+  var toct = $('#result_to').html().split(" ");
+  
+  if ( (fromct[1] + fromct[2] + fromct[3]) == ( toct[1] + toct[2] + toct[3] )  ) {
+    $('#result_to').html(toct[4]);
+  }
+  
+  
+  $('#result_values_selector').html('');
   $.each(result.astats, function(i, item) {
-     $('#result_values_selector').append( new Option( item.name ,item.name) ); 
+     $('#result_values_selector').append( new Option( item.name , JSON.stringify(item) ) ); 
   });
+
+  $('#result_logs_container').html('');
+  $.each(result.logs, function(i, item) {
+     $('#result_logs_container').append(item + "<br>"); 
+  });
+
+
 
 }
 
@@ -1629,6 +1649,7 @@ function appLoadDisp(disp,module) {
 
 function appUpdateLeft(elt) {
 
+  
   var ul = elt.parent().parent();
   var li = elt.parent();
   var rarrow = li.children(['div']);
@@ -1636,6 +1657,8 @@ function appUpdateLeft(elt) {
   rarrow.show();
 
   ul.children(['li']).removeClass('app-left-active');
+  $('#app-left-wizzards-accordion .accordion-heading').removeClass('app-left-active');
+
   //ul.children(['li:hover']).css('background','#333333');
   //li.css('background','#333333');
   li.addClass('app-left-active');

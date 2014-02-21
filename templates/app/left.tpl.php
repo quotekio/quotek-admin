@@ -55,11 +55,11 @@
   </li>
 
 
-   <div class="accordion" id="app-left-modules-accordion">
+   <div class="accordion" id="app-left-wizzards-accordion">
       <div class="accordion-group" style="border:0px">
         <div class="accordion-heading">
 
-          <a onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-modules-accordion" href="#collapseTwo" style="padding:16px">
+          <a onclick="appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-modules-accordion" href="#collapseTwo" style="padding:16px">
             <i class="icon-th icon-white"></i> <?= $lang_array['app']['modules']; ?>
           </a>
         

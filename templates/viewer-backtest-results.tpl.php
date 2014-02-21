@@ -53,6 +53,9 @@
                      <li>
                         <a onclick="adamResultNav($(this));" class="result-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
                       </li>
+                      <li>
+                        <a onclick="adamResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
+                      </li>
                   </ul>
 
 
@@ -61,13 +64,9 @@
                     <table class="table table-stripped">
 
                      <tr>
-                       <td><b><?= $lang_array['app']['start']?></b></td>
-                       <td id="result_start"></td>
-                     </tr>
-
-                     <tr>
-                       <td><b><?= $lang_array['app']['end']?></b></td>
-                       <td id="result_stop"></td>
+                       <td><b><?= $lang_array['app']['period']?></b></td>
+                       <td>
+                       <span id="result_from"></span> - <span id="result_to"></span>
                      </tr>
 
                      <tr>
@@ -141,12 +140,23 @@
                            <td><?= $lang_array['app']['stddev'] ?></td>
                            <td id="result_value_deviation"></td>
                          </tr>
+                        
+                         </table>
 
                        </div>
 
                     </div>
           
                    </div>
+
+                   <div class="result-frame" id="result-frame-rlogs">
+
+                   
+                     <div id="result_logs_container" style="width:100%;height:220px;overflow-y:scroll">
+
+                     </div>
+
+                  </div>
 
 
                   </div>
@@ -166,6 +176,17 @@
           adamLoadBTResult(<?= $bt->id  ?>, $('#viewer-backtest-resultslist').val()[0] );
 
         });
+
+       $('#result_values_selector').change(function() {
+
+         var asstat = $.parseJSON( $('#result_values_selector').val()[0]  );
+         $('#result_value_name').html(asstat.name);
+         $('#result_value_highest').html(asstat.highest);
+         $('#result_value_lowest').html(asstat.lowest);
+         $('#result_value_variation').html(asstat.variation);
+         $('#result_value_deviation').html(asstat.deviation);
+         
+       });
 
 
      function adamResultNav(obj) {
