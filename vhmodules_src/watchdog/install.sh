@@ -2,6 +2,7 @@
 
 echo "* VISIBLE HAND WATCHDOG MODULE INSTALL*"
 echo "Visible hand Install Directory:"
+
 read INSTALL_DIR
 
 if ! [ -d $INSTALL_DIR/vhmodules ]
