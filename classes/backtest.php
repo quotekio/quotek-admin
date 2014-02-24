@@ -180,7 +180,15 @@ class backtest extends adamobject {
     return $res_string;
   }
 
+  function deleteResult($result) {
 
+    global $ADAM_TMP;
+    $results_dir = "$ADAM_TMP/backtests/" . $this->id . "/results";
+    if (is_file("$results_dir/$result") ) {
+      unlink("$results_dir/$result");   
+    }
+
+  }
 
   function hasResult() {
     if (count($this->getResultsList()) > 0 ) return true;
@@ -240,6 +248,4 @@ function getBacktests() {
   }
   return $blist;
 }
-
 ?>
-

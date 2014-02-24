@@ -203,5 +203,6 @@
 
   $lang_array['app']['backtest_viewer_title'] = 'Progression de la simulation';
 
+  $lang_array['app']['backtest_result_delete'] = 'Supprimer le résultat de simulation';
 
 ?>

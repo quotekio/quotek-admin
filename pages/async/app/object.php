@@ -40,6 +40,11 @@
           $obj = new corecfg();
           $obj->remap($data);
           $obj->save();
+
+          /*checks if config is currently active, 
+          and asks for restart if requested. */
+          $obj->load();
+          if ($obj->active == 1) exportCfg();
           echo json_encode($response);
       }
 
@@ -265,7 +270,6 @@
           $obj->load();
           echo json_encode($obj);
       }
-
 
       else if ($action == 'del') {
           $obj = new backtest();

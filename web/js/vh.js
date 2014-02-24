@@ -82,6 +82,22 @@ function adamDelBrokerCfg(bid) {
    }
 }
 
+function adamDeleteBTResult(btid,tstamp) {
+
+  var dbtr = $.ajax({
+                      url: "/async/app/backtestctl?action=deleteResult&id=" + btid + "&result=" + tstamp,
+                      type: "GET",
+                      async: false,
+                      cache: false})
+  
+  if ( $.trim(dbtr.responseText) == "OK" ) {
+    var line = $('#result-line-' + tstamp);
+    line.remove(); 
+  }
+
+}
+
+
 function adamStartGW(bid) {
 
   var r = $.ajax({url:'/async/app/gwctl',
@@ -607,6 +623,65 @@ function adamStopBacktest(id) {
 }
 
 
+
+function adamGraphBTTimeline(positions,from,to) {
+
+  var data = [];
+  
+  var placeholder = $('#result_pos_timeline');
+
+  var options = {
+            xaxis: {
+                mode: "time",
+                min: ( from * 1000 ),
+                max: (to * 1000)
+            },   
+            grid: {
+                   show: true,
+                   //backgroundColor: { colors: ["#2a2a2a", "#0a0a0a"] }
+             },
+            yaxis:{ticks:[   ],
+                   min: 0,
+                   max: positions.length +1 }
+  };
+
+  
+  $.each(positions, function(i,item) {
+
+    var linepos = -1;
+    $.each(options.yaxis.ticks, function(j,tickname) {
+      if ( tickname[1] == item.asset + " " + item.way ) {
+        linepos = j+1;
+      }
+    });
+
+    if (linepos == -1) {
+      linepos = i+1;
+      options.yaxis.ticks.push([linepos, item.asset + " " + item.way ]);
+
+    } 
+
+    var pcolor = ''
+    if (item.pnl > 0) { pcolor =  '#00FF00'; }
+    else { pcolor = '#FF0032'; }
+
+    var pos_data =   {  color: pcolor,
+                        lines: { lineWidth: 5 + item.nbc  },  
+                        data:[ [ item.open_time * 1000, linepos ], [ item.close_time * 1000, linepos ] ]};
+
+    data.push( pos_data );
+
+  });
+
+  //temporarly show placeholder for rendering.
+  var was_graph_hidden = placeholder.parent().is(":hidden");
+  placeholder.parent().show();
+  $.plot(placeholder,data,options);
+  if ( was_graph_hidden ) placeholder.parent().hide();
+
+}
+
+
 function adamLoadBTResult(id,result) {
 
   var br = $.ajax({
@@ -652,7 +727,7 @@ function adamLoadBTResult(id,result) {
      $('#result_logs_container').append(item + "<br>"); 
   });
 
-
+  adamGraphBTTimeline(result.positions,result.from,result.to);
 
 }
 
@@ -1662,6 +1737,18 @@ function appUpdateLeft(elt) {
   //ul.children(['li:hover']).css('background','#333333');
   //li.css('background','#333333');
   li.addClass('app-left-active');
+
+}
+
+// function which updates display of backtest 
+// values when an asset is selected.
+function adamChangeBTResultValues() {
+  var asstat = $.parseJSON( $('#result_values_selector').val()[0]  );
+  $('#result_value_name').html(asstat.name);
+  $('#result_value_highest').html(asstat.highest);
+  $('#result_value_lowest').html(asstat.lowest);
+  $('#result_value_variation').html(asstat.variation);
+  $('#result_value_deviation').html(asstat.deviation);
 
 }
 

@@ -115,6 +115,14 @@
     echo json_encode($response);
   }
 
+  else if ($_REQUEST['action'] == 'deleteResult') {
+    if (!isset($_REQUEST['result'])) die ("No result to delete");
+    $response = array();
+    $btest->deleteResult($_REQUEST['result']);
+    echo "OK";
+  }
+
+ 
   else if ($_REQUEST['action'] == 'getAllStatus') {
 
     $res = array();

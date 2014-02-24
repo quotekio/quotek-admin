@@ -1,10 +1,14 @@
 PRIO
 ====
- * genetics backtests
- * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
 
+ * Fix bug gwctl no detect
+ * Implement genetics backtests result view
+ * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
+ 
 OTHER
 =====
+
+* fix issue: code editor bar showing at start.
 * fix update dates
 * bulk
 * snapshots actions

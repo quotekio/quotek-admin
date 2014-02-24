@@ -26,15 +26,26 @@
                       <h4><?= $lang_array['app']['backtests'] ?></h4>
                   </div>
  
-                  <select id="viewer-backtest-resultslist" style="height:120px;width:100%;border:0px" MULTIPLE>
-                
+                  <div id="viewer-backtest-resultslist" style="height:120px;width:100%;border:0px;overflow-y:scroll">
+       
+                    <table class="table table-hover">
+
                   <?php foreach ($results as $result) { 
                     $result['date'] = date('d-m-Y H:i:s',$result['date']);
                   ?>
-                    <option value="<?= $result['tstamp'] ?>" ><?= $lang_array['app']['btof'] . " " . $result['date'] ?></option>
+                    <tr id="result-line-<?= $result['tstamp'] ?>">
+                      <td style="cursor:pointer" onclick="adamLoadBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>) "><?= $lang_array['app']['btof'] . " " . $result['date'] ?></td>
+                      <td style="text-align:right;padding-right:15px">
+                        <a onclick="adamDeleteBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>)" class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['backtest_result_delete'] ?>">
+                          <i class="icon-white icon-remove-sign" ></i>
+                        </a>
+                      </td>
+                    </tr>
                   <?php } ?>
 
-                  </select>
+                   </table>
+
+                  </div>
                 
                 </div>
 
@@ -59,9 +70,9 @@
                   </ul>
 
 
-                  <div class="result-frame" id="result-frame-main">
+                  <div class="result-frame" id="result-frame-main" style="display:block">
 
-                    <table class="table table-stripped">
+                    <table class="table">
 
                      <tr>
                        <td><b><?= $lang_array['app']['period']?></b></td>
@@ -88,15 +99,8 @@
 
                   <div class="result-frame" id="result-frame-positions">
 
-                    <div class="span4">
+                    <div id="result_pos_timeline" style="width:645px;height:220px;">
                     </div>
-
-                    <div class="span8">
-
-                    
-                    </div>
-
-
 
                   </div>
 
@@ -171,24 +175,22 @@
           adamLoadBTResult(<?= $bt->id ?>, <?= $results[0]['tstamp'] ?> );
         <?php } ?>
         
+        /*
         $('#viewer-backtest-resultslist').change(function() {
                                                 
           adamLoadBTResult(<?= $bt->id  ?>, $('#viewer-backtest-resultslist').val()[0] );
 
         });
+        */
 
        $('#result_values_selector').change(function() {
-
-         var asstat = $.parseJSON( $('#result_values_selector').val()[0]  );
-         $('#result_value_name').html(asstat.name);
-         $('#result_value_highest').html(asstat.highest);
-         $('#result_value_lowest').html(asstat.lowest);
-         $('#result_value_variation').html(asstat.variation);
-         $('#result_value_deviation').html(asstat.deviation);
-         
+         adamChangeBTResultValues();
        });
 
+       $('#result_values_selector option:eq(0)').prop('selected', true);
+       adamChangeBTResultValues();
 
+       
      function adamResultNav(obj) {
        $('.result-frame').hide();
        $('#result-frame-' +  obj.attr('id') ).show();
