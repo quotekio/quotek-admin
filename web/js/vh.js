@@ -1689,7 +1689,9 @@ function appLoadDisp(disp,module) {
   $('.app-display').hide();
 
   if ($('#' + disp + '[class="app-display"]').length > 0) {
-    $('#' + disp + '[class="app-display"]').show();
+    $('#' + disp + '[class="app-display"]').show('quick', function(){
+       $(this).trigger('afterShow');
+   });
   }
   else alert(disp + " n'existe pas!");
 
