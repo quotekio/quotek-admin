@@ -49,18 +49,50 @@
 <script type="text/javascript">
 
 
+   function presentFillData(data) {
+
+       $('#fillstats').html('');
+
+       var fdata = $.parseJSON(data);
+
+       $.each(fdata,function(i,item) {
+
+          var linect_id = '#linect_' + i;
+          var linesubct_id = '#linesubct_' + i; 
+
+          $('#fillstats').append('<div id="linect_' + i + '" style="text-align:left"></div>');
+
+          $(linect_id).append('<div style="width:100%"><h4>' + item.name + '</h4></div>' );
+          $(linect_id).append("\n");
+          $(linect_id).append('<div id="linesubct_' + i + '" style="margin-bottom:10px;overflow:hidden;width:100%;height:50px"></div>');
+          $(linect_id).append("\n");
+
+            $.each(item.values,function(j,item2) {
+              var dayct_id = '#dayct_' + i + '_' + j;
+              var bgcolor = 'green';
+              $(linesubct_id).append('<div id="dayct_' + i + '_' + j + '" style="width:30px;height:30px;border-radius:3px;background:#333333;float:left;margin-right:10px"></div>');
+              if (item2 == 0) { item2 = 5; }
+              if (item2 < 50 ) bgcolor = '#FF0032';
+              $(dayct_id).append('<div style="border-radius:3px;background:' + bgcolor + ';width:100%;height:' + item2 + '%"></div>' )
+              
+            });
+
+          
+        });
+   }
+
+
+
    function loadFillStats(year,month) {
 
      $('#fillstats').html('<img src="/img/loader1.png">');
-     
+
      var stats = $.ajax({ url: '/async/vhmodules/vstore/stats?year=' + year + '&month=' + month,
                           type: 'GET',
                           cache: false,
                           async: true,
                           success: function() {
-
-                             $('#fillstats').html( stats.responseText  );
-
+                             presentFillData(stats.responseText);
                           } } );
 
 

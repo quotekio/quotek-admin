@@ -34,7 +34,8 @@ class vstore {
     $num_of_days = cal_days_in_month(CAL_GREGORIAN, $month, $year);
 
     foreach($this->tables as $t) {
-      $result[$t] = array();
+      
+      $tvalues = array();
 
       for ($i=0;$i < $num_of_days ;$i++) {
 
@@ -46,9 +47,12 @@ class vstore {
         $nbrec = $nbrec['nbrecord'];
         $nbrec = ( $nbrec / 86400 ) * 100 ;  
         if ($nbrec >100) $nbrec = 100;
-        $result[$t][] = $nbrec; 
 
+        $tvalues[] = $nbrec;
+      
       }
+
+      $result[] = array('name' => $t, 'values' => $tvalues);
 
     }
 
