@@ -20,6 +20,11 @@
       	  	    <h4><?= $lang_array['vstore']['actions'] ?></h4>
       	    </div>
 
+            <select id="vstore_action_select">
+            </select> 
+
+            <a class="btn btn-info" onclick="execVstoreAction()"></a>
+
       	  </div>
       	</div>      
 
@@ -31,9 +36,9 @@
       	<div class="span12">
       	  <div class="app-headed-white-frame">
       	    <div class="app-headed-frame-header" style="margin-bottom:0px">
-      	  	    <h4><?= $lang_array['vstore']['fillstats'] ?></h4>
+      	  	    <h4><?= $lang_array['vstore']['fillstats'] ?> -- <span id="fillstats_title"></span></h4>
       	    </div>
-
+  
             <div id="fillstats" style="text-align:center;padding:50px">
               <img src="/img/loader1.png">
             </div>
@@ -85,6 +90,9 @@
 
    function loadFillStats(year,month) {
 
+     var zero = (month < 10) ? "0" : "" ;
+
+     $('#fillstats_title').html( zero + month + "/" + year);
      $('#fillstats').html('<img src="/img/loader1.png">');
 
      var stats = $.ajax({ url: '/async/vhmodules/vstore/stats?year=' + year + '&month=' + month,
@@ -92,6 +100,7 @@
                           cache: false,
                           async: true,
                           success: function() {
+
                              presentFillData(stats.responseText);
                           } } );
 
