@@ -2,6 +2,10 @@
 
    global $lang;
    include ( dirname(__FILE__) . "/../lang/$lang/vhmodule.lang.php");
+   require_once ( 'classes/vstore.php' );
+
+   $vs = new vstore();
+
 ?>
 
 <div class="app-display" id="vstore">
@@ -20,10 +24,18 @@
       	  	    <h4><?= $lang_array['vstore']['actions'] ?></h4>
       	    </div>
 
-            <select id="vstore_action_select">
-            </select> 
+            <div style="padding:10px">
 
-            <a class="btn btn-info" onclick="execVstoreAction()"></a>
+              <select id="vstore_action_select" style="width:400px">
+                <option value="vstore_action_clearall"><?= $lang_array['vstore']['action_clearall'] ?></option>
+                <?php foreach($vs->listTables() as $table) { ?>
+                <option value="vstore_action_cleartable_<?= $table ?>"><?= $lang_array['vstore']['action_cleartable'] . " " . $table ?></option>
+
+                <?php } ?>
+              </select> 
+
+              <a class="btn btn-info" style="margin-left:15px;margin-top:-10px" onclick="execVstoreAction()"> <?= $lang_array['vstore']['execute']  ?></a>
+            </div>
 
       	  </div>
       	</div>      
@@ -36,7 +48,20 @@
       	<div class="span12">
       	  <div class="app-headed-white-frame">
       	    <div class="app-headed-frame-header" style="margin-bottom:0px">
-      	  	    <h4><?= $lang_array['vstore']['fillstats'] ?> -- <span id="fillstats_title"></span></h4>
+
+                <div style="float:left;margin-right:15px">
+      	  	      <h4><?= $lang_array['vstore']['fillstats'] ?> -- <span id="fillstats_title"></span></h4>
+                </div>
+
+                <div id="vstore_month" class="input-append date" style="float:left!important;margin-top:7px">
+                  <input id="input_vstore_month" data-format="yyyy-MM" type="text" style="font-size:13px!important;height:27px"/>
+                  <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important;border-radius:3px!important;border:0px!important">
+                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                    </i>
+                 </span>
+               </div>
+
+
       	    </div>
   
             <div id="fillstats" style="text-align:center;padding:50px">
@@ -53,6 +78,28 @@
 
 <script type="text/javascript">
 
+
+   $('#vstore_month').datetimepicker({
+             language: 'fr-FR',
+             pickTime: false,
+             maskInput: true,
+
+           }).on('changeDate', function(ev){  
+
+            var mdata =   (ev.date.getYear() + 1900) + "-" + (ev.date.getMonth()+1);
+            vstoreChangeMonth(mdata); 
+
+          })  ;
+
+  $('#input_vstore_month').hide();
+
+  
+   function vstoreChangeMonth(mdata) {
+
+     smdata = mdata.split('-');
+     loadFillStats(smdata[0],smdata[1]); 
+
+   }
 
    function presentFillData(data) {
 
