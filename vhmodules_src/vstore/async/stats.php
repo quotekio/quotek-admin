@@ -6,6 +6,6 @@
   require_once('vstore.php');
   $vs = new vstore();
 
-  $stats =  $vs->getFillStats($_REQUEST['year'],$_REQUEST['month']);
+  $stats =  $vs->getStats($_REQUEST['year'],$_REQUEST['month']);
   echo json_encode($stats);
 ?>

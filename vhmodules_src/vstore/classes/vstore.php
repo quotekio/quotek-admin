@@ -13,6 +13,15 @@ class vstore {
         die();
     }
 
+    try{
+        $this->cache_dbh = new PDO('sqlite:'.dirname(__FILE__).'/../data/vh.sqlite');
+        $this->cache_dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $this->cache_dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
+    } catch(Exception $e) {
+        echo "Impossible d'accéder à la base de données SQLite : ".$e->getMessage();
+        die();
+    }
+
     $this->listTables();
 
   }
@@ -27,7 +36,43 @@ class vstore {
     return $this->tables;
   }
 
-  function getFillStats($year,$month) {
+
+
+  function getStats($year,$month) {
+
+
+    $cached_data = $this->getCache($year,$month);
+
+    if ($cached_data !== false) {
+      if ($cached_data['content'] != ""  && $cached_data['updated'] + 172800 > time() ) {
+        return json_decode($cached_data['content']);
+      }
+    }
+
+    $computed_data = $this->computeStats($year,$month);
+    $content = json_encode($computed_data);
+    $updated = time();
+    $this->cache_dbh->query("INSERT INTO vstore_cache (year,month,content,updated) VALUES('$year','$month','$content','$updated');");
+    return $computed_data;
+    
+  }
+
+
+  function getCache($year,$month) {
+
+    $q = $this->cache_dbh->query("SELECT * from vstore_cache WHERE month='$month' and year='$year';");
+    
+    if ( ($ans = $q->fetch()) !== false ) {
+      return $ans;
+    }
+
+    else return false;
+  }
+
+
+  
+  function computeStats($year,$month) {
+
 
     $result = array();
 
