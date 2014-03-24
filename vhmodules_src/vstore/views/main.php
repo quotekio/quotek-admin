@@ -122,7 +122,7 @@
             $.each(item.values,function(j,item2) {
               var dayct_id = '#dayct_' + i + '_' + j;
               var bgcolor = 'green';
-              $(linesubct_id).append('<div id="dayct_' + i + '_' + j + '" style="width:30px;height:30px;border-radius:3px;background:#333333;float:left;margin-right:10px"></div>');
+              $(linesubct_id).append('<div id="dayct_' + i + '_' + j + '" style="width:25px;height:25px;border-radius:3px;background:#333333;float:left;margin-right:10px"></div>');
               if (item2 == 0) { item2 = 5; }
               if (item2 < 50 ) bgcolor = '#FF0032';
               $(dayct_id).append('<div style="border-radius:3px;background:' + bgcolor + ';width:100%;height:' + item2 + '%"></div>' )
