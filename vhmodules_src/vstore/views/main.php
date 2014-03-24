@@ -111,22 +111,28 @@
 
           var linect_id = '#linect_' + i;
           var linesubct_id = '#linesubct_' + i; 
+          var daynum_id = '#daynum_' + i;
 
           $('#fillstats').append('<div id="linect_' + i + '" style="text-align:left"></div>');
 
           $(linect_id).append('<div style="width:100%"><h4>' + item.name + '</h4></div>' );
           $(linect_id).append("\n");
-          $(linect_id).append('<div id="linesubct_' + i + '" style="margin-bottom:10px;overflow:hidden;width:100%;height:50px"></div>');
+          $(linect_id).append('<div id="linesubct_' + i + '" style="margin-bottom:10px;overflow:hidden;width:100%;height:30px"></div>');
+          $(linect_id).append('<div id="daynum_' + i + '" style="overflow:hidden;width:100%;height:25px"></div>');
           $(linect_id).append("\n");
 
             $.each(item.values,function(j,item2) {
               var dayct_id = '#dayct_' + i + '_' + j;
               var bgcolor = 'green';
               $(linesubct_id).append('<div id="dayct_' + i + '_' + j + '" style="width:25px;height:25px;border-radius:3px;background:#333333;float:left;margin-right:10px"></div>');
+              
               if (item2 == 0) { item2 = 5; }
               if (item2 < 50 ) bgcolor = '#FF0032';
               $(dayct_id).append('<div style="border-radius:3px;background:' + bgcolor + ';width:100%;height:' + item2 + '%"></div>' )
-              
+               
+              $(daynum_id).append('<div style="width:25px;height:25px;border-radius:3px;float:left;margin-right:10px;text-align:center">' + (j+1) + '</div>');
+
+
             });
 
           
