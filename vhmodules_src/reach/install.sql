@@ -1,6 +1,7 @@
-CREATE TABLE "reach_goal" ("id" INTEGER PRIMARY KEY  NOT NULL ,
-                           "expected_performance" FLOAT,
-                           "week" INTEGER NOT NULL
-                           "cumulative_pnl" FLOAT
+CREATE TABLE "reach_data" ("id" INTEGER PRIMARY KEY  NOT NULL ,
+	                       "year" INTEGER NOT NULL,
+                           "week" INTEGER NOT NULL,
+                           "goal" FLOAT,
+                           "performance" FLOAT
                            );
 

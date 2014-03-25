@@ -19,13 +19,14 @@ then
 fi
 
 
-#if ! [ -d $INSTALL_DIR/pages/async/vhmodules/vstore ]
-#then
-#  mkdir -p $INSTALL_DIR/pages/async/vhmodules/vstore
-#fi
+if ! [ -d $INSTALL_DIR/pages/async/vhmodules/reach ]
+then
+  mkdir -p $INSTALL_DIR/pages/async/vhmodules/reach
+fi
 
-cp -rp vhmodule.php views $REACH_DIR/
-#cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/vstore/
-#cp -rp classes/* $INSTALL_DIR/classes/
+cp -rp vhmodule.php views lang $REACH_DIR/
+
+cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/reach/
+cp -rp classes/* $INSTALL_DIR/classes/
 
 

@@ -5,10 +5,10 @@
   $vhmodule_version = '1.0';
   $vhmodule_entries = array('modules' => 'Reach');
   $vhmodule_views = array( 'left' => 'views/left.php',
-                           'main' => 'views/main.php');
+                           'app' => 'views/main.php');
                              
-  $vhmodule_routing = array ( '/async/vhmodules/reach/reachstats' => 'async/vhmodules/reach/reachstats.php',
-  	                          '/async/vhmodules/reach/reachconfig' => 'async/vhmodules/reach/reachconfig.php');
-
+  $vhmodule_routing = array ( '/async/vhmodules/reach/stats' => 'async/vhmodules/reach/stats.php',
+  	                          '/async/vhmodules/reach/reachctl' => 'async/vhmodules/reach/reachctl.php');
+  
 
 ?>
