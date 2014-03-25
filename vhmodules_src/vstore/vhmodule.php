@@ -6,6 +6,7 @@
   $vhmodule_entries = array('modules' => 'Vstore');
   $vhmodule_views = array('app' => 'views/main.php');
 
-  $vhmodule_routing = array ( '/async/vhmodules/vstore/stats' => 'async/vhmodules/vstore/stats.php' );
+  $vhmodule_routing = array ( '/async/vhmodules/vstore/stats' => 'async/vhmodules/vstore/stats.php',
+  	                          '/async/vhmodules/vstore/vstorectl' => 'async/vhmodules/vstore/vstorectl.php');
 
 ?>

@@ -26,5 +26,6 @@ fi
 cp -rp vhmodule.php views lang $VSTORE_DIR/
 cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/vstore/
 cp -rp classes/* $INSTALL_DIR/classes/
+cp -rp jobs/* $INSTALL_DIR/jobs/
 
 

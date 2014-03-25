@@ -34,7 +34,7 @@
                 <?php } ?>
               </select> 
 
-              <a class="btn btn-info" style="margin-left:15px;margin-top:-10px" onclick="execVstoreAction()"> <?= $lang_array['vstore']['execute']  ?></a>
+              <a class="btn btn-info" style="margin-left:15px;margin-top:-10px" onclick="vstoreExecAction()"> <?= $lang_array['vstore']['execute']  ?></a>
             </div>
 
       	  </div>
@@ -93,13 +93,46 @@
 
   $('#input_vstore_month').hide();
 
+
+   function vstoreExecAction() {
+
+     var act = $('#vstore_action_select').val();
+
+     if (act == "vstore_action_clearall") {
+
+       modalInst(300,80,'<div style="text-align:center">Processing vstore action..<br><br><img src="/img/loader1.png" style="height:25px" /></div>');
+      
+       var vea = $.ajax({url:  '/async/vhmodules/vstore/vstorectl?action=clearAll',
+                         type: 'GET',
+                         cache: false,
+                         async: true,
+                         success: function() {  modalDest();   } });
+     }
+
+     else if (act.substring(0, 25) == "vstore_action_cleartable_") {
+
+       modalInst(300,80,'<div style="text-align:center">Processing vstore action..<br><br><img src="/img/loader1.png" style="height:25px" /></div>');
+
+       var tname = act.replace("vstore_action_cleartable_","");
+       var vea = $.ajax({url:  '/async/vhmodules/vstore/vstorectl?action=clear&table=' + tname,
+                         type: 'GET',
+                         cache: false,
+                         async: true,
+                         success: function() {  modalDest(); }  });      
+     }
   
+   }
+
+
    function vstoreChangeMonth(mdata) {
 
      smdata = mdata.split('-');
      loadFillStats(smdata[0],smdata[1]); 
 
    }
+
+
+   
 
    function presentFillData(data) {
 

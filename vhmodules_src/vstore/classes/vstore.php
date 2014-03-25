@@ -70,7 +70,13 @@ class vstore {
   }
 
 
+  function clearCache() {
+    $q = $this->cache_dbh->query("DELETE from vstore_cache ;");
+  }
   
+
+
+
   function computeStats($year,$month) {
 
 
@@ -105,6 +111,7 @@ class vstore {
   }
 
   function clearAll() {
+    $this->clearCache();
     foreach ($this->tables as $t) {
       $this->clear($t);
     }
