@@ -10,4 +10,5 @@
     }
   }
   die('ERROR: Choosen Language is not supported');
+  
 ?>

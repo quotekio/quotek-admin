@@ -8,11 +8,10 @@
         
   <div class="page-header">
     <h3>Reach <small><?= $lang_array['reach']['subtitle'] ?></small></h3>
+
   </div>
 
   <div class="row-fluid" style="margin-top:30px">
-
-    
 
 
   </div>

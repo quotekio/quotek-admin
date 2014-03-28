@@ -58,8 +58,22 @@ class reach {
  
   }
 
-  
 
+  function getWeekData($year,$week) {
+
+    $result = false;
+
+    $q = $this->dbh->query("SELECT * from reach_data where year = '$year' and week = '$week';");
+ 
+    if (( $ans = $q->fetch() ) !== false) {
+
+      $result = $ans;
+    
+    }
+
+    return $result;
+
+  }
 
 }
 
