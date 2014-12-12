@@ -16,7 +16,6 @@ a:hover {
 }
 
 #app-display {
-  background:white;
   width:0px;
   display:none;
   margin-top:0px;
@@ -28,18 +27,15 @@ a:hover {
 
 div.legend > table {
   background:rgba(0,0,0,0.8);
-  color:white;
 }
 
 .app-headed-white-frame {
-  background:white;
   border-radius:7px;
   border:1px solid #cccccc;
   overflow:hidden;
 }
 
 .app-headed-frame-header {
-  background:#dff0d8;
   border-bottom:1px solid #cccccc!important;
   height:35px;
   margin-top:-10px;
@@ -82,7 +78,7 @@ div.legend > table {
 }
 
 #app-left ul li:hover {
-  background:#43C83C;
+  background:#38b7e5;
 }
 
 #app-left a {
@@ -310,7 +306,7 @@ padding:15px;
 }
 
 #app-left-wizzards-accordion:hover{
-  background:#43C83C;
+  background:#38b7e5;
 }
 
 .app-active-pill {
@@ -437,7 +433,7 @@ padding:15px;
 }
 
 .activated {
-  background:#D9EDF7!important;
+  background:#699e00;!important;
 }
 
 .result-frame {

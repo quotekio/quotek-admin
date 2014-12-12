@@ -19,7 +19,7 @@
 
   <head>
      <META http-equiv="Content-Type" Content="text/html; charset=UTF-8">
-     <link rel="stylesheet" href="/css/bootstrap.css">
+     <link rel="stylesheet" href="/css/bootstrap.dark.min.css">
      <script type="text/javascript" src="/js/jquery.js"></script>
      <script type="text/javascript" src="/js/apphandler.js"></script>
 
