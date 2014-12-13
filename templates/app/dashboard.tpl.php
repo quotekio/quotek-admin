@@ -53,7 +53,7 @@
       	  	    <h4><?= $lang_array['app']['lastlog'] ?></h4>
       	    </div>
 
-            <div id="app-dashboard-lastlogs" style="background-color:white;height:155px;overflow-y:scroll"></div>
+            <div id="app-dashboard-lastlogs"></div>
 
       	  </div>
       	</div>      

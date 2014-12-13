@@ -8,7 +8,7 @@
      </div>
      <div class="modal-body" style="padding-bottom:0px;width:610px">
         <div style="text-align:center">
-          <img src="/img/vhlogo.png"/>
+          <img src="/img/vh_full_alpha.png" style="width:400px;margin-top:-40px"/>
          </div>
 
           <div class="well" style="width:540px">

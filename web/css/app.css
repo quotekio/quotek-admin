@@ -20,7 +20,7 @@ a:hover {
   display:none;
   margin-top:0px;
   float:left;
-  overflow:scroll;
+  overflow:hidden;
   height:100%;
 
 }
@@ -31,16 +31,16 @@ div.legend > table {
 
 .app-headed-white-frame {
   border-radius:7px;
-  border:1px solid #cccccc;
   overflow:hidden;
+  background:#202020;
 }
 
 .app-headed-frame-header {
-  border-bottom:1px solid #cccccc!important;
   height:35px;
   margin-top:-10px;
   padding-left:10px;
   padding-top:5px;
+  background:#131517;
 }
 
 
@@ -444,5 +444,21 @@ padding:15px;
   overflow-y:scroll;
   padding-left:10px;
   padding-right:10px;
+
+}
+
+.navbar-inner {
+  background:#131517!important;
+  padding:15px;
+  padding-top:20px;
+  
+}
+
+#app-dashboard-lastlogs {
+
+background-color:#202020;
+color:#38b7e5;
+height:155px;
+overflow-y:scroll;
 
 }

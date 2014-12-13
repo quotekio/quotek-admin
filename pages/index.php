@@ -13,8 +13,8 @@
 
   <div class="container">
 
-   <div style="text-align:center;background:white">
-    <img src="/img/vhlogo.png"/>    
+   <div style="text-align:center;background:#202020">
+    <img src="/img/vh_full.png" style="height:400px"/>    
    </div>
 
   <!-- <div class="alter_panel" style="margin-top:50px;background-image:url('/img/megaphone.svg'); background-repeat:no-repeat;background-size:80%;background-position:center -50px;"> -->

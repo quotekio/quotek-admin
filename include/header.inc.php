@@ -27,7 +27,7 @@
 
     </title>
 
-    <LINK REL="SHORTCUT ICON" href="/favicon.png">
+    <LINK REL="SHORTCUT ICON" href="/img/vh_icon.png">
     <LINK rel=stylesheet type="text/css" href="/css/vh-app.css">
     <LINK rel=stylesheet type="text/css" href="/css/bootstrap.dark.min.css">
     <LINK rel=stylesheet type="text/css" href="/css/vh.css">

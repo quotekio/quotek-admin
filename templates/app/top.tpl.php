@@ -2,12 +2,10 @@
 
 <div class="navbar navbar-static-top">
  
-  <div class="navbar-inner" style="height:45px">
+  <div class="navbar-inner">
     <div>
 
-         <img style="height:40px;margin-left:28px;" src="/img/vhlogo2.png">
-      
-     <a class="btn btn-inverse" style="float:right;margin-top:10px" onclick="adamShowAbout()"><i class="icon-white icon-info-sign"></i></a>
+         <a href="#" onclick="adamShowAbout()"><img style="height:40px;margin-left:5px;" src="/img/vh_text.png"></a>
 
       <div class="btn-group" style="float:right;margin-right:50px;margin-top:10px">
         <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
