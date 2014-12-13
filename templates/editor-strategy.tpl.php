@@ -19,7 +19,7 @@
 
            <div class="span6">
              <label><b><?= $lang_array['app']['type'] ?></b></label>
-             <select id="input-strats-type" style="width:100px;height:27px">
+             <select id="input-strats-type" style="width:100px;height:27px;padding-top:1px">
                <option value="normal">normal</option>
                <option value="module">module</option>
                <option value="genetics">genetics</option>

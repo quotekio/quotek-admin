@@ -50,7 +50,7 @@ function endLoad() {
   setInterval('adamUpdateDBNBPOSGraph()',20000);
 
   var ce = ace.edit("codeeditor_area");
-  ce.setTheme("ace/theme/xcode");
+  ce.setTheme("ace/theme/monokai");
   ce.getSession().setMode("ace/mode/c_cpp");
   
   //adamUpdateStatus();

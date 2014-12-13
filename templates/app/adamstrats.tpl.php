@@ -34,7 +34,7 @@
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
 
                                  var editor = ace.edit("editor");
-                                 editor.setTheme("ace/theme/xcode");
+                                 editor.setTheme("ace/theme/monokai");
                                  editor.getSession().setMode("ace/mode/c_cpp");
 
                                  $('#editor-action').off('click');

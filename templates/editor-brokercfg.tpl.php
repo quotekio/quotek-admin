@@ -21,7 +21,7 @@
            <span class="help-block">Donnez un nom à cette configuration courtier pour l'identifier.</span>
 
            <label><b><?= $lang_array['app']['brokermodule'] ?></b></label>
-           <select id="input-brokercfg-broker_id" style="height:27px;width:150px">
+           <select id="input-brokercfg-broker_id" style="height:27px;width:150px;padding-top:1px">
             <?php foreach($brokermodules as $bmodule) { ?>
                <option value="<?= $bmodule['id'] ?>"><?= $bmodule['name'] ?></option>
             <?php } ?>

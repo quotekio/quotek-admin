@@ -931,7 +931,8 @@ function adamUpdateStatus() {
             },   
             grid: {
                    show: true,
-                   backgroundColor: { colors: ["#2a2a2a", "#0a0a0a"] }
+                   borderWidth: 0,
+                   //backgroundColor: { colors: ["#2a2a2a", "#0a0a0a"] }
              },
     };
 
@@ -1439,7 +1440,7 @@ function adamShowBacktestEditor() {
         async:          false
         });
     
-    modalInst(700,610,gt.responseText);
+    modalInst(700,630,gt.responseText);
 
 }
 
@@ -1481,7 +1482,7 @@ function adamShowStratEditor() {
         cache:          false,
         async:          false
         });
-    modalInst(900,615,gt.responseText);
+    modalInst(900,645,gt.responseText);
 }
 
 
@@ -1495,7 +1496,7 @@ function adamShowBrokercfgEditor() {
         cache:          false,
         async:          false
         });
-    modalInst(700,555,gt.responseText);
+    modalInst(700,575,gt.responseText);
 }
 
 
@@ -1509,7 +1510,7 @@ function adamShowCorecfgEditor() {
         async:          false
         });
     
-    modalInst(700,615,gt.responseText);
+    modalInst(700,635,gt.responseText);
 
 }
 
@@ -1523,7 +1524,7 @@ function adamShowValueEditor() {
         async:          false
         });
 
-    modalInst(700,595,gt.responseText);
+    modalInst(700,615,gt.responseText);
 }
 
 

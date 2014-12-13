@@ -56,7 +56,7 @@ foreach($strats_gen as $strat) {
 
           
            <label><b><?= $lang_array['app']['type'] ?></b></label>
-           <select id="input-backtest-type" style="height:27px;width:150px">
+           <select id="input-backtest-type" style="height:27px;width:150px;padding-top:1px">
             <option value="normal">Normal</option>
             <option value="genetics">Genetics</option>
            </select>
@@ -64,7 +64,7 @@ foreach($strats_gen as $strat) {
           
 
            <label><b><?= $lang_array['app']['adamcfg'] ?></b></label>
-           <select id="input-backtest-config_id" style="height:27px;width:150px">
+           <select id="input-backtest-config_id" style="height:27px;width:150px;padding-top:1px">
             
             <?php
                foreach($cfgs as $cfg) {
@@ -77,7 +77,7 @@ foreach($strats_gen as $strat) {
            <span class="help-block">Indiquez la configuration Adam que vous souhaitez appliquer pour cette simulation</span>
 
            <label><b><?= $lang_array['app']['strat'] ?></b></label>
-           <select id="input-backtest-strategy_id" style="height:27px;width:150px">
+           <select id="input-backtest-strategy_id" style="height:27px;width:150px;padding-top:1px">
              <?= $strats_ct ?>
            </select>
            <span class="help-block">Indiquez la strategie à tester pour cette simulation.</span>

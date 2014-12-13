@@ -58,12 +58,12 @@
 
     
 
-    <div id="app-loader" style="width:256px;text-align:center;position:absolute;top:50%;left:50%;margin-top:-180px;margin-left:-128px;background:#202020">
+    <div id="app-loader" style="width:256px;text-align:center;position:absolute;top:50%;left:50%;margin-top:-180px;margin-left:-128px;">
       
       <h4 style="margin-bottom:0px"><?= $lang_array['app']['loading'] ?></h4>
 
-      <img src="/img/vh_icon.png">
-      <div id="app-loader-ct" class="progress progress-success">
+      <img src="/img/vh_full_alpha.png">
+      <div id="app-loader-ct" class="progress">
         <div class="bar" id="app-loader-bar" style="width: 10%"></div>
       </div>
     </div>

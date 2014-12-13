@@ -3,12 +3,12 @@
 <div class="navbar-inner" id="codeeditor_nav">
 
          <div class="row-fluid">
-        <div class="span3" style="margin-top:4px">
-          <div style="float:left;width:50px;margin-top:5px">  
-              <img style="height:23px" src="/img/vhlogo2.png"> 
+        <div class="span3" style="margin-top:0px">
+          <div style="float:left;width:140px;margin-top:5px">  
+              <img style="height:40px" src="/img/vh_text.png"> 
           </div>
-          <div style="float:left;width:200px;margin-top:7px">  
-              <b style="margin-top:1px">{code* editor("0.1");}</b>
+          <div style="float:left;width:150px;margin-top:17px">  
+              <b style="margin-top:1px;color:#38b7e5;">{code* editor("0.2");}</b>
           </div>
 
         </div>

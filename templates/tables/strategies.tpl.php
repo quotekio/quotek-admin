@@ -67,7 +67,7 @@ $('.btn-strat-edit').each(function() {
          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
 
          var editor = ace.edit("editor");
-         editor.setTheme("ace/theme/xcode");
+         editor.setTheme("ace/theme/monokai");
          editor.getSession().setMode("ace/mode/c_cpp");
          adamGetStratDataToEdit(sid);
          $('#editor-action').off('click');

@@ -48,7 +48,7 @@ $brokers = getBrokerConfigs();
            <span class="help-block">Indiquez votre capital de départ</span>
 
            <label><b><?= $lang_array['app']['broker'] ?></b></label>
-           <select id="input-corecfg-broker_id" style="height:27px;width:150px">
+           <select id="input-corecfg-broker_id" style="height:27px;width:150px;padding-top:1px">
             <?php foreach($brokers as $broker) { ?>
                <option value="<?= $broker->id ?>"><?= $broker->name ?></option>
            <?php } ?>

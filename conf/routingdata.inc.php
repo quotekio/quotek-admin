@@ -8,7 +8,8 @@
 
                     //ACE hack
                     '/mode-c_cpp.js' => 'acehack/mode-c_cpp.js',
-                    '/theme-xcode.js' => 'acehack/theme-xcode.js',
+                    '/theme-monokai.js' => 'acehack/theme-monokai.js',
+                    '/theme-chaos.js' => 'acehack/theme-chaos.js',
 
 		    		'/async/auth' => 'async/auth.php',
 		    		'/async/chlang' => 'async/chlang.php',
