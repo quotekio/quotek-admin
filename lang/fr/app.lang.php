@@ -123,6 +123,8 @@
   $lang_array['app']['corecfg_actions_delete'] = "Supprimer la configuration";
   $lang_array['app']['corecfg_actions_clone'] = "Cloner la configuration";
 
+  $lang_array['app']['corecfg_backend_title'] = 'Backend';
+
   $lang_array['app']['brokercfg_actions_edit'] = "Editer la configuration courtier";
   $lang_array['app']['brokercfg_actions_delete'] = "Supprimer la configuration courtier";
   $lang_array['app']['brokercfg_actions_clone'] = "Cloner la configuration courtier";

@@ -28,6 +28,9 @@ $brokers = getBrokerConfigs();
              <li>
                 <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="mm"><?= $lang_array['app']['corecfg_mm_title'] ?></a>
               </li>
+              <li>
+                 <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="backend"><?= $lang_array['app']['corecfg_backend_title'] ?></a>
+               </li>
              <li>
                 <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="extra"><?= $lang_array['app']['corecfg_extra_title'] ?></a>
               </li>
@@ -140,6 +143,30 @@ $brokers = getBrokerConfigs();
 
           </form>
           </div>
+
+
+          <div class="corecfg-editor-frame well" id="corecfg-editor-backend" style="display:none"> 
+          
+          <label><b>Module Backend</b></label>
+          <select id="input-corecfg-backend_module" style="height:27px;width:150px;padding-top:0px">
+          </select>
+          <span class="help-block">choissez le type de backend à utiliser avec Adam.</span>
+
+          <label><b>Hote de Backend</b></label>
+          <input id="input-corecfg-backend_host" style="height:27px;width:150px" type="text" value="127.0.0.1">
+          <span class="help-block">définit l'hote sur lequel Adam doit se connecter pour s'interfacer au backend.</span>
+          
+          <label><b>Utilisateur du Backend</b></label>
+          <input id="input-corecfg-backend_username" style="height:27px;width:150px" type="text" value="">
+          <!--<div id="corecfg-editor-mlpt" style="margin:10px;width:300px"></div> -->
+          <span class="help-block">Definit l'utilisateur requis pour acceder au backend.</span>
+
+          <label><b>Mot de Passe du Backend</b></label>
+          <input id="input-corecfg-backend_password" style="height:27px;width:150px" type="password" value="">
+          <span class="help-block">Definit le mot de passe requis pour acceder au backend.</span>
+
+          </div>
+
 
           <div class="corecfg-editor-frame well" id="corecfg-editor-extra" style="display:none"> 
           
