@@ -179,7 +179,8 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fwrite($fh,"aep_listen_addr = " . $cfg->aep_listen_addr . "\n");
   fwrite($fh,"aep_listen_port = " . $cfg->aep_listen_port . "\n\n");
 
-  fwrite($fh, "broker = " . $broker['module_name'] . "\n\n");
+  fwrite($fh, "broker = " . $broker['module_name'] . "\n");
+  fwrite($fh, "broker_params = " . "\n\n");
   fwrite($fh,"mm_capital = " . $cfg->mm_capital . "\n");
 
   foreach($values as $value) {

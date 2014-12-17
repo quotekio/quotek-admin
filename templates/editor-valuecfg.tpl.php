@@ -31,7 +31,7 @@
 
            <div class="span6">
            <label><b><?= $lang_array['app']['unit'] ?></b></label>
-           <select id="input-values-unit" style="height:27px;width:150px">
+           <select id="input-values-unit" style="height:27px;width:150px;padding-top:0px">
             <option value="point">Point</option>
             <option value="pip">PIP</option>
            </select>

@@ -36,6 +36,10 @@
            <input id="input-brokercfg-password" style="height:27px;width:150px" type="password" value="">
            <span class="help-block">Indiquez le Mot de passe du compte courtier.</span>
 
+           <label><b><?= $lang_array['app']['apikey'] ?></b></label>
+           <input id="input-brokercfg-apikey" style="height:27px;width:210px" type="text" value="">
+           <span class="help-block">Indiquez la clé API, si nécéssaire.</span>
+
           
           </form>
           </div>

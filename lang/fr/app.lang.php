@@ -64,6 +64,7 @@
   $lang_array['app']['values'] = 'Valeurs';
   $lang_array['app']['cfg_indices_title'] = 'Configuration des Indices';
   $lang_array['app']['capital'] = 'Capital';
+  $lang_array['app']['ticks'] = 'Ticks';
   $lang_array['app']['newconf'] = 'Nouvelle Configuration';
   $lang_array['app']['create'] = "Creer";
   $lang_array['app']['edit'] = "Modifier";
@@ -190,6 +191,7 @@
 
   $lang_array['app']['username'] = 'Nom d\'utilisateur';
   $lang_array['app']['password'] = 'Mot de Passe de compte';
+  $lang_array['app']['apikey'] = 'Clé d\'API';
 
   $lang_array['app']['adambroker_editor_create_title'] = 'Nouvelle Configuration Courtier';
   $lang_array['app']['adambroker_editor_edit_title'] = 'Editer la Configuration Courtier';

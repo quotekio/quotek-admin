@@ -33,7 +33,8 @@ function adamSaveBrokerCfg(id) {
   var brokercfg = {'name' : null,
                    'broker_id': null,
                    'username': null,
-                   'password': null};
+                   'password': null,
+                   'api_key': null};
 
   id = ( typeof id == 'undefined' ) ? -1 : id ;
 
@@ -44,6 +45,7 @@ function adamSaveBrokerCfg(id) {
   brokercfg.broker_id = $('#input-brokercfg-broker_id').val();
   brokercfg.username = $('#input-brokercfg-username').val();
   brokercfg.password = $('#input-brokercfg-password').val();
+  brokercfg.api_key = $('#input-brokercfg-apikey').val();
     
   var r = adamObject('add','brokercfg',brokercfg,-1);
   if (r.answer == 'OK') {
@@ -69,6 +71,7 @@ function adamGetBrokerCfgDataToEdit(bid) {
   $('#input-brokercfg-broker_id').val(brokercfg.broker_id);
   $('#input-brokercfg-username').val(brokercfg.username);
   $('#input-brokercfg-password').val(brokercfg.password);
+  $('#input-brokercfg-apikey').val(brokercfg.api_key);
 }
 
 function adamDelBrokerCfg(bid) {
@@ -144,6 +147,7 @@ function adamSaveCoreCfg(ccid) {
 
   var corecfg = {'name': null,
                  'mm_capital': null,
+                 'ticks': null,
                  'broker_id': null,
                  'values': null,
                  'mm_max_openpos': null,
@@ -162,6 +166,7 @@ function adamSaveCoreCfg(ccid) {
 
   corecfg.name = $('#input-corecfg-name').val();
   corecfg.mm_capital = parseInt($('#input-corecfg-mm_capital').val());
+  corecfg.ticks = parseInt($('#input-corecfg-ticks').val());
   corecfg.broker_id = parseInt($('#input-corecfg-broker_id').val());
   corecfg.mm_max_openpos = parseInt($('#input-corecfg-mm_max_openpos').val());
   corecfg.mm_max_openpos_per_epic = parseInt($('#input-corecfg-mm_max_openpos_per_epic').val());
@@ -364,6 +369,7 @@ function adamGetCoreCfgDataToEdit(ccid) {
   var ccfg = adamObject('get','corecfg',{},ccid);
   $('#input-corecfg-name').val(ccfg.name);
   $('#input-corecfg-mm_capital').val(ccfg.mm_capital);
+  $('#input-corecfg-ticks').val(ccfg.ticks);
   $('#input-corecfg-broker_id').val( ccfg.broker_id);
   $('#input-corecfg-mm_max_openpos').val(ccfg.mm_max_openpos);
   $('#input-corecfg-mm_max_openpos_per_epic').val(ccfg.mm_max_openpos_per_epic);
@@ -1496,7 +1502,7 @@ function adamShowBrokercfgEditor() {
         cache:          false,
         async:          false
         });
-    modalInst(700,575,gt.responseText);
+    modalInst(700,670,gt.responseText);
 }
 
 

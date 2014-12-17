@@ -10,8 +10,6 @@ $brokers = getBrokerConfigs();
 
 ?>
 
-
-
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
      <h3 id="editor-title" ></h3>
@@ -34,7 +32,6 @@ $brokers = getBrokerConfigs();
                 <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="extra"><?= $lang_array['app']['corecfg_extra_title'] ?></a>
               </li>
 
-             
           </ul>
 
           <div class="corecfg-editor-frame well" id="corecfg-editor-general"> 
@@ -46,6 +43,10 @@ $brokers = getBrokerConfigs();
            <label><b><?= $lang_array['app']['capital'] ?></b></label>
            <input id="input-corecfg-mm_capital" style="height:27px;width:100px" type="text" value="2000">
            <span class="help-block">Indiquez votre capital de départ</span>
+
+           <label><b><?= $lang_array['app']['ticks'] ?></b></label>
+           <input id="input-corecfg-ticks" style="height:27px;width:100px" type="text" value="1000000">
+           <span class="help-block">Indiquez la valeur du tick du robot, en microsecondes</span>
 
            <label><b><?= $lang_array['app']['broker'] ?></b></label>
            <select id="input-corecfg-broker_id" style="height:27px;width:150px;padding-top:1px">
