@@ -3,10 +3,12 @@
 include ('classes/valuecfg.php');
 include ('classes/brokercfg.php');
 include ('classes/strategy.php');
+include ('classes/backend.php');
 
 $strats = getStratsList();
 $values = getValueConfigs();
 $brokers = getBrokerConfigs();
+$backends = getBackends();
 
 ?>
 
@@ -148,7 +150,13 @@ $brokers = getBrokerConfigs();
           <div class="corecfg-editor-frame well" id="corecfg-editor-backend" style="display:none"> 
           
           <label><b>Module Backend</b></label>
-          <select id="input-corecfg-backend_module" style="height:27px;width:150px;padding-top:0px">
+          <select id="input-corecfg-backend_module" style="height:27px;width:200px;padding-top:0px">
+           <?php
+             foreach($backends as $b) { ?>
+                <option value="<?= $b->id ?>"><?= $b->name ?></option>
+          <?php
+             }
+           ?>
           </select>
           <span class="help-block">choissez le type de backend à utiliser avec Adam.</span>
 
@@ -156,6 +164,10 @@ $brokers = getBrokerConfigs();
           <input id="input-corecfg-backend_host" style="height:27px;width:150px" type="text" value="127.0.0.1">
           <span class="help-block">définit l'hote sur lequel Adam doit se connecter pour s'interfacer au backend.</span>
           
+          <label><b>Port du Backend</b></label>
+          <input id="input-corecfg-backend_port" style="height:27px;width:100px" type="text" value="127.0.0.1">
+          <span class="help-block">définit le port TCP/UDP sur lequel le service backend est en écoute.</span>
+
           <label><b>Utilisateur du Backend</b></label>
           <input id="input-corecfg-backend_username" style="height:27px;width:150px" type="text" value="">
           <!--<div id="corecfg-editor-mlpt" style="margin:10px;width:300px"></div> -->
@@ -165,6 +177,10 @@ $brokers = getBrokerConfigs();
           <input id="input-corecfg-backend_password" style="height:27px;width:150px" type="password" value="">
           <span class="help-block">Definit le mot de passe requis pour acceder au backend.</span>
 
+          <label><b>Base de donnée du Backend</b></label>
+          <input id="input-corecfg-backend_db" style="height:27px;width:150px" type="text" value="adam">
+          <span class="help-block">Definit quelle base de donnée sera utilisée pour stocker et prendre les données sur le backend.</span>
+          
           </div>
 
 

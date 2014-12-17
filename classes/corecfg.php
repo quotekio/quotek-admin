@@ -34,6 +34,16 @@ class corecfg  extends adamobject {
 
   }
 
+  function getBackendModule() {
+    global $dbhandler;
+
+    global $dbhandler;
+    $dbh = $dbhandler->query("SELECT * FROM backend WHERE id = '" . $this->backend_id . "';");
+    $ans = $dbh->fetch();
+    return $ans;
+    
+  }
+
 
   function remap($params) {
       if (!isset($params->id)) {
@@ -170,6 +180,8 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   }
 
   $broker = $cfg->getBrokerModule();
+  $broker_cfg = $cfg->getBroker();
+  $backend = $cfg->getBackendModule();
   $values = getCfgValues($cfg->id); 
   $exp_stratname = $strat->export();
   //export all found modules
@@ -180,7 +192,23 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fwrite($fh,"aep_listen_port = " . $cfg->aep_listen_port . "\n\n");
 
   fwrite($fh, "broker = " . $broker['module_name'] . "\n");
-  fwrite($fh, "broker_params = " . "\n\n");
+
+
+  $broker_params = json_encode( array( 'username' => $broker_cfg->username , 
+                                 'password' => $broker_cfg->password ,
+                                 'api_key' => $broker_cfg->api_key ) );
+
+
+  fwrite($fh, "broker_params = " . $broker_params . "\n\n");
+
+  fwrite($fh, "backend = " .  $backend['module_name'] . "\n");
+
+  $backend_params = json_encode(  array('host' => $cfg->backend_host ,
+                                 'username' => $cfg->backend_username , 
+                                 'password' => $cfg->backend_password ) );
+
+  fwrite($fh, "backend_params = " . $backend_params . "\n\n");
+
   fwrite($fh,"mm_capital = " . $cfg->mm_capital . "\n");
 
   foreach($values as $value) {

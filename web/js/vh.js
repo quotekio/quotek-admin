@@ -156,7 +156,11 @@ function adamSaveCoreCfg(ccid) {
                  'mm_reverse_pos_force_close': null,
                  'mm_max_loss_percentage_per_trade': null,
                  'mm_critical_loss_percentage' : null,
-                 'extra' : null
+                 'extra' : null,
+                 'backend_id': null,
+                 'backend_host': null,
+                 'backend_username': null,
+                 'backend_password': null
                };
 
 
@@ -188,6 +192,12 @@ function adamSaveCoreCfg(ccid) {
   });   
 
   corecfg.values = JSON.stringify(values);
+
+  corecfg.backend_id = parseInt($('#input-corecfg-backend_module').val());
+  corecfg.backend_host = $('#input-corecfg-backend_host').val();
+  corecfg.backend_username = $('#input-corecfg-backend_username').val();
+  corecfg.backend_password = $('#input-corecfg-backend_password').val();
+  
 
   r = adamObject('add','corecfg',corecfg,-1);
   //adamDebug(JSON.stringify(corecfg));
@@ -378,6 +388,10 @@ function adamGetCoreCfgDataToEdit(ccid) {
 
   $('#input-corecfg-extra').val(ccfg.extra);
 
+  $('#input-corecfg-backend_module').val(ccfg.backend_id);
+  $('#input-corecfg-backend_host').val(ccfg.backend_host);
+  $('#input-corecfg-backend_username').val(ccfg.backend_username);
+  $('#input-corecfg-backend_password').val(ccfg.backend_password);
 
   var vmap = adamObject('get','vmap',{},ccid);
 
