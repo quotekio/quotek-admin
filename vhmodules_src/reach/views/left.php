@@ -11,24 +11,26 @@
 
   $gdata = $r->getWeekData($year,$week);
    
-  $rcolor = ( $gdata['performance'] >= $gdata['goal'] ) ? "green" : "red" ;
+  $rcolor = ( $gdata['performance'] >= $gdata['goal'] ) ? "#699e00" : "#eee" ;
 
 
 ?>
 
-<div style="width:100%;height:70px">
-  <div style="background:#333333;height:20px;color:white;width:100%">
-  	<div style="padding-left:10px">
+
+
+
+<div class="app-headed-white-frame" style="width:180px;height:90px;margin-left:10px">
+  <div class="app-headed-frame-header" style="height:25px;color:white;width:100%">
+  	<div style="padding-left:5px;padding-top:3px">
       <b>Reach</b>
     </div>
   </div>
-  <div style="background:#101010;height:50px;width:100%">
-
-    <div style="padding:4px">
+  
+    <div style="padding:4px;padding-top:8px">
 
     <div class="row-fluid" style="text-align:center">
 
-      <div class="span6" style="color:#CCCCCC;background:#333333" onclick="$('#goal_editor').show()">
+      <div class="span6" style="color:#CCCCCC;background:#333333;height:50px" onclick="$('#goal_editor').show()">
 
        <div>
          Planned
@@ -40,7 +42,7 @@
 
       
 
-      <div class="span6" style="color:#CCCCCC;background:<?= $rcolor ?>">
+      <div class="span6" style="color:#CCCCCC;background:<?= $rcolor ?>;height:50px">
        <div>
          Current
        </div>
@@ -53,8 +55,6 @@
  
     </div>
 
-    </div>
-
   </div>
 
 </div> 
@@ -63,7 +63,7 @@
 
   <span><?= $lang_array['reach']['edit_goal']  ?></span><br>
 
-  <input id="goal_input" style="width:130px" value="<?= $gdata['goal'] ?>">
+  <input id="goal_input" style="width:130px;height:27px" value="<?= $gdata['goal'] ?>" type="text">
   <a class="btn" style="margin-left:5px;width:15px!important;color:black" onclick="setNewGoal()">Ok</a>
 
 </div>
