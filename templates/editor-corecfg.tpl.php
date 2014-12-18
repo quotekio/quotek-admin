@@ -165,7 +165,7 @@ $backends = getBackends();
           <span class="help-block">définit l'hote sur lequel Adam doit se connecter pour s'interfacer au backend.</span>
           
           <label><b>Port du Backend</b></label>
-          <input id="input-corecfg-backend_port" style="height:27px;width:100px" type="text" value="127.0.0.1">
+          <input id="input-corecfg-backend_port" style="height:27px;width:80px" type="text" value="">
           <span class="help-block">définit le port TCP/UDP sur lequel le service backend est en écoute.</span>
 
           <label><b>Utilisateur du Backend</b></label>

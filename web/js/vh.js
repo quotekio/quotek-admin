@@ -159,8 +159,10 @@ function adamSaveCoreCfg(ccid) {
                  'extra' : null,
                  'backend_id': null,
                  'backend_host': null,
+                 'backend_port':null,
                  'backend_username': null,
-                 'backend_password': null
+                 'backend_password': null,
+                 'backend_db': null
                };
 
 
@@ -195,9 +197,11 @@ function adamSaveCoreCfg(ccid) {
 
   corecfg.backend_id = parseInt($('#input-corecfg-backend_module').val());
   corecfg.backend_host = $('#input-corecfg-backend_host').val();
+  corecfg.backend_port = $('#input-corecfg-backend_port').val();
   corecfg.backend_username = $('#input-corecfg-backend_username').val();
   corecfg.backend_password = $('#input-corecfg-backend_password').val();
-  
+  corecfg.backend_db = $('#input-corecfg-backend_db').val();
+
 
   r = adamObject('add','corecfg',corecfg,-1);
   //adamDebug(JSON.stringify(corecfg));
@@ -390,8 +394,10 @@ function adamGetCoreCfgDataToEdit(ccid) {
 
   $('#input-corecfg-backend_module').val(ccfg.backend_id);
   $('#input-corecfg-backend_host').val(ccfg.backend_host);
+  $('#input-corecfg-backend_port').val(ccfg.backend_port);
   $('#input-corecfg-backend_username').val(ccfg.backend_username);
   $('#input-corecfg-backend_password').val(ccfg.backend_password);
+  $('#input-corecfg-backend_db').val(ccfg.backend_db);
 
   var vmap = adamObject('get','vmap',{},ccid);
 

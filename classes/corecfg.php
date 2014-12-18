@@ -204,8 +204,10 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fwrite($fh, "backend = " .  $backend['module_name'] . "\n");
 
   $backend_params = json_encode(  array('host' => $cfg->backend_host ,
+                                 'port' => $cfg->backend_port,
                                  'username' => $cfg->backend_username , 
-                                 'password' => $cfg->backend_password ) );
+                                 'password' => $cfg->backend_password,
+                                 'database' => $cfg->backend_db ) );
 
   fwrite($fh, "backend_params = " . $backend_params . "\n\n");
 
