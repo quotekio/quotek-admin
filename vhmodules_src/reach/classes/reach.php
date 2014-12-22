@@ -29,6 +29,9 @@ class reach {
 
     $curweek = date("W");
     $year = date("Y");
+
+    if (! $this->hasData($year) ) $this->populate($year);
+    
     $this->dbh->query("UPDATE reach_data set goal = '$newgoal' WHERE  year >= '$year' AND  week >= '$curweek';");
 
   }
@@ -45,7 +48,6 @@ class reach {
 
   function getData($year) {
 
-    if (! $this->hasData($year) ) $this->populate($year);
     $result = array();
 
     $q = $this->dbh->query("SELECT * from reach_data where year = '$year';");

@@ -11,7 +11,7 @@
 
   $gdata = $r->getWeekData($year,$week);
    
-  $rcolor = ( $gdata['performance'] >= $gdata['goal'] ) ? "#699e00" : "#eee" ;
+  $rcolor = ( $gdata['performance'] >= $gdata['goal'] ) ? "#699e00" : "#c00" ;
 
 
 ?>
@@ -19,10 +19,10 @@
 
 
 
-<div class="app-headed-white-frame" style="width:180px;height:90px;margin-left:10px">
+<div class="app-headed-white-frame" style="width:180px;margin-left:10px">
   <div class="app-headed-frame-header" style="height:25px;color:white;width:100%">
   	<div style="padding-left:5px;padding-top:3px">
-      <b>Reach</b>
+      <b>Performance</b>
     </div>
   </div>
   
@@ -33,7 +33,7 @@
       <div class="span6" style="color:#CCCCCC;background:#333333;height:50px" onclick="$('#goal_editor').show()">
 
        <div>
-         Planned
+         Objectif
        </div>
        <div id="goal_display" style="margin-top:4px;font-size:16px">
         <?= $gdata['goal'] ?>
@@ -44,7 +44,7 @@
 
       <div class="span6" style="color:#CCCCCC;background:<?= $rcolor ?>;height:50px">
        <div>
-         Current
+         Courrant
        </div>
        <div style="margin-top:4px;font-size:16px">
         <?= $gdata['performance']  ?>
@@ -55,18 +55,23 @@
  
     </div>
 
+    <div class="row-fluid">
+        <div id="goal_editor" style="background:;height:50px;padding:4px;color:#CCCCCC;background:#333333;display:none;margin-top:4px">
+
+          <span><?= $lang_array['reach']['edit_goal']  ?></span><br>
+
+          <input id="goal_input" style="width:115px;height:27px" value="<?= $gdata['goal'] ?>" type="text">
+          <a class="btn" style="margin-left:5px;width:15px!important;color:black;margin-top:-10px" onclick="setNewGoal()">Ok</a>
+
+        </div>
+    </div>
+
+
   </div>
 
 </div> 
 
-<div id="goal_editor" style="background:;height:50px;padding:4px;color:#CCCCCC;background:#333333;margin:4px;margin-top:2px;display:none">
 
-  <span><?= $lang_array['reach']['edit_goal']  ?></span><br>
-
-  <input id="goal_input" style="width:130px;height:27px" value="<?= $gdata['goal'] ?>" type="text">
-  <a class="btn" style="margin-left:5px;width:15px!important;color:black" onclick="setNewGoal()">Ok</a>
-
-</div>
 
 <script type="text/javascript">
   
@@ -83,7 +88,6 @@
    $('#goal_editor').hide();
 
   }
-
 
 
 </script>

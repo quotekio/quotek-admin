@@ -53,5 +53,8 @@ do
     echo $INSTALL_DIR | ./install.sh
     cd ..
   fi
-
 done
+
+echo "setting directory rights.."
+chown -R www-data $INSTALL_DIR
+
