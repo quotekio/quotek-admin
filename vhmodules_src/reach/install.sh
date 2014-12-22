@@ -29,4 +29,8 @@ cp -rp vhmodule.php views lang $REACH_DIR/
 cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/reach/
 cp -rp classes/* $INSTALL_DIR/classes/
 
+#SQL
+sqlite3 $INSTALL_DIR/data/vh.sqlite < ./install.sql
+
+
 

@@ -8,11 +8,6 @@
           </h3>
       </div>
 
-
-      <?php
-          loadVHViews($vhms,'dashboard');
-      ?>
-
       <div class="row-fluid">
         <div class="span6" id="footest">
           <div class="app-headed-white-frame" style="height:268px;width:100%">
@@ -59,4 +54,11 @@
       	</div>      
 
       </div>
+
+      <?php
+          loadVHViews($vhms,'dashboard');
+      ?>
+
+
+
 </div>

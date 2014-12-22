@@ -1,6 +1,5 @@
 <?php
 
-
 function rmdir_recurse($path) {
     $path = rtrim($path, '/').'/';
     $handle = opendir($path);
@@ -384,7 +383,4 @@ function apiinfos() {
   global $API_LASTMOD;
   echo "Chiliconfig API Version $API_VERSION\n";
   echo "Last Modifications: $API_LASTMOD\n";  
-}
-
-
-?>
+}?>
