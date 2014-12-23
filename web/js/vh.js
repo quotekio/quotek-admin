@@ -608,6 +608,20 @@ function adamStartReal() {
   return st.responseText;
 }
 
+function adamStartDebug() {
+
+  var st = $.ajax({
+        url:            '/async/app/adamctl',
+        type:           'POST',
+        data:           {action: 'startDebug'},
+        cache:          false,
+        async:          false
+        });
+
+  adamUpdateStatus();
+  return st.responseText;
+}
+
 
 function adamToggleBacktest(bid) {
 
@@ -854,18 +868,25 @@ function adamUpdateStatus_NoFetch(fdata) {
 
   $('#app-stopadam').off('click');
   $('#app-startadam').off('click');
+  $('#app-debugadam').off('click');
 
   $('#app-stopadam').addClass('disabled');
   $('#app-stopadam').removeClass('btn-danger');
   $('#app-startadam').addClass('disabled');
   $('#app-startadam').removeClass('btn-success');
+  $('#app-debugadam').addClass('disabled');
+  $('#app-debugadam').removeClass('btn-primary');
 
   if (fdata.state == 'off') {
 
     $('#app-startadam').addClass('btn-success');
     $('#app-startadam').removeClass('disabled');
+    $('#app-debugadam').addClass('btn-primary');
+    $('#app-debugadam').removeClass('disabled');
 
     $('#app-startadam').click(function() { adamStartReal(); } );
+    $('#app-debugadam').click(function() { adamStartDebug(); } );
+
   }
 
   else {
@@ -903,18 +924,24 @@ function adamUpdateStatus() {
            $('#app-stopadam').removeClass('btn-danger');
            $('#app-startadam').addClass('disabled');
            $('#app-startadam').removeClass('btn-success');
+           $('#app-debugadam').addClass('disabled');
+           $('#app-debugadam').removeClass('btn-primary');
 
            if (res.state == 'off') {
 
              $('#app-startadam').addClass('btn-success');
              $('#app-startadam').removeClass('disabled');
+             $('#app-debugadam').addClass('btn-primary');
+             $('#app-debugadam').removeClass('disabled');
 
              $('#app-startadam').click(function() { adamStartReal(); } );
+             $('#app-debugadam').click(function() { adamStartDebug(); } );
            }
 
            else {
              $('#app-stopadam').addClass('btn-danger');
              $('#app-stopadam').removeClass('disabled');
+             
              $('#app-stopadam').click(function() { adamStop(); } ); 
            }
 

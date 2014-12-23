@@ -20,6 +20,11 @@
     $ac->startReal();
   }
 
+  else if ( $_REQUEST['action'] == 'startDebug') {
+    exportCfg();
+    $ac->startReal($debug = true);
+  }
+  
   else if ( $_REQUEST['action'] == 'stop') {
     $ac->stop();
   }

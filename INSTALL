@@ -1,0 +1,16 @@
+Visiblehand 2.0 Install Guide
+=============================
+
+SYSTEM SETUP
+------------
+
+/etc/passwd: put www-data shell to /bin/bash
+
+/etc/sudoers: add the following line to the file:
+
+www-data ALL=(ALL) NOPASSWD: /usr/bin/pkill, NOPASSWD: /usr/local/adam/bin/adam, NOPASSWD: /bin/kill, NOPASSWD: /bin/echo, NOPASSWD: /usr/bin/gdb, NOPASSWD: /usr/bin/screen
+
+INSTALL
+-------
+
+Just run the "install.sh" script located at the root of the project.

@@ -41,19 +41,34 @@ class adamctl {
 
   }
 
-  function startReal() {
+  function startReal($debug=false) {
     global $ADAM_PATH;
     global $ADAM_TMP;
     $outp = array();
-    $cmd = "sudo $ADAM_PATH/bin/adam";
+
+    $pidtries = 10;
+
+    if (!$debug) $cmd = "sudo $ADAM_PATH/bin/adam";
+    else $cmd = "sudo screen -d -m -S adamdbg gdb -ex run $ADAM_PATH/bin/adam";
 
     if (file_exists("$ADAM_TMP/needs_restart")) {
       unlink("$ADAM_TMP/needs_restart");
     }
     if ($this->checkStatus($this->supid) == 'off') {
-      exec(sprintf("%s >/dev/null 2>&1 & " . 'echo $!' , $cmd),$outp);
-      $this->supid = $outp[0];
+      
+      if (!$debug) exec(sprintf("%s >/dev/null 2>&1 & ", $cmd),$outp);
+      else exec($cmd,$outp);
+
+      $this->supid = $this->findRealPID();
+
+      while ($pidtries > 0 && $this->supid == "")  {
+        $pidtries--;
+        $this->supid = $this->findRealPID();
+        sleep(.2);
+      }
+
       $this->setPID($this->supid);
+
     }
     
     else echo "ALREADY RUNNING!";
@@ -79,6 +94,15 @@ class adamctl {
     }
 
   }
+
+
+  function findRealPID()  {
+    global $ADAM_PATH;
+    exec("ps aux|grep $ADAM_PATH|egrep -v '(sudo|gdb|screen|grep)'|awk '{print $2}'",$outp);
+    return $outp[0];
+
+  }
+
 
   function getPID($pid_f=null) {
     global $ADAM_PIDFILE;

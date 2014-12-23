@@ -11,7 +11,22 @@
         <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
         	<i class="icon-white icon-stop"></i>
         </a>
-        <a class="btn disabled" id="app-startadam" rel="tooltip" title="<?= $lang_array['app']['adam_start'] ?>"><i class="icon-white icon-play"></i></a>
+        <a class="btn disabled" 
+                 id="app-startadam" 
+                 rel="tooltip" 
+                 title="<?= $lang_array['app']['adam_start'] ?>">
+                 <i class="icon-white icon-play"></i>
+        </a>
+
+        <a class="btn disabled" 
+                 id="app-debugadam" 
+                 rel="tooltip" 
+                 title="<?= $lang_array['app']['adam_debug'] ?>">
+
+          <i class="icon-white icon-fire"></i>
+        </a>        
+
+
         <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
       </div>
 

@@ -21,6 +21,7 @@
   $lang_array['app']['modules'] = 'Modules';
   $lang_array['app']['main'] = 'Principal';
   $lang_array['app']['adam_start'] = 'Démarrer le robot Adam';
+  $lang_array['app']['adam_debug'] = 'Démarrer le robot Adam en mode debug';
   $lang_array['app']['adam_stop'] = 'Stopper le robot Adam';
   $lang_array['app']['adam_restart'] = 'Redémarrer le robot Adam';
   
