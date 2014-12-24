@@ -99,7 +99,8 @@ class adamctl {
   function findRealPID()  {
     global $ADAM_PATH;
     exec("ps aux|grep $ADAM_PATH|egrep -v '(sudo|gdb|screen|grep)'|awk '{print $2}'",$outp);
-    return $outp[0];
+    if (count($outp) > 0) return $outp[0];
+    else return "";
 
   }
 
