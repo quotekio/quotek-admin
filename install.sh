@@ -24,7 +24,7 @@ then
 fi
 
 mkdir $INSTALL_DIR
-cp -rv classes conf data include jobs lang pages templates web $INSTALL_DIR/
+cp -rv classes lib conf data include jobs lang pages templates web $INSTALL_DIR/
 
 if [ $HAS_PREV_INST -eq 1 ]
 then

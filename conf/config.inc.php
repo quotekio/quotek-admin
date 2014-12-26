@@ -23,6 +23,7 @@
 			  '/usr/local/adam/admin/includes',
 			  '/usr/local/adam/admin/classes',
 			  '/usr/local/adam/admin/lib',
+			  '/usr/local/adam/admin/lib/influx',
 			  '/usr/local/adam/admin/templates',
 			  '/usr/local/adam/admin/lang'
  			 );

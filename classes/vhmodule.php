@@ -2,12 +2,13 @@
 
 class vhmodule {
 
-    function __construct($name,$longname,$version,$entries,$views) {
+    function __construct($name,$longname,$icon, $version,$entries,$views) {
       $this->name = $name;
       $this->longname = $longname;
       $this->version = $version;
       $this->entries = $entries;
       $this->views = $views;
+      $this->icon = $icon;
     }
 
 }
@@ -42,6 +43,7 @@ function loadVHModules() {
     $vhms[] = new vhmodule(
     	               $vhm,
     	               $vhmodule_longname,
+                     $vhmodule_icon,
     	               $vhmodule_version,
     	               $vhmodule_entries,
     	               $vhmodule_views);
@@ -49,6 +51,8 @@ function loadVHModules() {
     unset($vhmodule_version);
     unset($vhmodule_entries);
     unset($vhmodule_views);
+    unset($vhmodule_icon);
+
 
     if (isset($vhmodule_routing)) {
       $routing += $vhmodule_routing;
@@ -65,13 +69,28 @@ function loadVHModuleEntries($vhms) {
 
   global $MODULES_PATH;
   foreach ($vhms as $vhm) {
+
+
+    //create module icon code.
+    $icon_data = "<i class=\"icon-th icon-white\"></i>";
+
+    $rdata = explode(':', $vhm->icon);
+    if ($rdata[0] == "icon") {
+      $icon_data = "<i class=\"" .  $rdata[1] . " icon-white\"></i>";
+    }
+
+    else if ($rdata[0] == "image") {
+      $icon_data = "<img src=\"" . $rdata[1] ."\" style=\"width:16px;height:16px\"/>";
+    }
+
     if (isset($vhm->entries['modules']) ) {
     ?>
 
       <li>
          <a href="Javascript:appLoadDisp('<?= $vhm->name ?>')">
-              <i class="icon-th icon-white"></i> 
-              <?= $vhm->entries['modules']  ?> </a>
+
+              <?= $icon_data ?>&nbsp;
+              <?=   $vhm->entries['modules']  ?> </a>
       </li>
 
     <?php
