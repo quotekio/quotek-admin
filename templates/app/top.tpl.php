@@ -37,5 +37,6 @@
 <script type="text/javascript">
   $('#app-stopadam').tooltip({placement:'bottom',container: 'body'});
   $('#app-startadam').tooltip({placement:'bottom',container: 'body'});
+  $('#app-debugadam').tooltip({placement:'bottom',container: 'body'});
   $('#app-restartadam').tooltip({placement:'bottom',container: 'body'});
 </script>

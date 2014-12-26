@@ -2,7 +2,12 @@
 
    global $lang;
    include ( dirname(__FILE__) . "/../lang/$lang/vhmodule.lang.php");
-   include "corecfg.php"
+   require_once "valuecfg.php";
+   require_once "corecfg.php";
+
+   $cfg = getActiveCfg();
+   $vals = getCfgValues($cfg->id);
+
    
 ?>
 
@@ -72,10 +77,29 @@
 
         <div class="row-fluid">
 
-          
+        <?php
 
+        $i=0;
+        foreach($vals as $v) {
+          $i++;
+        ?>
 
+        <div class="span6">
+          <div class="app-headed-white-frame" style="height:300px">
+            <div class="app-headed-frame-header"><h4><?= $v->name ?></h4></div>
+          </div>
         </div>
+
+        <?php
+          if ($i %2 == 0) {
+            echo "</div><div class=\"row-fluid\" style=\"margin-top:25px\">";
+          }
+        }
+
+        ?>
+
+      </div>
+
 
 </div>
 
