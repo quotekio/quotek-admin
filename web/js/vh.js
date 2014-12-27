@@ -985,7 +985,6 @@ function adamUpdateStatus() {
             grid: {
                    show: true,
                    borderWidth: 0,
-                   //backgroundColor: { colors: ["#2a2a2a", "#0a0a0a"] }
              },
     };
 

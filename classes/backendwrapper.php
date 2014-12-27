@@ -36,13 +36,54 @@ class backendWrapper {
 
   }
 
-  function query($indice_name,$tinf,$tsup) {
+  function query($indice_name,$tinf,$tsup, $mean) {
     if ($this->backend->module_name == "influxdbbe") {
-      return influx_query($indice_name,$tinf,$tsup);
+      return $this->influx_query($indice_name,$tinf,$tsup,$mean);
     }
   }
- 
-  function influx_query($indice_name,$tinf,$tsup) {
+
+  function insert($indice_name,$t,$v,$spread)  {
+    $this->dbh->insert($indice_name, array('time' => $t, 'value' => $v , 'spread' => $spread) );
+  }
+
+  function influx_query($indice_name, $tinf, $tsup, $mean) {
+
+    $result = array();
+
+    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
+    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
+
+    if ($mean != 0) {
+      $query = "SELECT time, mean(value) AS value FROM " . 
+                        $indice_name . 
+                        " WHERE time > '" . 
+                        $tinf . 
+                        "' AND time < '" . 
+                        $tsup . 
+                        "' GROUP BY time('$mean') ORDER ASC;";
+    }
+
+    else {
+    
+      $query = "SELECT time, value FROM " . 
+                        $indice_name . 
+                        " WHERE time > '" . 
+                        $tinf . 
+                        "' AND time < '" . 
+                        $tsup . 
+                        "' ORDER ASC;";
+
+    }
+
+    //echo $query . "\n\n<br><br>";
+    $ires = $this->dbh->query($query);
+    //echo "NBRECS:" . count($ires);
+
+    foreach( $ires as $rec  ) {
+      $result[] = array( $rec->time * 1000, $rec->value);
+    }
+
+    return $result;
 
   }
 
