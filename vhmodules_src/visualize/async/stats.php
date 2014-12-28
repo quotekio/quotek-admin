@@ -24,7 +24,6 @@
 
   $result = $bw->query($indice,$tinf,$tsup,$mean);
   
-
   echo json_encode($result)
 
 

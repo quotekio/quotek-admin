@@ -11,6 +11,10 @@
    
 ?>
 
+<div id="visualize-tooltip" style="display:none;position:absolute;padding:4px;background:#131517;border-radius:4px;font-size:11px;opacity:1.0!important;z-index:3000">
+</div>
+
+
 <div class="app-display" id="visualize">
         
   	    <div class="page-header">
@@ -130,36 +134,67 @@
     
       var pdate = new Date(); 
 
-      pdate.setHours(pdate.getHours()-6);
+      pdate.setHours(pdate.getHours()-3);
+
+      var h = pdate.getHours();
+      if (h<10) h = "0" + h;
+
+      var m = pdate.getMinutes();
+      if (m<10) m = "0" + m;
+
+      var month = pdate.getMonth() + 1 ;
+      if (month<10) month = "0" + month;
+
+      var day = pdate.getDate();
+      if (day<10) day = "0" + day;
+
+      var secs = pdate.getSeconds();
+      if (secs<10) secs = "0" +secs;
 
       tinf = pdate.getFullYear() + 
             "-" + 
-            (pdate.getMonth()+1) +
+            month +
             "-" + 
-            pdate.getDate() + 
+            day + 
             " " + 
-            pdate.getHours() + 
+            h + 
             ":" +
-            pdate.getMinutes() +
+            m +
             ":" +
-            pdate.getSeconds();
+            secs;
 
     }
 
     if (tsup == "") {
 
-      var cdate = new Date(); 
+      var cdate = new Date();
+
+      var h = cdate.getHours();
+      if (h<10) h = "0" + h;
+
+      var m = cdate.getMinutes();
+      if (m<10) m = "0" + m;
+
+      var secs = cdate.getSeconds();
+      if (secs<10) secs = "0" +secs;
+     
+      var month = cdate.getMonth() + 1 ;
+      if (month<10) month = "0" + month;
+
+      var day = cdate.getDate();
+      if (day<10) day = "0" + day;
+
       tsup = cdate.getFullYear() + 
             "-" + 
-            (cdate.getMonth()+1) + 
+            month + 
             "-" +
-            cdate.getDate() + 
+            day + 
             " " + 
-            cdate.getHours() + 
+            h + 
             ":" +
-            cdate.getMinutes() +
+            m +
             ":" +
-            cdate.getSeconds(); 
+            secs; 
 
     }
 
@@ -190,28 +225,132 @@
                  lines: { fill: true,
                           lineWidth: 2,
                           zero: false },
-                 label: iname,
+                  color: '#38b7e5',
+                 
                   }, ];
 
-    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=300s",
+    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=30s",
                        'type': 'GET',
                        'cache': false,
                        'async': true,
                        'success': function() {
 
                           data[0].data = $.parseJSON(rdata.responseText);
+                          var plot = $.plot(placeholder, data , options);
 
-                          $.plot(placeholder, data , options);
+                          placeholder.bind("plotclick", function (event, pos, item) {
+                            if (item) {
+                              $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+                              plot.highlight(item.series, item.datapoint);
+                            }
+                          });
 
-                       } })
+                          placeholder.bind("plothover", function (event, pos, item) {
+
+                            if (item) {
+                                var x = item.datapoint[0].toFixed(2),
+                                  y = item.datapoint[1].toFixed(2);
+
+                                //$("#visualize-tooltip").html(item.series.label + " of " + x + " = " + y)
+                                $("#visualize-tooltip").html( y )
+                                  .css({top: item.pageY+5, left: item.pageX+5})
+                                  .fadeIn(200);
+                              } 
+
+                              else {
+                                $("#visualize-tooltip").hide();
+                              }
+                            
+                          });
+
+                       } });
     
 
   }
   
-  setTimeout('displayGraph("CAC_MINI");',10000);
+  $('#visualize').bind('afterShow',function() {
 
-  
+    <?php foreach($vals as $v) { ?>
+
+      displayGraph('<?= $v->name ?>');
+
+    <?php } ?>
 
 
+  });
+
+/*
+  $(function() {
+
+      var sin = [],
+        cos = [];
+
+      for (var i = 0; i < 14; i += 0.5) {
+        sin.push([i, Math.sin(i)]);
+        cos.push([i, Math.cos(i)]);
+      }
+
+      var plot = $.plot("#placeholder", [
+        { data: sin, label: "sin(x)"},
+        { data: cos, label: "cos(x)"}
+      ], {
+        series: {
+          lines: {
+            show: true
+          },
+          points: {
+            show: true
+          }
+        },
+        grid: {
+          hoverable: true,
+          clickable: true
+        },
+        yaxis: {
+          min: -1.2,
+          max: 1.2
+        }
+      });
+
+      $("<div id='tooltip'></div>").css({
+        position: "absolute",
+        display: "none",
+        border: "1px solid #fdd",
+        padding: "2px",
+        "background-color": "#fee",
+        opacity: 0.80
+      }).appendTo("body");
+
+      $("#placeholder").bind("plothover", function (event, pos, item) {
+
+        if ($("#enablePosition:checked").length > 0) {
+          var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
+          $("#hoverdata").text(str);
+        }
+
+        if ($("#enableTooltip:checked").length > 0) {
+          if (item) {
+            var x = item.datapoint[0].toFixed(2),
+              y = item.datapoint[1].toFixed(2);
+
+            $("#tooltip").html(item.series.label + " of " + x + " = " + y)
+              .css({top: item.pageY+5, left: item.pageX+5})
+              .fadeIn(200);
+          } else {
+            $("#tooltip").hide();
+          }
+        }
+      });
+
+      
+
+      // Add the Flot version string to the footer
+
+      $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+    });
+
+*/
 
 </script>
+
+
