@@ -68,9 +68,12 @@
               </div>
 
               <div class="span4" style="text-align:right">
-                <a class="btn btn-success" style="margin-top:12px!important">
+                <div class="btn-group" style="margin-top:12px!important">
+                <a id="btn-autoupdate" class="btn btn-primary" onclick="toggleAutoUpdate()">Autoupdate: true</a>
+                <a class="btn btn-success">
                   Visualize!
                 </a>
+                </div>
               </div>
 
 
@@ -78,6 +81,8 @@
           </div>
         </div>
 
+
+        <div class="row-fluid" id="graphlarge" style="padding-top:30px;padding-bottom:30px"></div>
 
         <div class="row-fluid">
 
@@ -90,9 +95,25 @@
 
         <div class="span6">
           <div class="app-headed-white-frame" style="height:300px">
-            <div class="app-headed-frame-header"><h4><?= $v->name ?></h4></div>
+            <div class="app-headed-frame-header">
+              <div class="span6">
+                <h4><?= $v->name ?></h4>
+              </div>
+              <div class="span6">
+                <div class="btn-group">
+                  <a class="btn">
+                    <i class="icon-indent-right icon-white"></i>
+                  </a>
+
+                  <a class="btn btn-primary" onclick="enlargeGraph('<?= $v->name ?>')">
+                    <i class="icon-fullscreen icon-white"></i>
+                  </a>
+                  
+                </div>
+              </div>
+            </div>
               <div id="visualize-draw-<?= str_replace('_','', $v->name) ?>" style="height:267px;text-align:center">
-             <img src="/img/loader1.png" style="width:25px;margin-top:120px"/>
+             <img src="/img/loader2.gif" style="width:25px;margin-top:120px"/>
              </div>
           </div>
         </div>
@@ -113,7 +134,46 @@
 
 <script type="text/javascript">
 
-  
+ 
+  function enlargeGraph(iname) {
+
+    var graphbox = $('#visualize-draw-'+ iname.replace('_','') ).parent().parent();
+    $('#graphlarge').append(graphbox.html());
+    displayGraph(iname);
+
+  }
+
+
+  function toggleAutoUpdate() {
+
+
+    //disable
+    if( $('#btn-autoupdate').hasClass('btn-primary') ) {
+      $('#btn-autoupdate').removeClass('btn-primary');
+      $('#btn-autoupdate').html('Autoupdate: false');
+
+      <?php foreach($vals as $v) { ?>
+      clearInterval(au<?= $v->name ?>);
+      <?php } ?>
+
+    }
+
+    //enable
+    else {
+      $('#btn-autoupdate').addClass('btn-primary');
+      $('#btn-autoupdate').html('Autoupdate: true');
+
+      <?php foreach($vals as $v) { ?>
+        au<?= $v->name ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= $v->name ?>)",20000);
+      <?php } ?>
+
+
+    }
+
+
+  }
+
+
 
   $('#visualize-datepicker-tinf').datetimepicker({
       language: 'fr-FR'
@@ -124,8 +184,9 @@
     });
 
 
+  function displayGraph(iname, existing_plot) {
 
-  function displayGraph(iname) {
+    var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
 
     var tinf = $('#visualize-input-tinf').val();
     var tsup = $('#visualize-input-tsup').val();
@@ -226,8 +287,11 @@
                           lineWidth: 2,
                           zero: false },
                   color: '#38b7e5',
+                  label: iname,
                  
                   }, ];
+
+    var plot = null;
 
     var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=30s",
                        'type': 'GET',
@@ -236,120 +300,91 @@
                        'success': function() {
 
                           data[0].data = $.parseJSON(rdata.responseText);
-                          var plot = $.plot(placeholder, data , options);
+                          
+                          if (existing_plot == null) {
+ 
+                            plot = $.plot(placeholder, data , options);
 
-                          placeholder.bind("plotclick", function (event, pos, item) {
-                            if (item) {
-                              $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
-                              plot.highlight(item.series, item.datapoint);
-                            }
-                          });
-
-                          placeholder.bind("plothover", function (event, pos, item) {
-
-                            if (item) {
-                                var x = item.datapoint[0].toFixed(2),
-                                  y = item.datapoint[1].toFixed(2);
-
-                                //$("#visualize-tooltip").html(item.series.label + " of " + x + " = " + y)
-                                $("#visualize-tooltip").html( y )
-                                  .css({top: item.pageY+5, left: item.pageX+5})
-                                  .fadeIn(200);
-                              } 
-
-                              else {
-                                $("#visualize-tooltip").hide();
+                            placeholder.bind("plotclick", function (event, pos, item) {
+                              if (item) {
+                                $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+                                plot.highlight(item.series, item.datapoint);
                               }
-                            
-                          });
+                            });
+
+                            placeholder.bind("plotselected", function (event, ranges) {
+
+                                    $.each(plot.getXAxes(), function(_, axis) {
+                                      var opts = axis.options;
+                                      opts.min = ranges.xaxis.from;
+                                      opts.max = ranges.xaxis.to;
+                                    });
+                                    plot.setupGrid();
+                                    plot.draw();
+                                    plot.clearSelection();
+                                });
+
+
+
+                            placeholder.bind("plothover", function (event, pos, item) {
+
+                              if (item) {
+                                  var x = item.datapoint[0].toFixed(2),
+                                    y = item.datapoint[1].toFixed(2);
+
+                                  //$("#visualize-tooltip").html(item.series.label + " of " + x + " = " + y)
+                                  $("#visualize-tooltip").html(item.series.label + ": " + y )
+                                    .css({top: item.pageY+5, left: item.pageX+5})
+                                    .fadeIn(200);
+                                } 
+
+                                else {
+                                  $("#visualize-tooltip").hide();
+                                }
+                              
+                            });
+
+                        }
+
+                        //update
+                        else {
+
+                          existing_plot.setData(data);
+                          existing_plot.draw();
+                          plot = existing_plot;
+                        }
+
+
+
 
                        } });
     
 
+  
+  return plot;
+
   }
   
+
+  var au = null;
+
+  <?php foreach($vals as $v) { ?>
+    var plot<?= $v->name ?> = null;
+    var au<?= $v->name ?> = null;
+  <?php } ?>
+
   $('#visualize').bind('afterShow',function() {
 
     <?php foreach($vals as $v) { ?>
 
-      displayGraph('<?= $v->name ?>');
+      plot<?= $v->name ?> = displayGraph('<?= $v->name ?>');
+
+      au<?= $v->name ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= $v->name ?>)",20000);
 
     <?php } ?>
 
 
   });
-
-/*
-  $(function() {
-
-      var sin = [],
-        cos = [];
-
-      for (var i = 0; i < 14; i += 0.5) {
-        sin.push([i, Math.sin(i)]);
-        cos.push([i, Math.cos(i)]);
-      }
-
-      var plot = $.plot("#placeholder", [
-        { data: sin, label: "sin(x)"},
-        { data: cos, label: "cos(x)"}
-      ], {
-        series: {
-          lines: {
-            show: true
-          },
-          points: {
-            show: true
-          }
-        },
-        grid: {
-          hoverable: true,
-          clickable: true
-        },
-        yaxis: {
-          min: -1.2,
-          max: 1.2
-        }
-      });
-
-      $("<div id='tooltip'></div>").css({
-        position: "absolute",
-        display: "none",
-        border: "1px solid #fdd",
-        padding: "2px",
-        "background-color": "#fee",
-        opacity: 0.80
-      }).appendTo("body");
-
-      $("#placeholder").bind("plothover", function (event, pos, item) {
-
-        if ($("#enablePosition:checked").length > 0) {
-          var str = "(" + pos.x.toFixed(2) + ", " + pos.y.toFixed(2) + ")";
-          $("#hoverdata").text(str);
-        }
-
-        if ($("#enableTooltip:checked").length > 0) {
-          if (item) {
-            var x = item.datapoint[0].toFixed(2),
-              y = item.datapoint[1].toFixed(2);
-
-            $("#tooltip").html(item.series.label + " of " + x + " = " + y)
-              .css({top: item.pageY+5, left: item.pageX+5})
-              .fadeIn(200);
-          } else {
-            $("#tooltip").hide();
-          }
-        }
-      });
-
-      
-
-      // Add the Flot version string to the footer
-
-      $("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
-    });
-
-*/
 
 </script>
 
