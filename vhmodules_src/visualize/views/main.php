@@ -70,7 +70,7 @@
               <div class="span4" style="text-align:right">
                 <div class="btn-group" style="margin-top:12px!important">
                 <a id="btn-autoupdate" class="btn btn-primary" onclick="toggleAutoUpdate()">Autoupdate: true</a>
-                <a class="btn btn-success">
+                <a id="btn-visualize" class="btn btn-success disabled">
                   Visualize!
                 </a>
                 </div>
@@ -99,21 +99,21 @@
               <div class="span6">
                 <h4><?= $v->name ?></h4>
               </div>
-              <div class="span6">
-                <div class="btn-group">
-                  <a class="btn">
+              <div class="span6" style="text-align:right">
+                <div class="btn-group" style="margin-top:11px;margin-right:10px">
+                  <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
                     <i class="icon-indent-right icon-white"></i>
                   </a>
 
-                  <a class="btn btn-primary" onclick="enlargeGraph('<?= $v->name ?>')">
+                  <a id="rbtn" class="btn btn-primary btn-small" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
                     <i class="icon-fullscreen icon-white"></i>
                   </a>
-                  
+ 
                 </div>
               </div>
             </div>
-              <div id="visualize-draw-<?= str_replace('_','', $v->name) ?>" style="height:267px;text-align:center">
-             <img src="/img/loader2.gif" style="width:25px;margin-top:120px"/>
+              <div id="visualize-draw-<?= str_replace('_','', $v->name) ?>" style="height:267px;text-align:center;">
+              <br><img src="/img/loader2.gif" style="width:25px;margin-top:100px"/>
              </div>
           </div>
         </div>
@@ -134,46 +134,85 @@
 
 <script type="text/javascript">
 
- 
+  <?php foreach($vals as $v) { ?>
+  var plot<?= $v->name ?> = null;
+  var au<?= $v->name ?> = null;
+  <?php } ?>
+
   function enlargeGraph(iname) {
 
     var graphbox = $('#visualize-draw-'+ iname.replace('_','') ).parent().parent();
-    $('#graphlarge').append(graphbox.html());
+    var graphlarge = $('#graphlarge');
+
+    graphlarge.append(graphbox.html());
+    
+    $('#visualize-draw-'+ iname.replace('_','') ,graphlarge).css('height','400px');
+    var exframe = $('#visualize-draw-'+ iname.replace('_',''), graphlarge).parent();
+
+    exframe.css('margin-bottom','25px');
+
+    $('#rbtn', exframe).removeClass('btn-primary');
+    $('#rbtn', exframe).addClass('btn-danger');
+    $('#rbtn', exframe).html('<i class="icon icon-remove-sign"></i>');
+    
+    $('#rbtn', exframe).attr('onclick', null);
+    $('#rbtn', exframe).off('click');
+    $('#rbtn', exframe).click(function() {
+      exframe.remove();
+    });
+
+    exframe.css('height','440px');
+
     displayGraph(iname);
 
   }
 
 
-  function toggleAutoUpdate() {
+  function disableAutoUpdate() {
+    $('#btn-autoupdate').removeClass('btn-primary');
+    $('#btn-autoupdate').html('Autoupdate: false');
 
+    <?php foreach($vals as $v) { ?>
+    clearInterval(au<?= $v->name ?>);
+    <?php } ?>
+  }
+
+
+  function enableAutoUpdate() {
+    $('#btn-autoupdate').addClass('btn-primary');
+    $('#btn-autoupdate').html('Autoupdate: true');
+
+    <?php foreach($vals as $v) { ?>
+      au<?= $v->name ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= $v->name ?>)",20000);
+    <?php } ?>
+  }
+
+  function disableVisualize() {
+
+    $('#btn-visualize').addClass('disabled');
+    $('#btn-visualize').off('click');
+  }
+
+  function enableVisualize() {
+    $('#btn-visualize').removeClass('disabled');
+    $('#btn-visualize').click(function() {  displayAllGraph(true) });
+
+  }
+
+  function toggleAutoUpdate() {
 
     //disable
     if( $('#btn-autoupdate').hasClass('btn-primary') ) {
-      $('#btn-autoupdate').removeClass('btn-primary');
-      $('#btn-autoupdate').html('Autoupdate: false');
-
-      <?php foreach($vals as $v) { ?>
-      clearInterval(au<?= $v->name ?>);
-      <?php } ?>
-
+      disableAutoUpdate();
+      enableVisualize();
     }
 
     //enable
     else {
-      $('#btn-autoupdate').addClass('btn-primary');
-      $('#btn-autoupdate').html('Autoupdate: true');
-
-      <?php foreach($vals as $v) { ?>
-        au<?= $v->name ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= $v->name ?>)",20000);
-      <?php } ?>
-
-
+      enableAutoUpdate();
+      disableVisualize();
     }
-
-
   }
-
-
 
   $('#visualize-datepicker-tinf').datetimepicker({
       language: 'fr-FR'
@@ -184,15 +223,21 @@
     });
 
 
-  function displayGraph(iname, existing_plot) {
+  function displayGraph(iname, existing_plot, use_dates) {
 
     var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
+    var use_dates = (typeof use_dates != 'undefined') ? use_dates : null;
 
-    var tinf = $('#visualize-input-tinf').val();
-    var tsup = $('#visualize-input-tsup').val();
- 
+    var tinf = "";
+    var tsup = "";
+
+    if (use_dates != null) {
+      tinf = $('#visualize-input-tinf').val();
+      tsup = $('#visualize-input-tsup').val();
+    }
+
     if (tinf == "") {
-    
+
       var pdate = new Date(); 
 
       pdate.setHours(pdate.getHours()-3);
@@ -283,7 +328,8 @@
     };
 
     var data = [{ data: null,
-                 lines: { fill: true,
+                 lines: { 
+                          //fill: true,
                           lineWidth: 2,
                           zero: false },
                   color: '#38b7e5',
@@ -365,26 +411,25 @@
 
   }
   
+  function displayAllGraph(use_dates) {
 
-  var au = null;
-
-  <?php foreach($vals as $v) { ?>
-    var plot<?= $v->name ?> = null;
-    var au<?= $v->name ?> = null;
-  <?php } ?>
-
-  $('#visualize').bind('afterShow',function() {
+    var use_dates = ( typeof use_dates != 'undefined'  ) ? use_dates : null ; 
 
     <?php foreach($vals as $v) { ?>
-
-      plot<?= $v->name ?> = displayGraph('<?= $v->name ?>');
-
-      au<?= $v->name ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= $v->name ?>)",20000);
-
+      plot<?= $v->name ?> = displayGraph('<?= $v->name ?>', null, use_dates);
     <?php } ?>
 
+  }
 
+
+  $('#visualize').bind('afterShow',function() {
+    displayAllGraph();
+    enableAutoUpdate();
   });
+
+
+  $('#rbtn').tooltip({placement:'bottom',container: 'body'});
+  $('#candlebtn').tooltip({placement:'bottom',container: 'body'});
 
 </script>
 
