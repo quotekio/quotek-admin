@@ -16,7 +16,7 @@
             </div>
   
             <div style="text-align:center;width:100%">
-              <div id="dashboard-graph-pnl" style="height:227px;width:400px;margin-left:auto;margin-right:auto">
+              <div class="dashboard-graph" id="dashboard-graph-pnl" style="height:227px;width:400px;margin-left:auto;margin-right:auto">
               </div>
             </div>
 
@@ -31,7 +31,7 @@
             </div>
 
             <div style="text-align:center;width:100%">
-              <div id="dashboard-graph-nbpos" style="height:227px;width:400px;margin-left:auto;margin-right:auto">
+              <div class="dashboard-graph" id="dashboard-graph-nbpos" style="height:227px;width:400px;margin-left:auto;margin-right:auto">
               </div>
             </div>
 
@@ -62,3 +62,22 @@
 
 
 </div>
+
+<script type="text/javascript">
+
+  setInterval('adamUpdateDBPNLGraph()',10000);
+  setInterval('adamUpdateDBNBPOSGraph()',20000);
+
+  $('#dashboard').bind('afterShow',function()  {
+
+    $('.dashboard-graph').each(function(index,elt){
+      
+      adamUpdateDBPNLGraph();
+      adamUpdateDBNBPOSGraph();
+
+    });
+
+
+  });
+
+</script>

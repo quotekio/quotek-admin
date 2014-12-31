@@ -126,7 +126,7 @@ $backends = getBackends();
             pour redonner la main à un opérateur humain afin qu'il évalue la situation.</span>
 
 
-           <label><b>Verouillage de positions inverses</b></label>
+           <label><b>Désactiver le hedging</b></label>
            <label class="checkbox">
               <input id="input-corecfg-mm_reverse_pos_lock" type="checkbox" CHECKED>Activer le verouillage de positions inverses.
            </label>
@@ -134,14 +134,14 @@ $backends = getBackends();
             l'ouverture de positions inverses à celles en cours.</span>
 
 
-           <label><b>Debouclage de positions inverses</b></label>
+           <label><b>Fermeture des positions inverses</b></label>
            <label class="checkbox">
               <input id="input-corecfg-mm_reverse_pos_force_close" type="checkbox">Activer le debouclage de positions inverses.
            </label>
            <span class="help-block">Si cette option est active, le money manager forcera le debouclage 
             de positions inverses pour toute nouvelle ouverture de position sur la même valeur.
             Cette option s'averre pratique pour jouer sur des marches à forte volatilité, et est 
-            mutuellement exclusive avec "Verouillage de positions inverses"</span>
+            mutuellement exclusive avec "Désactiver le hedging"</span>
 
           </form>
           </div>

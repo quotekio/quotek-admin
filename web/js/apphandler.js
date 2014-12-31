@@ -1,6 +1,8 @@
 var progress = 0;
 var tcontrol;
 
+var dashboard_graphs;
+
 function updateProgress() {
   $('#app-loader-bar').css('width',progress + '%');
   if ($('#app-loader-bar').width()  == $('#app-loader-ct').width()) {
@@ -43,11 +45,6 @@ function endLoad() {
 
   //setInterval('adamUpdateStatus()',10000);
   //setInterval('adamUpdateCorestats()',5000);
-  
-  adamUpdateDBPNLGraph();
-  adamUpdateDBNBPOSGraph();
-  setInterval('adamUpdateDBPNLGraph()',10000);
-  setInterval('adamUpdateDBNBPOSGraph()',20000);
 
   var ce = ace.edit("codeeditor_area");
   ce.setTheme("ace/theme/monokai");
