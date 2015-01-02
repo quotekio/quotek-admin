@@ -9,6 +9,10 @@ function strtotime(strtime) {
   return d.getTime() / 1000;
 }
 
+function tzOffset() {
+  var d = new Date();
+  return d.getTimezoneOffset() * -1 / 60;
+}
 
 function adamRefreshTable(tname) {
 

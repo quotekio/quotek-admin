@@ -36,7 +36,7 @@ class backendWrapper {
 
   }
 
-  function query($indice_name,$tinf,$tsup, $mean) {
+  function query($indice_name,$tinf,$tsup, $mean, $time_offset = 0) {
     if ($this->backend->module_name == "influxdbbe") {
       return $this->influx_query($indice_name,$tinf,$tsup,$mean);
     }
@@ -46,7 +46,7 @@ class backendWrapper {
     $this->dbh->insert($indice_name, array('time' => $t, 'value' => $v , 'spread' => $spread) );
   }
 
-  function influx_query($indice_name, $tinf, $tsup, $mean) {
+  function influx_query($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
 
     $result = array();
 
@@ -80,7 +80,7 @@ class backendWrapper {
     //echo "NBRECS:" . count($ires);
 
     foreach( $ires as $rec  ) {
-      $result[] = array( $rec->time * 1000, $rec->value);
+      $result[] = array( ( $rec->time + 3600 * $time_offset ) * 1000 , $rec->value);
     }
 
     return $result;

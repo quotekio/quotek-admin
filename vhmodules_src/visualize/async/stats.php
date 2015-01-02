@@ -8,8 +8,13 @@
   if (isset($_REQUEST['resolution'])) {
     $mean = $_REQUEST['resolution'];
   }
-
   else $mean = 0;
+
+  if (isset($_REQUEST['time_offset'])) {
+    $time_offset = $_REQUEST['time_offset'];
+  }
+
+  else $time_offset = 0;
 
   require_once('backendwrapper.php');
 
@@ -22,8 +27,8 @@
 
   $bw = new backendwrapper();
 
-  $result = $bw->query($indice,$tinf,$tsup,$mean);
-  
+  $result = $bw->query($indice,$tinf,$tsup,$mean,$time_offset);
+
   echo json_encode($result)
 
 

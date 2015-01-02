@@ -339,7 +339,7 @@
 
     var plot = null;
 
-    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=30s",
+    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=30s" + "&time_offset=" + tzOffset(),
                        'type': 'GET',
                        'cache': false,
                        'async': true,
