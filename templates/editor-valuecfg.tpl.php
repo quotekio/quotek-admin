@@ -50,13 +50,13 @@
            <div class="row-fluid">
 
             <div class="span6">
-               <label><b><?= $lang_array['app']['value_start_hour'] ?></b></label>
+               <label><b><?= $lang_array['app']['value_start_hour'] ?> (<?= getTZ() ?>)</b></label>
                <input id="input-values-start_hour" style="height:27px;width:100px" type="text" value="09:30">
                <span class="help-block">Indiquez l'heure d'ouverture du marché pour cette valeur.</span>
            </div>
 
             <div class="span6">
-               <label><b><?= $lang_array['app']['value_end_hour'] ?></b></label>
+               <label><b><?= $lang_array['app']['value_end_hour'] ?> (<?= getTZ() ?>)</b></label>
                <input id="input-values-end_hour" style="height:27px;width:100px" type="text" value="09:30">
                <span class="help-block">Indiquez l'heure de fermeture du marché pour cette valeur.</span>
            </div>

@@ -1004,7 +1004,8 @@ function adamUpdateDBPNLGraph() {
   var gd = $.ajax({
         url:            '/async/app/graphdata',
         type:           'GET',
-        data:           {graph: 'corestats_pnl'},
+        data:           {graph: 'corestats_pnl',
+                         time_offset: tzOffset() },
         cache:          false,
         async:          true,
         success: function() {
@@ -1020,7 +1021,8 @@ function adamUpdateDBNBPOSGraph() {
   var gd = $.ajax({
         url:            '/async/app/graphdata',
         type:           'GET',
-        data:           {graph: 'corestats_nbpos'},
+        data:           {graph: 'corestats_nbpos',
+                        time_offset: tzOffset() },
         cache:          false,
         async:          true,
         success: function() {

@@ -5,9 +5,14 @@
   if (!verifyAuth()) die('You are not logged');
   if (!isset($_REQUEST['graph']) ) die('graph not provided');
 
+  if (isset($_REQUEST['time_offset'])) $time_offset = $_REQUEST['time_offset'];
+  else $time_offset = 0;
+
   global $dbhandler;
 
   if ($_REQUEST['graph'] == 'corestats_pnl') {
+
+    
 
     $pnl = array();
     $pnl['label'] = "PNL";
@@ -19,7 +24,7 @@
     $dbh = $dbhandler->query("SELECT t,pnl FROM corestats_history WHERE t > '$stime';");
 
     while( $ans = $dbh->fetch() ) {
-      $pnl['data'][] = array( ($ans['t'] + (2*3600) ) * 1000 , $ans['pnl']  );
+      $pnl['data'][] = array( ($ans['t'] + ( $time_offset * 3600) ) * 1000 , $ans['pnl']  );
     }
 
     echo json_encode(array($pnl));
@@ -38,7 +43,7 @@
     $dbh = $dbhandler->query("SELECT t,nbpos FROM corestats_history WHERE t > '$stime';");
 
     while( $ans = $dbh->fetch() ) {
-      $nbpos['data'][] = array( ($ans['t'] + (2*3600) ) * 1000 , $ans['nbpos']  );
+      $nbpos['data'][] = array( ($ans['t'] + ( $time_offset * 3600) ) * 1000 , $ans['nbpos']  );
     }
 
     echo json_encode(array($nbpos));

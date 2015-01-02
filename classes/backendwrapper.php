@@ -38,7 +38,7 @@ class backendWrapper {
 
   function query($indice_name,$tinf,$tsup, $mean, $time_offset = 0) {
     if ($this->backend->module_name == "influxdbbe") {
-      return $this->influx_query($indice_name,$tinf,$tsup,$mean);
+      return $this->influx_query($indice_name,$tinf,$tsup,$mean,$time_offset);
     }
   }
 

@@ -40,6 +40,11 @@ function protect($protec_type,$input) {
    }
 }
 
+
+function getTZ() {
+ return date('T');
+}
+
 function genSalt() {
  $nt = generateToken();
  return strtoupper(substr($nt,0,8));
