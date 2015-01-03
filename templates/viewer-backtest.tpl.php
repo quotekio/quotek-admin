@@ -26,7 +26,7 @@
                   </div>
 
                  <div style="padding:15px">
-                  <div class="progress progress-success" id="viewer-backtest-progress">
+                  <div class="progress progress-info" id="viewer-backtest-progress">
                      <div class="bar" id="backtest-progress-bar" style="width: 10%">10%</div>
                   </div>
                  </div>
@@ -59,7 +59,7 @@
                   <div class="app-headed-frame-header" style="margin-bottom:0px">
                       <h4><?= $lang_array['app']['lastlog'] ?></h4>
                   </div>
-                  <div id="backtest-lastlogs" style="background-color:white;height:105px;overflow-y:scroll"></div>
+                  <div id="backtest-lastlogs" style="background-color:#202020;color:#38b7e5;height:105px;overflow-y:scroll"></div>
                 </div>
 
 

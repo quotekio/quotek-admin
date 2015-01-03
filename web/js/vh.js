@@ -677,12 +677,11 @@ function adamGraphBTTimeline(positions,from,to) {
   var options = {
             xaxis: {
                 mode: "time",
-                min: ( from * 1000 ),
-                max: (to * 1000)
+                min: (( from +  3600 * tzOffset()) * 1000 ) ,
+                max: (( to +  3600 * tzOffset()) * 1000)
             },   
             grid: {
                    show: true,
-                   //backgroundColor: { colors: ["#2a2a2a", "#0a0a0a"] }
              },
             yaxis:{ticks:[   ],
                    min: 0,

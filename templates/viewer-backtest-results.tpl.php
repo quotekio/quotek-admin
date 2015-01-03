@@ -26,9 +26,9 @@
                       <h4><?= $lang_array['app']['backtests'] ?></h4>
                   </div>
  
-                  <div id="viewer-backtest-resultslist" style="height:120px;width:100%;border:0px;overflow-y:scroll">
+                  <div id="viewer-backtest-resultslist" style="height:120px;width:100%;border:0px;overflow-y:scroll;">
        
-                    <table class="table table-hover">
+                    <table class="table table-hover" style="color:#38b7e5">
 
                   <?php foreach ($results as $result) { 
                     $result['date'] = date('d-m-Y H:i:s',$result['date']);
@@ -70,7 +70,7 @@
                   </ul>
 
 
-                  <div class="result-frame" id="result-frame-main" style="display:block">
+                  <div class="result-frame" id="result-frame-main" style="display:block;">
 
                     <table class="table">
 
@@ -110,7 +110,7 @@
 
                     <div class="span4">
 
-                      <select id="result_values_selector" style="width:100%;height:220px;" MULTIPLE>
+                      <select id="result_values_selector" style="width:100%;height:220px;color:#38b7e5" MULTIPLE>
  
                       </select>
 
@@ -155,9 +155,7 @@
 
                    <div class="result-frame" id="result-frame-rlogs">
 
-                   
-                     <div id="result_logs_container" style="width:100%;height:220px;overflow-y:scroll">
-
+                     <div id="result_logs_container" style="width:100%;height:220px;overflow-y:scroll;color:#38b7e5">
                      </div>
 
                   </div>
