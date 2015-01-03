@@ -91,10 +91,7 @@ foreach($btests as $bt) {
   $backctl = new backtestctl();
   $backctl->setBacktestID($bt->id);
   
-  if ($backctl->checkStatus($backctl->expid) == "real") {
-    $state = "preparing";
-  }
-  else $state = $backctl->checkStatus($backctl->supid);
+  $state = $backctl->checkStatus($backctl->supid);
   $res['backteststatuses'][] = array('id' => $bt->id , 'state' => $state, 'hasresult' => $bt->hasResult() );
 }
 

@@ -8,7 +8,6 @@ class backtestctl extends adamctl {
 
   function __construct() {
     $this->supid = 'none';
-    $this->expid = 'none';
     $this->mode = 'off';
   }
 
@@ -17,49 +16,15 @@ class backtestctl extends adamctl {
     global $ADAM_TMP;
     $this->backtest_id = $backtest_id;
     $this->supid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
-    $this->expid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/exporter.pid");
-
+   
     if ($this->supid != "none") {
       $this->mode = $this->checkStatus($this->supid);
     }
 
-    if ($this->expid != "none") {
-      $this->checkStatus($this->expid);
-    }
-  
-  }
-
-  function setBacktestHash($hash) {
-    $this->backtest_hash = $hash;
-  }
-
-  function setExporterArgs($e_args) {
-    $this->e_args = $e_args;
   }
 
   function setBTArgs($bt_args) {
     $this->bt_args = $bt_args;
-  }
-
-  function startExporter() {
-    global $ADAM_PATH;
-    global $ADAM_TMP;
-    global $ADAM_BT_EXPORTS;
-
-    $outp = array();
-    $cmd = "sudo $ADAM_PATH/tools/vstore2dump ";
-
-    foreach($this->e_args as $e_arg) {
-      $cmd .= "$e_arg ";
-    }
-
-    if ($this->checkStatus($this->expid) == 'off') {
-      exec(sprintf("%s >/dev/null 2>&1 & " . 'echo $!' , $cmd),$outp);
-      $this->expid = $outp[0];
-      $this->setPID($this->expid,"$ADAM_TMP/backtests/" . $this->backtest_id . "/exporter.pid");
-    }
-    else echo "ALREADY RUNNING!";
-
   }
 
   function startBT() {
@@ -73,7 +38,7 @@ class backtestctl extends adamctl {
     foreach($this->bt_args as $bt_arg) {
       $cmd .= "$bt_arg ";
     }
-
+    
     if ($this->checkStatus($this->supid) == 'off') {
       exec(sprintf("%s >/dev/null 2>&1 & " . 'echo $!' , $cmd),$outp);
       $this->supid = $outp[0];
@@ -92,15 +57,7 @@ class backtestctl extends adamctl {
     $this->mode = 'off';
   }
 
-/*
-  function checkExporterStatus() {
-    if ( )
-  }
-*/
-
 }
-
-
 
 
 class backtest extends adamobject {
@@ -121,33 +78,20 @@ class backtest extends adamobject {
 
   function save() {
 
-    global $ADAM_BT_EXPORTS;
-
     parent::save();
     $this->createTree();
-    $hash = $this->generateDumpSig();
 
-    if (!is_file("$ADAM_BT_EXPORTS/$hash") ) {
+    $e_args = array();
+    $e_args[] = $this->start;
+    $e_args[] = $this->end;
 
-       $e_args = array();
-       $e_args[] = $this->start;
-       $e_args[] = $this->end;
-       $e_args[] = $ADAM_BT_EXPORTS . "/" . $hash;
-
-       $bt_values = getCfgValues($this->config_id);
-       foreach ($bt_values as $bt_value) {
-         $e_args[] = $bt_value->name;
-       }
-
-       $e = new backtestctl();
-       $e->setBacktestID($this->id);
-       $e->setBacktestHash($hash);
-       $e->setExporterArgs($e_args);
-       $e->startExporter();
+    $bt_values = getCfgValues($this->config_id);
+    foreach ($bt_values as $bt_value) {
+      $e_args[] = $bt_value->name;
     }
 
-
-
+    $e = new backtestctl();
+    $e->setBacktestID($this->id);
   }
 
   function createTree() {
@@ -155,15 +99,6 @@ class backtest extends adamobject {
     @mkdir("$ADAM_TMP/backtests");
     @mkdir("$ADAM_TMP/backtests/" .  $this->id );
     @mkdir("$ADAM_TMP/backtests/" . $this->id . "/results");
-  }
-
-  function generateDumpSig() {
-    $bt_values = getCfgValues($this->config_id);
-    $hash= $this->start . ":" . $this->end;
-    foreach($bt_values as $value) {
-      $hash .= ":" . $value->name;
-    }
-    return sha1($hash);
   }
 
   function getResult($result) {
@@ -228,9 +163,6 @@ class backtest extends adamobject {
   }
 
 }
-
-
-
 
 function getBacktests() {
 

@@ -24,9 +24,6 @@
     $bctl = new backtestctl();
     $bctl->setBacktestID($btest->id);
 
-    $hash = $btest->generateDumpSig();
-    $dumpfile = $ADAM_BT_EXPORTS . "/" . $hash;
-
     /* Generate Backtest Arguments */
     $bt_args = array();
     $bt_args[] = "-p " . ($ADAM_AEP_PORT + $btest->id );  
@@ -37,8 +34,8 @@
         $bt_args[] = '--genetics';
     }
 
-    $bt_args[] = '--backtest-dump ' . $dumpfile;
-    $bt_args[] = '--backtest-speed ' . $btest->speed;
+    $bt_args[] = '--backtest-from ' . $btest->start;
+    $bt_args[] = '--backtest-to ' . $btest->end;
     $bt_args[] = '--backtest-result ' .  $ADAM_TMP . "/backtests/" .  $btest->id . "/results/" . time() ;
     $bt_args[] = "$ADAM_TMP/backtests/" . $btest->id . "/adam.conf";
     /* */
