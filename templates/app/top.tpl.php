@@ -18,15 +18,6 @@
                  <i class="icon-white icon-play"></i>
         </a>
 
-        <a class="btn disabled" 
-                 id="app-debugadam" 
-                 rel="tooltip" 
-                 title="<?= $lang_array['app']['adam_debug'] ?>">
-
-          <i class="icon-white icon-fire"></i>
-        </a>        
-
-
         <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
       </div>
 
@@ -37,6 +28,5 @@
 <script type="text/javascript">
   $('#app-stopadam').tooltip({placement:'bottom',container: 'body'});
   $('#app-startadam').tooltip({placement:'bottom',container: 'body'});
-  $('#app-debugadam').tooltip({placement:'bottom',container: 'body'});
   $('#app-restartadam').tooltip({placement:'bottom',container: 'body'});
 </script>

@@ -7,6 +7,7 @@ BUGS
 PRIO
 ====
 
+ * implement positions list instead of graph.
  * Implement genetics backtests result view
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
  * put "Save" btn on top of code editor instead of modify + close on bottom.
