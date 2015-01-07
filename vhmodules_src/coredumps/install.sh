@@ -25,7 +25,5 @@ fi
 
 cp -rp vhmodule.php views lang $VISUAL_DIR/
 cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/coredumps/
-cp -rp classes/* $INSTALL_DIR/classes/
-cp -rp jobs/* $INSTALL_DIR/jobs/
 
 
