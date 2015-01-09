@@ -1,6 +1,6 @@
 <?php
 
-  $vhmodule_longname = 'Visualize graphing tool for technical analysis.';
+  $vhmodule_longname = 'Visualize v1.0°';
   $vhmodule_description = '';
   $vhmodule_version = '1.0';
   $vhmodule_entries = array('modules' => 'Visualize');

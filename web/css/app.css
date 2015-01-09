@@ -67,7 +67,6 @@ div.legend > table {
 #app-left ul li {
  padding:16px;
  padding-right:0px;
-
 }
 
 #app-left ul {
@@ -77,7 +76,7 @@ div.legend > table {
 }
 
 #app-left ul li:hover {
-  background:#38b7e5;
+  border-bottom: 1px solid #38b7e5;
 }
 
 #app-left a {
@@ -90,11 +89,7 @@ div.legend > table {
 }
 
 .app-left-active {
-  background-image: linear-gradient(bottom, rgb(60,60,60) 23%, rgb(47,47,47) 80%)!important;
-  background-image: -o-linear-gradient(bottom, rgb(60,60,60) 23%, rgb(47,47,47) 80%)!important;
-  background-image: -moz-linear-gradient(bottom, rgb(60,60,60) 23%, rgb(47,47,47) 80%)!important;
-  background-image: -webkit-linear-gradient(bottom, rgb(60,60,60) 23%, rgb(47,47,47) 80%)!important;
-  background-image: -ms-linear-gradient(bottom, rgb(60,60,60) 23%, rgb(47,47,47) 80%)!important;
+  border-bottom: 1px solid #38b7e5;
 }
 
 
@@ -305,7 +300,7 @@ padding:15px;
 }
 
 #app-left-wizzards-accordion:hover{
-  background:#38b7e5;
+  
 }
 
 .app-active-pill {

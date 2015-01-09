@@ -1,5 +1,11 @@
 #!/bin/bash
 
+FY=0
+if [ $1 == "-y" ];then
+  FY=1
+fi
+
+
 HAS_PREV_INST=0
 
 echo "* VISIBLE HAND INSTALLER *"
@@ -9,7 +15,13 @@ read INSTALL_DIR
 if [ -d $INSTALL_DIR ]
 then
   echo "A Previous version of Visible Hand has been found. Do you want to back it up?"
-  read BACKUP_ANS
+  
+  if [ $FY == 0 ]; then 
+    read BACKUP_ANS
+  else
+    BACKUP_ANS="y"
+  fi
+
 
   if [ $BACKUP_ANS == "Y" ] || [ $BACKUP_ANS == "y" ]
   then
@@ -29,7 +41,12 @@ cp -rv classes lib conf data include jobs lang pages templates web tools $INSTAL
 if [ $HAS_PREV_INST -eq 1 ]
 then
   echo "Do you want to reimport data from previous install ?"
-  read REIMPORT_DATA
+
+  if [ $FY == 0 ]; then 
+    read REIMPORT_DATA
+  else
+    REIMPORT_DATA="y"
+  fi
 
   if [ $REIMPORT_DATA == "Y" ] || [ $REIMPORT_DATA == "y" ]
   then
@@ -46,7 +63,13 @@ cd vhmodules_src
 for i in `ls -1`
 do 
   echo "Do you want to install $i ?" 
-  read MINSTALL
+
+  if [ $FY == 0 ]; then 
+    read MINSTALL
+  else
+    MINSTALL="y"
+  fi
+
   if [ $MINSTALL == "Y" ] || [ $MINSTALL == "y" ]
   then
     cd $i

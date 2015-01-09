@@ -9,7 +9,7 @@
       </div>
 
       <div class="row-fluid">
-        <div class="span6" id="footest">
+        
           <div class="app-headed-white-frame" style="height:268px;width:100%">
             <div class="app-headed-frame-header">
           	    <h4><?= $lang_array['app']['pnl'] ?></h4>
@@ -20,25 +20,20 @@
               </div>
             </div>
 
-
           </div>
-        </div>
-
-        <div class="span6">
-          <div class="app-headed-white-frame" style="height:268px">
-            <div class="app-headed-frame-header">
-          	    <h4><?= $lang_array['app']['nbpos'] ?></h4>
-            </div>
-
-            <div style="text-align:center;width:100%">
-              <div class="dashboard-graph" id="dashboard-graph-nbpos" style="height:227px;width:400px;margin-left:auto;margin-right:auto">
-              </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
+
+      <div class="row-fluid" style="margin-top:30px">
+  
+          <div class="app-headed-white-frame" style="height:200px">
+            <div class="app-headed-frame-header">
+                <h4><?= $lang_array['app']['positions'] ?></h4>
+            </div>
+
+          </div>
+      </div>
+
+
 
       <div class="row-fluid" style="margin-top:30px">
 

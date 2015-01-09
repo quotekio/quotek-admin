@@ -1,6 +1,6 @@
 <?php
 
-  $vhmodule_longname = 'This module allows to view previous adam core dumps/stak traces in case of error';
+  $vhmodule_longname = 'Coredumps v1.0';
   $vhmodule_description = '';
   $vhmodule_version = '1.0';
   $vhmodule_entries = array('modules' => 'Core Dumps');
