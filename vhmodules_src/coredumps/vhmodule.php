@@ -1,6 +1,6 @@
 <?php
 
-  $vhmodule_longname = 'Coredumps v1.0';
+  $vhmodule_longname = 'Coredumps';
   $vhmodule_description = '';
   $vhmodule_version = '1.0';
   $vhmodule_entries = array('modules' => 'Core Dumps');

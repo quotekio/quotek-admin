@@ -23,11 +23,11 @@
           </div>
       </div>
 
-      <div class="row-fluid" style="margin-top:30px">
+      <div class="row-fluid" style="margin-top:30px;display:none">
   
           <div class="app-headed-white-frame" style="height:200px">
             <div class="app-headed-frame-header">
-                <h4><?= $lang_array['app']['positions'] ?></h4>
+                <h4><?= $lang_array['app']['takenpos'] ?></h4>
             </div>
 
           </div>

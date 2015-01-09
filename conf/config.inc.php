@@ -13,7 +13,7 @@
   $ADAM_AEP_ADDR = "127.0.0.1";
   $ADAM_AEP_PORT = 9999;
   
-  $VH_VERSION = "2.0";
+  $VH_VERSION = "2.1";
   $API_VERSION= "1.0.0";
   $API_LASTMOD = "2013-09-07";
 
