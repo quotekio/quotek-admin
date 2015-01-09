@@ -1,16 +1,23 @@
 #!/bin/bash
 
 FY=0
-if [ $1 == "-y" ];then
+if [ "$1" == "-y" ];then
   FY=1
 fi
 
+INSTALL_DIR=""
+if [ "$2" == "-i" ];then
+  INSTALL_DIR=$3
+fi
 
 HAS_PREV_INST=0
 
 echo "* VISIBLE HAND INSTALLER *"
-echo "Install Directory:"
-read INSTALL_DIR
+
+if [ "$INSTALL_DIR" == "" ];then
+  echo "Install Directory:"
+  read INSTALL_DIR
+fi
 
 if [ -d $INSTALL_DIR ]
 then
