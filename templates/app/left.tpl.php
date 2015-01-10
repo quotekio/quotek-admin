@@ -3,37 +3,31 @@
   <ul>
   
   <li>
-    <a onclick="appLoadDisp('dashboard');adamUpdateDBPNLGraph();appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('dashboard');adamUpdateDBPNLGraph();appUpdateLeft($(this));">
       <img style="height:14px" src="/img/dashboard.png" >&nbsp;<?= $lang_array['app']['dashboard']?></a>
   </li>
 
-  <!--
-  <li>
-    <a href="#" onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));">
-      <i class="icon-white icon-wrench"></i> <?= $lang_array['app']['adamcfg']?></a>
-  </li>
-  -->
 
     <div class="accordion" id="app-left-wizzards-accordion">
       <div class="accordion-group" style="border:0px">
         <div class="accordion-heading">
 
-          <a onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
+          <a id="acclink-cfg" class="left-menu-link" onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
             <i class="icon-wrench icon-white"></i> <?= $lang_array['app']['adamcfg']; ?>
           </a>
-        
+
         </div>
         <div id="collapseOne" class="accordion-body collapse">
           <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
       
            <li>
-            <a href="Javascript:appLoadDisp('adamcfg-values')">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-values');appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-book icon-white"></i> 
               <?=  $lang_array['app']['values']  ?> </a>
            </li>
 
            <li>
-            <a href="Javascript:appLoadDisp('adamcfg-broker')">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker');appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-briefcase icon-white"></i> 
               <?=  $lang_array['app']['broker']  ?> </a>
            </li>            
@@ -45,12 +39,12 @@
 
 
    <li>
-    <a onclick="appLoadDisp('adamstrats');appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('adamstrats');appUpdateLeft($(this));">
       <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
    </li>
 
   <li>
-    <a onclick="appLoadDisp('adambacktest');appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('adambacktest');appUpdateLeft($(this));">
       <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
   </li>
 
@@ -59,7 +53,7 @@
       <div class="accordion-group" style="border:0px">
         <div class="accordion-heading">
 
-          <a onclick="appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-modules-accordion" href="#collapseTwo" style="padding:16px">
+          <a id="acclink-mod" class="left-menu-link" onclick="appUpdateLeft($(this));appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-modules-accordion" href="#collapseTwo" style="padding:16px">
             <i class="icon-th icon-white"></i> <?= $lang_array['app']['modules']; ?>
           </a>
         

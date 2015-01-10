@@ -1797,24 +1797,12 @@ function appLoadDisp(disp,module) {
   
 }
 
-
-function appUpdateLeft(elt) {
-
-  
-  var ul = elt.parent().parent();
-  var li = elt.parent();
-  var rarrow = li.children(['div']);
-  $('.app-left-warrow-right').hide();
-  rarrow.show();
-
-  ul.children(['li']).removeClass('app-left-active');
-  $('#app-left-wizzards-accordion .accordion-heading').removeClass('app-left-active');
-
-  //ul.children(['li:hover']).css('background','#333333');
-  //li.css('background','#333333');
-  li.addClass('app-left-active');
-
+function appUpdateLeft(element) {
+  $('.left-menu-link').css('border-bottom', '2px solid #111');
+  //alert(element.html());
+  element.css('border-bottom','2px solid #38b7e5');
 }
+
 
 // function which updates display of backtest 
 // values when an asset is selected.

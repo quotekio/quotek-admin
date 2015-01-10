@@ -10,7 +10,6 @@ PRIO
 ====
  
  * add inmem_history setting in configuration.
- * Uniformize Left Menu
  * Finish coredump plugin
  * create logs plugin
  * Implement genetics backtests result view

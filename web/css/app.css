@@ -6,15 +6,6 @@ a:hover {
   display:none;
 }
 
-#app-left {
-  display:none;
-  background:#111111;
-  height:100%;
-  width:200px;
-  float:left;
-  overflow:hidden;
-}
-
 #app-display {
   width:0px;
   display:none;
@@ -64,9 +55,13 @@ div.legend > table {
 }
 
 
-#app-left ul li {
- padding:16px;
- padding-right:0px;
+#app-left {
+  display:none;
+  background:#111111;
+  height:100%;
+  width:200px;
+  float:left;
+  overflow:hidden;
 }
 
 #app-left ul {
@@ -75,23 +70,36 @@ div.legend > table {
   padding-left:0px;
 }
 
-#app-left ul li:hover {
-  border-bottom: 1px solid #38b7e5;
+.left-menu-link {
+   display:block;
+   border-bottom: 2px solid #111;
+   padding:16px;
+   padding-right:0px;
+   color:white;
+   text-decoration:none;
 }
 
-#app-left a {
+.left-menu-link:hover {
   color:white;
-  text-decoration:none;
+  text-decoration: none;
+  border-bottom: 2px solid #38b7e5;
 }
 
-#app-left a:hover {
-  text-decoration:none;
+.left-menu-link:not(:hover) {
+  color:white;
+  text-decoration: none;
 }
 
-.app-left-active {
-  border-bottom: 1px solid #38b7e5;
+
+
+#app-left-wizzards-accordion {
+  padding:0px;
+  margin-bottom:0px;
+  background:#111;
 }
 
+#app-left-wizzards-accordion:hover{
+}
 
 .app-display {
   padding:10px;
@@ -108,16 +116,6 @@ div.legend > table {
  color:#FF9931;
  text-decoration:underline;
 }
-
-.app-left-warrow-right {
-  background: url(/../img/arrow-right.png) no-repeat;
-  height:16px;
-  width:7px;
-  display:none;
-  float:right;
-
-}
-
 
 .hsplit {
   height:1px;
@@ -291,16 +289,6 @@ padding:15px;
 .label-chilired {
 
     background:#FF0032!important;
-}
-
-#app-left-wizzards-accordion {
-  padding:0px;
-  margin-bottom:0px;
-  background:black;
-}
-
-#app-left-wizzards-accordion:hover{
-  
 }
 
 .app-active-pill {

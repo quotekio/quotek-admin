@@ -87,7 +87,7 @@ function loadVHModuleEntries($vhms) {
     ?>
 
       <li>
-         <a href="Javascript:appLoadDisp('<?= $vhm->name ?>')">
+         <a class="left-menu-link" href="Javascript:appLoadDisp('<?= $vhm->name ?>');appUpdateLeft($('#acclink-mod'));">
 
               <?= $icon_data ?>&nbsp;
               <?=   $vhm->entries['modules']  ?> </a>
