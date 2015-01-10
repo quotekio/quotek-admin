@@ -826,7 +826,9 @@ function adamUpdateAll() {
 
 
 function adamUpdateCorestats_NoFetch(fdata) {
-  $('#app-corestats-pnl').html(fdata.pnl);
+  if (typeof(fdata.pnl) != "undefined") {
+    $('#app-corestats-pnl').html(fdata.pnl + " &euro;");
+  }
   $('#app-corestats-nbpos').html(fdata.nbpos);
 
   if (fdata.pnl != "--") {
