@@ -638,6 +638,20 @@ function adamClosePos(dealid) {
 }
 
 
+function adamSendOrder() {
+
+  var order = $('#adam-cmdprompt').val();
+
+  var st = $.ajax({
+        url:            '/async/app/adamctl',
+        type:           'POST',
+        data:           {'action': 'order',
+                         'order': order },
+        cache:          false,
+        async:          true
+        });
+
+}
 
 
 function adamToggleBacktest(bid) {

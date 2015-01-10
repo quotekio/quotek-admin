@@ -94,8 +94,17 @@
   else if ($_REQUEST['action'] == 'closepos')  {
      $dealid = $_REQUEST['dealid'];
      if ($ac->AEPStartCLient()) {
-       echo $ac->AEPIssueCmd("order closepos $dealid");
+       echo $ac->AEPIssueCmd("order closepos:$dealid");
     }
   }
+
+  else if ($_REQUEST['action'] == 'order') {
+    $order = $_REQUEST['order'];
+    if ($ac->AEPStartCLient()) {
+       echo $ac->AEPIssueCmd("order $order");
+    }
+
+  }
+
 
 ?>
