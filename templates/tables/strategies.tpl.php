@@ -67,9 +67,17 @@ $('.btn-strat-edit').each(function() {
          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
 
          var editor = ace.edit("editor");
+         var editor2 = ace.edit("codeeditor_area");
          editor.setTheme("ace/theme/monokai");
          editor.getSession().setMode("ace/mode/c_cpp");
          adamGetStratDataToEdit(sid);
+
+         $('#codesave').show();
+         $('#codesave').off('click');
+         $('#codesave').click(function() {
+             adamSaveStrat(editor2.getValue(),parseInt(sid),1);
+         });
+
          $('#editor-action').off('click');
          $('#editor-action').click(function() {
              adamSaveStrat(editor.getValue(),parseInt(sid));

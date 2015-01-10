@@ -90,6 +90,7 @@
   $lang_array['app']['value_end_hour'] = 'Fermeture';
 
   $lang_array['app']['adamstrats'] = 'Stratégies';
+  $lang_array['app']['save_strat'] = 'Sauvegarder les modifications de la strategie';
   $lang_array['app']['adamstrats_subtitle'] = 'Gerez vos stragies et creez en de nouvelles';
   $lang_array['app']['adamstrats_expl'] = 'Ce menu vous permet de manager vos stratégies de trading Adam et d\'en programmer de nouvelles.';
   $lang_array['app']['adamcfg_editor_create_title'] = "Nouvelle Configuration <small>Creer une nouvelle configuration</small>";

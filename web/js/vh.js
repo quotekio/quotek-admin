@@ -346,9 +346,10 @@ function adamDelValue(vid) {
 
 
 
-function adamSaveStrat(ct,id) {
+function adamSaveStrat(ct,id,noclose) {
 
     id = ( typeof id == 'undefined' ) ? -1 : id;
+    noclose = ( typeof noclose == 'undefined' ) ? 0 : 1;
     var strat;
     if (id == -1) {
        strat = { 'name': null, 
@@ -365,10 +366,20 @@ function adamSaveStrat(ct,id) {
     strat.content = ct;
     var r = adamObject('add','strategy',strat,-1);
 
+    
     if (r.answer == 'OK') {
         adamRefreshTable('strategies-table');
-        modalDest();
+
+        if (noclose != 1) {
+          modalDest();
+        }
     }
+
+    else {
+      console.log( r.answer );
+    }
+
+
 }
 
 
@@ -1193,6 +1204,9 @@ function adamCodeEditorSwitchFS() {
     var aceEditor1 = ace.edit("editor");
     var aceEditor2 = ace.edit("codeeditor_area");
     aceEditor2.setValue(aceEditor1.getValue());
+
+    $('#btn-save-strat').off('click');
+
     $('#codeeditor').show();
 }
 

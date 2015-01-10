@@ -18,6 +18,7 @@ class adamobject {
     function map($k,$v) {
       try {
         if (is_string($v)) {
+          $v = str_replace("'", "\\'", $v);
           eval("\$this->" . $k . " = '$v';") ;
         }
         else if (is_integer($v)) eval("\$this->" . $k . " = intval($v);");

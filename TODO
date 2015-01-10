@@ -15,7 +15,6 @@ PRIO
  * create logs plugin
  * Implement genetics backtests result view
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
- * put "Save" btn on top of code editor instead of modify + close on bottom.
  * Allow to issue raw orders from input box.
 
 OTHER

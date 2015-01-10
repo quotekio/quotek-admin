@@ -164,8 +164,11 @@
               $response['message'] = 'Missing strategy data';
           }
           $data = json_decode($_REQUEST['data']);
+
           $obj = new strategy();
           $obj->remap($data);
+          //protect content
+          $obj->content = SQLite3::escapeString ($obj->content);
           $obj->save();
           echo json_encode($response);
       }

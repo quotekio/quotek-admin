@@ -29,6 +29,7 @@
 
   $('#btn-strat-new').click(function() {
 
+                                 $('#codesave').hide();
                                  adamShowStratEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_strats_title']  ?>");
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");

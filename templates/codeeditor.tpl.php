@@ -30,6 +30,11 @@
           </div>
           <a class="btn" title="<?= $lang_array['app']['editor_resize_small']  ?>" onclick="adamCodeEditorSwitchBackFS();" rel="tooltip">
           <i class="icon icon-resize-small"></i>&nbsp;</a>
+ 
+          <a id="codesave" style="display:none" class="btn btn-success" title="<?= $lang_array['app']['save_strat']  ?>" rel="tooltip">
+            <?= $lang_array['save'] ?>
+          </a>  
+
          </div>
        </div>      
   </div>
