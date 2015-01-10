@@ -4,13 +4,13 @@ BUGS
  * Fix backtest start: progress bar undefined !
  * Fix backtest graphs, do not use current time to display values but simulation time (like logs)
  * Fix dashboard graph display delay on app start. 
- * code editor bar and other controls showing at start.
+ * code editor bar and other controls showing at start. (not all the time)
+ * Left menu size bug.
 
 PRIO
 ====
  
  * add inmem_history setting in configuration.
- * Finish coredump plugin
  * create logs plugin
  * Implement genetics backtests result view
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
