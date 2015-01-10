@@ -613,6 +613,22 @@ function adamStartReal() {
 }
 
 
+function adamClosePos(dealid) {
+
+  var st = $.ajax({
+        url:            '/async/app/adamctl',
+        type:           'POST',
+        data:           {'action': 'closepos',
+                         'dealid': dealid },
+        cache:          false,
+        async:          false
+        });
+
+}
+
+
+
+
 function adamToggleBacktest(bid) {
 
   var line = $('#backtest-line-' + bid);
@@ -990,22 +1006,33 @@ function adamUpdateDBPNLGraph() {
 
 }
 
-function adamUpdateDBNBPOSGraph() {
 
-  var gd = $.ajax({
-        url:            '/async/app/graphdata',
-        type:           'GET',
-        data:           {graph: 'corestats_nbpos',
-                        time_offset: tzOffset() },
-        cache:          false,
-        async:          true,
-        success: function() {
-              adamDrawGraph('dashboard-graph-nbpos',$.parseJSON(gd.responseText));
-        }
-        });
-  
+function adamUpdatePosList() {
+
+  var pl = $.ajax({
+       url: '/async/gettemplate',
+       type: 'POST',
+       data: {tpl: 'poslist'},
+       cache: false,
+       async: true,
+       success: function() {
+
+         if ($.trim(pl.responseText) != "") {
+           $('.dashboard-poslist-container').show();
+         }
+         else {
+           $('.dashboard-poslist-container').hide(); 
+         }
+         $('.poslist').html(pl.responseText);
+       }
+
+  });
+
+
 
 }
+
+
 
 function adamUpdateBacktestGraphs(backtest_id,pnldata,nbposdata) {
 

@@ -23,17 +23,18 @@
           </div>
       </div>
 
-      <div class="row-fluid" style="margin-top:30px;display:none">
+      <div class="row-fluid dashboard-poslist-container" style="margin-top:30px;display:none">
   
           <div class="app-headed-white-frame" style="height:200px">
             <div class="app-headed-frame-header">
                 <h4><?= $lang_array['app']['takenpos'] ?></h4>
             </div>
 
+            <div class="poslist" style="overflow-y:scroll;height:155px;padding:10px"></div>
+
           </div>
+
       </div>
-
-
 
       <div class="row-fluid" style="margin-top:30px">
 
@@ -61,15 +62,12 @@
 <script type="text/javascript">
 
   setInterval('adamUpdateDBPNLGraph()',10000);
-  setInterval('adamUpdateDBNBPOSGraph()',20000);
+  setInterval('adamUpdatePosList()',10000);
 
   $('#dashboard').bind('afterShow',function()  {
 
     $('.dashboard-graph').each(function(index,elt){
-      
       adamUpdateDBPNLGraph();
-      adamUpdateDBNBPOSGraph();
-
     });
 
 

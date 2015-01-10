@@ -3,7 +3,7 @@
   <ul>
   
   <li>
-    <a onclick="appLoadDisp('dashboard');adamUpdateDBPNLGraph();adamUpdateDBNBPOSGraph();appUpdateLeft($(this));">
+    <a onclick="appLoadDisp('dashboard');adamUpdateDBPNLGraph();appUpdateLeft($(this));">
       <img style="height:14px" src="/img/dashboard.png" >&nbsp;<?= $lang_array['app']['dashboard']?></a>
   </li>
 

@@ -85,11 +85,17 @@
   }
 
 
-   else if ($_REQUEST['action'] == 'getVersion') {
+  else if ($_REQUEST['action'] == 'getVersion') {
     if ($ac->AEPStartCLient()) {
       echo $ac->AEPIssueCmd('version');
-    }  
+    }
   }
-
+  
+  else if ($_REQUEST['action'] == 'closepos')  {
+     $dealid = $_REQUEST['dealid'];
+     if ($ac->AEPStartCLient()) {
+       echo $ac->AEPIssueCmd("order closepos $dealid");
+    }
+  }
 
 ?>

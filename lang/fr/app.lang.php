@@ -33,18 +33,19 @@
   $lang_array['app']['pnl'] = 'Pertes et Profits';
   $lang_array['app']['takenpos'] = 'Positions Prises';
   $lang_array['app']['remainingpos'] = 'Positions Restantes';
+  $lang_array['app']['size'] = 'Taille';
+  $lang_array['app']['open'] = 'Ouverture';
+  $lang_array['app']['stop'] = 'Stop';
+  $lang_array['app']['limit'] = 'Limite';
 
-   $lang_array['app']['highest'] = 'Plus Haut';
-   $lang_array['app']['lowest'] = 'Plus Bas';
-   $lang_array['app']['stddev'] = 'Ecart Type';
-   $lang_array['app']['variation'] = 'Variation';
+
+  $lang_array['app']['highest'] = 'Plus Haut';
+  $lang_array['app']['lowest'] = 'Plus Bas';
+  $lang_array['app']['stddev'] = 'Ecart Type';
+  $lang_array['app']['variation'] = 'Variation';
+
+  $lang_array['app']['close'] = 'Fermer';
    
-
-
-
-
-
-
   $lang_array['app']['stoploss'] = 'Stop Minimum';
   $lang_array['app']['pnlpp'] = 'PP par Point';
   $lang_array['app']['unit'] = 'Unité';

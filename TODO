@@ -3,14 +3,20 @@ BUGS
 
  * Fix backtest start: progress bar undefined !
  * Fix backtest graphs, do not use current time to display values but simulation time (like logs)
+ * Fix dashboard graph display delay on app start. 
+ * pnl color remains green when < 0
 
 PRIO
 ====
-
- * implement positions list instead of graph.
+ 
+ * add inmem_history setting in configuration.
+ * Uniformize Left Menu
+ * Finish coredump plugin
+ * create logs plugin
  * Implement genetics backtests result view
  * stderr viewer on dashboard/statusbar, in case of strat compile failure, etc..
  * put "Save" btn on top of code editor instead of modify + close on bottom.
+ * Allow to issue raw orders from input box.
 
 OTHER
 =====
