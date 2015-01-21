@@ -66,7 +66,11 @@
   $lang_array['app']['values'] = 'Valeurs';
   $lang_array['app']['cfg_indices_title'] = 'Configuration des Indices';
   $lang_array['app']['capital'] = 'Capital';
-  $lang_array['app']['ticks'] = 'Ticks';
+  $lang_array['app']['getval_ticks'] = 'Ticks Valeurs';
+  $lang_array['app']['getpos_ticks'] = 'Ticks Positions';
+  $lang_array['app']['eval_ticks'] = 'Ticks Evaluations';
+
+
   $lang_array['app']['newconf'] = 'Nouvelle Configuration';
   $lang_array['app']['create'] = "Creer";
   $lang_array['app']['edit'] = "Modifier";
@@ -192,6 +196,9 @@
   $lang_array['app']['cfg_broker_expl'] = 'Ce menu vous permet de gérer vos comptes chez les différents Brokers Compatibles avec Adam.';
   $lang_array['app']['creds'] = 'Identifiants';
   $lang_array['app']['brokermodule'] = 'Module Courtier';
+  $lang_array['app']['brokermode'] = 'Mode Module Courtier';
+  $lang_array['app']['brokeraccountmode'] = 'Type du Compte';
+
   $lang_array['app']['newbroker'] = 'Nouveau Courtier';
 
   $lang_array['app']['username'] = 'Nom d\'utilisateur';

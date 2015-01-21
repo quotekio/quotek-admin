@@ -116,6 +116,9 @@ class brokercfg extends adamobject {
     $this->password = $ans['password'];
     $this->broker_id = $ans['broker_id'];
     $this->api_key = $ans['api_key'];
+    $this->broker_mode = $ans['broker_mode'];
+    $this->broker_account_mode = $ans['broker_account_mode'];
+
 
   }
 

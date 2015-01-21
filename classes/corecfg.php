@@ -187,17 +187,25 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   //export all found modules
   exportStratModules();
 
+  fwrite($fh,"eval_ticks = " . $cfg->eval_ticks . "\n");
+  fwrite($fh,"getpos_ticks = " . $cfg->getpos_ticks . "\n");
+  fwrite($fh,"getval_ticks = " . $cfg->getval_ticks . "\n");
+
   fwrite($fh,"aep_enable = " . $cfg->aep_enable . "\n");
   fwrite($fh,"aep_listen_addr = " . $cfg->aep_listen_addr . "\n");
   fwrite($fh,"aep_listen_port = " . $cfg->aep_listen_port . "\n\n");
 
   fwrite($fh, "broker = " . $broker['module_name'] . "\n");
 
+  fwrite($fh, "broker_mode = " . $broker_cfg->broker_mode . "\n");
+
+  $api_url = (  $broker_cfg->broker_account_mode == "demo" ) ? $broker['demo_url'] : $broker['live_url'];
 
   $broker_params = json_encode( array( 'username' => $broker_cfg->username , 
                                  'password' => $broker_cfg->password ,
-                                 'api_key' => $broker_cfg->api_key ) );
-
+                                 'api_key' => $broker_cfg->api_key ,
+                                 'api_url' => $api_url ),
+                                JSON_UNESCAPED_SLASHES);
 
   fwrite($fh, "broker_params = " . $broker_params . "\n\n");
 

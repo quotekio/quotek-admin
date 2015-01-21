@@ -13,7 +13,7 @@
            <div id="modal-alert"></div>
       </div>
           
-      <div class="valuecfg-editor-frame well" id="brokercfg-editor-general"> 
+      <div class="valuecfg-editor-frame well" id="brokercfg-editor-general" style="overflow-y:scroll;height:460px"> 
       <form style="padding-bottom:0px;margin-bottom:0px">
        
            <label><b><?= $lang_array['app']['name'] ?></b></label>
@@ -39,6 +39,18 @@
            <label><b><?= $lang_array['app']['apikey'] ?></b></label>
            <input id="input-brokercfg-apikey" style="height:27px;width:210px" type="text" value="">
            <span class="help-block">Indiquez la clé API, si nécéssaire.</span>
+
+           <label><b><?= $lang_array['app']['brokermode'] ?></b></label>
+           <select id="input-brokercfg-broker_mode" style="height:27px;width:150px;padding-top:1px">
+               <option value="push">Push</option>
+               <option value="poll">Poll</option>
+           </select>
+
+           <label><b><?= $lang_array['app']['brokeraccountmode'] ?></b></label>
+           <select id="input-brokercfg-broker_account_mode" style="height:27px;width:150px;padding-top:1px">
+               <option value="demo">Demo</option>
+               <option value="live">Live</option>
+           </select>
 
           
           </form>
