@@ -656,9 +656,9 @@ function adamClosePos(dealid) {
 }
 
 
-function adamSendOrder() {
+function adamSendOrder(order) {
 
-  var order = $('#adam-cmdprompt').val();
+  var order =  (typeof order == 'undefined') ? $('#adam-cmdprompt').val() : order;
 
   var st = $.ajax({
         url:            '/async/app/adamctl',

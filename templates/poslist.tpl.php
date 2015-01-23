@@ -38,11 +38,11 @@ if (count($positions) > 0) {
 
   <tr>
 	  <th><?=  $lang_array['app']['name'] ?></th>
-	  <th>Id <?= $lang_array['app']['broker'] ?></th>
-	  <th><?= $lang_array['app']['size'] ?></th>
-	  <th><?= $lang_array['app']['open'] ?></th>
-	  <th><?= $lang_array['app']['stop'] ?></th>
-	  <th><?= $lang_array['app']['limit'] ?></th>
+	  <th class="s_hide">Id <?= $lang_array['app']['broker'] ?></th>
+	  <th class="s_hide"><?= $lang_array['app']['size'] ?></th>
+	  <th class="s_hide"><?= $lang_array['app']['open'] ?></th>
+	  <th class="s_hide"><?= $lang_array['app']['stop'] ?></th>
+	  <th class="s_hide"><?= $lang_array['app']['limit'] ?></th>
 	  <th>PNL</th>
 	  <th><?= $lang_array['app']['actions'] ?></th>
 
@@ -52,11 +52,11 @@ if (count($positions) > 0) {
 
   <tr>
     <td><?= $pos->indice ?></td>
-    <td><?= $pos->epic ?></td>
-    <td><?=$pos->size ?></td>
-    <td><?=$pos->open ?></td>
-    <td><?=$pos->stop ?></td>
-    <td><?=$pos->limit ?></td>
+    <td class="s_hide"><?= $pos->epic ?></td>
+    <td class="s_hide"><?=$pos->size ?></td>
+    <td class="s_hide"><?=$pos->open ?></td>
+    <td class="s_hide"><?=$pos->stop ?></td>
+    <td class="s_hide"><?=$pos->limit ?></td>
     <td style="font-weight:bold;color:<?= ($pos->pnl > 0) ? '#699e00' : '#c00' ?>" ><?=$pos->pnl ?></td>
     <td><a href="#" class="btn btn-danger" onclick="adamClosePos('<?= $pos->dealid ?>')"><?= $lang_array['app']['close'] ?></a></td>
 
