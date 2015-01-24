@@ -27,10 +27,12 @@ fi
 cp -rp vhmodule.php views lang $FLASHNEWS_DIR/
 
 cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/flashnews/
-#cp -rp classes/* $INSTALL_DIR/classes/
+cp -rp classes/* $INSTALL_DIR/classes/
+cp -rp processes/* $INSTALL_DIR/processes/
+
 
 #SQL
-#sqlite3 $INSTALL_DIR/data/vh.sqlite < ./install.sql
+sqlite3 $INSTALL_DIR/data/vh.sqlite < ./install.sql
 
 
 
