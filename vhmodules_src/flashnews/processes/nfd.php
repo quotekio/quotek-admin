@@ -1,5 +1,8 @@
 <?php
 
+// Turn off all error reporting
+//error_reporting(0);
+
 /* LOADING OF MAIN VH CLASSES AND OBJECTS */
 include ( dirname(__FILE__) . "/../conf/config.inc.php");
 

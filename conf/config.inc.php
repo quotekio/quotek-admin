@@ -19,6 +19,11 @@
 
   $LANG_LIST = array('en' => 'English' , 'fr' => 'Français');
 
+  $TWITTER_CONSUMER_KEY = 'hp9gZjRQzuz1vq88P0vqevEE2';
+  $TWITTER_CONSUMER_SECRET = '0R9VnDuJn0yCnfdXXUHaG3fJcFx5cf5ARpES49ThejYmKb62KS';
+  $TWITTER_ACCESS_TOKEN = '2998838957-HrFZzxRhRRr0ulniATwJ3bebjySi7roSuDawE6r';
+  $TWITTER_ACCESS_TOKEN_SECRET = '97GInKEZVO3PtvVkx5WdI2McI7qASH6FwDlYyopubDDux';
+
   $INCLUDE_PATHS = array ('/usr/local/adam/admin',
 			  '/usr/local/adam/admin/includes',
 			  '/usr/local/adam/admin/classes',

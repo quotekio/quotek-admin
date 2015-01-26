@@ -53,10 +53,6 @@ $backends = getBackends();
            <input id="input-corecfg-eval_ticks" style="height:27px;width:100px" type="text" value="1000000">
            <span class="help-block">Indiquez le ticks pour les fonctions d'évaluation (µs)</span>
 
-           <label><b><?= $lang_array['app']['getpos_ticks'] ?></b></label>
-           <input id="input-corecfg-getpos_ticks" style="height:27px;width:100px" type="text" value="1000000">
-           <span class="help-block">Indiquez le ticks pour la récupération des positions (µs)</span>
-
            <label><b><?= $lang_array['app']['getval_ticks'] ?></b></label>
            <input id="input-corecfg-getval_ticks" style="height:27px;width:100px" type="text" value="1000000">
            <span class="help-block">Indiquez le ticks pour la récupération des valeurs (µs)</span>

@@ -160,7 +160,6 @@ function adamSaveCoreCfg(ccid) {
   var corecfg = {'name': null,
                  'mm_capital': null,                 
                  'eval_ticks':null,
-                 'getpos_ticks':null,
                  'getval_ticks': null,
                  'broker_id': null,
                  'values': null,
@@ -187,9 +186,7 @@ function adamSaveCoreCfg(ccid) {
   corecfg.name = $('#input-corecfg-name').val();
   corecfg.mm_capital = parseInt($('#input-corecfg-mm_capital').val());
   corecfg.eval_ticks = parseInt($('#input-corecfg-eval_ticks').val());
-  corecfg.getpos_ticks = parseInt($('#input-corecfg-getpos_ticks').val());
   corecfg.getval_ticks = parseInt($('#input-corecfg-getval_ticks').val());
-
 
   corecfg.broker_id = parseInt($('#input-corecfg-broker_id').val());
   corecfg.mm_max_openpos = parseInt($('#input-corecfg-mm_max_openpos').val());
@@ -414,7 +411,6 @@ function adamGetCoreCfgDataToEdit(ccid) {
   $('#input-corecfg-mm_capital').val(ccfg.mm_capital);
   
   $('#input-corecfg-eval_ticks').val(ccfg.eval_ticks);
-  $('#input-corecfg-getpos_ticks').val(ccfg.getpos_ticks);
   $('#input-corecfg-getval_ticks').val(ccfg.getval_ticks);
 
   $('#input-corecfg-broker_id').val( ccfg.broker_id);

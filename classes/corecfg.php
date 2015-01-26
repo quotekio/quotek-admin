@@ -188,7 +188,6 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   exportStratModules();
 
   fwrite($fh,"eval_ticks = " . $cfg->eval_ticks . "\n");
-  fwrite($fh,"getpos_ticks = " . $cfg->getpos_ticks . "\n");
   fwrite($fh,"getval_ticks = " . $cfg->getval_ticks . "\n");
 
   fwrite($fh,"aep_enable = " . $cfg->aep_enable . "\n");
