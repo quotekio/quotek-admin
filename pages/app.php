@@ -34,7 +34,7 @@
    <div class="modal" id="modal_win" style="display:none"></div>
    <div id="debug" style="height:200px;overflow:scroll;width:100%;background:black;color:white;display:none">
    </div>
-   <div id="adam-top-notifier" class="alert alert-warning" style="margin-bottom:0px;display:none">
+   <div id="adam-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
      <div id="notify-restart">
         <?= $lang_array['app']['notify_restart'] ?>
         <script type="text/javascript">

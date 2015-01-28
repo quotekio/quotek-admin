@@ -58,7 +58,7 @@ if (count($positions) > 0) {
     <td class="s_hide"><?=$pos->stop ?></td>
     <td class="s_hide"><?=$pos->limit ?></td>
     <td style="font-weight:bold;color:<?= ($pos->pnl > 0) ? '#699e00' : '#c00' ?>" ><?=$pos->pnl ?></td>
-    <td><a href="#" class="btn btn-danger" onclick="adamClosePos('<?= $pos->dealid ?>')"><?= $lang_array['app']['close'] ?></a></td>
+    <td><button class="btn btn-danger" onclick="adamClosePos('<?= $pos->dealid ?>')"><?= $lang_array['app']['close'] ?></button></td>
 
   </tr>
 

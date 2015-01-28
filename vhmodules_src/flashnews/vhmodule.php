@@ -5,7 +5,6 @@
 
   $vhmodule_entries = array('modules' => 'Flashnews');
   $vhmodule_version = '1.0';
-  $vhmodule_entries = array();
   $vhmodule_views = array( 'top' => 'views/top.php',
                            'dashboard' => 'views/dashboard.php',
                            'app' => 'views/main.php');   
