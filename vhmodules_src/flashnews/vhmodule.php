@@ -10,7 +10,8 @@
                            'app' => 'views/main.php');   
 
   $vhmodule_routing = array ( '/async/vhmodules/flashnews/data' => 'async/vhmodules/flashnews/data.php',
-  	                          '/async/vhmodules/flashnews/nfdctl' => 'async/vhmodules/flashnews/nfdctl.php');
+  	                          '/async/vhmodules/flashnews/nfdctl' => 'async/vhmodules/flashnews/nfdctl.php',
+  	                          '/async/vhmodules/flashnews/object' => 'async/vhmodules/flashnews/object.php');
 
 
  

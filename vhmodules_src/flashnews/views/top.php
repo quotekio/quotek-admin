@@ -25,7 +25,6 @@ function setNewsWeight(news) {
 }
 */
 
-
 function getLastNews(last_timestamp)  {
 
   last_timestamp = (typeof last_timestamp == 'undefined') ? 0 : last_timestamp ;
@@ -46,7 +45,7 @@ function getLastNews(last_timestamp)  {
 
                     },
                     error: function() {
-                      //getLastNews();
+                      getLastNews();
                     }
 
                   });
@@ -54,6 +53,6 @@ function getLastNews(last_timestamp)  {
 
 }
 
-//getLastNews();
+getLastNews();
 
 </script>

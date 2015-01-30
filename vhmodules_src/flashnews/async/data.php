@@ -15,7 +15,9 @@
     $last_timestamp = $_REQUEST['last_timestamp'];
 
     //long polling
+    session_write_close();
     set_time_limit(0);
+
 
     while(1) {
 
