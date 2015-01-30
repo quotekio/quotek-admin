@@ -6,7 +6,7 @@
 
   $range = $_REQUEST['range'];
 
-  /*
+
   if ($range == 'last') {
 
     $result = array();
@@ -30,6 +30,8 @@
 
         $result['news'] = $news;
         $result['last_timestamp'] = time(0);
+        echo json_encode($result);
+        exit();
       }
 
       else {
@@ -38,17 +40,6 @@
       }
     }
 
-  }
-  */
-
-
-  
-
-
-
-
-
-
-
+}
 
 ?>

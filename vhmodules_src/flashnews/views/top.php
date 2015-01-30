@@ -44,7 +44,11 @@ function getLastNews(last_timestamp)  {
 
 
 
+                    },
+                    error: function() {
+                      //getLastNews();
                     }
+
                   });
 
 
