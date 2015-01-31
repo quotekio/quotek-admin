@@ -22,6 +22,15 @@
 
     }
 
+    else if ($action == 'add') {
+ 
+      $data = json_decode($_REQUEST['data']);
+      $kw  = new flashnews_keyword();
+      $kw->remap($data);
+      $kw->save();
+      echo $kw->id;
+    }
+
   }
 
   else if ($type=='datasource') {

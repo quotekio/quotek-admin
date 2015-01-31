@@ -44,6 +44,25 @@
       }
     }
     echo json_encode($result);
-}
+    exit();
+  }
+
+  else if ($range == "last_20")  {
+
+    $result = array('newslist' => array());
+
+    $dbh = $dbhandler->query("SELECT id FROM flashnews_news ORDER BY published_on DESC LIMIT 20;");
+    
+    while($ans = $dbh->fetch()) {
+      $n = new flashnews_news();
+      $n->id = $ans['id'];
+      $n->load();
+      $result['newslist'][] = $n;
+    }
+    
+    echo json_encode($result);
+    exit();
+
+  }
 
 ?>

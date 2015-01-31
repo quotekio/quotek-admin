@@ -18,13 +18,20 @@
    $lang_array['flashnews']['edit_source'] = 'Modifier la Source';
    $lang_array['flashnews']['new_source_subtitle'] = 'Ajoutez une nouvelle source d\'information à traiter';
    $lang_array['flashnews']['new_word'] = 'Nouveau Mot Clé';
+   $lang_array['flashnews']['edit_word'] = 'Editter le Mot Clé';
 
    $lang_array['flashnews']['se_name'] = 'Nom';
    $lang_array['flashnews']['se_type'] = 'Type';
    $lang_array['flashnews']['se_source'] = 'Source';
    $lang_array['flashnews']['se_trust'] = 'Indice de confiance';
 
+   $lang_array['flashnews']['kw_word'] = 'Mot';
+   $lang_array['flashnews']['kw_weight'] = 'Mot';
+
+
    $lang_array['flashnews']['create'] = 'Creer';
    $lang_array['flashnews']['edit'] = 'Modifier';
+
+
 
  ?>

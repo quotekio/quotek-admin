@@ -46,6 +46,30 @@
   </div>
 </div>
 
+<div id="flashnews_kw_editor" style="display:none">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
+    <h3 id="editor-title" ></h3>
+  </div>
+  <div class="modal-body" style="padding-bottom:0px">
+    <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
+      <div id="modal-alert"></div>
+    </div>
+    <div class="well">
+
+     <label><b><?= $lang_array['flashnews']['kw_word'] ?></b></label>
+     <input id="input-flashnews-kw-word" style="height:27px;width:200px" type="text">
+     <span class="help-block">Indiquez le mot clé à surveiller.</span>
+
+     <label><b><?= $lang_array['flashnews']['kw_weight'] ?></b></label>
+     <input id="input-flashnews-kw-weight" style="height:27px;width:150px" type="text">
+     <span class="help-block">Indiquez le poid du mot, entre 1 et 100.</span>
+
+    </div>
+    <a class="btn btn-large btn-success" style="float:right" id="flashnews-kw-action"></a>
+  </div>
+</div>
+
 <div class="app-display" id="flashnews">
         
   	    <div class="page-header">
@@ -142,7 +166,7 @@
             </div>
 
             <div class="span9" style="margin-top:8px">
-              <button class="btn-success"><?= $lang_array['flashnews']['new_word'] ?></button>
+              <button class="btn-success" onclick="wordEditor();"><?= $lang_array['flashnews']['new_word'] ?></button>
             </div>
 
           </div>
@@ -193,9 +217,28 @@
 <script type="text/javascript">
 
 
-  function sourceEditor(sid)  {
+  function wordEditor(wid)  {
 
-    
+
+    modalInst(600,400,$('#flashnews_kw_editor').html());
+    var mw = $('#modal_win');
+
+    if (typeof wid == 'undefined') {
+      $('#editor-title',mw).html('<?= $lang_array['flashnews']['new_word'] ?>');
+      $('#flashnews-kw-action',mw).html('<?= $lang_array['flashnews']['create'] ?>');
+      $('#flashnews-kw-action',mw).click(function(){ createWord(); });
+    }
+
+    else {
+      $('#editor-title',mw).html('<?= $lang_array['flashnews']['edit_word'] ?>');
+      $('#flashnews-kw-action',mw).html('<?= $lang_array['flashnews']['edit'] ?>'); 
+    }
+
+  }
+
+
+
+  function sourceEditor(sid)  {
 
     modalInst(600,580,$('#flashnews_source_editor').html());
     var mw = $('#modal_win');
@@ -213,10 +256,35 @@
 
   }
 
+  function createWord() {
+    var data = { 'word': null,
+                 'weight': null };
+
+    data.word = $('#input-flashnews-kw-word').val();
+    data.weight = $('#input-flashnews-kw-weight').val();
+
+    var ddr = $.ajax({
+
+      url: '/async/vhmodules/flashnews/object',
+      type: 'GET',
+      data: {'type': 'keyword',
+             'action': 'add',
+             'data': JSON.stringify(data) },
+      cache: false,
+      async: true,
+      success: function() {
+
+        modalDest();
+
+      }
+
+    });
+
+  }
+
+
 
   function createSource() {
-
-    alert('CS!');
 
     var data = { 'source_type' : null,
                  'source_name' : null,
@@ -241,7 +309,7 @@
       async: true,
       success: function() {
 
-        alert('OK');
+        modalDest();
 
       }
 

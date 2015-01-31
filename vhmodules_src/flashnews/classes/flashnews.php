@@ -38,8 +38,8 @@ class flashnews_news extends adamObject {
 
 
     //preprocess content
-    $ct = str_replace(",","",$this->content);
-    $ct = str_replace("'s","",$ct);
+    $ct = strtolower(str_replace(",","",$this->content));
+    $ct = str_replace("'"," ",$ct);
 
     //removes hashtags
     $ct = str_replace("#","",$ct);
@@ -55,14 +55,17 @@ class flashnews_news extends adamObject {
 
     foreach ($ct_words as $ct_word) {
       foreach( $kwords as $kw ) {
-        if ( $ct_word == $kw->word ) {
-          echo "WORD MATCH:$ct_word";
+        if ( $ct_word == strtolower($kw->word )) {
+          echo "WORD MATCH:$ct_word" . "\n";
           $this->priority += $kw->weight; 
         }
       }
     }
 
+    echo "COMPUTED_PRIORITY (MINOR SOURCE COEF):" . $this->priority . "\n";
     $this->priority *= $source->trust_weight;
+    echo "COMPUTED_PRIORITY (WITH SOURCE COEF):" . $this->priority . "\n";
+
   }
 
 };
