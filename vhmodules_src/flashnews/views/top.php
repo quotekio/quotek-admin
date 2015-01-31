@@ -27,8 +27,6 @@ function setNewsWeight(news) {
 
 function getLastNews(last_timestamp)  {
 
-  alert('GLN!');
-
   var gn = $.ajax({ url: '/async/vhmodules/flashnews/data' ,
   	                type: 'GET',
                     data: { 'range' : 'last',
