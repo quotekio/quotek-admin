@@ -145,7 +145,7 @@
                 <td><?= $ds->trust_weight ?></td>
                 <td>
                   <div class="btn-group">
-                    <a class="btn btn-inverse"onclick="sourceEditor(<?= $ds->id ?>)"><i class="icon-white icon-edit"></i></a>
+                    <a class="btn btn-inverse" style="display:none" onclick="sourceEditor(<?= $ds->id ?>)"><i class="icon-white icon-edit"></i></a>
                     <a class="btn btn-danger" onclick="deleteSource(<?= $ds->id ?>);"><i class="icon-white icon-remove-sign" ></i></a>
                   </div>
                 </td>
@@ -196,7 +196,7 @@
                 <td><?= $kw->weight ?></td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-inverse"><i class="icon-white icon-edit"></i></button>
+                    <button class="btn btn-inverse" style="display:none"><i class="icon-white icon-edit"></i></button>
                     <button class="btn btn-danger" onclick="deleteKeyword(<?= $kw->id ?>)"><i class="icon-white icon-remove-sign" ></i></button>
                   </div>
                 </td>
