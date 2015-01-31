@@ -25,7 +25,7 @@
      <span class="help-block">Donnez un nom à la source de nouvelles pour l'identifier.</span>
 
      <label><b><?= $lang_array['flashnews']['se_type'] ?></b></label>
-     <select id="nput-flashnews-se-type" style="height:27px;width:200px;padding-top:1px">
+     <select id="input-flashnews-se-type" style="height:27px;width:200px;padding-top:1px">
          <option value="rss">RSS</option>
          <option value="twitter">Twitter</option>
      </select>
@@ -121,7 +121,7 @@
                 <td><?= $ds->trust_weight ?></td>
                 <td>
                   <div class="btn-group">
-                    <a class="btn btn-inverse"><i class="icon-white icon-edit"></i></a>
+                    <a class="btn btn-inverse"onclick="sourceEditor(<?= $ds->id ?>)"><i class="icon-white icon-edit"></i></a>
                     <a class="btn btn-danger" onclick="deleteSource(<?= $ds->id ?>);"><i class="icon-white icon-remove-sign" ></i></a>
                   </div>
                 </td>
@@ -145,7 +145,13 @@
               <button class="btn-success"><?= $lang_array['flashnews']['new_word'] ?></button>
             </div>
 
-            <table class="table table-striped table-bordered">
+          </div>
+
+          <div class="row-fluid">
+
+            <div class="well" style="height:200px;overflow-y:scroll">
+
+            <table class="table">
               <tr>
                 <th>
                   <?= $lang_array['flashnews']['kw_word'] ?>
@@ -176,6 +182,7 @@
 
 
             </table>
+          </div>
             
         </div>
 
@@ -186,16 +193,65 @@
 <script type="text/javascript">
 
 
-  function sourceEditor()  {
+  function sourceEditor(sid)  {
+
+    
 
     modalInst(600,580,$('#flashnews_source_editor').html());
     var mw = $('#modal_win');
 
-    $('#editor-title',mw).html('<?= $lang_array['flashnews']['new_source'] ?>');
-    $('#flashnews-se-action',mw).html('<?= $lang_array['flashnews']['create'] ?>');
+    if (typeof sid == 'undefined') {
+      $('#editor-title',mw).html('<?= $lang_array['flashnews']['new_source'] ?>');
+      $('#flashnews-se-action',mw).html('<?= $lang_array['flashnews']['create'] ?>');
+      $('#flashnews-se-action',mw).click(function(){ createSource(); });
+    }
+
+    else {
+      $('#editor-title',mw).html('<?= $lang_array['flashnews']['edit_source'] ?>');
+      $('#flashnews-se-action',mw).html('<?= $lang_array['flashnews']['edit'] ?>'); 
+    }
+
+  }
+
+
+  function createSource() {
+
+    alert('CS!');
+
+    var data = { 'source_type' : null,
+                 'source_name' : null,
+                 'source_description' : null,
+                 'source_url' : null, 
+                 'trust_weight': null };
+
+    data.source_type = $('#input-flashnews-se-type').val();
+    data.source_name =$('#input-flashnews-se-name').val();
+    data.source_description = "";
+    data.source_url = $('#input-flashnews-se-source').val();    
+    data.trust_weight =$('#input-flashnews-se-trust').val();
+
+    var ddr = $.ajax({
+
+      url: '/async/vhmodules/flashnews/object',
+      type: 'GET',
+      data: {'type': 'datasource',
+             'action': 'add',
+             'data': JSON.stringify(data) },
+      cache: false,
+      async: true,
+      success: function() {
+
+        alert('OK');
+
+      }
+
+    });
+
 
 
   }
+
+
 
   function deleteSource(source_id) {
 

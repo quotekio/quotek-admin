@@ -27,7 +27,7 @@ function setNewsWeight(news) {
 
 function getLastNews(last_timestamp)  {
 
-  last_timestamp = (typeof last_timestamp == 'undefined') ? 0 : last_timestamp ;
+  alert('GLN!');
 
   var gn = $.ajax({ url: '/async/vhmodules/flashnews/data' ,
   	                type: 'GET',
@@ -38,21 +38,19 @@ function getLastNews(last_timestamp)  {
                     success: function() {
 
                     	var ndata = $.parseJSON(gn.responseText);
+                      if (ndata.has_update == true) {
                         $('#flashnews_content_bar').html( ndata.news.content );
-                    	getLastNews(ndata.last_timestamp);
-
-
+                        last_timestamp = ndata.last_timestamp;
+                      }
+                    	getLastNews(last_timestamp);
 
                     },
                     error: function() {
-                      getLastNews();
+                      getLastNews(last_timestamp);
                     }
-
                   });
-
-
 }
 
-getLastNews();
+getLastNews(0);
 
 </script>

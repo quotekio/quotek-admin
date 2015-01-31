@@ -41,6 +41,9 @@ class flashnews_news extends adamObject {
     $ct = str_replace(",","",$this->content);
     $ct = str_replace("'s","",$ct);
 
+    //removes hashtags
+    $ct = str_replace("#","",$ct);
+
     $this->priority = 0;
 
     $source = new flashnews_datasource();
@@ -49,8 +52,6 @@ class flashnews_news extends adamObject {
 
     $kwords = flashnews_getKeywords();
     $ct_words = explode(" ", $ct);
-
-    var_dump($ct_words);
 
     foreach ($ct_words as $ct_word) {
       foreach( $kwords as $kw ) {
@@ -62,7 +63,6 @@ class flashnews_news extends adamObject {
     }
 
     $this->priority *= $source->trust_weight;
-    $this->save();
   }
 
 };
@@ -94,7 +94,10 @@ class flashnews_datasource extends adamobject  {
           $n->source_id = $this->id;
           $news[] = $n;
           $n->compute_priority();
-
+          if ($n->content != "") {
+            $n->compute_priority();
+            $n->save();
+          }
         }
       }
     }
@@ -135,8 +138,11 @@ class flashnews_datasource extends adamobject  {
           $n->crc32 = $crc32;
           $n->source_id = $this->id;
           $news[] = $n;
-          $n->compute_priority();
 
+          if ($n->content != "") {
+            $n->compute_priority();
+            $n->save();
+          }
         }
 
       }

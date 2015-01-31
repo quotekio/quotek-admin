@@ -6,10 +6,11 @@
 
   $range = $_REQUEST['range'];
 
+  $LP_MAX_IITER = 300;
 
   if ($range == 'last') {
 
-    $result = array();
+    $result = array('has_update' => false);
 
     if (!isset($_REQUEST['last_timestamp'])) die('No timestamp provided!');
     $last_timestamp = $_REQUEST['last_timestamp'];
@@ -18,8 +19,8 @@
     session_write_close();
     set_time_limit(0);
 
-
-    while(1) {
+    $i = 0;
+    while($i < $LP_MAX_IITER) {
 
       $dbh = $dbhandler->query("SELECT id FROM flashnews_news WHERE published_on > $last_timestamp ORDER BY published_on DESC LIMIT 1;");
       $ans = $dbh->fetch();
@@ -31,7 +32,8 @@
         $news->load();
 
         $result['news'] = $news;
-        $result['last_timestamp'] = time(0);
+        $result['last_timestamp'] = $news->published_on;
+        $result['has_update'] = true;
         echo json_encode($result);
         exit();
       }
@@ -41,7 +43,7 @@
         continue;
       }
     }
-
+    echo json_encode($result);
 }
 
 ?>

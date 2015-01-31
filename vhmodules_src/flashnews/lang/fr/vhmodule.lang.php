@@ -15,6 +15,7 @@
    $lang_array['flashnews']['kw_word'] = 'Mot';
    $lang_array['flashnews']['kw_weight'] = 'Poids';
    $lang_array['flashnews']['new_source'] = 'Nouvelle Source';
+   $lang_array['flashnews']['edit_source'] = 'Modifier la Source';
    $lang_array['flashnews']['new_source_subtitle'] = 'Ajoutez une nouvelle source d\'information à traiter';
    $lang_array['flashnews']['new_word'] = 'Nouveau Mot Clé';
 

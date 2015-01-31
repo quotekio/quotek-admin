@@ -10,7 +10,27 @@ SYSTEM SETUP
 
 www-data ALL=(ALL) NOPASSWD: /usr/bin/pkill, NOPASSWD: /usr/local/adam/bin/adam, NOPASSWD: /bin/kill, NOPASSWD: /bin/echo, NOPASSWD: /usr/bin/gdb, NOPASSWD: /usr/bin/screen
 
+NGINX:
+
+Add:
+fastcgi_send_timeout 400s;
+fastcgi_read_timeout 400s;
+to vh vhsot file
+
+Add:
+client_body_timeout 400s;
+client_header_timeout 400s;
+
+PHP-FPM:
+php.ini: max_execution_time = 400
+
+pool.d/www.conf:
+pm.max_children = 15
+
+
 INSTALL
 -------
 
 Just run the "install.sh" script located at the root of the project.
+
+

@@ -13,7 +13,7 @@ CREATE TABLE flashnews_news ( "id" INTEGER PRIMARY KEY  NOT NULL ,
 	                          "source_id" INTEGER,
 	                          "published_on" INTEGER,
                               "received_on" INTEGER,
-                              "content" VARCHAR,
+                              "content" VARCHAR NOT NULL,
                               "priority" INTEGER,
                               "crc32" INTEGER       
                              );
