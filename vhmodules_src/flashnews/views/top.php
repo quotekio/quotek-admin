@@ -5,7 +5,7 @@
   </div>
 </div>
 
-<div id="flashnews_newslist" style="position:absolute;z-index:200;display:none;background:#131517;border:1px solid black;width:700px;margin-left:-100px">
+<div id="flashnews_newslist" style="position:absolute;z-index:150;display:none;background:#131517;border:1px solid black;width:700px;margin-left:-100px">
 
   <table id="newslist_table" class="table">
 
@@ -54,7 +54,7 @@ function toggleNewsList() {
                           }
 
                           else {
-                            tdist_str = tdelta + "s";
+                            tdist_str = Math.round(tdelta) + "s";
                           }
                       
                           $('#newslist_table').append('<tr class="flashnews_nl" id="nl_' + index + '"><td>' + 
