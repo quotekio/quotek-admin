@@ -129,14 +129,28 @@ class flashnews_datasource extends adamobject  {
 
       foreach ($statuses as $s) {
 
-        $s->text = str_replace("'","''", $s->text);
+        if (! is_object($s)) { 
+          echo "WARNING: status was not an object\n";
+          continue;
+        }
 
-        $crc32 = crc32( $s->text );
+        $crc32 = crc32($s->text);
         if (! flashnews_exists( $crc32 ) ) {
           $n = new flashnews_news();
           $n->published_on = strtotime($s->created_at);
           $n->received_on = time();
-          $n->content = $s->text;
+          $n->content = "";
+
+          //places links on hashtags and URLS
+          $words = explode(" ",$s->text);
+          foreach ($words as $w) {
+            $w = preg_replace("/#(.*)$/","<a target=\"_new\" href=\"http://twitter.com/$1\">$1</a>", $w);
+            $w = preg_replace("/http\:\/\/(.*)$/","<a target=\"_new\" href=\"$0\">$0</a>", $w);
+            $n->content .= $w . " ";
+          }
+
+          $n->content = str_replace("'","''", $n->content);
+
           $n->priority = 0;
           $n->crc32 = $crc32;
           $n->source_id = $this->id;

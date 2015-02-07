@@ -119,6 +119,11 @@ function getLastNews(last_timestamp)  {
                     	var ndata = $.parseJSON(gn.responseText);
                       if (ndata.has_update == true) {
                         $('#flashnews_content_bar').html( ndata.news.content );
+
+                        if (ndata.news.priority >= 50) {
+                          document.getElementById('audio_notif1').play();
+                        }
+
                         setNewsWeight(ndata.news, $('#flashnews_content_bar'));
                         last_timestamp = ndata.last_timestamp;
                       }

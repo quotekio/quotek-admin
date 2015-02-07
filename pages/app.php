@@ -27,6 +27,10 @@
   </head>
   <body>
 
+   <!--Loads notif sounds -->
+   <audio id="audio_notif1" src="/sounds/notif1.wav" preload="auto"></audio>
+   <audio id="audio_notif2" src="/sounds/notif2.mp3" preload="auto"></audio>
+
    <?php
      include('templates/codeeditor.tpl.php');
    ?>       
