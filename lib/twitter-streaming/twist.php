@@ -44,6 +44,8 @@ class TwistConsumer extends UserstreamPhirehose
 
     if ( strpos($status, "{\"friends\"") === false )  {
       echo "Enqueuing status!";
+      $status = str_replace("'","''",$status);
+      //echo $status;
       $this->dbh->query("INSERT INTO twist_queue ('status') VALUES ('$status');");
     }  
   }

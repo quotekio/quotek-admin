@@ -182,7 +182,7 @@ function processTwitterStatuses($statuses) {
 
       $n->priority = 0;
       $n->crc32 = $crc32;
-      $n->source_id = 42;
+      $n->source_id = resolveSourceId($s->user->screen_name);
       $news[] = $n;
 
       if ($n->content != "") {
@@ -192,5 +192,18 @@ function processTwitterStatuses($statuses) {
     }
   }
 }
+
+
+function resolveSourceId($url) {
+  $datasources = flashnews_getDatasources();
+  foreach($datasources as $ds) {
+    if ( $ds->source_url == $url ) {
+      return $ds->id;
+    }
+  }
+  return 42;
+}
+
+
 
 ?>

@@ -35,7 +35,6 @@ while(1) {
 
   //dequeue and process twitter messages
   if ( is_object($tsh->stream_connection)   ) {
-    echo "Processing Twitter Statuses..\n";
     processTwitterStatuses($tsh->stream_connection->dequeue());
   }
   else  {
@@ -47,7 +46,7 @@ while(1) {
 
       $pid = pcntl_fork();
       if ( $pid == 0 ) { 
-        echo "processing news source " . $ds->source_name . "..\n";  
+        //echo "processing news source " . $ds->source_name . "..\n";  
         $news_data = $ds->fetchNews();
         exit(0);
       }
