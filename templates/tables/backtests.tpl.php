@@ -123,8 +123,9 @@
           adamShowBacktestEditor();
           $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_edit_title']  ?>");
           $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
+         
+          //adamChangeBacktestEditorView();
           adamGetBacktestDataToEdit(bid);
-          adamChangeBacktestEditorView();
           $('#editor-action').off();
           $('#editor-action').click(function() {
             adamSaveBacktest(bid);

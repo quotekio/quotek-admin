@@ -1,28 +1,6 @@
-<div style="width:400px;margin-left:-100px;overflow:hidden">
-  <button class="btn" type="button" style="float:left" onclick="toggleNewsList()"><i class="icon-white icon-chevron-down"></i></button>
-  <div id="flashnews_content_bar" style="width:300px;height:24px;background:#202020;text:white;float:left;margin-top:8px;padding:2px">
-    
-  </div>
-</div>
-
-<div id="flashnews_newslist" style="position:absolute;z-index:150;display:none;background:#131517;border:1px solid black;width:700px;margin-left:-100px">
-
-  <table id="newslist_table" class="table">
-
-    <tr>
-      <th>Content</th>
-      <th>Date</th>
-    </tr>
-
-  </table>
-
-
-</div>
-
+<div class="alert" id="flashnews_alert" style="position:absolute;left:200px;top:15px;z-index:149;display:none;width:500px"></div>
 
 <script type="text/javascript">
-
-
 
 function toggleNewsList() {
 
@@ -86,21 +64,25 @@ function toggleNewsList() {
 
 function setNewsWeight(news, ct) {
 
+  ct.removeClass('alert-null');
+  ct.removeClass('alert-success');
+  ct.removeClass('alert-warning');
+  ct.removeClass('alert-danger');
 
   if (news.priority == 0) {
-    ct.css('background','#202020');
+    ct.addClass('alert-null');
   }
 
   else if (news.priority < 30) {
-    ct.css('background','#334d00');
+    ct.addClass('alert-success');
   }
 
   else if (news.priority >= 30 && news.priority < 50) {
-   ct.css('background','#b35f00');
+   ct.addClass('alert-warning');
   }
 
   else if (news.priority >= 50) {
-    ct.css('background','#d10000'); 
+    ct.addClass('alert-danger'); 
   }
 
 }
@@ -116,15 +98,18 @@ function getLastNews(last_timestamp)  {
                     async: true,
                     success: function() {
 
+                      var fnalert = $('#flashnews_alert');
+
                     	var ndata = $.parseJSON(gn.responseText);
                       if (ndata.has_update == true) {
-                        $('#flashnews_content_bar').html( ndata.news.content );
+                        fnalert.html( ndata.news.content );
 
                         if (ndata.news.priority >= 50) {
                           document.getElementById('audio_notif1').play();
                         }
 
-                        setNewsWeight(ndata.news, $('#flashnews_content_bar'));
+                        setNewsWeight(ndata.news, fnalert);
+                        fnalert.show();
                         last_timestamp = ndata.last_timestamp;
                       }
                     	getLastNews(last_timestamp);

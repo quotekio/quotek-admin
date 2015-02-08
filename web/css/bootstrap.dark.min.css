@@ -4790,6 +4790,11 @@ legend, label {
 .label-success, .alert-success {
     background-color: #5c8a00;
 }
+
+.label-null, .alert-null  {
+   background-color:#202020;
+}
+
 .label-success:hover {
     background-color: #3a5700;
 }

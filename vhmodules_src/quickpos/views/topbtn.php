@@ -21,7 +21,7 @@
   <div class="well" style="text-align:center">
 
    <div style="margin-left:auto;margin-right:auto;width:130px;text-align:left">
-      <b><?= $lang_array['quickpos']['size_stop_limit'] ?></b>
+      <label><?= $lang_array['quickpos']['size_stop_limit'] ?></label>
       <input class="prompt" id="QPSSL" value="10:20:0" style="width:130px;height:30px;font-size:16px">
    </div>
   </div>
