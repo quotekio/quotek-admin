@@ -2,22 +2,6 @@
 require_once('adamobject.php');
 require_once('lib/rss.php');
 
-require_once("lib/twitter/Config.php");
-require_once("lib/twitter/Util.php");
-require_once("lib/twitter/Request.php");
-require_once("lib/twitter/Response.php");
-require_once("lib/twitter/SignatureMethod.php");
-require_once("lib/twitter/HmacSha1.php");
-require_once("lib/twitter/Consumer.php");
-require_once("lib/twitter/Token.php");
-require_once("lib/twitter/Util/JsonDecoder.php");
-require_once("lib/twitter/TwitterOAuthException.php");
-
-require_once("lib/twitter/TwitterOAuth.php");
-
-use Abraham\TwitterOAuth\TwitterOAuth;
-
-
 class flashnews_keyword extends adamObject {
 
   function __construct() {
