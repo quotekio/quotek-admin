@@ -89,67 +89,6 @@ class flashnews_datasource extends adamobject  {
       }
     }
 
-    else if (  $this->source_type == "twitter" )  {
-
-      global $TWITTER_CONSUMER_KEY;
-      global $TWITTER_CONSUMER_SECRET;
-      global $TWITTER_ACCESS_TOKEN;
-      global $TWITTER_ACCESS_TOKEN_SECRET;
-
-      try  {
-        $connection = new TwitterOAuth($TWITTER_CONSUMER_KEY, 
-                                       $TWITTER_CONSUMER_SECRET, 
-                                       $TWITTER_ACCESS_TOKEN,
-                                       $TWITTER_ACCESS_TOKEN_SECRET);
-
-        $statuses = $connection->get("statuses/user_timeline", 
-                          array("count" => 5, 
-                                "screen_name" => $this->source_url));
-
-      } catch (Exception $e) {
-        return $news;
-      }
-
-
-      foreach ($statuses as $s) {
-
-        if (! is_object($s)) { 
-          echo "WARNING: status was not an object\n";
-          continue;
-        }
-
-        $crc32 = crc32($s->text);
-        if (! flashnews_exists( $crc32 ) ) {
-          $n = new flashnews_news();
-          $n->published_on = strtotime($s->created_at);
-          $n->received_on = time();
-          $n->content = "";
-
-          //places links on hashtags and URLS
-          $words = explode(" ",$s->text);
-          foreach ($words as $w) {
-            $w = preg_replace("/#(.*)$/","<a target=\"_new\" href=\"http://twitter.com/$1\">$1</a>", $w);
-            $w = preg_replace("/http\:\/\/(.*)$/","<a target=\"_new\" href=\"$0\">$0</a>", $w);
-            $n->content .= $w . " ";
-          }
-
-          $n->content = str_replace("'","''", $n->content);
-
-          $n->priority = 0;
-          $n->crc32 = $crc32;
-          $n->source_id = $this->id;
-          $news[] = $n;
-
-          if ($n->content != "") {
-            $n->compute_priority();
-            $n->save();
-          }
-        }
-
-      }
-
-    }
-
     return $news;
   }
 
@@ -215,5 +154,43 @@ function flashnews_getKeywords() {
   
 }
 
+function processTwitterStatuses($statuses) {
+
+  foreach ($statuses as $s) {
+
+    if (! is_object($s)) { 
+      echo "WARNING: status was not an object\n";
+      continue;
+    }
+
+    $crc32 = crc32($s->text);
+    if (! flashnews_exists( $crc32 ) ) {
+      $n = new flashnews_news();
+      $n->published_on = strtotime($s->created_at);
+      $n->received_on = time();
+      $n->content = "";
+
+      //places links on hashtags and URLS
+      $words = explode(" ",$s->text);
+      foreach ($words as $w) {
+        $w = preg_replace("/#(.*)$/","<a target=\"_new\" href=\"http://twitter.com/$1\">$1</a>", $w);
+        $w = preg_replace("/http\:\/\/(.*)$/","<a target=\"_new\" href=\"$0\">$0</a>", $w);
+        $n->content .= $w . " ";
+      }
+
+      $n->content = str_replace("'","''", $n->content);
+
+      $n->priority = 0;
+      $n->crc32 = $crc32;
+      $n->source_id = 42;
+      $news[] = $n;
+
+      if ($n->content != "") {
+        $n->compute_priority();
+        $n->save();
+      }
+    }
+  }
+}
 
 ?>

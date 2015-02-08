@@ -15,22 +15,39 @@ foreach($data_sources as $ds) {
   }
 }
 
+
 $tsh = new Twist($TWITTER_CONSUMER_KEY,
-                 $TWITTER_CONSUMER_SECRET,
-                 $TWITTER_ACCESS_TOKEN,
-                 $TWITTER_ACCESS_TOKEN_SECRET,
-                 $twitter_screen_names); 
+               $TWITTER_CONSUMER_SECRET,
+               $TWITTER_ACCESS_TOKEN,
+               $TWITTER_ACCESS_TOKEN_SECRET,
+               $twitter_screen_names);
 
+$tpid = pcntl_fork();
 
+if ($tpid == 0) {
 
-/*
+  echo "Forking Twitter Stream Process..\n";
+  $tsh->consume();
+
+}
+
 while(1) {
+
+  //dequeue and process twitter messages
+  if ( is_object($tsh->stream_connection)   ) {
+    echo "Processing Twitter Statuses..\n";
+    processTwitterStatuses($tsh->stream_connection->dequeue());
+  }
+  else  {
+    echo "Stream connection not initialized yet!\n";
+  }
 
   foreach($data_sources as $ds) {
     if ($ds->source_type != "twitter")  {
 
       $pid = pcntl_fork();
-      if ( $pid == 0 ) {   
+      if ( $pid == 0 ) { 
+        echo "processing news source " . $ds->source_name . "..\n";  
         $news_data = $ds->fetchNews();
         exit(0);
       }
@@ -54,6 +71,6 @@ while(1) {
   }
 
 }
-*/
+
 
 ?>

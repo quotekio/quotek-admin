@@ -19,11 +19,34 @@ require_once('twitter-streaming/UserstreamPhirehose.php');
 class TwistConsumer extends UserstreamPhirehose
 {
 
-  public function enqueueStatus($status) {
-  $data = json_decode($status, true);
-  echo date("Y-m-d H:i:s (").strlen($status)."):".print_r($data,true)."\n";
+  //we handle queue through sqlite database
+  function initDB() {
+    
+    $this->dbh = new PDO('sqlite:/tmp/twist.sqlite');
+    $this->dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+    $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $this->dbh->query("CREATE TABLE IF NOT EXISTS twist_queue (\"id\" INTEGER PRIMARY KEY  NOT NULL, \"status\" TEXT);");
+  
   }
 
+  function dequeue() {
+  	$statuses = array();
+    $res = $this->dbh->query("SELECT * FROM twist_queue;");
+    while( $ans = $res->fetch()) {
+      $statuses[] = json_decode( $ans['status'] );
+    }
+    $this->dbh->query("DELETE FROM twist_queue");
+    return $statuses;
+  }
+
+  public function enqueueStatus($status) {
+
+    if ( strpos($status, "{\"friends\"") === false )  {
+      echo "Enqueuing status!";
+      $this->dbh->query("INSERT INTO twist_queue ('status') VALUES ('$status');");
+    }  
+  }
 }
 
 /* This a specially crafted class to cope with visible hand needs in RT messages */
@@ -34,7 +57,7 @@ class Twist {
     //stores user ids after resolving.
     $this->userIds = array();
 
-    //try {
+    try {
       $this->api_connection = new TwitterOAuth($consumer_key, 
       	                                       $consumer_secret, 
       	                                       $access_token, 
@@ -47,27 +70,25 @@ class Twist {
       $this->autoFollow($screen_names);
       $this->stream_connection = new TwistConsumer($access_token,$token_secret);
 
-      $this->stream_connection->setFollow($this->userIds);      
-      $this->stream_connection->consume();
+      $this->stream_connection->setFollow($this->userIds);
+      $this->stream_connection->initDB();      
 
-    /*}
-
+    }
     catch (Exception $e) {
            echo "Error Connecting to twitter:";
            var_dump($e);
     }
-
-    */
   }
 
+  function consume() {
+    $this->stream_connection->consume();
+  }
 
   function autoFollow($screen_names) {
 
     foreach($screen_names as $name) {
       $res = $this->api_connection->post("friendships/create", 
                              array( "screen_name" => $name));
-      echo "AUTOFOLLOW:\n";
-      var_dump($res);
 
     }
   }
