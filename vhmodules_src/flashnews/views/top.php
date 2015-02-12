@@ -1,4 +1,4 @@
-<div class="alert" id="flashnews_alert" style="position:absolute;left:200px;top:15px;z-index:149;display:none;width:500px"></div>
+<div class="alert" id="flashnews_alert" style="height:40px;overflow:hidden;position:absolute;left:200px;top:15px;z-index:149;display:none;width:500px"></div>
 
 <script type="text/javascript">
 

@@ -17,7 +17,7 @@
     $pnl = array();
     $pnl['label'] = "PNL";
     $pnl['data'] = array();
-    $pnl['lines'] = array('fill' => false, 'lineWidth' => 2);
+    $pnl['lines'] = array('fill' => true, 'lineWidth' => 2);
     $pnl['color'] = '#779148';
 
     $stime = time() - 3600;
