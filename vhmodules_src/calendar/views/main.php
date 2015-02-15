@@ -1,6 +1,13 @@
 <?php
    global $lang;
    include ( dirname(__FILE__) . "/../lang/$lang/vhmodule.lang.php");
+
+   require_once("corecfg.php");
+   require_once("valuecfg.php");
+
+   $acfg = getActiveCfg();
+   $values = getCfgValues($acfg->id);
+
 ?>
 
 <div id="vhcalendar_event_editor" style="display:none">
@@ -18,6 +25,27 @@
      <input id="input-vhcalendar-ee-name" style="height:27px;width:200px" type="text">
      <span class="help-block">Donnez un nom à l'evenement.</span>
 
+
+     <label><b><?= $lang_array['calendar']['event_start'] ?></b></label>
+       <div id="input-vhcalendar-ee-start" class="input-append date">
+       <input id="input-backtest-start" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
+       <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
+         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+         </i>
+       </span>
+     </div>
+     <span class="help-block">Indiquez la date et l'heure de début de l'evenement.</span>
+
+     <label><b><?= $lang_array['calendar']['event_stop'] ?></b></label>
+       <div id="input-vhcalendar-ee-stop" class="input-append date">
+       <input id="input-backtest-start" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
+       <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
+         <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+         </i>
+       </span>
+     </div>
+     <span class="help-block">Indiquez la date et l'heure de fin de l'evenement.</span>
+
      <label><b><?= $lang_array['calendar']['event_importance'] ?></b></label>
      <select id="input-vhcalendar-ee-importance" style="height:27px;width:200px;padding-top:1px">
          <option value="high">High</option>
@@ -28,24 +56,18 @@
 
      <label><b><?= $lang_array['calendar']['event_assetlink'] ?></b></label>
      <select id="input-vhcalendar-ee-assetlink" style="height:27px;width:200px;padding-top:1px">
-         <?php foreach($indices $i) { ?>
-         <option value="<?=  ?>"><?= ?></option>
+         <?php foreach($values as $v) { ?>
+         <option value="<?= $v->name ?>"><?= $v->name ?></option>
+         <?php } ?>
      </select>
-     <span class="help-block">Indiquez le niveau d'importance de l'evenement.</span>
+     <span class="help-block">Indiquez sur quelle valeur l'evenement risque d'influer.</span>
      
-  
-
-
     </div>
 
-    <a class="btn btn-large btn-success" style="float:right" id="flashnews-se-action"></a>
+    <a class="btn btn-large btn-success" style="float:right" id="vhcalendar-ee-action"></a>
 
   </div>
 </div>
-
-
-
-
 
 <div class="app-display" id="calendar">
   <div class="row-fluid" style="margin-top:30px">
@@ -61,21 +83,11 @@
          <th>
           Time
          </th>
-         <th>
-           Mon
-         </th>
-         <th>
-           Tue
-         </th>
-         <th>
-           Wed
-         </th>
-         <th>
-           Thu
-         </th>
-         <th>
-           Fri
-         </th>
+         <th id="dt1"></th>
+         <th id="dt2"></th>
+         <th id="dt3"></th>
+         <th id="dt4"></th>
+         <th id="dt5"></th>
        </tr>
 
        <?php for($i=0;$i<24;$i++) { ?>
@@ -87,8 +99,8 @@
           if ($i<10) $hour = "0" . $i . ":00";
           else $hour = "" . $i . ":00";
 
-          if ( $i % 2 != 0) {
-            echo "<td style=\"width:50px\">$hour</td>";
+          if ( $i % 2 != 0) { 
+            echo "<td style=\"width:50px\"><div style=\"position:relative;margin-top:-20px\">$hour</div></td>";
           }
           else echo "<td style=\"width:50px\">&nbsp;</td>";
 
@@ -122,10 +134,51 @@
 
 <script type="text/javascript">
 
-  function showEventForm() {
-
-    
+  function createEvent()  {
 
   }
+
+  function showEventForm(evid) {
+
+    modalInst(600,580,$('#vhcalendar_event_editor').html());
+    var mw = $('#modal_win');
+
+    $('#input-vhcalendar-ee-start',mw).datetimepicker();
+    $('#input-vhcalendar-ee-stop',mw).datetimepicker();
+
+    if (typeof evid == 'undefined') {
+      $('#vhcalendar-ee-action',mw).html("<?= $lang_array['calendar']['create'] ?>");
+      $('#editor-title').html("<?= $lang_array['calendar']['create_title'] ?>");
+      $('#vhcalendar-ee-action',mw).click(function() {
+        createEvent();
+      });
+
+    }
+
+  }
+
+  function fetchCal(year, week) {
+
+    var cr = $.ajax({'url':'/async/vhmodules/calendar/calctl',
+                          'type': 'GET',
+                          'data': { 'year': year, 'week': week},
+                          'cache': false,
+                          'async': true,
+                          'success': function() {
+
+                            var caldata = $.parseJSON(cr.responseText);
+
+                            
+
+
+
+
+                          }  });
+
+
+
+  }
+
+
 
 </script>
