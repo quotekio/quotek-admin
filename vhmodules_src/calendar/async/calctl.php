@@ -3,20 +3,45 @@
 require_once('include/functions.inc.php');
 if (!verifyAuth()) die('You are not logged');
 
-include ("classes/reach.php");
-
-$r = new reach();
+include ("classes/calendar.php");
 
 if (!isset($_REQUEST['action'])) die ('Missing action parameter');
 
-switch ($_REQUEST['action']) {
+$action = $_REQUEST['action'];
 
-  case "changeGoal":
+if ( $action == 'fetchcal') {
 
-    if (!isset($_REQUEST['newgoal']) ) die('Missing new goal to setup.');
+  $result = array();
 
-    $r->changeGoal($_REQUEST['newgoal']);
-    break;
+  $year = $_REQUEST['year'];
+  $week = $_REQUEST['week'];
+
+  $week_ptr_init = new DateTime();
+  $week_ptr_init->setISODate($year, $week);
+  $week_ptr_init->setTime(0,0);
+
+  $result['dates'] = array();
+  $result['dates_tstamp'] = array();
+
+  for ($i=0;$i<5;$i++) {
+
+    $week_ptr = new DateTime();
+    $week_ptr->setTimestamp( $week_ptr_init->getTimestamp() + $i * 86400 );
+
+    $result['dates'][] = $week_ptr->format('D d/M');
+    $result['dates_tstamp'][] = $week_ptr->getTimestamp();
+
+  }
+
+  echo json_encode($result);
+
+}
+
+else if ($action == 'addevent')  {
+
+  
+
+
 
 }
 

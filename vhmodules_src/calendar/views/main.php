@@ -8,6 +8,13 @@
    $acfg = getActiveCfg();
    $values = getCfgValues($acfg->id);
 
+   $cur_week = date("W");
+   $cur_year = date("Y");
+
+   $cur_day = date("D");
+
+   if ( $cur_day == 'Sat' || $cur_day == 'Sun'  ) $cur_week++;
+
 ?>
 
 <div id="vhcalendar_event_editor" style="display:none">
@@ -28,7 +35,7 @@
 
      <label><b><?= $lang_array['calendar']['event_start'] ?></b></label>
        <div id="input-vhcalendar-ee-start" class="input-append date">
-       <input id="input-backtest-start" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
+       <input id="input-vhc-start" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
        <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
          <i data-time-icon="icon-time" data-date-icon="icon-calendar">
          </i>
@@ -38,7 +45,7 @@
 
      <label><b><?= $lang_array['calendar']['event_stop'] ?></b></label>
        <div id="input-vhcalendar-ee-stop" class="input-append date">
-       <input id="input-backtest-start" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
+       <input id="input-vhc-stop" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
        <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
          <i data-time-icon="icon-time" data-date-icon="icon-calendar">
          </i>
@@ -81,13 +88,13 @@
 
        <tr>
          <th>
-          Time
+          &nbsp;
          </th>
-         <th id="dt1"></th>
-         <th id="dt2"></th>
-         <th id="dt3"></th>
-         <th id="dt4"></th>
-         <th id="dt5"></th>
+         <th id="dt1" style="text-align:center"></th>
+         <th id="dt2" style="text-align:center"></th>
+         <th id="dt3" style="text-align:center"></th>
+         <th id="dt4" style="text-align:center"></th>
+         <th id="dt5" style="text-align:center"></th>
        </tr>
 
        <?php for($i=0;$i<24;$i++) { ?>
@@ -105,7 +112,7 @@
           else echo "<td style=\"width:50px\">&nbsp;</td>";
 
           for ($j=0;$j<5;$j++)  {?>
-            <td onclick="showEventForm()">&nbsp;&nbsp;</td>
+            <td onclick="showCreateEventForm('#dt<?= $j + 1 ?>', <?= $i * 3600 ?>)">&nbsp;&nbsp;</td>
           <?php } ?>
  
         </tr>
@@ -138,22 +145,26 @@
 
   }
 
-  function showEventForm(evid) {
+  function showCreateEventForm(column_name,offset) {
 
-    modalInst(600,580,$('#vhcalendar_event_editor').html());
+    var column = $(column_name);
+    var tstamp = parseInt(column.attr('tstamp')) + offset;
+
+    modalInst(600,670,$('#vhcalendar_event_editor').html());
     var mw = $('#modal_win');
 
     $('#input-vhcalendar-ee-start',mw).datetimepicker();
     $('#input-vhcalendar-ee-stop',mw).datetimepicker();
+    
+    $('#input-vhc-start').val( formatDate2(tstamp) );
+    $('#input-vhc-stop').val( formatDate2(tstamp + 3600) );
 
-    if (typeof evid == 'undefined') {
-      $('#vhcalendar-ee-action',mw).html("<?= $lang_array['calendar']['create'] ?>");
-      $('#editor-title').html("<?= $lang_array['calendar']['create_title'] ?>");
-      $('#vhcalendar-ee-action',mw).click(function() {
-        createEvent();
-      });
-
-    }
+  
+    $('#vhcalendar-ee-action',mw).html("<?= $lang_array['calendar']['create'] ?>");
+    $('#editor-title').html("<?= $lang_array['calendar']['create_title'] ?>");
+    $('#vhcalendar-ee-action',mw).click(function() {
+      createEvent();
+    });
 
   }
 
@@ -169,10 +180,20 @@
                             var caldata = $.parseJSON(cr.responseText);
 
                             $('#dt1').html(caldata.dates[0]);
+                            $('#dt1').attr('tstamp', caldata.dates_tstamp[0]);
+
                             $('#dt2').html(caldata.dates[1]);
+                            $('#dt2').attr('tstamp', caldata.dates_tstamp[1]);
+
                             $('#dt3').html(caldata.dates[2]);
+                            $('#dt3').attr('tstamp', caldata.dates_tstamp[2]);
+
                             $('#dt4').html(caldata.dates[3]);
+                            $('#dt4').attr('tstamp', caldata.dates_tstamp[3]);
+
                             $('#dt5').html(caldata.dates[4]);
+                            $('#dt5').attr('tstamp', caldata.dates_tstamp[4]);
+
 
                           }  });
 
@@ -180,6 +201,6 @@
 
   }
 
-
+  fetchCal('<?= $cur_year ?>','<?= $cur_week ?>');
 
 </script>
