@@ -161,17 +161,18 @@
 
     var cr = $.ajax({'url':'/async/vhmodules/calendar/calctl',
                           'type': 'GET',
-                          'data': { 'year': year, 'week': week},
+                          'data': { 'action': 'fetchcal', 'year': year, 'week': week},
                           'cache': false,
                           'async': true,
                           'success': function() {
 
                             var caldata = $.parseJSON(cr.responseText);
 
-                            
-
-
-
+                            $('#dt1').html(caldata.dates[0]);
+                            $('#dt2').html(caldata.dates[1]);
+                            $('#dt3').html(caldata.dates[2]);
+                            $('#dt4').html(caldata.dates[3]);
+                            $('#dt5').html(caldata.dates[4]);
 
                           }  });
 
