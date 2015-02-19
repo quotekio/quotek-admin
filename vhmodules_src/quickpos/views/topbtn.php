@@ -16,7 +16,7 @@
 <button class="btn" onclick="toggleQPPosView()"><i class="icon-white icon-screenshot"></i></button>
 
 
-<div id="QPOpenView" style="position:absolute;width:300px;z-index:200;display:none;background:#131517;border:1px solid black">
+<div id="QPOpenView" style="position:absolute;width:300px;z-index:200;display:none;background:#131517;border:1px solid black;margin-left:-50px">
 
   <div class="well" style="text-align:center">
 
@@ -52,7 +52,7 @@
 </div>
 
 
-<div id="QPPosView" style="width:300px;background:#131517;border:1px solid black;z-index:201;position:absolute;display:none">
+<div id="QPPosView" style="width:300px;background:#131517;border:1px solid black;z-index:201;position:absolute;display:none;margin-left:-50px">
 </div>
 
 
