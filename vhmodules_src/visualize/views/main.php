@@ -102,9 +102,7 @@
               <div class="span6" style="text-align:right">
                 <div class="btn-group" style="margin-top:11px;margin-right:10px">
                   
-                  <a id="visualize-resbtn-<?= str_replace('_','', $v->name) ?>" onclick="chaangeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">
-                  30s
-                  </a>
+                  <a id="visualize-resbtn-<?= str_replace('_','', $v->name) ?>" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
 
                   <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
                     <i class="icon-indent-right icon-white"></i>
@@ -254,6 +252,7 @@
     //if realtime, resolution switches to 0
     if (resolution == 'rt') resolution = 0;
     
+    var default_time_range = 9000;
 
     if (resolution == 0) default_time_range = 300;
     else if (resolution == '30s') default_time_range = 30 * 300;
@@ -277,7 +276,7 @@
       var pdate = new Date(Date.now() - default_time_range * 1000 ); 
 
       //pdate.setHours(pdate.getHours()-3);
-      
+
       var h = pdate.getHours();
       if (h<10) h = "0" + h;
 
