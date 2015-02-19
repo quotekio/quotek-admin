@@ -101,6 +101,11 @@
               </div>
               <div class="span6" style="text-align:right">
                 <div class="btn-group" style="margin-top:11px;margin-right:10px">
+                  
+                  <a id="visualize-resbtn-<?= str_replace('_','', $v->name) ?>" onclick="chaangeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">
+                  30s
+                  </a>
+
                   <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
                     <i class="icon-indent-right icon-white"></i>
                   </a>
@@ -109,6 +114,9 @@
                     <i class="icon-fullscreen icon-white"></i>
                   </a>
  
+                  
+
+
                 </div>
               </div>
             </div>
@@ -138,6 +146,20 @@
   var plot<?= $v->name ?> = null;
   var au<?= $v->name ?> = null;
   <?php } ?>
+
+
+  function changeGraphRes(resbtn)  {
+
+    if (resbtn.html() == 'rt') resbtn.html('30s');
+    else if (resbtn.html() == '30s') resbtn.html('1m');
+    else if (resbtn.html() == '1m') resbtn.html('5m');
+    else if (resbtn.html() == '5m') resbtn.html('20m');
+    else if (resbtn.html() == '20m') resbtn.html('1h');
+    else if (resbtn.html() == '1h') resbtn.html('4h');
+    else if (resbtn.html() == '4h') resbtn.html('1d');
+    else if (resbtn.html() == '1d') resbtn.html('rt');
+
+  }
 
   function enlargeGraph(iname) {
 
@@ -228,6 +250,20 @@
     var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
     var use_dates = (typeof use_dates != 'undefined') ? use_dates : null;
 
+    var resolution = $('#visualize-resbtn-' + iname.replace('_','')).html();
+    //if realtime, resolution switches to 0
+    if (resolution == 'rt') resolution = 0;
+    
+
+    if (resolution == 0) default_time_range = 300;
+    else if (resolution == '30s') default_time_range = 30 * 300;
+    else if (resolution == '1m') default_time_range = 60 * 300;
+    else if (resolution == '5m') default_time_range = 300 * 300;
+    else if (resolution == '20m') default_time_range = 1200 * 300;
+    else if (resolution == '1h') default_time_range = 3600 * 300;
+    else if (resolution == '4h') default_time_range =  14400 * 300;
+    else if (resolution == '1d') default_time_range = 86400 * 300;
+
     var tinf = "";
     var tsup = "";
 
@@ -238,10 +274,10 @@
 
     if (tinf == "") {
 
-      var pdate = new Date(); 
+      var pdate = new Date(Date.now() - default_time_range * 1000 ); 
 
-      pdate.setHours(pdate.getHours()-3);
-
+      //pdate.setHours(pdate.getHours()-3);
+      
       var h = pdate.getHours();
       if (h<10) h = "0" + h;
 
@@ -304,9 +340,8 @@
 
     }
 
-
     var placeholder = $('#visualize-draw-' + iname.replace('_','') );
-
+  
     var options = {
 
             xaxis: {
@@ -339,7 +374,7 @@
 
     var plot = null;
 
-    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=30s" + "&time_offset=" + tzOffset(),
+    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=" + resolution + "&time_offset=" + tzOffset(),
                        'type': 'GET',
                        'cache': false,
                        'async': true,
