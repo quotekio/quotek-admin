@@ -4,7 +4,16 @@
  
   <div class="navbar-inner">
 
-     <a href="#" onclick="adamShowAbout()"><img style="height:40px;margin-left:5px;" src="/img/vh_text.png"></a>
+
+     <div style="float:left;width:166px">
+
+       <a href="#" onclick="adamShowAbout()"><img style="height:40px;margin-left:5px;" src="/img/vh_text.png"></a>
+     </div>
+
+      <div style="float:left;margin-left:20px;width:300px;height:40px;margin-top:-5px" id="adam-top-modules">
+        <?php  loadVHViews($vhms,'top') ?>
+      </div>
+
 
 
       <!-- Disabled command prompt, we don't need it so far
@@ -32,14 +41,6 @@
         
       </div>
 
-
-      <div style="float:right;margint-right:30px;width:300px" id="adam-top-modules">
-        <?php  loadVHViews($vhms,'top') ?>
-      </div>
-
-
-
-    
     </div>
   </div>
 </div>
