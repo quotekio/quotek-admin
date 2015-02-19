@@ -45,7 +45,7 @@
 
      <label><b><?= $lang_array['calendar']['event_stop'] ?></b></label>
        <div id="input-vhcalendar-ee-stop" class="input-append date">
-       <input id="input-vhc-stop" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
+       <input id="input-vhc-end" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:27px "></input>
        <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
          <i data-time-icon="icon-time" data-date-icon="icon-calendar">
          </i>
@@ -63,6 +63,7 @@
 
      <label><b><?= $lang_array['calendar']['event_assetlink'] ?></b></label>
      <select id="input-vhcalendar-ee-assetlink" style="height:27px;width:200px;padding-top:1px">
+         <option value="None">None</option>
          <?php foreach($values as $v) { ?>
          <option value="<?= $v->name ?>"><?= $v->name ?></option>
          <?php } ?>
@@ -81,7 +82,10 @@
 
   	<div class="app-headed-white-frame" style="width:100%">
   	  <div class="app-headed-frame-header">
-  		    <h4>Calendar</h4>
+  		    <div class="span6"><h4>Calendar</h4></div>
+          <div class="span6" style="text-align:right"> 
+            <button class="btn btn-success" onclick="exportEDTA()" style="margin-right:15px;margin-top:4px">export EDTA</button>
+          </div>
   	  </div>
 
       <table class="table table-bordered vhcalendar">
@@ -96,6 +100,8 @@
          <th id="dt4" style="text-align:center"></th>
          <th id="dt5" style="text-align:center"></th>
        </tr>
+
+       <div id="vhcalendar-event-wrapper"></div>
 
        <?php for($i=0;$i<24;$i++) { ?>
 
@@ -141,7 +147,54 @@
 
 <script type="text/javascript">
 
+
+  function exportEDTA() {
+
+    var eer = $.ajax({'url':'/async/vhmodules/calendar/calctl',
+                          'type': 'GET',
+                          'data': { 'action': 'export'},
+                          'cache': false,
+                          'async': true,
+                          'success': function() { 
+                           
+                            alert("Calendar Succesfully exported to EDTA !")
+
+                          }
+                  });
+
+  }
+
+
   function createEvent()  {
+
+    var evdata = {
+
+        "start" : null,
+        "end" : null,
+        "name" : null,
+        "importance" : null,
+        "linked_value": null
+    };
+
+    evdata.start = strtotime($('#input-vhc-start').val());
+    evdata.end = strtotime($('#input-vhc-end').val());
+    evdata.name = $('#input-vhcalendar-ee-name').val();
+    evdata.importance = $('#input-vhcalendar-ee-importance').val();
+    evdata.linked_value = $('#input-vhcalendar-ee-assetlink').val();
+
+    var cr = $.ajax({'url':'/async/vhmodules/calendar/calctl',
+                          'type': 'POST',
+                          'data': { 'action': 'addevent', 'data': JSON.stringify(evdata) },
+                          'cache': false,
+                          'async': true,
+                          'success': function() { 
+                            modalDest();
+                            //to replace
+                            fetchCal('<?= $cur_year ?>','<?= $cur_week ?>');
+
+                          }
+                  });
+
 
   }
 
@@ -165,6 +218,52 @@
     $('#vhcalendar-ee-action',mw).click(function() {
       createEvent();
     });
+
+  }
+
+
+  function findEventPos(tstamp) {
+
+    var coords = { 'x' : 0, 'y': 0 };
+
+    var tcol;
+
+
+    //first find column
+    if ( tstamp >= parseInt($('#dt5').attr('tstamp') ) ) {
+      coords.x = $('#dt5').position().left;
+      tcol = parseInt($('#dt5').attr('tstamp'));
+    }
+
+    else if ( tstamp >= parseInt($('#dt4').attr('tstamp') ) ) {
+      coords.x = $('#dt4').position().left;
+      tcol = parseInt($('#dt4').attr('tstamp'));
+    }
+
+    else if ( tstamp >= parseInt($('#dt3').attr('tstamp') ) ) {
+      coords.x = $('#dt3').position().left;
+      tcol = parseInt($('#dt3').attr('tstamp'));
+    }
+
+    else if ( tstamp >= parseInt($('#dt2').attr('tstamp') ) ) {
+      coords.x = $('#dt2').position().left;
+      tcol = parseInt($('#dt2').attr('tstamp'));
+    }
+
+    else if ( tstamp >= parseInt($('#dt1').attr('tstamp') ) ) {
+      coords.x = $('#dt1').position().left;
+      tcol = parseInt($('#dt1').attr('tstamp'));
+    }
+    
+    //then find y pos
+    
+    var tdelta = tstamp - tcol;
+
+    coords.y = 37 + (tdelta / 3600) * 37;
+
+
+
+    return coords;
 
   }
 
@@ -195,12 +294,49 @@
                             $('#dt5').attr('tstamp', caldata.dates_tstamp[4]);
 
 
+                            $('.evdiv').each(function(index,i){
+                              $(this).remove();
+                            });
+
+
+                            $.each(caldata.events,function(index,i){
+
+                              var coords = findEventPos(i.start);
+
+                              $('#vhcalendar-event-wrapper').append("<div class=\"evdiv\" id=\"ev" + index + "\"></div>");
+                              var evdiv = $('#ev' + index);
+
+                              evdiv.html(i.name);
+
+                              evdiv.css({ 
+                                         'position' : 'absolute',
+                                         'z-index' : '40',
+                                         'padding': '2px',
+                                         'left': coords.x,
+                                         'margin-top': coords.y,
+                                         'width': 200,
+                                         'height': ( (i.end - i.start) / 3600 ) * 37 });
+
+                              if (i.importance == "high") evdiv.addClass('alert alert-danger');
+                              else if (i.importance == "middle") evdiv.addClass('alert alert-warning');
+                              else if (i.importance == "low") evdiv.addClass('alert alert-info');
+
+                            });
+
+                              
+
                           }  });
 
 
 
   }
 
-  fetchCal('<?= $cur_year ?>','<?= $cur_week ?>');
+
+  $('#calendar').bind('afterShow',function() {
+    fetchCal('<?= $cur_year ?>','<?= $cur_week ?>');
+  });
+
+
+  
 
 </script>
