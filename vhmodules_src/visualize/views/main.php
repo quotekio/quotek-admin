@@ -102,7 +102,9 @@
               <div class="span6" style="text-align:right">
                 <div class="btn-group" style="margin-top:11px;margin-right:10px">
                   
-                  <a id="visualize-resbtn-<?= str_replace('_','', $v->name) ?>" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
+                   <a id="visualize-ratebtn-<?= str_replace('_','', $v->name) ?>" onclick="changeRefresh($(this))" class="btn btn-info" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">20s</a>
+
+                   <a id="visualize-resbtn-<?= str_replace('_','', $v->name) ?>" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
 
                   <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
                     <i class="icon-indent-right icon-white"></i>
@@ -141,10 +143,49 @@
 <script type="text/javascript">
 
   <?php foreach($vals as $v) { ?>
-  var plot<?= $v->name ?> = null;
-  var au<?= $v->name ?> = null;
+  var plot<?= str_replace('_','', $v->name) ?> = null;
+  var au<?= str_replace('_','', $v->name) ?> = null;
   <?php } ?>
 
+
+  function changeRefresh(ratebtn) {
+
+    var rate_millisecs = 20000;
+
+    if (ratebtn.html() == '20s') {
+      ratebtn.html('1s');
+      rate_millisecs = 1000;
+    }
+
+    else if (ratebtn.html() == '1s') {
+      ratebtn.html('5s');
+      rate_millisecs = 5000;
+    }
+
+    else if (ratebtn.html() == '5s') {
+      ratebtn.html('10s');
+      rate_millisecs = 10000;
+    }
+
+    if (ratebtn.html() == '10s') {
+      ratebtn.html('20s');
+      rate_millisecs = 20000;
+    }
+
+    var iname = ratebtn.attr('id').replace('visualize-ratebtn-','');
+    var auname = 'au' + iname;
+
+    eval('clearInterval(' + auname + ');');
+
+    set_interval_str = "setInterval(\"" + "displayGraph('" + iname + "', plot" + iname + ")\"," + rate_millisecs + ");";
+
+    eval( auname + " = " + set_interval_str );
+    
+
+
+
+
+  }
 
   function changeGraphRes(resbtn)  {
 
@@ -193,7 +234,7 @@
     $('#btn-autoupdate').html('Autoupdate: false');
 
     <?php foreach($vals as $v) { ?>
-    clearInterval(au<?= $v->name ?>);
+    clearInterval(au<?= str_replace('_','', $v->name) ?>);
     <?php } ?>
   }
 
@@ -203,9 +244,11 @@
     $('#btn-autoupdate').html('Autoupdate: true');
 
     <?php foreach($vals as $v) { ?>
-      au<?= $v->name ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= $v->name ?>)",20000);
+      au<?= str_replace('_','', $v->name) ?> = setInterval("displayGraph('<?= $v->name ?>',plot<?= str_replace('_','', $v->name) ?>)",20000);
     <?php } ?>
   }
+
+  
 
   function disableVisualize() {
 
@@ -450,7 +493,7 @@
     var use_dates = ( typeof use_dates != 'undefined'  ) ? use_dates : null ; 
 
     <?php foreach($vals as $v) { ?>
-      plot<?= $v->name ?> = displayGraph('<?= $v->name ?>', null, use_dates);
+      plot<?= str_replace('_','', $v->name) ?> = displayGraph('<?= $v->name ?>', null, use_dates);
     <?php } ?>
 
   }
