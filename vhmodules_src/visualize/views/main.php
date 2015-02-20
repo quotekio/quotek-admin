@@ -189,7 +189,8 @@
 
   function changeGraphRes(resbtn)  {
 
-    if (resbtn.html() == 'rt') resbtn.html('30s');
+    if (resbtn.html() == 'rt') resbtn.html('5s');
+    else if (resbtn.html() == '5s') resbtn.html('30s');
     else if (resbtn.html() == '30s') resbtn.html('1m');
     else if (resbtn.html() == '1m') resbtn.html('5m');
     else if (resbtn.html() == '5m') resbtn.html('20m');
@@ -298,6 +299,7 @@
     var default_time_range = 9000;
 
     if (resolution == 0) default_time_range = 300;
+    else if (resolution == '5s') default_time_range = 5 * 300;
     else if (resolution == '30s') default_time_range = 30 * 300;
     else if (resolution == '1m') default_time_range = 60 * 300;
     else if (resolution == '5m') default_time_range = 300 * 300;
