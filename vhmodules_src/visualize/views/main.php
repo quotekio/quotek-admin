@@ -102,9 +102,9 @@
               <div class="span6" style="text-align:right">
                 <div class="btn-group" style="margin-top:11px;margin-right:10px">
                   
-                   <a id="visualize-ratebtn-<?= str_replace('_','', $v->name) ?>" onclick="changeRefresh($(this))" class="btn btn-info" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">20s</a>
+                   <a linked-asset="<?= $v->name ?>" id="visualize-ratebtn" onclick="changeRefresh($(this))" class="btn btn-info" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">20s</a>
 
-                   <a id="visualize-resbtn-<?= str_replace('_','', $v->name) ?>" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
+                   <a linked-asset="<?= $v->name ?>" id="visualize-resbtn" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
 
                   <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
                     <i class="icon-indent-right icon-white"></i>
@@ -120,7 +120,7 @@
                 </div>
               </div>
             </div>
-              <div id="visualize-draw-<?= str_replace('_','', $v->name) ?>" style="height:267px;text-align:center;">
+              <div linked-asset="<?= $v->name ?>" id="visualize-draw" style="height:267px;text-align:center;">
               <br><img src="/img/loader2.gif" style="width:25px;margin-top:100px"/>
              </div>
           </div>
@@ -172,7 +172,7 @@
       rate_millisecs = 20000;
     }
 
-    var iname = ratebtn.attr('id').replace('visualize-ratebtn-','');
+    var iname = ratebtn.attr('linked-asset');
     var auname = 'au' + iname;
 
     eval('clearInterval(' + auname + ');');
@@ -181,10 +181,6 @@
 
     eval( auname + " = " + set_interval_str );
     
-
-
-
-
   }
 
   function changeGraphRes(resbtn)  {
@@ -203,7 +199,7 @@
 
   function enlargeGraph(iname) {
 
-    var graphbox = $('#visualize-draw-'+ iname.replace('_','') ).parent().parent();
+    var graphbox = $('#visualize-draw[linked-asset=' + iname + ']').parent().parent();
     var graphlarge = $('#graphlarge');
 
     graphlarge.append(graphbox.html());
@@ -292,7 +288,7 @@
     var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
     var use_dates = (typeof use_dates != 'undefined') ? use_dates : null;
 
-    var resolution = $('#visualize-resbtn-' + iname.replace('_','')).html();
+    var resolution = $('#visualize-resbtn[linked-asset=' + iname + ']').html();
     //if realtime, resolution switches to 0
     if (resolution == 'rt') resolution = 0;
     
@@ -384,7 +380,7 @@
 
     }
 
-    var placeholder = $('#visualize-draw-' + iname.replace('_','') );
+    var placeholder = $('#visualize-draw[linked-asset=' + iname + ']');
   
     var options = {
 
