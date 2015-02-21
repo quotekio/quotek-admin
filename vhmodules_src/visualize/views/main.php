@@ -314,7 +314,7 @@
 
     if (tinf == "") {
 
-      var pdate = new Date(Date.now() - default_time_range * 1000 ); 
+      var pdate = new Date(Date.now() - tzOffset() * 3600000 - default_time_range * 1000 ); 
 
       //pdate.setHours(pdate.getHours()-3);
 
@@ -349,7 +349,7 @@
 
     if (tsup == "") {
 
-      var cdate = new Date();
+      var cdate = new Date(Date.now() - tzOffset() * 3600000 );
 
       var h = cdate.getHours();
       if (h<10) h = "0" + h;
