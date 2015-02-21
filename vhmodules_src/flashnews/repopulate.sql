@@ -16,7 +16,10 @@ INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Greece", "50"),("Grè
 INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Greek", "50"),("Grecque","50");
 INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Syriza", "60"),("Tsipras","60");
 INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Euro", "50"),("USD","50");
-INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Dept", "60"),("Dette","60");
+INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Debt", "60"),("Dette","60");
+
+INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("1Q", "20"),("2Q","20"),("3Q","20"),("4Q","20");
+INSERT INTO flashnews_keyword ( "word", "weight") VALUES ("Q1", "20"),("Q2","20"),("Q3","20"),("Q4","20");
 
 
 DELETE FROM flashnews_datasource;

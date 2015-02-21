@@ -21,11 +21,9 @@ function endLoad() {
             $('#modal_bg').width($(window).width());
             $('#modal_bg').height($(window).height());
 
-            $('#codeeditor').width($(window).width());
-            $('#codeeditor').height($(window).height());
-            
             $('#codeeditor_area').width($(window).width());
             $('#codeeditor_area').height($(window).height()-42);
+
 
           });
 
@@ -55,6 +53,11 @@ function endLoad() {
 
 /* loading of app js + css */
 function loadApp() {
+
+  //reinitializes parts, to be sure
+  $('#app-top').html('');
+  $('#app-left').html('');
+  $('#app-display').html('');
 
   tcontrol = setInterval('updateProgress()',500);
   

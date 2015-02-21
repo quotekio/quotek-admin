@@ -11,7 +11,6 @@ class flashnews_keyword extends adamObject {
 };
 
 
-
 class flashnews_news extends adamObject {
 
   function __construct() {
@@ -173,7 +172,7 @@ function processTwitterStatuses($statuses) {
       //places links on hashtags and URLS
       $words = explode(" ",$s->text);
       foreach ($words as $w) {
-        $w = preg_replace("/#(.*)$/","<a target=\"_new\" href=\"http://twitter.com/$1\">$1</a>", $w);
+        //$w = preg_replace("/#(.*)$/","<a target=\"_new\" href=\"http://twitter.com/$1\">$1</a>", $w);
         $w = preg_replace("/http\:\/\/(.*)$/","<a target=\"_new\" href=\"$0\">$0</a>", $w);
         $n->content .= $w . " ";
       }

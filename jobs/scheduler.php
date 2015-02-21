@@ -28,6 +28,7 @@
     while( $fh = readdir($dh) ) {
        if (! in_array($fh,$jobs_exclude) ) $result[] = $fh;
     }
+    var_dump($result);
     return $result;
   }
 
@@ -57,7 +58,7 @@
 
   foreach ($job_files as $jf) {
 
-    @include ( $JOBS_DIR . "/" . $jf );
+    include ( $JOBS_DIR . "/" . $jf );
 
     if ( isset($turns[$jf] ) ) {
       if ( $turns[$jf] + $period <= $t ) {

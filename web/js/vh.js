@@ -1529,7 +1529,7 @@ function adamShowAbout() {
         async:          false
         });
 
-    modalInst(610,520,gt.responseText);
+    modalInst(610,570,gt.responseText);
 
 }
 
