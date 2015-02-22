@@ -6,7 +6,7 @@
 
 <div class="row-fluid" style="margin-top:30px">
 
-	<div class="app-headed-white-frame" style="height:280px;width:100%">
+	<div id="reach-dashboard-ct" class="app-headed-white-frame" style="height:280px;width:100%">
 	  <div class="app-headed-frame-header">
 		    <h4>Performance</h4>
 	  </div>
@@ -108,8 +108,12 @@
 
   }
 
-  window.setTimeout("drawReachGraph();", 5000);
-  window.setInterval("drawReachGraph();", 15000);
+
+  $('#dashboard').bind('afterShow',function() {
+    drawReachGraph();
+  });
+
+  window.setInterval("drawReachGraph();", 60000);
 
 
 </script>

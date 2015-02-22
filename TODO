@@ -5,7 +5,6 @@ BUGS
  * visualize: les champs from/to doivent être convertis en UTC
  * Fix backtest start: progress bar undefined !
  * Fix backtest graphs, do not use current time to display values but simulation time (like logs)
- * Fix dashboard graph display delay on app start.
  * Left menu size bug.
  * Bug de display des parties de l'app en plein chargement !
 

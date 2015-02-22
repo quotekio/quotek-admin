@@ -1,7 +1,7 @@
 <?php 
 ?>
 
-<div class="app-display" id="dashboard" style="display:block">
+<div class="app-display" id="dashboard">
 	    <div class="page-header">
 		  <h3><?= $lang_array['app']['dashboard']  ?>
 		    <small><?= $lang_array['app']['dashboard_subtitle']  ?></small>

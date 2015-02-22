@@ -32,6 +32,9 @@
    $lang_array['flashnews']['create'] = 'Creer';
    $lang_array['flashnews']['edit'] = 'Modifier';
 
+   $lang_array['flashnews']['newsbtn_tooltip'] = 'Afficher les dernieres nouvelles.';
+   
+
 
 
  ?>

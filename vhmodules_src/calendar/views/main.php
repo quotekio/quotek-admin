@@ -165,6 +165,23 @@
   }
 
 
+  function deleteEvent(evid) {
+
+    var cr = $.ajax({'url':'/async/vhmodules/calendar/calctl',
+                          'type': 'POST',
+                          'data': { 'action': 'delevent', 'id': evid },
+                          'async': true,
+                          'cache': false,
+                          'success': function() {
+
+                            fetchCal('<?= $cur_year ?>','<?= $cur_week ?>');
+
+                          }
+
+  });
+
+  }
+
   function createEvent()  {
 
     var evdata = {
@@ -210,7 +227,7 @@
     $('#input-vhcalendar-ee-stop',mw).datetimepicker();
     
     $('#input-vhc-start').val( formatDate2(tstamp) );
-    $('#input-vhc-stop').val( formatDate2(tstamp + 3600) );
+    $('#input-vhc-end').val( formatDate2(tstamp + 3600) );
 
   
     $('#vhcalendar-ee-action',mw).html("<?= $lang_array['calendar']['create'] ?>");
@@ -303,10 +320,19 @@
 
                               var coords = findEventPos(i.start);
 
-                              $('#vhcalendar-event-wrapper').append("<div class=\"evdiv\" id=\"ev" + index + "\"></div>");
+                              $('#vhcalendar-event-wrapper').append("<div style=\"overflow:hidden!important\" class=\"evdiv\" id=\"ev" + index + "\"></div>");
                               var evdiv = $('#ev' + index);
 
-                              evdiv.html(i.name);
+                              evdiv.html("<div>" + i.name + "</div>");
+                              
+                              evdiv.append('<div id="ev-bottom" style="width:194px;text-align:right;overflow:hidden">&nbsp;</div>');
+
+                              if (i.linked_value != "None")  {
+                                $('#ev-bottom',evdiv).append('<a><i class="icon icon-magnet"></i></a>');
+                              }
+
+                              $('#ev-bottom',evdiv).append('<a onclick="deleteEvent(' + i.id + ');"><i class="icon icon-remove"></i></a>');
+
 
                               evdiv.css({ 
                                          'position' : 'absolute',

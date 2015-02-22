@@ -12,8 +12,8 @@
 ?>
 
 
-<button class="btn" onclick="toggleQPOpenView()"><i class="icon-white icon-fire"></i></button>
-<button class="btn" onclick="toggleQPPosView()"><i class="icon-white icon-screenshot"></i></button>
+<button id="quickpos-topbtn-open" rel="tooltip" title="<?= $lang_array['quickpos']['open_tooltip']  ?>" class="btn" onclick="toggleQPOpenView()"><i class="icon-white icon-fire"></i></button>
+<button id="quickpos-topbtn-poslist" rel="tooltip" title="<?= $lang_array['quickpos']['poslist_tooltip'] ?>"class="btn" onclick="toggleQPPosView()"><i class="icon-white icon-screenshot"></i></button>
 
 
 <div id="QPOpenView" style="position:absolute;width:300px;z-index:200;display:none;background:#131517;border:1px solid black;margin-left:-50px">
@@ -100,5 +100,7 @@ function QPOpen(way, name) {
 }
 
 
+ $('#quickpos-topbtn-open').tooltip({'placement': 'bottom','container': 'body'});
+ $('#quickpos-topbtn-poslist').tooltip({'placement': 'bottom','container': 'body'});
 
 </script>

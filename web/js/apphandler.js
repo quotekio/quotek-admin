@@ -49,6 +49,9 @@ function endLoad() {
   ce.getSession().setMode("ace/mode/c_cpp");
   
   //adamUpdateStatus();
+
+  appLoadDisp('dashboard');
+  
 }
 
 /* loading of app js + css */
