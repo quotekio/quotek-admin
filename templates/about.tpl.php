@@ -11,6 +11,13 @@
           <img src="/img/vh_full_alpha.png" style="width:400px;margin-top:-40px"/>
          </div>
 
+          
+          <div style="padding:5px;padding-left:0px">
+            <img style="height:28px" src="/img/adam-logo.png"/>&nbsp;&nbsp;
+            <img style="height:25px" src="/img/influxdb-logo.png"/>
+          </div>
+
+
           <div class="well" style="width:540px">
             <table style="font-size:12px">
               <tr>

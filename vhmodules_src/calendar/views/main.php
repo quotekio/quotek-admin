@@ -115,7 +115,7 @@
           if ( $i % 2 != 0) { 
             echo "<td style=\"width:50px\"><div style=\"position:relative;margin-top:-20px\">$hour</div></td>";
           }
-          else echo "<td style=\"width:50px\">&nbsp;</td>";
+          else echo "<td style=\"width:50px\"><div style=\"position:relative;margin-top:-20px;font-size:10px;color:#cccccc\">$hour</div></td>";
 
           for ($j=0;$j<5;$j++)  {?>
             <td onclick="showCreateEventForm('#dt<?= $j + 1 ?>', <?= $i * 3600 ?>)">&nbsp;&nbsp;</td>
