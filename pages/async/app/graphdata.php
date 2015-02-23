@@ -30,7 +30,7 @@
 
     if (count($pnl['data']) > 0 ) {
 
-      if ( $pnl['data'][-1][1] < 0 ) {
+      if ( $pnl['data'][count($pnl['data'])-1][1] < 0 ) {
         $pnl['lines'] = array('fill' => false, 'lineWidth' => 2);
         $pnl['color'] = '#F00';
       }
