@@ -52,6 +52,9 @@ else if ($action == 'export') {
   
   $year = date("Y");
   $week = date("W");
+  $cur_day = date("D");
+
+  if ($cur_day == 'Sat' || $cur_day == 'Sun') $week++;
 
   $week_ptr_init = new DateTime();
   $week_ptr_init->setISODate($year, $week);

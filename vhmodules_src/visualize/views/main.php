@@ -173,11 +173,11 @@
     }
 
     var iname = ratebtn.attr('linked-asset');
-    var auname = 'au' + iname;
-
+    var auname = 'au' + iname.replace('_','');
+    
     eval('clearInterval(' + auname + ');');
 
-    set_interval_str = "setInterval(\"" + "displayGraph('" + iname + "', plot" + iname + ")\"," + rate_millisecs + ");";
+    set_interval_str = "setInterval(\"" + "displayGraph('" + iname + "', plot" + iname.replace('_','') + ")\"," + rate_millisecs + ");";
 
     eval( auname + " = " + set_interval_str );
     

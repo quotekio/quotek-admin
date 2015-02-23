@@ -27,6 +27,15 @@
       $pnl['data'][] = array( ($ans['t'] + ( $time_offset * 3600) ) * 1000 , $ans['pnl']  );
     }
 
+
+    if (count($pnl['data']) > 0 ) {
+
+      if ( $pnl['data'][-1][1] < 0 ) {
+        $pnl['lines'] = array('fill' => false, 'lineWidth' => 2);
+        $pnl['color'] = '#F00';
+      }
+    }
+
     echo json_encode(array($pnl));
   
   }
