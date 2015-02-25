@@ -284,6 +284,12 @@
 
   }
 
+
+  function onTop(ev) {
+    $('.evdiv').css({ 'z-index' : '40'});
+    ev.css({ 'z-index': '41' });
+  }
+
   function fetchCal(year, week) {
 
     var cr = $.ajax({'url':'/async/vhmodules/calendar/calctl',
@@ -320,7 +326,7 @@
 
                               var coords = findEventPos(i.start);
 
-                              $('#vhcalendar-event-wrapper').append("<div style=\"overflow:hidden!important\" class=\"evdiv\" id=\"ev" + index + "\"></div>");
+                              $('#vhcalendar-event-wrapper').append("<div  rel=\"tooltip\" title=\"" + formatDate2(i.start) + "\" onclick=\"onTop($(this))\" style=\"overflow:hidden!important\" class=\"evdiv\" id=\"ev" + index + "\"></div>");
                               var evdiv = $('#ev' + index);
 
                               evdiv.html("<div>" + i.name + "</div>");
@@ -341,7 +347,8 @@
                                          'left': coords.x,
                                          'margin-top': coords.y,
                                          'width': 200,
-                                         'height': ( (i.end - i.start) / 3600 ) * 37 });
+                                         'height': ( (i.end - i.start) / 3600 ) * 37 ,
+                                         'box-shadow': '1px 1px 1px 3px #202020'});
 
                               if (i.importance == "high") evdiv.addClass('alert alert-danger');
                               else if (i.importance == "middle") evdiv.addClass('alert alert-warning');
@@ -349,7 +356,9 @@
 
                             });
 
-                              
+                          
+                            $('.evdiv').tooltip({'placement': 'bottom'});
+
 
                           }  });
 

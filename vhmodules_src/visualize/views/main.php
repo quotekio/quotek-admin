@@ -470,6 +470,13 @@
                         //update
                         else {
 
+                          /*
+                          if (resolution == 0 || resolution == '5s') {
+                            var delta = data[] - data[];
+                          }
+                          */
+
+
                           existing_plot.setData(data);
                           existing_plot.draw();
                           plot = existing_plot;
