@@ -447,7 +447,7 @@
                               delta *= 1000;  
                             }
 
-                            delta = delta.toFixed(3);
+                            delta = delta.toFixed(4);
 
                             if (resolution == 0 || resolution == '5s') showDelta(iname, delta);
                           }
@@ -502,33 +502,10 @@
                         //update
                         else {
 
-                          /*
-                          if (resolution == 0 || resolution == '5s') {
-                            var delta = data[] - data[];
-                          }
-                          */
-
-                          var delta = 0 ;
-
-                          alert(data.data.length);
-
-                          if ( data.data.length >= 2 ) {
-
-                            //normal
-                            delta = data.data[data.data.length -1 ][1] - data.data[data.data.length - 2 ][1];
-
-                            if ( data.data[data.data.length -1 ][1] < 2 ) {
-                              delta *= 1000;  
-                            }
-                            
-                            delta = delta.toFixed(3);
-
-                            if (resolution == 0 || resolution == '5s') showDelta(iname, delta);
-                          }
-
                           existing_plot.setData(data);
                           existing_plot.draw();
                           plot = existing_plot;
+                          
                         }
 
 
