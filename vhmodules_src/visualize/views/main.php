@@ -208,10 +208,9 @@
 
     graphlarge.append(graphbox.html());
     
-    $('#visualize-draw-'+ iname.replace('_','') ,graphlarge).css('height','400px');
     var exframe = $('#visualize-draw[linked-asset='+ iname + ']', graphlarge).parent();
+    exframe.css({'margin-bottom':'25px', 'height': '400px'});
 
-    exframe.css('margin-bottom','25px');
 
     $('#rbtn', exframe).removeClass('btn-primary');
     $('#rbtn', exframe).addClass('btn-danger');
