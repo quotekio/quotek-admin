@@ -649,6 +649,9 @@ function adamClosePos(dealid) {
         async:          false
         });
 
+  //updates pos list right after having sent order
+  adamUpdatePosList();
+  
 }
 
 

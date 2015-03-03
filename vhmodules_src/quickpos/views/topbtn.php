@@ -42,7 +42,7 @@
     	</td>
 
     	<td style="width:50px">
-          <button class="btn btn-success" onclick="QPOpen('buy','<?= $v->name ?>')">BUY</button>
+          <button class="btn btn-primary" onclick="QPOpen('buy','<?= $v->name ?>')">BUY</button>
     	</td>
 
   <?php } ?>
@@ -97,6 +97,9 @@ function QPOpen(way, name) {
   adamSendOrder( 'openpos:' + name + ":" + way + ":" + ssl );
   $('#QPView').hide();
 
+  //updates pos list right after having sent order
+  adamUpdatePosList();
+  
 }
 
 
