@@ -123,6 +123,10 @@
               <div linked-asset="<?= $v->name ?>" id="visualize-draw" style="height:267px;text-align:center;">
               <br><img src="/img/loader2.gif" style="width:25px;margin-top:100px"/>
              </div>
+
+             <div class="deltapopup" linked-asset="<?= $v->name ?>" style="position:relative;font-size:30px;margin-top:-150px;width:100px;height:100px;float:right"></div>
+
+
           </div>
         </div>
 
@@ -283,6 +287,18 @@
     });
 
 
+
+  function showDelta(iname, delta) {
+
+    var deltadiv = $('.deltapopup[linked-asset=' +  iname + ']');
+    
+    if ( delta < 0 ) deltadiv.css('color','#FF0000');
+    else deltadiv.css('color','#00FF00');
+
+    deltadiv.html(delta);
+  }
+
+
   function displayGraph(iname, existing_plot, use_dates) {
 
     var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
@@ -381,6 +397,7 @@
     }
 
     var placeholder = $('#visualize-draw[linked-asset=' + iname + ']');
+
   
     var options = {
 
@@ -421,7 +438,15 @@
                        'success': function() {
 
                           data[0].data = $.parseJSON(rdata.responseText);
-                          
+          
+                          var delta = 0 ;                
+                          if ( data[0].data.length >= 2 ) {
+                            delta = data[0].data[data[0].data.length -1 ][1] - data[0].data[data[0].data.length - 2 ][1];
+                            if (resolution == 0 || resolution == '5s') showDelta(iname, delta);
+                          }
+
+
+
                           if (existing_plot == null) {
  
                             plot = $.plot(placeholder, data , options);
@@ -476,6 +501,23 @@
                           }
                           */
 
+                          var delta = 0 ;
+
+                          alert(data.data.length);
+
+                          if ( data.data.length >= 2 ) {
+
+                            //normal
+                            delta = data.data[data.data.length -1 ][1] - data.data[data.data.length - 2 ][1];
+
+                            if ( data.data[data.data.length -1 ][1] < 2 ) {
+                              delta *= 1000;  
+                            }
+                            
+                            delta = delta.toFixed(3)
+
+                            if (resolution == 0 || resolution == '5s') showDelta(iname, delta);
+                          }
 
                           existing_plot.setData(data);
                           existing_plot.draw();
