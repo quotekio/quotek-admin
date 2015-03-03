@@ -443,10 +443,10 @@
                           if ( data[0].data.length >= 2 ) {
                             delta = data[0].data[data[0].data.length -1 ][1] - data[0].data[data[0].data.length - 2 ][1];
 
-                            if ( data.data[data.data.length -1 ][1] < 2 ) {
+                            if ( data[0].data[data[0].data.length -1 ][1] < 2 ) {
                               delta *= 1000;  
                             }
-                            
+
                             delta = delta.toFixed(3);
 
                             if (resolution == 0 || resolution == '5s') showDelta(iname, delta);
