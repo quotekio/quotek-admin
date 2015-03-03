@@ -207,9 +207,9 @@
     var graphlarge = $('#graphlarge');
 
     graphlarge.append(graphbox.html());
-    
+
     var exframe = $('#visualize-draw[linked-asset='+ iname + ']', graphlarge).parent();
-    exframe.css({'margin-bottom':'25px', 'height': '400px'});
+    exframe.css({'margin-bottom':'25px'});
 
 
     $('#rbtn', exframe).removeClass('btn-primary');
