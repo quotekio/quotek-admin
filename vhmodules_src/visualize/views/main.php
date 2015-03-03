@@ -222,7 +222,6 @@
       exframe.remove();
     });
 
-    exframe.css('height','440px');
 
     displayGraph(iname);
 
