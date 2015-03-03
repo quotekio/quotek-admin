@@ -209,7 +209,7 @@
     graphlarge.append(graphbox.html());
     
     $('#visualize-draw-'+ iname.replace('_','') ,graphlarge).css('height','400px');
-    var exframe = $('#visualize-draw-'+ iname.replace('_',''), graphlarge).parent();
+    var exframe = $('#visualize-draw[linked-asset='+ iname + ']', graphlarge).parent();
 
     exframe.css('margin-bottom','25px');
 
@@ -505,7 +505,7 @@
                           existing_plot.setData(data);
                           existing_plot.draw();
                           plot = existing_plot;
-                          
+
                         }
 
 
