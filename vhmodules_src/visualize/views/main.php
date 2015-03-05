@@ -363,7 +363,8 @@
 
     if (tsup == "") {
 
-      var cdate = new Date(Date.now() - tzOffset() * 3600000 );
+      //we substract timzzone offset and add 30secs (to be sure we have the latest data)
+      var cdate = new Date(Date.now() - tzOffset() * 3600000 + 30000);
 
       var h = cdate.getHours();
       if (h<10) h = "0" + h;
