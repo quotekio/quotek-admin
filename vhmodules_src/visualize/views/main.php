@@ -301,6 +301,8 @@
 
     var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
     var use_dates = (typeof use_dates != 'undefined') ? use_dates : null;
+    
+    var is_filled = true;
 
     var resolution = $('#visualize-resbtn[linked-asset=' + iname + ']').html();
     //if realtime, resolution switches to 0
@@ -420,7 +422,7 @@
 
     var data = [{ data: null,
                  lines: { 
-                          //fill: true,
+                          fill: is_filled,
                           lineWidth: 2,
                           zero: false },
                   color: '#38b7e5',
