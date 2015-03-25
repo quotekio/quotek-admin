@@ -13,8 +13,8 @@
 
   <div class="container">
 
-   <div style="text-align:center;background:#202020">
-    <img src="/img/vh_full.png" style="height:400px"/>    
+   <div style="text-align:center;background:#F1F1F1;padding-top:50px;padding-bottom:50px">
+    <img src="/img/quotek-logo.png" style=""/>    
    </div>
 
   <!-- <div class="alter_panel" style="margin-top:50px;background-image:url('/img/megaphone.svg'); background-repeat:no-repeat;background-size:80%;background-position:center -50px;"> -->

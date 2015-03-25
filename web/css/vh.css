@@ -1,6 +1,7 @@
 body {
   margin:0px;
   padding:0px;
+  background:white!important;
 }
 
 #landing {
@@ -22,7 +23,7 @@ body {
 }
 
 .alter_panel {
-  background:#202020;
+  background:#F1F1F1;
 }
 
 

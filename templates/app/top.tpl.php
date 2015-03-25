@@ -2,12 +2,12 @@
 
 <div class="navbar navbar-static-top">
  
-  <div class="navbar-inner">
+  <div class="navbar-inner" style="background:#F3F3F4!important">
 
 
      <div style="float:left;width:166px">
 
-       <a href="#" onclick="adamShowAbout()"><img style="height:40px;margin-top:4px;" src="/img/vh_text.png"></a>
+       <a href="#" onclick="adamShowAbout()"><img style="height:30px;margin-top:4px;" src="/img/quotek-logo.png"></a>
      </div>
 
       <div style="float:left;margin-left:20px;width:300px;height:40px;margin-top:-5px" id="adam-top-modules">
