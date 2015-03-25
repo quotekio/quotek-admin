@@ -17,8 +17,22 @@ a:hover {
 }
 
 #app-topbar {
-  background:white!important;
+  background:#F3F3F4!important;
   background-image:none!important;
+}
+
+.app-display .title  {
+  display:none;
+}
+
+#app-titlebar {
+  background:white;
+  border-bottom:1px solid #e7eaec;
+  padding:10px;
+  margin-bottom:30px;
+
+
+
 }
 
 

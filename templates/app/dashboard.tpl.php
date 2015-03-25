@@ -1,13 +1,16 @@
 <?php 
 ?>
 
+
+
 <div class="app-display" id="dashboard">
-	    <div class="page-header">
+
+      <div class="title">
 		  <h3><?= $lang_array['app']['dashboard']  ?>
 		    <small><?= $lang_array['app']['dashboard_subtitle']  ?></small>
           </h3>
       </div>
-
+      
       <div class="row-fluid">
         
           <div class="app-headed-white-frame" style="height:268px;width:100%">

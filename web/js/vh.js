@@ -1797,36 +1797,12 @@ function appLoadDisp(disp,module) {
   if ($('#' + disp + '[class="app-display"]').length > 0) {
     $('#' + disp + '[class="app-display"]').show('quick', function(){
        $(this).trigger('afterShow');
+       $('#app-titlebar').html($('.app-display .title').html());
+
    });
   }
   else alert(disp + " n'existe pas!");
 
-  if (module!= null) {
-    
-     
-    $('#app-builder-middle').load('/async/app/getbuilder?module=' + module + '&part=steps');
-    //$('#app-builder-middle').width($(window).width() - $('#app-left').width() - $('#app-builder-prev-btn').width() - $('#app-builder-next-btn').width() - 30 );
-    $('#app-builder-horiz-dotted-steplist-container').load('/async/app/getbuilder?module=' + module + '&part=nav');
-
-    $('.app-left-warrow-right').hide();
-    $('#app-builder-left-warrow-right').show();
-    $('#mselect-popover').popover('hide');
-    $('#app-builder-finish-btn').removeClass('btn-warning');
-    $('#app-builder-finish-btn').addClass('disabled');
-    $('#app-builder-finish-btn').unbind('click');
-
-    var illus_path = $.ajax({
-        url:            '/async/app/getbuilder?module=' + module + '&part=illus',
-        type:           'GET',
-        cache:          false,
-        async:          false
-        });
-    $('#app-builder-illus').attr('src','/img/modules_bank/' + illus_path.responseText);
-
-    appStartBuilder(module);
-
-  }
-  
 }
 
 function appUpdateLeft(element) {

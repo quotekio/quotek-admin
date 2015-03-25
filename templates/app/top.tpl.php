@@ -33,6 +33,9 @@
     </div>
   </div>
 
+  <div id="app-titlebar"></div>
+
+
 <script type="text/javascript">
 
   $('#adam-cmdprompt').keydown(function (event) {
