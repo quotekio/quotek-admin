@@ -1,7 +1,7 @@
 <div class="app-display" id="adamcfg-values">
 
 
-  <div class="page-header">
+  <div class="title">
     <h3><?= $lang_array['app']['adamvalues'] ?> <small><?= $lang_array['app']['adamvalues_subtitle'] ?></small></h3>
   </div>
 
@@ -11,13 +11,13 @@
     </div>
 
     <div class="span4" style="margin-top:-10px">
-       <a id="btn-adamvalue-new" class="btn btn-large btn-success"><?= $lang_array['app']['newvalue'] ?></a>
+       <a id="btn-adamvalue-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newvalue'] ?></a>
     </div>
 
    </div>
 
   
-  <div id="values-table-wrapper">
+  <div class="table-ct" id="values-table-wrapper">
   </div>
 
 </div>

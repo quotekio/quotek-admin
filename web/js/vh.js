@@ -1796,8 +1796,8 @@ function appLoadDisp(disp,module) {
 
   if ($('#' + disp + '[class="app-display"]').length > 0) {
     $('#' + disp + '[class="app-display"]').show('quick', function(){
+       $('#app-titlebar').html($('#' + disp + '[class="app-display"] .title').html());
        $(this).trigger('afterShow');
-       $('#app-titlebar').html($('.app-display .title').html());
 
    });
   }
@@ -1808,7 +1808,7 @@ function appLoadDisp(disp,module) {
 function appUpdateLeft(element) {
   $('.left-menu-link').css('border-bottom', '2px solid #111');
   //alert(element.html());
-  element.css('border-bottom','2px solid #38b7e5');
+  element.css('border-bottom','2px solid #FF9200');
 }
 
 

@@ -1567,7 +1567,7 @@ input[type="checkbox"][readonly] {
 .control-group.success .input-prepend .add-on,
 .control-group.success .input-append .add-on {
   color: #468847;
-  background-color: #dff0d8;
+  background-color: #e7eaec;
   border-color: #468847;
 }
 
@@ -2138,9 +2138,9 @@ table {
   -moz-border-radius-topright: 4px;
 }
 
-.table-striped tbody > tr:nth-child(odd) > td,
-.table-striped tbody > tr:nth-child(odd) > th {
-  background-color: #dff0d8;
+.table-striped tbody > tr:nth-child(even) > td,
+.table-striped tbody > tr:nth-child(even) > th {
+  background-color: #F9F9F9;
 }
 
 .table-hover tbody tr:hover > td,

@@ -16,7 +16,7 @@
 
    </div>
 
-  <div id="backtests-table-wrapper">
+  <div class="table-ct" id="backtests-table-wrapper">
   </div>
   
 

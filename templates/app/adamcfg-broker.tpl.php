@@ -1,6 +1,6 @@
 <div class="app-display" id="adamcfg-broker">
 
-  <div class="page-header">
+  <div class="title">
     <h3><?= $lang_array['app']['cfg_broker_title'] ?> <small><?= $lang_array['app']['cfg_broker_subtitle'] ?></small></h3>
   </div>
 
@@ -10,12 +10,12 @@
     </div>
 
     <div class="span4" style="margin-top:-10px">
-       <a id="btn-adambroker-new" class="btn btn-large btn-success"><?= $lang_array['app']['newbroker'] ?></a>
+       <a id="btn-adambroker-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newbroker'] ?></a>
     </div>
 
    </div>
 
-  <div id="brokercfg-table-wrapper">
+  <div class="table-ct" id="brokercfg-table-wrapper">
   </div>
   
 </div>

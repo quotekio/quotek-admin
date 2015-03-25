@@ -20,7 +20,7 @@
 
 ?>
 
-<table class="table table-striped table-bordered backtests-table" id="backtests-table" style="margin-top:20px">
+<table class="table table-striped backtests-table" id="backtests-table" style="margin-top:20px">
 
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>

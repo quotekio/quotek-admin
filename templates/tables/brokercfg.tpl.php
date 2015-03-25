@@ -3,7 +3,7 @@
   $brokers = getBrokerConfigs(); 
 
 ?>
-  <table class="table table-striped table-bordered brokercfg-table" id="brokercfg-table" style="margin-top:20px">
+  <table class="table table-striped brokercfg-table" id="brokercfg-table" style="margin-top:20px">
 
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>

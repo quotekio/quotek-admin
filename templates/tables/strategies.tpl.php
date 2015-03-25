@@ -3,7 +3,7 @@
   $strats = getStrategies();
 ?>
 
-<table class="table table-striped table-bordered" id="strategies-table" style="margin-top:20px">
+<table class="table table-striped" id="strategies-table" style="margin-top:20px">
   <tr>
     <th><?= $lang_array['app']['name'] ?></th>
     <th><?= $lang_array['app']['type'] ?></th>

@@ -1,7 +1,7 @@
 
 <div class="app-display" id="adamstrats">
 
-  <div class="page-header">
+  <div class="title">
     <h3><?= $lang_array['app']['adamstrats'] ?> <small><?= $lang_array['app']['adamstrats_subtitle'] ?></small></h3>
   </div>
 
@@ -11,12 +11,12 @@
     </div>
 
     <div class="span4" style="margin-top:-10px">
-       <a id="btn-strat-new" class="btn btn-large btn-success"><?= $lang_array['app']['newstrat'] ?></a>
+       <a id="btn-strat-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newstrat'] ?></a>
     </div>
 
    </div>
 
-  <div id="strategies-table-wrapper">
+  <div class="table-ct" id="strategies-table-wrapper">
   </div>
 
 </div>

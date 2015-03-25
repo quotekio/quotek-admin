@@ -3,7 +3,7 @@
   $values = getValueConfigs(); 
 ?>
 
-<table class="table table-striped table-bordered values-table" id="values-table" style="margin-top:20px">
+<table class="table table-striped values-table" id="values-table" style="margin-top:20px">
 
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>

@@ -5,7 +5,7 @@
   
 ?>
 
-  <table class="table table-striped table-bordered corecfg-table" id="corecfg-table" style="margin-top:20px">
+  <table class="table table-striped corecfg-table" id="corecfg-table" style="margin-top:20px">
 
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>

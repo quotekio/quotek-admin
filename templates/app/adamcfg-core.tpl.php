@@ -1,7 +1,7 @@
 
 <div class="app-display" id="adamcfg-core">
 
-  <div class="page-header">
+  <div class="title">
     <h3><?= $lang_array['app']['adamcfg'] ?> <small><?= $lang_array['app']['adamcfg_subtitle'] ?></small></h3>
   </div>
 
@@ -11,12 +11,12 @@
     </div>
 
     <div class="span4" style="margin-top:-10px">
-       <a id="btn-corecfg-new" class="btn btn-large btn-success"><?= $lang_array['app']['newconf'] ?></a>
+       <a id="btn-corecfg-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newconf'] ?></a>
     </div>
 
    </div>
 
-  <div id="corecfg-table-wrapper"></div>
+  <div class="table-ct" id="corecfg-table-wrapper"></div>
   </div>
 
 <script type="text/javascript">
