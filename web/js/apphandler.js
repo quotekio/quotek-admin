@@ -16,7 +16,7 @@ function endLoad() {
 
   $(window).resize(function(){
            var dispwidth = $(window).width() - $('#app-left').width();
-            $('#app-display').width(dispwidth);
+            $('#app-mainview').width(dispwidth);
 
             $('#modal_bg').width($(window).width());
             $('#modal_bg').height($(window).height());
@@ -31,10 +31,10 @@ function endLoad() {
   $('#app-loader').hide();
   $('#app-top').fadeIn(1000);
   $('#app-left').fadeIn(1000);
-  $('#app-display').fadeIn(1000);
+  $('#app-mainview').fadeIn(1000);
 
   var dispwidth = $(window).width() - $('#app-left').width();
-  $('#app-display').width(dispwidth);
+  $('#app-mainview').width(dispwidth);
 
   clearInterval(tcontrol);
 
@@ -64,10 +64,6 @@ function loadApp() {
 
   tcontrol = setInterval('updateProgress()',500);
   
-  /* JQUERY-UI-SLIDER */  
-  $("head").append($("<script type='text/javaScript' src='/js/jquery-ui-1.10.0.custom.min.js'></script>"));
-  $("head").append($("<link rel='stylesheet' href='/css/ui-lightness/jquery-ui-1.8.23.custom.css' type='text/css'>"));
-
   /* BOOTSTRAP JS */
   $("head").append($("<script type='text/javascript' src='/js/bootstrap.js'></script>"));
 
@@ -90,9 +86,9 @@ function loadApp() {
   
   progress += 40;
  
-  $('#app-top').load('/async/app/getapp?part=top',function() { progress+=20; } );
+  //$('#app-top').load('/async/app/getapp?part=top',function() { progress+=20; } );
   $('#app-left').load('/async/app/getapp?part=left',function() { progress+=0; } );
-  $('#app-display').load('/async/app/getapp?part=disp',function() { progress+=40; } );
+  $('#app-display').load('/async/app/getapp?part=disp',function() { progress+=60; } );
 
   
 }

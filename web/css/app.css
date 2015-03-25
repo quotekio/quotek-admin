@@ -6,31 +6,42 @@ a:hover {
   display:none;
 }
 
-#app-display {
+#app-mainview {
   width:0px;
   display:none;
   margin-top:0px;
   float:left;
   height:100%;
+  background:#F3F3F4;
 
 }
+
+#app-topbar {
+  background:white!important;
+  background-image:none!important;
+}
+
 
 div.legend > table {
   background:rgba(0,0,0,0.8);
 }
 
 .app-headed-white-frame {
-  border-radius:7px;
+  
+  border-top:3px solid #e7eaec;
   overflow:hidden;
-  background:#202020;
+  background: white;
+
 }
 
 .app-headed-frame-header {
   height:35px;
   margin-top:-10px;
-  padding-left:10px;
-  padding-top:5px;
-  background:#131517;
+  padding:10px;
+  padding-left:15px;
+  background:white;
+  border-bottom: 1px solid #e7eaec;
+  
 }
 
 
@@ -102,7 +113,7 @@ div.legend > table {
 }
 
 .app-display {
-  padding:10px;
+  padding:30px;
   padding-top:0px;
   display:none;
 }
@@ -445,7 +456,7 @@ padding:15px;
 
 #app-dashboard-lastlogs {
 
-background-color:#202020;
+background-color:#white;
 color:#38b7e5;
 height:155px;
 overflow-y:scroll;

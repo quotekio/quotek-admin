@@ -1532,7 +1532,7 @@ function adamShowAbout() {
         async:          false
         });
 
-    modalInst(610,606,gt.responseText);
+    modalInst(610,400,gt.responseText);
 
 }
 
@@ -1789,7 +1789,6 @@ function appRefreshDisp(disp,display) {
   }
 
 }
-
 
 
 function appLoadDisp(disp,module) {

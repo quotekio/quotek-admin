@@ -13,12 +13,11 @@
 
   <div class="container">
 
-   <div style="text-align:center;background:#F1F1F1;padding-top:50px;padding-bottom:50px">
+   <div id="login_logobox">
     <img src="/img/quotek-logo.png" style=""/>    
    </div>
 
-  <!-- <div class="alter_panel" style="margin-top:50px;background-image:url('/img/megaphone.svg'); background-repeat:no-repeat;background-size:80%;background-position:center -50px;"> -->
-   <div class="alter_panel" style="margin-top:20px;padding-bottom:10px">
+   <div id="login_formbox">
     <div class="container" style="margin-top:0px">
       <div class="row-fluid">
         <div class="span1"></div>
@@ -28,7 +27,7 @@
 	        </h3>
 
         </div>
-        <div class="span1"></div>
+        
       </div>
       
       <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
@@ -42,7 +41,7 @@
           <input  type="password" class="input-xlarge" style="margin-top:10px" placeholder="<?= $lang_array['templates']['login']['password'] ?>" id="login_password" />
           </div>
         <div style="padding-bottom:15px">
-         <a style="float:right;margin-top:-7px;margin-right:15px" class="btn btn-success" href="#" onclick="login();"><?= $lang_array['templates']['login']['connect_btn']?></a>
+         <a style="float:right;margin-top:-7px;margin-right:15px" class="btn btn-warning" href="#" onclick="login();"><?= $lang_array['templates']['login']['connect_btn']?></a>
         </div>
        </form>
 
