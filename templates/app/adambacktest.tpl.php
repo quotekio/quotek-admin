@@ -10,10 +10,6 @@
        <p><?=  $lang_array['app']['adambacktest_expl'] ?></p>
     </div>
 
-    <div class="span4" style="margin-top:-10px">
-       <a id="btn-adambacktest-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newbacktest'] ?></a>
-    </div>
-
    </div>
 
   <div class="table-ct" id="backtests-table-wrapper">
@@ -40,7 +36,10 @@
                                      adamSaveBacktest();
                                  });
 
-                               });
+                           });
+
+    $('.newbtn').attr('title','<?= $lang_array['app']['newbacktest'] ?>');
+
    });
 
 

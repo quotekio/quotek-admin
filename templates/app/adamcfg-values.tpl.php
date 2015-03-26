@@ -10,10 +10,6 @@
        <p><?=  $lang_array['app']['adamvalues_expl'] ?></p>
     </div>
 
-    <div class="span4" style="margin-top:-10px">
-       <a id="btn-adamvalue-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newvalue'] ?></a>
-    </div>
-
    </div>
 
   
@@ -26,7 +22,10 @@
 
   adamRefreshTable('values-table');
   
-  $('#btn-adamvalue-new').click(function() {
+
+  $('#adamcfg-values').bind('afterShow',function() {
+
+      $('.newbtn').click(function() {
                                  adamShowValueEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adamvalue_editor_create_title']  ?>");
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
@@ -35,6 +34,10 @@
                                  $('#editor-action').click(function() {  adamSaveValue();  });
 
                                });
+
+      $('.newbtn').attr('title','<?= $lang_array['app']['adamvalues_new'] ?>');
+  });
+
 
  
 </script>

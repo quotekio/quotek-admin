@@ -433,7 +433,10 @@ padding:15px;
 #codeeditor_nav{
   height:40px;
   width:100%;
+  background:#F3F3F4!important;
+  border-radius:0px!important;
 }
+
 
 #codeeditor_area {
   height:100%;

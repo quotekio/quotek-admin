@@ -1795,7 +1795,8 @@ function appLoadDisp(disp,need_newbtn) {
 
   //disable newbtn callback in any case
   $('.newbtn').off('click');
-
+  $('.newbtn').attr('title','');
+  
   var need_newbtn = (typeof need_newbtn == 'undefined') ? false : need_newbtn ;
 
   $('.app-display').hide();

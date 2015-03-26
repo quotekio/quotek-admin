@@ -45,7 +45,7 @@ function endLoad() {
   //setInterval('adamUpdateCorestats()',5000);
 
   var ce = ace.edit("codeeditor_area");
-  ce.setTheme("ace/theme/monokai");
+  ce.setTheme("ace/theme/xcode");
   ce.getSession().setMode("ace/mode/c_cpp");
   
   //adamUpdateStatus();

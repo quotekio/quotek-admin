@@ -9,10 +9,6 @@
        <p><?=  $lang_array['app']['cfg_broker_expl'] ?></p>
     </div>
 
-    <div class="span4" style="margin-top:-10px">
-       <a id="btn-adambroker-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newbroker'] ?></a>
-    </div>
-
    </div>
 
   <div class="table-ct" id="brokercfg-table-wrapper">
@@ -34,6 +30,9 @@
                                      adamSaveBrokerCfg();
                                  });
                                });
+
+    $('.newbtn').attr('title','<?= $lang_array['app']['newbroker'] ?>');
+    
   });
 
 

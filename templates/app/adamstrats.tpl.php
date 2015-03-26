@@ -10,10 +10,6 @@
        <p><?= $lang_array['app']['adamstrats_expl'] ?></p>
     </div>
 
-    <div class="span4" style="margin-top:-10px">
-       <a id="btn-strat-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newstrat'] ?></a>
-    </div>
-
    </div>
 
   <div class="table-ct" id="strategies-table-wrapper">
@@ -27,7 +23,9 @@
 
   adamRefreshTable('strategies-table');
 
-  $('#btn-strat-new').click(function() {
+  $('#adamstrats').bind('afterShow',function() {
+
+      $('.newbtn').click(function() {
 
                                  $('#codesave').hide();
                                  adamShowStratEditor();
@@ -35,7 +33,7 @@
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
 
                                  var editor = ace.edit("editor");
-                                 editor.setTheme("ace/theme/monokai");
+                                 editor.setTheme("ace/theme/xcode");
                                  editor.getSession().setMode("ace/mode/c_cpp");
 
                                  $('#editor-action').off('click');
@@ -46,5 +44,8 @@
                                  
 
                                });
+
+  });
+
 
 </script>

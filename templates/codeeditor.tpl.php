@@ -4,11 +4,11 @@
 
          <div class="row-fluid">
         <div class="span3" style="margin-top:0px">
-          <div style="float:left;width:140px;margin-top:5px">  
-              <img style="height:40px" src="/img/vh_text.png"> 
+          <div style="float:left;width:200px;margin-top:5px">  
+              <img style="height:30px" src="/img/quotek-logo.png"> 
           </div>
           <div style="float:left;width:150px;margin-top:17px">  
-              <b style="margin-top:1px;color:#38b7e5;">{code* editor("0.2");}</b>
+              <b style="margin-top:1px;color:#FF9200;">{code* editor("0.3");}</b>
           </div>
 
         </div>
@@ -31,7 +31,7 @@
           <a class="btn" title="<?= $lang_array['app']['editor_resize_small']  ?>" onclick="adamCodeEditorSwitchBackFS();" rel="tooltip">
           <i class="icon icon-resize-small"></i>&nbsp;</a>
  
-          <a id="codesave" style="display:none" class="btn btn-success" title="<?= $lang_array['app']['save_strat']  ?>" rel="tooltip">
+          <a id="codesave" style="display:none" class="btn btn-warning" title="<?= $lang_array['app']['save_strat']  ?>" rel="tooltip">
             <?= $lang_array['save'] ?>
           </a>  
 
