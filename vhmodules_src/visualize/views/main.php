@@ -17,7 +17,7 @@
 
 <div class="app-display" id="visualize">
         
-  	    <div class="page-header">
+  	    <div class="title">
   		  <h3>Visualize
   		    <small><?= $lang_array['visualize']['subtitle']  ?></small>
             </h3>

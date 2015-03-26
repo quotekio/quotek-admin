@@ -38,6 +38,7 @@ body {
   border-bottom:1px solid #e7eaec;
   padding:10px;
   margin-top:20px;
+  overflow:hidden;
 }
 
 #mnav { 

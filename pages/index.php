@@ -18,7 +18,8 @@
    </div>
 
    <div id="login_formbox">
-    <div class="container" style="margin-top:0px">
+
+    <div style="margin-top:0px">
       <div class="row-fluid">
         <div class="span1"></div>
         <div class="span10" style="">
@@ -45,7 +46,7 @@
         </div>
        </form>
 
-   </div>
+     </div>
 
    </div>
 

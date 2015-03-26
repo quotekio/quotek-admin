@@ -1,7 +1,7 @@
 <div class="app-display" id="adambacktest">
 
   
-  <div class="page-header">
+  <div class="title">
     <h3><?= $lang_array['app']['adambacktest_title'] ?> <small><?= $lang_array['app']['adambacktest_subtitle'] ?></small></h3>
   </div>
 
@@ -11,7 +11,7 @@
     </div>
 
     <div class="span4" style="margin-top:-10px">
-       <a id="btn-adambacktest-new" class="btn btn-large btn-success"><?= $lang_array['app']['newbacktest'] ?></a>
+       <a id="btn-adambacktest-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newbacktest'] ?></a>
     </div>
 
    </div>

@@ -134,7 +134,7 @@ foreach($strats_gen as $strat) {
            <span class="help-block">Arrête la simulation au bout de n générations si celle-ci n'a pas convergé.</span>
          </div>
         </form>
-          <a class="btn btn-large btn-success" style="float:right" id="editor-action"></a>
+          <a class="btn btn-large btn-warning" style="float:right" id="editor-action"></a>
 
      </div>
 

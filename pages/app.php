@@ -23,7 +23,7 @@
      <script type="text/javascript" src="/js/jquery.js"></script>
      <script type="text/javascript" src="/js/apphandler.js"></script>
 
-     <LINK REL="SHORTCUT ICON" href="/img/vh_icon.png">
+     <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
   </head>
   <body>
 

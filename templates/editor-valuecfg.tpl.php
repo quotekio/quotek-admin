@@ -72,6 +72,6 @@
           </form>
           </div>
 
-          <a class="btn btn-large btn-success" style="float:right" id="editor-action"></a>
+          <a class="btn btn-large btn-warning" style="float:right" id="editor-action"></a>
 
      </div>

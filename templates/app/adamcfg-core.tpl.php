@@ -1,17 +1,18 @@
+<!-- Dirty Trick to avoid DOM Elt duplication -->
+<a class="newbtn btn-warning" id="btn-corecfg-new" title="<?= $lang_array['app']['newconf'] ?>">
+      <i class="icon icon-white icon-plus"></i>
+</a>
 
 <div class="app-display" id="adamcfg-core">
 
   <div class="title">
     <h3><?= $lang_array['app']['adamcfg'] ?> <small><?= $lang_array['app']['adamcfg_subtitle'] ?></small></h3>
+
   </div>
 
   <div class="row-fluid">
     <div class="span8">
        <p><?=  $lang_array['app']['adamcfg_expl'] ?></p>
-    </div>
-
-    <div class="span4" style="margin-top:-10px">
-       <a id="btn-corecfg-new" class="btn btn-large btn-warning"><?= $lang_array['app']['newconf'] ?></a>
     </div>
 
    </div>
@@ -32,8 +33,10 @@
      obj.parent().addClass('active');
 
   }
-
-  $('#btn-corecfg-new').click(function() {
+  
+  $('.newbtn').show();
+  $('.newbtn').off('click');
+  $('.newbtn').click(function() {
                                  adamShowCorecfgEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_create_title']  ?>");
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
