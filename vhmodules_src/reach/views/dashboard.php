@@ -45,6 +45,9 @@
                                           show: true,
                                           borderWidth: 0,
                                     },
+                                    legend: {
+                                             show: false
+                                    },
 
                            };
 

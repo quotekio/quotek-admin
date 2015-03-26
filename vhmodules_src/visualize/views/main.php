@@ -413,6 +413,9 @@
                    hoverable: true,
                    clickable: true,
              },
+             legend: {
+                      show: false
+                    },
 
              selection: {
                     mode: "x"

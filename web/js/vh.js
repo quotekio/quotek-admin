@@ -1024,6 +1024,10 @@ function adamUpdateStatus() {
                    show: true,
                    borderWidth: 0,
              },
+             
+            legend: {
+                     show: false
+                   },
     };
 
     var placeholder = $('#' + gname);
@@ -1796,7 +1800,7 @@ function appLoadDisp(disp,need_newbtn) {
   //disable newbtn callback in any case
   $('.newbtn').off('click');
   $('.newbtn').attr('title','');
-  
+
   var need_newbtn = (typeof need_newbtn == 'undefined') ? false : need_newbtn ;
 
   $('.app-display').hide();
