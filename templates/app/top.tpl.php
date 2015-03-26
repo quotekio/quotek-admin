@@ -33,7 +33,12 @@
     </div>
   </div>
 
+  
   <div id="app-titlebar"></div>
+  <!-- Dirty Trick to avoid DOM Elt duplication -->
+  <a class="newbtn btn-warning" id="btn-corecfg-new">
+      <i class="icon icon-white icon-plus"></i>
+  </a>
 
 
 <script type="text/javascript">

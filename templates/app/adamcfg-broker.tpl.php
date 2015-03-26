@@ -22,7 +22,10 @@
 
 <script type="text/javascript">
   adamRefreshTable('brokercfg-table');
-  $('#btn-adambroker-new').click(function() {
+
+  $('#adamcfg-broker').bind('afterShow',function() {
+
+    $('.newbtn').click(function() {
                                  adamShowBrokercfgEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adambroker_editor_create_title']  ?>");
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
@@ -31,5 +34,7 @@
                                      adamSaveBrokerCfg();
                                  });
                                });
+  });
+
 
 </script>

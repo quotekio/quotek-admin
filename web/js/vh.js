@@ -1791,11 +1791,21 @@ function appRefreshDisp(disp,display) {
 }
 
 
-function appLoadDisp(disp,module) {
+function appLoadDisp(disp,need_newbtn) {
+
+  //disable newbtn callback in any case
+  $('.newbtn').off('click');
+
+  var need_newbtn = (typeof need_newbtn == 'undefined') ? false : need_newbtn ;
+
   $('.app-display').hide();
 
   if ($('#' + disp + '[class="app-display"]').length > 0) {
     $('#' + disp + '[class="app-display"]').show('quick', function(){
+
+       if (need_newbtn) $('.newbtn').show();
+       else $('.newbtn').hide();
+
        $('#app-titlebar').html($('#' + disp + '[class="app-display"] .title').html());
        $(this).trigger('afterShow');
 

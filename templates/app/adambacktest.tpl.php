@@ -28,7 +28,9 @@
 
   adamRefreshTable('backtests-table');
 
-  $('#btn-adambacktest-new').click(function() {
+  $('#adambacktest').bind('afterShow',function() {
+
+    $('.newbtn').click(function() {
                                  adamShowBacktestEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adambacktest_editor_create_title']  ?>");
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
@@ -39,5 +41,7 @@
                                  });
 
                                });
+   });
+
 
 </script>

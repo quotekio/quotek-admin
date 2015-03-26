@@ -3,7 +3,7 @@
   <ul>
   
   <li>
-    <a class="left-menu-link" onclick="appLoadDisp('dashboard');adamUpdateDBPNLGraph();appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('dashboard',false);adamUpdateDBPNLGraph();appUpdateLeft($(this));">
       <img style="height:14px" src="/img/dashboard.png" >&nbsp;<?= $lang_array['app']['dashboard']?></a>
   </li>
 
@@ -12,7 +12,7 @@
       <div class="accordion-group" style="border:0px">
         <div class="accordion-heading">
 
-          <a id="acclink-cfg" class="left-menu-link" onclick="appLoadDisp('adamcfg-core');appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
+          <a id="acclink-cfg" class="left-menu-link" onclick="appLoadDisp('adamcfg-core',true);appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
             <i class="icon-wrench icon-white"></i> <?= $lang_array['app']['adamcfg']; ?>
           </a>
 
@@ -21,13 +21,13 @@
           <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
       
            <li>
-            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-values');appUpdateLeft($('#acclink-cfg'));">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-values',true);appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-book icon-white"></i> 
               <?=  $lang_array['app']['values']  ?> </a>
            </li>
 
            <li>
-            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker');appUpdateLeft($('#acclink-cfg'));">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker',true);appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-briefcase icon-white"></i> 
               <?=  $lang_array['app']['broker']  ?> </a>
            </li>            
@@ -39,12 +39,12 @@
 
 
    <li>
-    <a class="left-menu-link" onclick="appLoadDisp('adamstrats');appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('adamstrats',true);appUpdateLeft($(this));">
       <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
    </li>
 
   <li>
-    <a class="left-menu-link" onclick="appLoadDisp('adambacktest');appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('adambacktest',true);appUpdateLeft($(this));">
       <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
   </li>
 
