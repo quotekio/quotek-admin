@@ -25,7 +25,7 @@
 
         <div class="row-fluid">
           <div class="navbar">
-            <div class="navbar-inner">
+            <div class="app-headed-white-frame">
 
               <div class="span4">
 
