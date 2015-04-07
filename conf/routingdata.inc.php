@@ -1,8 +1,6 @@
 <?php
 
   $routing = array ('/' => 'index.php',
-                    '/test' => 'test2.php',
-                    '/session' => 'session.php',
                     '/app' => 'app.php',
                     '/app/signout' => 'app.php',
 

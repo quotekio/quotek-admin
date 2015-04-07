@@ -15,11 +15,15 @@ if ($corrected_uri != '/') {
 $realip = getRealIP();
 
 /* Load Modules */
-require_once ("classes/vhmodule.php");
+require_once ('classes/vhmodule.php');
 $vhms = loadVHModules();
 
-if (! include("pages/" . $routing[$corrected_uri])) {
-  header("HTTP/1.0 404 Not Found");
+if ( is_file('pages/install.php') ) {
+  include('pages/install.php');
+}
+
+else if (! include('pages/' . $routing[$corrected_uri])) {
+  header('HTTP/1.0 404 Not Found');
 }
 
 ?>
