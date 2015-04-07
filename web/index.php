@@ -18,11 +18,8 @@ $realip = getRealIP();
 require_once ('classes/vhmodule.php');
 $vhms = loadVHModules();
 
-if ( is_file('pages/install.php') ) {
-  include('pages/install.php');
-}
 
-else if (! include('pages/' . $routing[$corrected_uri])) {
+if (! include('pages/' . $routing[$corrected_uri])) {
   header('HTTP/1.0 404 Not Found');
 }
 

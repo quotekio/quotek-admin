@@ -3,10 +3,12 @@
   require_once ('include/functions.inc.php');
 
   if (!isset($_SESSION)) session_start();
-  if (isset($_SESSION['uinfos'])) header('location:/app');
-  include("include/header.inc.php");
-  require_once("lang/$lang/templates/login.lang.php");
 
+  if (is_file( dirname(__FILE__) . '/install.php') && isset($_SESSION['uinfos'])) header('location:/install') ;
+  else if (isset($_SESSION['uinfos'])) header('location:/app');
+
+  include('include/header.inc.php');
+  require_once("lang/$lang/templates/login.lang.php");
 
 ?>
 

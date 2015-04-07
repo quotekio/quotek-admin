@@ -3,6 +3,7 @@
   $routing = array ('/' => 'index.php',
                     '/app' => 'app.php',
                     '/app/signout' => 'app.php',
+                    '/install' => 'install.php',
 
                     //ACE hack
                     '/mode-c_cpp.js' => 'acehack/mode-c_cpp.js',
