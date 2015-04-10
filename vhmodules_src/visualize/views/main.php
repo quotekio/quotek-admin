@@ -114,9 +114,6 @@
                     <i class="icon-fullscreen icon-white"></i>
                   </a>
  
-                  
-
-
                 </div>
               </div>
             </div>

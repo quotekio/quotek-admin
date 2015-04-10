@@ -23,17 +23,41 @@
   </div>
 
 
-  <?= $lang_array['install']['wizzard_welcome'] ?>
+  <div class="wizzard-step app-headed-white-frame" id="step-0">
 
+    <?= $lang_array['install']['wizzard_welcome'] ?>
+
+  </div>
+
+
+  <div class="wizzard-step app-headed-white-frame" id="step-1" style="display:none">
+    <div class="app-headed-frame-header">
+      <h3><?= $lang_array['install']['wizzard_step1_title'] ?></h3>
+    </div>
+    <div class="wizzard-expl">
+      <?= $lang_array['install']['wizzard_step1_expl'] ?>
+    </div>
+  </div>
+
+  <div class="wizzard-step app-headed-white-frame" id="step-2" style="display:none">
+    <div class="app-headed-frame-header">
+      <h3><?= $lang_array['install']['wizzard_step2_title'] ?></h3>
+    </div>
+    <div class="wizzard-expl">
+      <?= $lang_array['install']['wizzard_step2_expl'] ?>
+    </div>
+  </div>
+
+  
   <div id="wizzard_menu">
 
     <div class="btn-group">
 
-      <a class="btn btn-danger">
+      <a class="btn btn-danger disabled" id="prev">
         Précédent
       </a>
 
-      <a class="btn btn-warning">
+      <a class="btn btn-warning" id="next">
         Suivant
       </a>
 
@@ -42,3 +66,29 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+  function navigate(step) {
+
+    $('#prev').off('click');
+    $('#next').off('click');
+
+    if (step <= 1) {
+      $('#prev').addClass('disabled');
+    }
+    else {
+      $('#prev').removeClass('disabled');
+      $('#prev').click(function(){  navigate(step-1); });
+    }
+
+    $('.wizzard-step').hide();
+    $('#step-' + step).show();
+
+
+  }
+
+  function saveSettings() {
+  }
+
+</script>

@@ -8,8 +8,8 @@
 ?>
 
 <div class="app-display" id="coredumps">
-        
-  	    <div class="page-header">
+
+       <div class="title">        
   		  <h3>Coredumps
   		    <small><?= $lang_array['coredumps']['subtitle']  ?></small>
             </h3>

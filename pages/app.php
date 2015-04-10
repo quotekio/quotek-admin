@@ -36,8 +36,7 @@
    ?>       
    <div id="modal_bg"></div>
    <div class="modal" id="modal_win" style="display:none"></div>
-   <div id="debug" style="height:200px;overflow:scroll;width:100%;background:black;color:white;display:none">
-   </div>
+   <div id="debug" style="height:200px;overflow:scroll;width:100%;background:black;color:white;display:none"></div>
    <div id="adam-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
      <div id="notify-restart">
         <?= $lang_array['app']['notify_restart'] ?>
@@ -47,24 +46,23 @@
      </div>
    </div>
 
-
-
    <div id="app-top">
     
    </div>
 
-   <div id="app-left">
-   </div>
+     <div id="app-left">
+     </div>
 
-   <div id="app-mainview">
+     <div id="app-mainview">
     
-     <?php include('templates/app/top.tpl.php'); ?>
+       <?php include('templates/app/top.tpl.php'); ?>
 
-     <div id="app-display">
+       <div id="app-display">
+       </div>
+
      </div>
 
    </div>
-
     
 
     <div id="app-loader" style="width:350px;text-align:center;position:absolute;top:50%;left:50%;margin-top:-180px;margin-left:-128px;">

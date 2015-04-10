@@ -12,10 +12,12 @@ function updateProgress() {
 
 function endLoad() {
 
-  $('#lang-popover').popover({html: true, content: $('#lang-ct').html(),title: $('#lang-title').html()});
+  //$('#lang-popover').popover({html: true, content: $('#lang-ct').html(),title: $('#lang-title').html()});
+
+  $('body').css('background','#111111');
 
   $(window).resize(function(){
-           var dispwidth = $(window).width() - $('#app-left').width();
+            var dispwidth = $('body').innerWidth() - $('#app-left').width();
             $('#app-mainview').width(dispwidth);
 
             $('#modal_bg').width($(window).width());
@@ -33,7 +35,7 @@ function endLoad() {
   $('#app-left').fadeIn(1000);
   $('#app-mainview').fadeIn(1000);
 
-  var dispwidth = $(window).width() - $('#app-left').width();
+  var dispwidth = $('body').innerWidth() - $('#app-left').width();
   $('#app-mainview').width(dispwidth);
 
   clearInterval(tcontrol);

@@ -7,13 +7,14 @@ a:hover {
 }
 
 #app-mainview {
-  width:0px;
   display:none;
   margin-top:0px;
-  float:left;
-  height:100%;
+  min-height: 100%;
   background:#F3F3F4;
-
+  width:0px;
+  position:absolute;
+  top:0px;
+  left:200px;
 }
 
 #app-topbar {
@@ -90,10 +91,10 @@ div.legend > table {
 #app-left {
   display:none;
   background:#111111;
-  height:100%;
   width:200px;
-  float:left;
-  overflow:hidden;
+  font-weight:bold;
+  font-size:12px;
+
 }
 
 #app-left ul {
