@@ -94,7 +94,7 @@
         ?>
 
         <div class="span6">
-          <div class="app-headed-white-frame" style="height:300px">
+          <div class="app-headed-white-frame" style="height:300px;padding-bottom:20px">
             <div class="app-headed-frame-header">
               <div class="span6">
                 <h4><?= $v->name ?></h4>
