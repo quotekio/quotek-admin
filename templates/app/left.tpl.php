@@ -1,5 +1,22 @@
 <?php ?>
 
+  <div class="left-menu-account-display" style="padding:17px;overflow:hidden">
+
+    <div style="float:left;width:45px">
+     <img class="img-circle" src="/img/user.png" style="width:45px;background:#131517"/>
+    </div>
+    
+    <div style="float:left;width:110px;margin-left:10px">
+
+      <span style="color:#F4F4F4;font-size:15px">Admin</span><br>
+      <span style="color:#FF9200;font-size:10px">Logout</span>
+
+    </div>
+
+
+  </div>
+
+
   <ul>
   
   <li>
