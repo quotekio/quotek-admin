@@ -507,3 +507,12 @@ padding:10px;
   margin-left:-40px;
 
 }
+
+.left-menu-account-display{
+
+  padding:17px;
+  overflow:hidden;
+  background-image: url('/img/leftbg.png');
+  height:72px;
+
+};
