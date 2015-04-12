@@ -1,8 +1,10 @@
 <div class="row-fluid" style="margin-top:30px">
 
-  <div class="span6" style="background:blue;height:268px">
+  <div class="span6 app-headed-white-frame" style="height:268px">
 
-    <h1>BAR</h1>
+    <div class="app-headed-frame-header">
+      <h4><?= $lang_array['performance']['trades_stats_title'] ?></h4>
+    </div>
 
   </div>
 

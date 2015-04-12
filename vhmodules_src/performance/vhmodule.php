@@ -7,9 +7,9 @@
   $vhmodule_entries = array();
 
   $vhmodule_views = array('dashboard-bottom' => 'views/dashboard.php',
-                          'dashboard-right' => 'views/dashboard-right.php',
-                          'dashboard-middle' => 'views/dashboard-middle.php' );
-  
+                          'dashboard-right' => 'views/dashboard-right.php');
+                          //'dashboard-middle' => 'views/dashboard-middle.php' );
+
 
   $vhmodule_icon = 'icon:icon-th';                      
   $vhmodule_routing = array ( '/async/vhmodules/performance/stats' => 'async/vhmodules/performance/stats.php',
