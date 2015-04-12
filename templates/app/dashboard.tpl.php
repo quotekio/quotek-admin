@@ -1,4 +1,7 @@
-<?php 
+<?php
+
+  $hrv = hasDashboardRightViews($vhms);
+
 ?>
 
 
@@ -11,8 +14,19 @@
           </h3>
       </div>
       
+      <?php
+          loadVHViews($vhms,'dashboard-top');
+      ?>
+
       <div class="row-fluid">
         
+
+          <?php if ( $hrv ) { ?>
+
+            <div class="span6">
+          
+          <?php } ?>
+          
           <div class="app-headed-white-frame" style="height:268px;width:100%">
             <div class="app-headed-frame-header">
           	    <h4><?= $lang_array['app']['pnl'] ?></h4>
@@ -24,7 +38,23 @@
             </div>
 
           </div>
+
+         <?php if ( $hrv ) { ?>
+
+           </div>
+
+         <?php
+
+           loadVHViews($vhms, 'dashboard-right');        
+ 
+          } ?>
+
+
       </div>
+
+      <?php
+          loadVHViews($vhms,'dashboard-middle');
+      ?>
 
       <div class="row-fluid dashboard-poslist-container" style="margin-top:30px;display:none">
   
@@ -55,7 +85,7 @@
       </div>
 
       <?php
-          loadVHViews($vhms,'dashboard');
+          loadVHViews($vhms,'dashboard-bottom');
       ?>
 
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "* VISIBLE HAND Reach MODULE INSTALL*"
+echo "* VISIBLE HAND Performance MODULE INSTALL*"
 echo "Visible hand Install Directory:"
 
 read INSTALL_DIR
@@ -11,7 +11,7 @@ then
   exit 1
 fi
 
-REACH_DIR=$INSTALL_DIR/vhmodules/reach
+REACH_DIR=$INSTALL_DIR/vhmodules/performance
 
 if ! [ -d $REACH_DIR ]
 then
@@ -19,14 +19,14 @@ then
 fi
 
 
-if ! [ -d $INSTALL_DIR/pages/async/vhmodules/reach ]
+if ! [ -d $INSTALL_DIR/pages/async/vhmodules/performance ]
 then
-  mkdir -p $INSTALL_DIR/pages/async/vhmodules/reach
+  mkdir -p $INSTALL_DIR/pages/async/vhmodules/performance
 fi
 
 cp -rp vhmodule.php views lang $REACH_DIR/
 
-cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/reach/
+cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/performance/
 cp -rp classes/* $INSTALL_DIR/classes/
 
 #SQL

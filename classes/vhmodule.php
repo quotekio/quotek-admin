@@ -13,6 +13,15 @@ class vhmodule {
 
 }
 
+function hasDashboardRightViews($vhms) {
+  foreach ($vhms as $vhm) {
+    if ( array_key_exists('dashboard-right',$vhm->views)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 function listVHModules() {
 

@@ -25,7 +25,7 @@
 
   function drawReachGraph() {
 
-     var rsr = $.ajax({ url: '/async/vhmodules/reach/stats?year=<?= $year = date("Y"); ?>' ,
+     var rsr = $.ajax({ url: '/async/vhmodules/performance/stats?year=<?= $year = date("Y"); ?>' ,
   						 cache: false,
   						 async:true,
   						 success: function() {
