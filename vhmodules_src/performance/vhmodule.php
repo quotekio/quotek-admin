@@ -12,7 +12,7 @@
 
 
   $vhmodule_icon = 'icon:icon-th';                      
-  $vhmodule_routing = array ( '/async/vhmodules/performance/stats' => 'async/vhmodules/performance/stats.php',
+  $vhmodule_routing = array ( '/async/vhmodules/performance/perfstats' => 'async/vhmodules/performance/perfstats.php',
   	                          '/async/vhmodules/performance/perfctl' => 'async/vhmodules/performance/perfctl.php');
   
 

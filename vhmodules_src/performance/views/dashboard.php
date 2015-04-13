@@ -23,9 +23,9 @@
 
 <script type="text/javascript">
 
-  function drawReachGraph() {
+  function drawPerfGraphs() {
 
-     var rsr = $.ajax({ url: '/async/vhmodules/performance/stats?year=<?= $year = date("Y"); ?>' ,
+     var rsr = $.ajax({ url: '/async/vhmodules/performance/perfstats' ,
   						 cache: false,
   						 async:true,
   						 success: function() {
@@ -113,10 +113,10 @@
 
 
   $('#dashboard').bind('afterShow',function() {
-    drawReachGraph();
+    drawPerfGraphs();
   });
 
-  window.setInterval("drawReachGraph();", 60000);
+  window.setInterval("drawPerfGraphs();", 20000);
 
 
 </script>

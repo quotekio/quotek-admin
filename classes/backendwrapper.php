@@ -42,8 +42,36 @@ class backendWrapper {
     }
   }
 
+  function query_history($tinf, $tsup, $time_offset = 0) {
+    if ($this->backend->module_name == "influxdbbe") {
+      return $this->influx_query_history($tinf, $tsup, $time_offset);
+    }
+  }
+
+
   function insert($indice_name,$t,$v,$spread)  {
     $this->dbh->insert($indice_name, array('time' => $t, 'value' => $v , 'spread' => $spread) );
+  }
+
+
+
+  function influx_query_history($tinf, $tsup, $time_offset = 0) {
+
+    $result = array();
+    
+    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
+    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
+
+    $query = "SELECT * from __history__ WHERE time >'" . $tinf . "' AND time >'" . $tsup . "' ORDER DESC;";
+
+    $ires = $this->dbh->query($query);
+
+    foreach( $ires as $rec  ) {
+      $rec->time = $rec->time + 3600 * $time_offset;
+      $result[] = $rec;
+    }
+
+    return $result;
   }
 
   function influx_query($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
