@@ -98,8 +98,6 @@
                            /* ###### TRADE RATIOS RENDER ###### */
 
                            var trade_ratio_options = { series: {
-
-                                 grow: { active: true, duration: 5000 },
                                  pie: {
                                        innerRadius: 0.8,
                                        radius: 1,
@@ -108,31 +106,70 @@
                                        stroke:{
                                          width:0
                                        }
-
                                      },
                                  },
                                  legend: {
                                    show: false,
-                                   radius: 10
                                  },
                                };
 
-
-                           var trade_ratio_day_data = [{ label: "profit", data: d_raw.perf.trade_ratios.day[0] , color: '#699e00', grow: { growings:[ { stepMode: "minimum" } ]} },
-                                              { label: "loss", data: d_raw.perf.trade_ratios.day[1], color: '#c00', grow: { growings:[ { stepMode: "minimum" } ]} }
+                           var trade_ratio_day_data = [{ label: "profit", data: d_raw.perf.trade_ratios.day[0] , color: '#699e00' },
+                                              { label: "loss", data: d_raw.perf.trade_ratios.day[1], color: '#c00'}
                                              ];
 
-                           var trade_ratio_week_data = [{ label: "profit", data: d_raw.perf.trade_ratios.week[0], color: '#699e00', grow: { growings:[ { stepMode: "minimum" } ]}},
-                                              { label: "loss", data: d_raw.perf.trade_ratios.week[1], color: '#c00', grow: { growings:[ { stepMode: "minimum" } ]}}
+                           var trade_ratio_week_data = [{ label: "profit", data: d_raw.perf.trade_ratios.week[0], color: '#699e00' },
+                                              { label: "loss", data: d_raw.perf.trade_ratios.week[1], color: '#c00', }
                                              ];
 
-                           var trade_ratio_month_data = [{ label: "profit", data: d_raw.perf.trade_ratios.month[0], color: '#699e00', grow: { growings:[ { stepMode: "minimum" } ]}},
-                                               { label: "loss", data: d_raw.perf.trade_ratios.month[1], color: '#c00', grow: { growings:[ { stepMode: "minimum" } ]}}
+                           var trade_ratio_month_data = [{ label: "profit", data: d_raw.perf.trade_ratios.month[0], color: '#699e00'},
+                                               { label: "loss", data: d_raw.perf.trade_ratios.month[1], color: '#c00'}
                                               ];
+
+                           if (d_raw.perf.trade_ratios.day[0] == 0 && d_raw.perf.trade_ratios.day[1] == 0 ) {
+                             trade_ratio_day_data = [{ label: "nulldata", data: 1 , color: '#cccccc' }]; 
+                           }
+
+                           if (d_raw.perf.trade_ratios.week[0] == 0 && d_raw.perf.trade_ratios.week[1] == 0 ) {
+                             trade_ratio_week_data = [{ label: "nulldata", data: 1 , color: '#cccccc'}]; 
+                           }
+
+                           if (d_raw.perf.trade_ratios.month[0] == 0 && d_raw.perf.trade_ratios.month[1] == 0 ) {
+                             trade_ratio_month_data = [{ label: "nulldata", data: 1 , color: '#cccccc'}]; 
+                           }
 
                            $.plot($('#performance-trdph'),trade_ratio_day_data,trade_ratio_options);
                            $.plot($('#performance-trwph'),trade_ratio_week_data,trade_ratio_options);
                            $.plot($('#performance-trmph'),trade_ratio_month_data,trade_ratio_options);
+
+                           $('#performance-trdph-label').html( d_raw.perf.trade_ratios.day[0] + "/" + (d_raw.perf.trade_ratios.day[0] + d_raw.perf.trade_ratios.day[1]));
+                           $('#performance-trwph-label').html( d_raw.perf.trade_ratios.week[0] + "/" + (d_raw.perf.trade_ratios.week[0] + d_raw.perf.trade_ratios.week[1]));
+                           $('#performance-trmph-label').html( d_raw.perf.trade_ratios.month[0] + "/" + (d_raw.perf.trade_ratios.month[0] + d_raw.perf.trade_ratios.month[1]) );
+
+
+
+                           if (  d_raw.perf.trade_ratios.day[0] >= d_raw.perf.trade_ratios.day[1] ) {
+                             $('#performance-trdph-label').css('color','#699e00');
+                           }
+
+                           else if (  d_raw.perf.trade_ratios.day[0] < d_raw.perf.trade_ratios.day[1] ) {
+                             $('#performance-trdph-label').css('color','#c00000');
+                           }
+
+                           if ( d_raw.perf.trade_ratios.week[0] >= d_raw.perf.trade_ratios.week[1] ) {
+                             $('#performance-trwph-label').css('color','#699e00');
+                           }
+
+                           else if (  d_raw.perf.trade_ratios.week[0] < d_raw.perf.trade_ratios.week[1] ) {
+                             $('#performance-trwph-label').css('color','#c00000');
+                           }
+
+                           if ( d_raw.perf.trade_ratios.month[0] >= d_raw.perf.trade_ratios.month[1] ) {
+                             $('#performance-trmph-label').css('color','#699e00');
+                           }
+
+                           else if (  d_raw.perf.trade_ratios.month[0] < d_raw.perf.trade_ratios.month[1] ) {
+                             $('#performance-trmph-label').css('color','#c00000');
+                           }
 
                            /* ################################## */
 

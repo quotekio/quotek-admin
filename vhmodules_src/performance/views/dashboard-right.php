@@ -14,21 +14,31 @@
     <div class="span4">
       <div style="width:140px;height:140px;opacity:.6;margin-left:auto;margin-right:auto" id="performance-trdph">
       </div>
-      <h4>Jour</h4>
+      <div>
+        <h4>Jour</h4>
+      </div>
+      <div id="performance-trdph-label" style="opacity:.6;position:relative;margin-top:-120px;font-size:40px;font-weight:bold;width:140px;left:50%;margin-left:-70px"></div>
     </div>
 
     
     <div class="span4">
       <div style="width:140px;height:140px;opacity:.6;margin-left:auto;margin-right:auto" id="performance-trwph">
       </div>
-      <h4>Semaine</h4>
+      <div>
+        <h4>Semaine</h4>
+      </div>
+      <div id="performance-trwph-label" style="opacity:.6;position:relative;margin-top:-120px;font-size:40px;font-weight:bold;width:140px;left:50%;margin-left:-70px"></div>
     </div>
 
     <div class="span4" style="text-align:center">
       <div style="width:140px;height:140px;opacity:.6;margin-left:auto;margin-right:auto" id="performance-trmph">
       </div>
+      <div>
+        <h4>Mois</h4>
+      </div>
 
-      <h4>Mois</h4>
+      <div id="performance-trmph-label" style="opacity:.6;position:relative;margin-top:-120px;font-size:40px;font-weight:bold;width:140px;left:50%;margin-left:-70px"></div>
+
 
     </div>
    
