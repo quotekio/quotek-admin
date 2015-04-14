@@ -28,7 +28,7 @@
   $lang_array['app']['logs'] = 'Journaux';  
   $lang_array['app']['strats'] = 'Strategies';  
   $lang_array['app']['strat'] = 'Stratégie';
-  $lang_array['app']['backtest'] = 'Simulations';  
+  $lang_array['app']['backtest'] = 'Backtests';  
   $lang_array['app']['pos'] = 'Positions';
   $lang_array['app']['pnl'] = 'Pertes et Profits';
   $lang_array['app']['takenpos'] = 'Positions Prises';
@@ -81,9 +81,9 @@
   $lang_array['app']['progress'] = 'Progression';
   $lang_array['app']['graphics'] = 'Graphiques';
 
-  $lang_array['app']['backtests']  = 'Simulations';
+  $lang_array['app']['backtests']  = 'Backtests';
   $lang_array['app']['results']  = 'Résultats';
-  $lang_array['app']['btof'] = 'Simulation du';
+  $lang_array['app']['btof'] = 'Backtest du';
 
   $lang_array['app']['adamvalues'] = 'Valeurs';
   $lang_array['app']['adamvalues_subtitle'] = 'Gerez les valeurs que vous souhaitez trader';
@@ -162,9 +162,9 @@
 
 
 
-  $lang_array['app']['newbacktest'] = 'Nouvelle Simulation';
+  $lang_array['app']['newbacktest'] = 'Nouveau Backtest';
   
-  $lang_array['app']['adambacktest_title'] = 'Simulations';
+  $lang_array['app']['adambacktest_title'] = 'Backtests';
   $lang_array['app']['adambacktest_subtitle'] = 'Créez et lancez des simulations.';
 
   $lang_array['app']['adambacktest_expl'] = 'Ce menu vous permet de lancer des Backtests pour tester la validité
