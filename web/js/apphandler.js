@@ -74,7 +74,8 @@ function loadApp() {
   $("head").append($("<script type='text/javascript' src='/js/flot/jquery.flot.time.js'></script>"));
   $("head").append($("<script type='text/javascript' src='/js/flot/jquery.flot.pie.js'></script>"));
   $("head").append($("<script type='text/javascript' src='/js/flot/jquery.flot.selection.min.js'></script>"));
-  
+  $("head").append($("<script type='text/javascript' src='/js/flot/jquery.flot.growraf.js'></script>"));
+
   /* DATETIME-PICKER */
   $("head").append($("<script type='text/javascript' src='/js/bootstrap-datetimepicker.min.js' charset='utf-8'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/bootstrap-datetimepicker.min.css' type='text/css'>"));

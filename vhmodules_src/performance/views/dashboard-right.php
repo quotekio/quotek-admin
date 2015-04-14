@@ -9,21 +9,30 @@
     <h4><?= $lang_array['performance']['trades_ratio_title'] ?></h4>
   </div>
 
-  <div style="text-align:center">
+    <div style="text-align:center;margin-top:20px">
 
-    <div style="margin-left:auto;margin-right:auto;width:480px;height:140px;background:black;overflow:hidden;margin-top:35px">
-
-      <div style="width:140px;height:140px;background:pink;float:left" id="performance-trdph">
+    <div class="span4">
+      <div style="width:140px;height:140px;opacity:.6;margin-left:auto;margin-right:auto" id="performance-trdph">
       </div>
-
-      <div style="width:140px;height:140px;background:pink;float:left;margin-left:30px" id="performance-trwph">
-      </div>
-
-      <div style="width:140px;height:140px;background:pink;float:left;margin-left:30px" id="performance-trmph">
-      </div>
-      
+      <h4>Jour</h4>
     </div>
 
+    
+    <div class="span4">
+      <div style="width:140px;height:140px;opacity:.6;margin-left:auto;margin-right:auto" id="performance-trwph">
+      </div>
+      <h4>Semaine</h4>
+    </div>
+
+    <div class="span4" style="text-align:center">
+      <div style="width:140px;height:140px;opacity:.6;margin-left:auto;margin-right:auto" id="performance-trmph">
+      </div>
+
+      <h4>Mois</h4>
+
+    </div>
+   
   </div>
+
 
 </div>

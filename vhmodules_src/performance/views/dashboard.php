@@ -30,11 +30,15 @@
   						 async:true,
   						 success: function() {
 
-                           var placeholder = $('#dashboard-graph-performance');
-                           placeholder.width( placeholder.parent().width() );
+                           var d_raw = $.parseJSON(rsr.responseText);
 
-                           var options = {
 
+                           /* ###### REACH RENDER ###### */
+
+                           var reach_placeholder = $('#dashboard-graph-performance');
+                           reach_placeholder.width( reach_placeholder.parent().width() );
+
+                           var reach_options = {
                                    xaxis: {
                                    	mode: "time",
                                    	 //timeformat: "%W",
@@ -51,12 +55,10 @@
 
                            };
 
-                           var d_raw = $.parseJSON(rsr.responseText);
-
-                           var data = [
+                           var reach_data = [
                               {
                                           label: "Goal",
-                                          data: d_raw.goal_data ,
+                                          data: d_raw.reach.goal_data ,
                                           lines: {
                                               lineWidth: 2,
                                               fill:false,
@@ -66,7 +68,7 @@
 
                                {
                                            label: "Perf-",
-                                           data: d_raw.perf_data_negative ,
+                                           data: d_raw.reach.perf_data_negative ,
                                            bars: {
                                               show:true,
                                               fill: true,
@@ -78,7 +80,7 @@
 
                                   {
                                               label: "Perf+",
-                                              data: d_raw.perf_data,
+                                              data: d_raw.reach.perf_data,
                                               bars: {
                                                   show:true,
                                                   fill: true,
@@ -88,20 +90,52 @@
                                                 },
                                                 color: "#699e00"
                                   },
-
-
-
-
-
-                                          
-
-
-
                            ]; 
                              
+                           $.plot(reach_placeholder,reach_data,reach_options);
 
 
-                           $.plot(placeholder,  data ,options);
+                           /* ###### TRADE RATIOS RENDER ###### */
+
+                           var trade_ratio_options = { series: {
+
+                                 grow: { active: true, duration: 5000 },
+                                 pie: {
+                                       innerRadius: 0.8,
+                                       radius: 1,
+                                       show: true,
+                                       label: { show:false },
+                                       stroke:{
+                                         width:0
+                                       }
+
+                                     },
+                                 },
+                                 legend: {
+                                   show: false,
+                                   radius: 10
+                                 },
+                               };
+
+
+                           var trade_ratio_day_data = [{ label: "profit", data: d_raw.perf.trade_ratios.day[0] , color: '#699e00', grow: { growings:[ { stepMode: "minimum" } ]} },
+                                              { label: "loss", data: d_raw.perf.trade_ratios.day[1], color: '#c00', grow: { growings:[ { stepMode: "minimum" } ]} }
+                                             ];
+
+                           var trade_ratio_week_data = [{ label: "profit", data: d_raw.perf.trade_ratios.week[0], color: '#699e00', grow: { growings:[ { stepMode: "minimum" } ]}},
+                                              { label: "loss", data: d_raw.perf.trade_ratios.week[1], color: '#c00', grow: { growings:[ { stepMode: "minimum" } ]}}
+                                             ];
+
+                           var trade_ratio_month_data = [{ label: "profit", data: d_raw.perf.trade_ratios.month[0], color: '#699e00', grow: { growings:[ { stepMode: "minimum" } ]}},
+                                               { label: "loss", data: d_raw.perf.trade_ratios.month[1], color: '#c00', grow: { growings:[ { stepMode: "minimum" } ]}}
+                                              ];
+
+                           $.plot($('#performance-trdph'),trade_ratio_day_data,trade_ratio_options);
+                           $.plot($('#performance-trwph'),trade_ratio_week_data,trade_ratio_options);
+                           $.plot($('#performance-trmph'),trade_ratio_month_data,trade_ratio_options);
+
+                           /* ################################## */
+
 
   						 }
 

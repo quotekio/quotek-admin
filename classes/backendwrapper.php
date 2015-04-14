@@ -64,7 +64,7 @@ class backendWrapper {
 
     $query = "SELECT * from __history__ WHERE time >'" . $tinf . "' AND time >'" . $tsup . "' ORDER DESC;";
 
-    $ires = $this->dbh->query($query);
+    try {$ires = $this->dbh->query($query);}catch(Exception $e){return $result;}
 
     foreach( $ires as $rec  ) {
       $rec->time = $rec->time + 3600 * $time_offset;
