@@ -1,5 +1,14 @@
 <?php ?>
 
+<div id="adam-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
+  <div id="notify-restart">
+     <?= $lang_array['app']['notify_restart'] ?>
+     <script type="text/javascript">
+       $('#notify-restart a').click(function() {  adamRestart(); });
+     </script>
+  </div>
+</div>
+
 <div class="navbar navbar-static-top">
  
   <div class="navbar-inner" id="app-topbar">
