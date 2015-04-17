@@ -14,7 +14,7 @@ function endLoad() {
   $('body').css('background','#111111');
   $(window).resize(function(){
 
-            var dispwidth = $('body').innerWidth() - $('#app-left').width();
+            var dispwidth = $(window).innerWidth() - $('#app-left').width();
             $('#app-mainview').width(dispwidth);
 
             $('#modal_bg').width($(window).width());
@@ -25,15 +25,13 @@ function endLoad() {
 
           });
 
-
   $('#app-loader').hide();
   $('#app-top').fadeIn(1000);
   $('#app-left').fadeIn(1000);
   $('#app-mainview').fadeIn(1000);
 
-  var dispwidth = $('body').innerWidth() - $('#app-left').width();
-
-
+  var dispwidth = $(window).innerWidth() - $('#app-left').width();
+  
   $('#app-mainview').width(dispwidth);
   
   clearInterval(tcontrol);
