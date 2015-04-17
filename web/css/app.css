@@ -2,10 +2,6 @@ a:hover {
   cursor:pointer;
 }
 
-#app-top {
-  display:none;
-}
-
 #app-mainview {
   display:none;
   margin-top:0px;

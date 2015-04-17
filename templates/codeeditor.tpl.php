@@ -3,7 +3,7 @@
 <div class="navbar-inner" id="codeeditor_nav">
 
          <div class="row-fluid">
-        <div class="span3" style="margin-top:0px">
+        <div class="span5" style="margin-top:0px">
           <div style="float:left;width:200px;margin-top:5px">  
               <img style="height:30px" src="/img/quotek-logo.png"> 
           </div>
@@ -14,7 +14,7 @@
         </div>
 
         
-        <div class="span8" style="text-align:right;margin-top:4px">
+        <div class="span7" style="text-align:right;margin-top:4px">
           <div id="codehelp" class="btn-group">
           <a class="btn" title="<?= $lang_array['app']['opendoc'] ?>" target="__new" href="/doc/" rel="tooltip">
             <i class="icon icon-question-sign"></i> <?= $lang_array['app']['doc_small'] ?></a>

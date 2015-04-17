@@ -15,8 +15,8 @@
   
 ?>
 
+<!DOCTYPE HTML>
 <html>
-
   <head>
      <META http-equiv="Content-Type" Content="text/html; charset=UTF-8">
      <link rel="stylesheet" href="/css/bootstrap.css">
@@ -37,10 +37,6 @@
    <div id="modal_bg"></div>
    <div class="modal" id="modal_win" style="display:none"></div>
    <div id="debug" style="height:200px;overflow:scroll;width:100%;background:black;color:white;display:none"></div>
-
-   <div id="app-top">
-    
-   </div>
 
      <div id="app-left">
      </div>

@@ -1,6 +1,5 @@
 var progress = 0;
 var tcontrol;
-
 var dashboard_graphs;
 
 function updateProgress() {
@@ -12,11 +11,9 @@ function updateProgress() {
 
 function endLoad() {
 
-  //$('#lang-popover').popover({html: true, content: $('#lang-ct').html(),title: $('#lang-title').html()});
-
   $('body').css('background','#111111');
-
   $(window).resize(function(){
+
             var dispwidth = $('body').innerWidth() - $('#app-left').width();
             $('#app-mainview').width(dispwidth);
 
@@ -25,7 +22,6 @@ function endLoad() {
 
             $('#codeeditor_area').width($(window).width());
             $('#codeeditor_area').height($(window).height()-42);
-
 
           });
 
@@ -36,22 +32,19 @@ function endLoad() {
   $('#app-mainview').fadeIn(1000);
 
   var dispwidth = $('body').innerWidth() - $('#app-left').width();
-  $('#app-mainview').width(dispwidth);
 
+
+  $('#app-mainview').width(dispwidth);
+  
   clearInterval(tcontrol);
 
   adamUpdateAll();
   setInterval('adamUpdateAll()',3000);
 
-  //setInterval('adamUpdateStatus()',10000);
-  //setInterval('adamUpdateCorestats()',5000);
-
   var ce = ace.edit("codeeditor_area");
   ce.setTheme("ace/theme/xcode");
   ce.getSession().setMode("ace/mode/c_cpp");
   
-  //adamUpdateStatus();
-
   appLoadDisp('dashboard');
   
 }
@@ -79,20 +72,16 @@ function loadApp() {
   $("head").append($("<script type='text/javascript' src='/js/bootstrap-datetimepicker.min.js' charset='utf-8'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/bootstrap-datetimepicker.min.css' type='text/css'>"));
 
-  //$("head").append($("<script type='text/javascript' src='/lib/ace/theme-xcode.js' charset='utf-8'></script>"));
-  //$("head").append($("<script type='text/javascript' src='/lib/ace/mode-c_cpp.js' charset='utf-8'></script>"));
-
   /* APP */
   $("head").append($("<script type='text/javascript' src='/js/vh.js'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/app.css' type='text/css'>"));
   
   progress += 40;
  
-  //$('#app-top').load('/async/app/getapp?part=top',function() { progress+=20; } );
   $('#app-left').load('/async/app/getapp?part=left',function() { progress+=0; } );
   $('#app-display').load('/async/app/getapp?part=disp',function() { progress+=60; } );
 
-  
+ 
 }
 
 function closeApp() {
