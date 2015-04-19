@@ -26,7 +26,7 @@ $phistlist = $b->query_history($cur_month,time(0));
     <th><?= $lang_array['app']['close_time'] ?></th>
 
 	  <th>PNL</th>
-    </th> PNL Peak</th>
+    <th> PNL Peak</th>
   </tr>
 
   <?php foreach($phistlist as $pos)  {?>

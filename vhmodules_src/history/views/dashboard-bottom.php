@@ -28,8 +28,7 @@ function updateHist() {
 }
 
 updateHist();
-
-setInterval();
+window.setInterval("updateHist();", 20000);
 
 </script>
 
