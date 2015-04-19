@@ -37,7 +37,8 @@
   $lang_array['app']['open'] = 'Ouverture';
   $lang_array['app']['stop'] = 'Stop';
   $lang_array['app']['limit'] = 'Limite';
-
+  $lang_array['app']['open_time'] = 'Ouverture';
+  $lang_array['app']['close_time'] = 'Fermeture';
 
   $lang_array['app']['highest'] = 'Plus Haut';
   $lang_array['app']['lowest'] = 'Plus Bas';
