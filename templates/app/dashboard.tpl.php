@@ -9,7 +9,7 @@
 <div class="app-display" id="dashboard">
 
       <div class="title">
-		  <h3><?= $lang_array['app']['dashboard']  ?>
+		  <h3><?= $lang_array['app']['dashboard']  ?>&nbsp;
 		    <small><?= $lang_array['app']['dashboard_subtitle']  ?></small>
           </h3>
       </div>
