@@ -4,8 +4,6 @@
 
 ?>
 
-
-
 <div class="app-display" id="dashboard">
 
       <div class="title">
