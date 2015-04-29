@@ -38,16 +38,23 @@
           <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
       
            <li>
+            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker',true);appUpdateLeft($('#acclink-cfg'));">
+              <i class="icon-briefcase icon-white"></i> 
+              <?=  $lang_array['app']['broker']  ?> </a>
+           </li>            
+
+           <li>
             <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-values',true);appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-book icon-white"></i> 
               <?=  $lang_array['app']['values']  ?> </a>
            </li>
 
            <li>
-            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker',true);appUpdateLeft($('#acclink-cfg'));">
-              <i class="icon-briefcase icon-white"></i> 
-              <?=  $lang_array['app']['broker']  ?> </a>
+            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-users',true);appUpdateLeft($('#acclink-cfg'));">
+              <i class="icon-user icon-white"></i> 
+              <?=  $lang_array['app']['users']  ?> </a>
            </li>            
+
 
           </div>
         </div>

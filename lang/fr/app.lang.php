@@ -62,9 +62,10 @@
   $lang_array['app']['nbpos'] = 'Positions Ouvertes';
   $lang_array['app']['lastlog'] = 'Dernières entrées du journal';
   $lang_array['app']['adamcfg'] = 'Configuration';
-  $lang_array['app']['broker'] = 'Courtier';
+  $lang_array['app']['broker'] = 'Courtiers';
   $lang_array['app']['indices'] = 'Indices';
   $lang_array['app']['values'] = 'Valeurs';
+  $lang_array['app']['users'] = 'Utilisateurs';
   $lang_array['app']['cfg_indices_title'] = 'Configuration des Indices';
   $lang_array['app']['capital'] = 'Capital';
   $lang_array['app']['getval_ticks'] = 'Ticks Valeurs';
@@ -220,4 +221,7 @@
 
   $lang_array['app']['backtest_result_delete'] = 'Supprimer le résultat de simulation';
 
+  $lang_array['app']['cfg_users_title'] = 'Gestion des utilisateurs';
+  $lang_array['app']['cfg_users_subtitle'] = 'Créez des utilisateur et configurez leurs permissions';
+  
 ?>
