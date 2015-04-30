@@ -17,23 +17,15 @@
 </div>
 
 <script type="text/javascript">
-  adamRefreshTable('brokercfg-table');
 
-  $('#adamcfg-broker').bind('afterShow',function() {
+  function adamUsercfgEditorNav(obj) {
+     $('.usercfg-editor-frame').hide();
+     $('#usercfg-editor-' +  obj.attr('id') ).show();
 
-    $('.newbtn').click(function() {
-                                 adamShowBrokercfgEditor();
-                                 $('#editor-title').html("<?= $lang_array['app']['adambroker_editor_create_title']  ?>");
-                                 $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
-                                 $('#editor-action').off();
-                                 $('#editor-action').click(function() {
-                                     adamSaveBrokerCfg();
-                                 });
-                               });
+     $('.usercfg-editor-navlink').parent().removeClass('active');
+     obj.parent().addClass('active');
 
-    $('.newbtn').attr('title','<?= $lang_array['app']['newbroker'] ?>');
-    
-  });
+  }
 
 
 </script>
