@@ -9,6 +9,7 @@
   $lang_array['app']['name'] = 'Nom';
   $lang_array['yes'] = 'Oui';
   $lang_array['no'] = 'Non';
+
   $lang_array['app']['dashboard'] = 'Tableau de bord';
   $lang_array['app']['dashboard_subtitle'] = 'Vue générale';
   $lang_array['app']['adam_mode_'] = 'Status';
@@ -46,6 +47,7 @@
   $lang_array['app']['variation'] = 'Variation';
 
   $lang_array['app']['close'] = 'Fermer';
+  $lang_array['app']['never'] = 'Jamais';
    
   $lang_array['app']['stoploss'] = 'Stop Minimum';
   $lang_array['app']['pnlpp'] = 'PP par Point';
@@ -224,4 +226,13 @@
   $lang_array['app']['cfg_users_title'] = 'Gestion des utilisateurs';
   $lang_array['app']['cfg_users_subtitle'] = 'Créez des utilisateur et configurez leurs permissions';
   
+  $lang_array['app']['general']  = 'Général';
+  $lang_array['app']['permissions']= 'Permissions';
+  $lang_array['app']['usercfg_editor_create_title']  = 'Nouvel Utilisateur';
+  $lang_array['app']['usercfg_editor_edit_title']  = 'Editer L\'utilisateur';
+  $lang_array['app']['rsa_pubkey'] = 'Clé Publique RSA';
+  $lang_array['app']['lastconn'] = 'Derniere Connexion';
+  $lang_array['app']['revoked'] = 'Révoqué';
+
+
 ?>

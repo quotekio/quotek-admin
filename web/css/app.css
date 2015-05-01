@@ -401,11 +401,13 @@ padding:15px;
   cursor:pointer;
 }
 
-.corecfg-editor-frame {
+.corecfg-editor-frame, .usercfg-editor-frame {
   overflow-y:scroll;
   height:370px;
  
 }
+
+
 
 #adam-cmdprompt, .prompt  {
   height:25px;

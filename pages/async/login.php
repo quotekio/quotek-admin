@@ -1,24 +1,20 @@
 <?php
-require_once("classes/vhuser.php");
-require_once("include/functions.inc.php");
-require_once("classes/chilimessage.php");
+require_once('classes/user.php');
+require_once('include/functions.inc.php');
 
 $lang = 'en';
 selectLanguage();
 
-$errhandler = new chilierror($lang);
-
-
 if (!isset($_REQUEST['username'])|| !isset($_REQUEST['password'])) die('ERROR: Missing Login Parameter');
-
 if (!isset($_SESSION)) session_start();
-$vu = new vhuser();
-if ($vu->auth($_REQUEST['username'],$_REQUEST['password']) >= 0) {
-  
-  $vu->load();
-  //$cu->updateLastLogin();
-  $vu->startSession();
+$u = new user();
+$u->loadByUsername($_REQUEST['username']);
+
+if ($u->auth($_REQUEST['password']) == true) {
+
+  $u->updateLastConn();
+  $u->startSession();
   echo "OK";
 }
-else $errhandler->printm('ERR_INVALID_LOGIN',true); ;
+else echo "ERROR";
 ?>

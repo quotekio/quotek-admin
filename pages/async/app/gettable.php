@@ -13,5 +13,6 @@
    else if ($tname == 'corecfg-table') include('templates/tables/corecfg.tpl.php');
    else if ($tname == 'brokercfg-table') include('templates/tables/brokercfg.tpl.php');
    else if ($tname == 'backtests-table') include('templates/tables/backtests.tpl.php');
+   else if ($tname == 'usercfg-table') include('templates/tables/usercfg.tpl.php');
 
 ?>

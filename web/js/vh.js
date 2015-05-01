@@ -1624,6 +1624,20 @@ function adamShowCorecfgEditor() {
 
 }
 
+function adamShowUserEditor() {
+
+    var gt = $.ajax({
+        url:            '/async/gettemplate',
+        type:           'POST',
+        data:           {tpl: 'editor-usercfg'},
+        cache:          false,
+        async:          false
+        });
+    
+    modalInst(700,635,gt.responseText);
+
+}
+
 function adamShowValueEditor() {
 
     var gt = $.ajax({
@@ -1838,6 +1852,53 @@ function adamChangeBTResultValues() {
   $('#result_value_deviation').html(asstat.deviation);
 
 }
+
+
+function adamSaveUser(id) {
+
+    id = ( typeof id == 'undefined' ) ? -1 : id;
+    
+    var user;
+
+    if (id == -1) {
+       user = { 'username': null, 
+                'password': null,
+                'rsa_key': null };
+    }
+
+    else {
+       strat = { 'id': id ,
+                 'username': null, 
+                 'password': null,
+                 'rsa_key': null }; 
+    }
+
+    user.username = $('#input-usercfg-username').val();
+    user.password = $('#input-usercfg-password').val();
+    user.rsa_key = $('#input-usercfg-rsakey').val();
+    var r = adamObject('add','user',user,-1);
+
+    if (r.answer == 'OK') {
+        adamRefreshTable('usercfg-table');
+        modalDest();
+    }
+    else {
+      console.log( r.answer );
+    }
+
+}
+
+function adamDelUser(uid) {
+
+   var r = adamObject('del','user',{},uid);
+   if (r.answer == 'OK') {
+     var line = $('#user-line-' + uid);
+     $('#btn-del-usercfg',line).tooltip('hide');
+     $('#btn-del-usercfg',line).off();
+     line.remove();
+   }
+}
+
 
 
 function chiliMessage(type,message) {

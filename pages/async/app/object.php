@@ -5,6 +5,7 @@
    include "classes/valuecfg.php";
    include "classes/strategy.php";
    include "classes/backtest.php";
+   include "classes/user.php";
 
    require_once('include/functions.inc.php');
    if (!verifyAuth()) die("ERROR: Not authenticated");
@@ -295,6 +296,46 @@
     
   }
 
+  else if ($type == "user") {
+
+    if ($action == 'add' || $action == 'mod') {
+
+          if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
+          $data = json_decode($_REQUEST['data']);
+          $obj = new user();
+          $obj->remap($data);
+          $obj->save();
+          echo json_encode($response);
+
+      }
+
+      else if ($action == 'get') {
+          $obj = new user();
+          $obj->id = $_REQUEST['id'];
+          $obj->load();
+          echo json_encode($obj);
+      }
+
+      else if ($action == 'del') {
+          $obj = new user();
+          $obj->id = $_REQUEST['id'];
+          $obj->delete();
+          $response['message'] = 'Backtest ' . $obj->id . ' successfully deleted';
+          echo json_encode($response);
+      }
+
+      else if ($action == 'dup') {
+  
+         $obj = new user();
+         $obj->id = $_REQUEST['id'];
+         $obj->load();
+         unset($obj->id);
+         $obj->duplicate($obj->name . "_copy" );
+         echo json_encode($response);
+      }
+    
+  }
+  
   else {
 
     $response['answer'] = 'ERR';

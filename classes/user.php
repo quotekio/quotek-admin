@@ -10,12 +10,10 @@ class permission extends adamobject {
 
 }
 
-
 function loadPermissions($user_id) {
-
   $permissions = array();
   global $dbhandler;
-  $dbh = $dbhandler->query("SELECT id FROM permission WHERE user_id= '" . $userid . "';");
+  $dbh = $dbhandler->query("SELECT id FROM permission WHERE user_id= '" . $user_id . "';");
   while( $ans = $dbh->fetch() ) {
     $perm = new permission();
     $perm->id = $ans['id'];
@@ -23,6 +21,19 @@ function loadPermissions($user_id) {
     $permissions[] = $perm;
   }
   return $permissions;
+}
+
+function getUserList() {
+  global $dbhandler;
+  $ulist = array();
+  $dbh = $dbhandler->query("SELECT id FROM user;");
+  while ( $ans = $dbh->fetch() ) {
+    $u = new user();
+    $u->id = $ans['id'];
+    $u->load();
+    $ulist[] = $u;
+  }
+  return $ulist;
 }
 
 
@@ -36,9 +47,11 @@ class user extends adamobject {
   }
 
   /* Convenience function because we don't know user id in advance */
-  function load($username) {
+  function loadByUsername($username) {
     global $dbhandler;
-    $dbh = $dbhandler->query("SELECT * FROM " . get_class($this) . " WHERE username= '" . $this->username . "';");
+
+    $this->username = $username;
+    $dbh = $dbhandler->query("SELECT * FROM user WHERE username= '" . $this->username . "';");
     $ans = $dbh->fetch();
     /* new way (new life) to retrieve parameters */
     foreach($ans as $key => $value) {
@@ -56,11 +69,21 @@ class user extends adamobject {
        return false;
    }
 
-  function checkPermissions($app) {
-    $permissions = loadPermissions($this->id);
 
-    foreach ($permissions as $perm) {
-      if ($app == $perm->application) {
+  function loadPermissions() {
+    $this->permissions = loadPermissions($this->id);
+    return $this->permissions;
+  }
+  
+  function updateLastConn() {
+    $this->lastconn = time(0);
+    $this->save();
+  }
+
+  function checkPermissions($sc) {
+    if (! isset($this->permissions)) $this->loadPermissions();
+    foreach ($this->permissions as $perm) {
+      if ($sc == $perm->scope) {
         return $perm->right;
       }
     }
