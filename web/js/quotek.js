@@ -1899,6 +1899,17 @@ function adamDelUser(uid) {
    }
 }
 
+function adamGetUserDataToEdit(uuid) {
+
+   var userdata = adamObject('get','user',{},uuid);
+
+   $('#input-usercfg-username').val(userdata.username);
+   $('#input-usercfg-password').val('');
+   $('#input-usercfg-rsakey').val(userdata.rsa_key);
+
+}
+
+
 
 
 function chiliMessage(type,message) {

@@ -37,10 +37,8 @@
     set_include_path(get_include_path() . ':' . $incpath);
   }
 
-  //$dbhandler = new SQLiteDatabase( dirname(__FILE__) . '/../data/vh.sqlite');
-
   try{
-    $dbhandler = new PDO('sqlite:'.dirname(__FILE__).'/../data/vh.sqlite');
+    $dbhandler = new PDO('sqlite:'.dirname(__FILE__).'/../data/quotek.sqlite');
     $dbhandler->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $dbhandler->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
 } catch(Exception $e) {

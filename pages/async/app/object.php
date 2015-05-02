@@ -302,6 +302,20 @@
 
           if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
           $data = json_decode($_REQUEST['data']);
+
+          if ($action == 'add'  && $data->password == '') {
+            $response['answer'] = 'ERR';
+            $response['message'] = 'User Password is empty';
+            echo json_encode($response);
+            exit();
+          }
+
+          else if ( $data->password != '' ) {
+            $data->newpassword = $data->password;
+          }
+
+          unset($data->password);
+
           $obj = new user();
           $obj->remap($data);
           $obj->save();
@@ -335,7 +349,7 @@
       }
     
   }
-  
+
   else {
 
     $response['answer'] = 'ERR';

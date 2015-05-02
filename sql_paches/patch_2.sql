@@ -1,4 +1,4 @@
-CREATE TABLE permission (id INTEGER PRIMARY KEY,
+CREATE TABLE permission (id INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT,
 	                     user_id INTEGER,
                          scope VARCHAR(256),
                          right INTEGER);

@@ -22,11 +22,11 @@
 
     <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
     <LINK rel=stylesheet type="text/css" href="/css/bootstrap.css">
-    <LINK rel=stylesheet type="text/css" href="/css/vh.css">
+    <LINK rel=stylesheet type="text/css" href="/css/quotek.css">
 
     <script type="text/javascript" src="/js/jquery.js"></script>
     <script type="text/javascript" src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/vh.js"></script>
+    <script type="text/javascript" src="/js/quotek.js"></script>
   </head>
   <body>
 

@@ -71,7 +71,7 @@ function loadApp() {
   $("head").append($("<link rel='stylesheet' href='/css/bootstrap-datetimepicker.min.css' type='text/css'>"));
 
   /* APP */
-  $("head").append($("<script type='text/javascript' src='/js/vh.js'></script>"));
+  $("head").append($("<script type='text/javascript' src='/js/quotek.js'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/app.css' type='text/css'>"));
   
   progress += 40;

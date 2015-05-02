@@ -1,6 +1,7 @@
 <?php
 
 require_once('adamobject.php');
+require_once('include/functions.inc.php');
 
 $PERM_NONE = 0x00;
 $PERM_READ = 0x01;
@@ -74,10 +75,22 @@ class user extends adamobject {
     $this->permissions = loadPermissions($this->id);
     return $this->permissions;
   }
-  
+
   function updateLastConn() {
     $this->lastconn = time(0);
     $this->save();
+  }
+  
+  function save() {
+
+    if ( isset($this->newpassword) ) {
+      $this->salt = genSalt();
+      $this->password = sha1($this->salt . $this->newpassword);
+      unset($this->newpassword);
+    }
+    
+    parent::save();
+    
   }
 
   function checkPermissions($sc) {
