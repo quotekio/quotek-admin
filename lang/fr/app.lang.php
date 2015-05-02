@@ -234,5 +234,9 @@
   $lang_array['app']['lastconn'] = 'Derniere Connexion';
   $lang_array['app']['revoked'] = 'Révoqué';
 
+  $lang_array['app']['git_hint'] = 'L\'accès à votre dépot git est:';
+  $lang_array['app']['git_branch'] = 'Branche git';
+
+
 
 ?>

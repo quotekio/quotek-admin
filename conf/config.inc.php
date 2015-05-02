@@ -8,6 +8,9 @@
   $ADAM_TMP = "/tmp/adam";
   $ADAM_PIDFILE = "$ADAM_TMP/adam.pid";
 
+  $GIT_USER = 'git';
+  $GIT_LOCATION='/quotek';
+
   $ADAM_BT_EXPORTS = "/usr/local/adam/admin/data/dumps";
 
   $ADAM_AEP_ADDR = "127.0.0.1";

@@ -1,5 +1,7 @@
 <?php
 
+/* New class handling strategies through GIT */
+
 require_once('adamobject.php');
 
 class strategy extends adamobject {

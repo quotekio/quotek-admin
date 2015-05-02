@@ -12,6 +12,22 @@
 
    </div>
 
+  <div class="alert alert-success">
+    <?= $lang_array['app']['git_hint'] . " <b>" .  $GIT_USER . '@' . $_SERVER['SERVER_NAME'] . ':' . $GIT_LOCATION . "</b>" ?>
+  </div>
+
+  <div class="app-headed-white-frame" id="git-controller" style="padding:10px;margin-bottom:20px">
+
+  
+      <img src="/img/git-large.png" style="width:48px"/>
+      <label><?= $lang_array['app']['git_branch']?></label>
+      <select id="input-git-branch">
+      </select>
+
+  </div>
+  
+
+
   <div class="table-ct" id="strategies-table-wrapper">
   </div>
 
