@@ -16,25 +16,34 @@
     <?= $lang_array['app']['git_hint'] . " <b>" .  $GIT_USER . '@' . $_SERVER['SERVER_NAME'] . ':' . $GIT_LOCATION . "</b>" ?>
   </div>
 
-  <div class="app-headed-white-frame" id="git-controller" style="padding:10px;margin-bottom:20px">
+  <div class="app-headed-white-frame" id="git-controller" style="padding:10px;margin-bottom:20px;overflow:visible">
 
       <div class="row-fluid">
 
-        <div class="span1">
-          <img src="/img/git-large.png" style="width:48px"/>
-        </div>
-
         <div class="span2">
-          <label><?= $lang_array['app']['git_branch']?></label>
-          <select id="input-git-branch">
-          </select>
+
+          <img src="/img/git-large.png" style="width:30px"/>
+
+          <div class="btn-group" style="display:inline!important">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+              <?= $lang_array['app']['git_branch']?>
+            <span class="caret"></span>
+            </a>
+            <ul id="strat-git-branchlist" class="dropdown-menu">
+            
+            </ul>
+          </div>
+
         </div>
 
-        <div class="span9" style="text-align:right">
+        <div class="span8" style="text-align:right">
           <div class="btn-group">
-            <a class="btn btn-info"><?= $lang_array['app']['git_newbranch'] ?></a>
-            <a class="btn btn-danger"><?= $lang_array['app']['git_commit'] ?></a>
+            <a id="btn-git-newbranch" class="btn btn-info"><?= $lang_array['app']['git_newbranch'] ?></a>
+            <a id="btn-git-delbranch" class="btn btn-danger"><?= $lang_array['app']['git_delbranch'] ?></a>
           </div>
+        </div>
+        <div class="span2">
+          <a class="btn disabled"><?= $lang_array['app']['git_commit'] ?></a>
         </div>
     </div>
   </div>
@@ -52,7 +61,12 @@
 
   adamRefreshTable('strategies-table');
 
+  $('#btn-git-newbranch').click(function(){ adamShowBranchEditor(); });
+  $('#btn-git-delbranch').click(function(){ adamShowDelBranchEditor(); });
+
   $('#adamstrats').bind('afterShow',function() {
+
+      adamUpdateGitBranches();
 
       $('.newbtn').click(function() {
 

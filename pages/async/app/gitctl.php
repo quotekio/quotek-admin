@@ -21,6 +21,11 @@
     $repository->run('checkout', array('-b',$branch_name));
   }
 
+  if ($action == 'checkout') {
+    $branch_name = $_REQUEST['branch_name'];
+    $repository->run('checkout', array($branch_name)); 
+  }
+  
   else if ($action == 'deletebranch') {
     $branch_name = $_REQUEST['branch_name'];
     $repository->run('branch', array('-D',$branch_name));   
@@ -39,5 +44,5 @@
     $repository->run('add', array('-A'));
     $repository->run('commit', array('-m', "\"$commit_message\""));
   }
-  
+
 ?>

@@ -1910,43 +1910,105 @@ function adamGetUserDataToEdit(uuid) {
 }
 
 
+function adamShowBranchEditor() {
 
+  var be = $.ajax({
+        url:            '/async/gettemplate',
+        type:           'POST',
+        data:           {tpl: 'editor-gitbranch'},
+        cache:          false,
+        async:          false
+        });
 
-function chiliMessage(type,message) {
-  $('#' + type).html(message);
-  $('#' + type + '-enveloppe').show();
+  modalInst(400,'auto',be.responseText);
 }
 
-function chiliModalert(message) {
-  chiliMessage('modal-alert',message);
-}
+function adamShowDelBranchEditor() {
 
-function chiliModalSuccess(message) {
-  chiliMessage('modal-success',message);
-}
+  var db = $.ajax({
+        url:            '/async/gettemplate',
+        type:           'POST',
+        data:           {tpl: 'editor-gitdelbranch'},
+        cache:          false,
+        async:          false
+        });
 
-
-function chiliAppBuilderAlert(message) {
-  chiliMessage('app-builder-alert',message);
-}
-
-function chiliAppSettingsAlert(message) {
-  chiliMessage('app-settings-alert',message);
-}
-
-function chiliAppSettingsSuccess(message) {
-  chiliMessage('app-settings-success',message);
+  modalInst(400,'auto',db.responseText);
+  
 }
 
 
-function chiliAppFeedbackSuccess(message) {
-  chiliMessage('app-feedback-success',message);
+function adamShowCommitEditor() {
+
 }
 
-function chiliContactSuccess(message) {
-  chiliMessage('contact-success',message);
+
+function adamUpdateGitBranches() {
+
+  var ggb = $.ajax({
+                        url:            '/async/app/gitctl',
+                        type:           'GET',
+                        data:           { 'action': 'getbranches' },
+                        cache:          true,
+                        async:          true,
+                        success: function() {
+
+                          $('#strat-git-branchlist').html('');
+                          var branches = $.parseJSON(ggb.responseText);
+                          $.each(branches, function(index,i) {
+                            $('#strat-git-branchlist').append("<li><a onclick=\"adamCheckoutGitBranch('" + i +  "');\">" + i + "</a></li>");
+                            
+                          });
+                          
+
+                        }
+  });
+  
 }
 
-function chiliContactError(message) {
-  chiliMessage('contact-error',message);
+function adamCreateGitBranch() {
+
+  var new_branch = $('#input-git-newbranch').val();
+  var gcb = $.ajax({
+                        url:            '/async/app/gitctl',
+                        type:           'GET',
+                        data:           { 'action': 'createbranch', 'branch_name': new_branch },
+                        cache:          true,
+                        async:          true,
+                        success: function() {
+                          adamUpdateGitBranches();
+                          modalDest();
+                        }
+  });
+}
+
+function adamDeleteGitBranch() {
+
+  var branch = $('#input-git-delbranch').val();
+  var gcb = $.ajax({
+                        url:            '/async/app/gitctl',
+                        type:           'GET',
+                        data:           { 'action': 'deletebranch', 'branch_name': branch },
+                        cache:          true,
+                        async:          true,
+                        success: function() {
+                          adamUpdateGitBranches();
+                          modalDest();
+                        }
+  });
+}
+
+function adamCheckoutGitBranch(branch) {
+
+  var gcb = $.ajax({
+                        url:            '/async/app/gitctl',
+                        type:           'GET',
+                        data:           { 'action': 'checkout', 'branch_name': branch },
+                        cache:          true,
+                        async:          true,
+                        success: function() {
+                          adamUpdateGitBranches();
+                          modalDest();
+                        }
+  });
 }

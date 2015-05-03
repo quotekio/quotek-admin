@@ -236,7 +236,11 @@
 
   $lang_array['app']['git_hint'] = 'L\'accès à votre dépot git est:';
   $lang_array['app']['git_branch'] = 'Branche git';
-  $lang_array['app']['git_newbranch'] = 'Nouvelle Branche';
+  $lang_array['app']['git_newbranch'] = 'Nlle. Branche';
+  $lang_array['app']['git_delbranch'] = 'Suppr. Branche';
+
   $lang_array['app']['git_commit'] = 'Commit';
+  $lang_array['app']['git_newbranch_title'] = 'Nouvelle Branche git';
+  $lang_array['app']['git_delbranch_title'] = 'Supprimer une Branche git';
 
 ?>
