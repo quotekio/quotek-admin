@@ -43,7 +43,7 @@ then
 fi
 
 mkdir $INSTALL_DIR
-cp -rv classes lib conf data include jobs processes lang pages templates web tools $INSTALL_DIR/
+cp -rv classes lib vendor conf data include jobs processes lang pages templates web tools $INSTALL_DIR/
 
 if [ $HAS_PREV_INST -eq 1 ]
 then

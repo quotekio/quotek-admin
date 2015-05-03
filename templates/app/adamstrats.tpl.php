@@ -18,12 +18,25 @@
 
   <div class="app-headed-white-frame" id="git-controller" style="padding:10px;margin-bottom:20px">
 
-  
-      <img src="/img/git-large.png" style="width:48px"/>
-      <label><?= $lang_array['app']['git_branch']?></label>
-      <select id="input-git-branch">
-      </select>
+      <div class="row-fluid">
 
+        <div class="span1">
+          <img src="/img/git-large.png" style="width:48px"/>
+        </div>
+
+        <div class="span2">
+          <label><?= $lang_array['app']['git_branch']?></label>
+          <select id="input-git-branch">
+          </select>
+        </div>
+
+        <div class="span9" style="text-align:right">
+          <div class="btn-group">
+            <a class="btn btn-info"><?= $lang_array['app']['git_newbranch'] ?></a>
+            <a class="btn btn-danger"><?= $lang_array['app']['git_commit'] ?></a>
+          </div>
+        </div>
+    </div>
   </div>
   
 

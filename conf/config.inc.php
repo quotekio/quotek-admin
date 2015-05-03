@@ -9,7 +9,7 @@
   $ADAM_PIDFILE = "$ADAM_TMP/adam.pid";
 
   $GIT_USER = 'git';
-  $GIT_LOCATION='/quotek';
+  $GIT_LOCATION='/git';
 
   $ADAM_BT_EXPORTS = "/usr/local/adam/admin/data/dumps";
 
@@ -48,5 +48,8 @@
     echo "Impossible d'accéder à la base de données SQLite : ".$e->getMessage();
     die();
 }
+
+//loads composer autoload
+require __DIR__ . '/../vendor/autoload.php';
 
 ?>

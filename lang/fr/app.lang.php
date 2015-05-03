@@ -236,7 +236,7 @@
 
   $lang_array['app']['git_hint'] = 'L\'accès à votre dépot git est:';
   $lang_array['app']['git_branch'] = 'Branche git';
-
-
+  $lang_array['app']['git_newbranch'] = 'Nouvelle Branche';
+  $lang_array['app']['git_commit'] = 'Commit';
 
 ?>
