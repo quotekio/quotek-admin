@@ -27,7 +27,8 @@
                     '/async/app/gwctl' => 'async/app/gwctl.php',
                     '/async/app/backtestctl' => 'async/app/backtestctl.php',
                     '/async/app/grapher' => 'async/app/grapher.php',
-                    '/async/app/sess2json' => 'async/app/sess2json.php'
+                    '/async/app/sess2json' => 'async/app/sess2json.php',
+                    '/async/app/gitctl' => 'async/app/gitctl.php'
 
 
   );

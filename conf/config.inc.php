@@ -9,7 +9,7 @@
   $ADAM_PIDFILE = "$ADAM_TMP/adam.pid";
 
   $GIT_USER = 'git';
-  $GIT_LOCATION='/git';
+  $GIT_LOCATION='/quotek';
 
   $ADAM_BT_EXPORTS = "/usr/local/adam/admin/data/dumps";
 
