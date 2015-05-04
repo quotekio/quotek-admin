@@ -148,7 +148,6 @@ function getCfgValues($cfg_id) {
 
 function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
-  require_once('strategy.php');
   require_once('valuecfg.php');
 
   global $ADAM_PATH;
@@ -162,6 +161,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
      $cfg->load();
   }
 
+  /*
   if ($strat_id == null) {
       $strat = getActiveStrat();
   }
@@ -170,6 +170,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
      $strat->id = $strat_id;
      $strat->load();
   }
+  */
 
   $fh = null;
   if ($dest == null) {
@@ -183,9 +184,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   $broker_cfg = $cfg->getBroker();
   $backend = $cfg->getBackendModule();
   $values = getCfgValues($cfg->id); 
-  $exp_stratname = $strat->export();
-  //export all found modules
-  exportStratModules();
+  //$exp_stratname = $strat->export();
 
   fwrite($fh,"eval_ticks = " . $cfg->eval_ticks . "\n");
   fwrite($fh,"getval_ticks = " . $cfg->getval_ticks . "\n");

@@ -10,6 +10,7 @@
   $lang_array['yes'] = 'Oui';
   $lang_array['no'] = 'Non';
 
+
   $lang_array['app']['dashboard'] = 'Tableau de bord';
   $lang_array['app']['dashboard_subtitle'] = 'Vue générale';
   $lang_array['app']['adam_mode_'] = 'Status';
@@ -84,6 +85,7 @@
   $lang_array['app']['code'] = "Code Source";
   $lang_array['app']['progress'] = 'Progression';
   $lang_array['app']['graphics'] = 'Graphiques';
+  $lang_array['app']['delete'] = 'Supprimer';
 
   $lang_array['app']['backtests']  = 'Backtests';
   $lang_array['app']['results']  = 'Résultats';

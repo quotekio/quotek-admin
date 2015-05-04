@@ -39,6 +39,18 @@
     echo json_encode($branches);
   }
 
+  else if ($action == 'getinfos') {
+    
+    $commit = $repository->getHeadCommit();
+    foreach ($commit->getTree()->getEntries() as $name => $data ) {
+      if (  strpos($name,".qs") > 0 || strpos($name,".qsm") > 0) {
+        print $name;
+        print_r($data);
+      }
+    }
+
+  }
+
   else if ($action == 'commit') {
     $commit_message = $_REQUEST['commit_message'];
     $repository->run('add', array('-A'));

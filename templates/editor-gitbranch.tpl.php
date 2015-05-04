@@ -17,7 +17,7 @@
           </div>
         </form>
     
-        <a class="btn btn-large btn-warning" style="float:right" id="btn-git-createb"><?= $lang_array['app']['create'] ?></a>
+        <a class="btn btn-warning" style="float:right" id="btn-git-createb"><?= $lang_array['app']['create'] ?></a>
 
      </div>
 

@@ -23,7 +23,7 @@
           <div class="row-fluid">
             <div class="span12">
                <label><b><?= $lang_array['app']['name'] ?></b></label>
-               <select id="input-git-delbranch" style="height:27px;width:350px">
+               <select id="input-git-delbranch" style="height:30px;width:350px">
                <?php foreach( $branches as $branch ) { ?>
                  <option value="<?= $branch ?>"><?= $branch ?></option>
                <?php } ?>
@@ -34,7 +34,7 @@
           </div>
         </form>
     
-        <a class="btn btn-large btn-danger" style="float:right" id="btn-git-deleteb"><?= $lang_array['app']['delete'] ?></a>
+        <a class="btn btn-danger" style="float:right" id="btn-git-deleteb"><?= $lang_array['app']['delete'] ?></a>
 
      </div>
 
