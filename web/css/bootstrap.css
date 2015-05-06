@@ -3195,6 +3195,10 @@ button.close {
   -webkit-appearance: none;
 }
 
+.btn i  {
+  margin-top:4px;
+} 
+
 .btn {
   display: inline-block;
   *display: inline;

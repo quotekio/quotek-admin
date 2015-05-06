@@ -1937,11 +1937,19 @@ function adamShowDelBranchEditor() {
   
 }
 
-
 function adamShowCommitEditor() {
 
-}
+  var cr = $.ajax({
+        url:            '/async/gettemplate',
+        type:           'POST',
+        data:           {tpl: 'editor-gitcommit'},
+        cache:          false,
+        async:          false
+        });
 
+  modalInst(500,'auto',cr.responseText);
+
+}
 
 function adamUpdateGitBranches() {
 
@@ -1982,6 +1990,27 @@ function adamCreateGitBranch() {
   });
 }
 
+function adamCreateGitCommit() {
+
+  var commit_message = $('#input-git-commit-title').val() + "\\n\\n" + $('#input-git-commit-comment').val();
+
+  var gcc = $.ajax({
+                        url:            '/async/app/gitctl',
+                        type:           'GET',
+                        data:           { 'action': 'commit', 'commit_message': commit_message },
+                        cache:          true,
+                        async:          true,
+                        success: function() {
+                          adamCheckPendingGitCommit();  
+                          modalDest();
+                        }
+  });
+
+}
+
+
+
+
 function adamDeleteGitBranch() {
 
   var branch = $('#input-git-delbranch').val();
@@ -2011,4 +2040,36 @@ function adamCheckoutGitBranch(branch) {
                           modalDest();
                         }
   });
+}
+
+function adamCheckPendingGitCommit() {
+
+  var cpr = $.ajax({
+                        url:            '/async/app/gitctl',
+                        type:           'GET',
+                        data:           { 'action': 'checkpending' },
+                        cache:          true,
+                        async:          true,
+                        success: function() {
+
+                          $('#btn-git-commit').addClass('disabled');
+                          $('#btn-git-commit').removeClass('btn-success');
+                          $('#btn-git-commit').off('click');
+
+                          var res  = $.parseJSON(cpr.responseText);
+
+                          if (res.pending) {
+                            $('#btn-git-commit').removeClass('disabled');
+                            $('#btn-git-commit').addClass('btn-success');
+
+                            $('#btn-git-commit').click(function(){ adamShowCommitEditor(); });
+
+                          }
+
+
+
+
+                        }
+  });
+  
 }

@@ -20,7 +20,7 @@
 
       <div class="row-fluid">
 
-        <div class="span2">
+        <div class="span3">
 
           <img src="/img/git-large.png" style="width:30px"/>
 
@@ -34,16 +34,15 @@
             </ul>
           </div>
 
+          <div class="btn-group" style="display:inline!important;margin-left:15px!important">
+            <a id="btn-git-newbranch" class="btn btn-info"><i class="icon-white icon-plus"></i></a>
+            <a id="btn-git-delbranch" class="btn btn-danger"><i class="icon-white icon-minus"></i></a>
+          </div>
+
         </div>
 
-        <div class="span8" style="text-align:right">
-          <div class="btn-group">
-            <a id="btn-git-newbranch" class="btn btn-info"><?= $lang_array['app']['git_newbranch'] ?></a>
-            <a id="btn-git-delbranch" class="btn btn-danger"><?= $lang_array['app']['git_delbranch'] ?></a>
-          </div>
-        </div>
-        <div class="span2">
-          <a class="btn disabled"><?= $lang_array['app']['git_commit'] ?></a>
+        <div class="span9" style="text-align:right">
+          <a id="btn-git-commit" class="btn disabled"><?= $lang_array['app']['git_commit'] ?></a>
         </div>
     </div>
   </div>
@@ -67,6 +66,8 @@
   $('#adamstrats').bind('afterShow',function() {
 
       adamUpdateGitBranches();
+
+      var cpclock = setInterval('adamCheckPendingGitCommit();',5000);
 
       $('.newbtn').click(function() {
 

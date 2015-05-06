@@ -117,6 +117,8 @@
   $lang_array['app']['adamcfg_expl'] = 'Cet écran vous permet de manager les différentes configurations Adam et d\'en créer de nouvelles.' ;
   $lang_array['app']['actions'] = 'Actions';
   $lang_array['app']['strats'] = 'Strategies';
+  $lang_array['app']['comment'] = 'Commentaire';
+  $lang_array['app']['title'] = 'Titre';
   $lang_array['app']['settings'] = 'Paramètres';
   $lang_array['app']['settings_expl'] = 'Cette page vous permet d\'effectuer différents règlages concernants votre compte chiliconfig.';
   $lang_array['app']['settings_email'] = 'Adresse Email';
@@ -244,5 +246,8 @@
   $lang_array['app']['git_commit'] = 'Commit';
   $lang_array['app']['git_newbranch_title'] = 'Nouvelle Branche git';
   $lang_array['app']['git_delbranch_title'] = 'Supprimer une Branche git';
+  
+  $lang_array['app']['git_commit_title'] = 'Faire un commit git';
+  $lang_array['app']['git_commit_subtitle'] = 'Enregistrez vos changements de code';
 
 ?>

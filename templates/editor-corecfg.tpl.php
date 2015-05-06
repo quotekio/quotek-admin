@@ -195,7 +195,7 @@ $backends = getBackends();
           <textarea id="input-corecfg-extra" style="width:100%;height:300px"></textarea>
 
           <span class="help-block">Vous pouvez ajouter à cette configuration Adam du texte libre pour inclure
-            des options pas/non-encore supportées par l'interface Visible Hand.</span>
+            des options pas/non-encore supportées par l'interface Quotek.</span>
 
 
           </div>

@@ -54,7 +54,18 @@
   else if ($action == 'commit') {
     $commit_message = $_REQUEST['commit_message'];
     $repository->run('add', array('-A'));
-    $repository->run('commit', array('-m', "\"$commit_message\""));
+    $repository->run('commit', array('--author', $_SESSION['uinfos']['username'] . 
+                                                 ' <' . $_SESSION['uinfos']['username'] . '@' . 
+                                                 $_SERVER['SERVER_NAME'] . '>' , 
+                                                 '-m', "\"$commit_message\""));
+  }
+
+  else if ($action == 'checkpending') {
+
+    $outp = $repository->run('status',array());
+    if (strstr($outp,'nothing to commit')  !== false ) echo json_encode(array('pending' => false));
+    else echo json_encode(array('pending' => true));
+    
   }
 
 ?>
