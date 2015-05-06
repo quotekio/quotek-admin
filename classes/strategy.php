@@ -41,14 +41,19 @@ function getStratsList() {
 function getStrategies() {
 
   global $repository;
+  global $GIT_LOCATION;
 
   $strategies = array();
   $commit = $repository->getHeadCommit();
   $tree = $commit->getTree();
 
+  $nlist = array();
+
   foreach ( $tree->getEntries() as $name => $data) {
     //filters only Quotek strategy files and modules.
     if (endsWith($name,".qs") || endsWith($name,".qsm") ) {
+
+      $nlist[] = $name;
 
       if (endsWith($name,".qs")) $type = 'normal';
       else $type = 'module';
@@ -65,6 +70,29 @@ function getStrategies() {
 
     }
   }
+
+  //checks for untracked files
+  $allfiles  = opendir($GIT_LOCATION);
+  echo "FOOB";
+  while( $f = readdir($allfiles) ) {
+
+     echo "file:" . $f;
+     if ( ( endsWith($f,".qs") || endsWith($f,".qsm") )  && ! in_array($f, $nlist)  ) {
+
+       if (endsWith($f,".qs")) $type = 'normal';
+       else $type = 'module';
+
+       $author = '--';
+       $created = 0;
+       $updated = 0;
+
+       $s = new strategy($f,$type,$author,$created,$updated);
+       $s->active = 0;
+       $s->content = "";
+       $strategies[] = $s;
+
+     }
+   }
 
   return $strategies;
 }
