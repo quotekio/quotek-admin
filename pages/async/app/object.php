@@ -20,18 +20,6 @@
    $type = $_REQUEST['type'];
    $action = $_REQUEST['action'];
 
-   if ( ($action == 'get' || 
-         $action == 'del' || 
-         $action == 'activate' ||
-         $action == 'dup') 
-        && !isset($_REQUEST['id'])) {
-
-        $response['answer'] = 'ERR';
-        $response['message'] = "invalid object id";
-        die( json_encode($response) );
-   }
-
-
    if ($type == 'corecfg') {
 
       if ($action == 'add' || $action == 'mod') {
@@ -167,30 +155,28 @@
           $data = json_decode($_REQUEST['data']);
 
           $obj = new strategy();
-          $obj->remap($data);
-          //protect content
-          $obj->content = SQLite3::escapeString ($obj->content);
+          $obj->remap($data);          
           $obj->save();
           echo json_encode($response);
       }
       
       else if ($action == 'del') {
           $obj = new strategy();
-          $obj->id = $_REQUEST['id'];
+          $obj->name = $_REQUEST['id'];
           $obj->delete();
           echo json_encode($response);
       }
 
       else if ($action == 'get') {
           $obj = new strategy();
-          $obj->id = $_REQUEST['id'];
+          $obj->name = $_REQUEST['id'];
           $obj->load();
           echo json_encode($obj);
       }
 
       else if ($action == 'activate') {
           $obj = new strategy();
-          $obj->id = $_REQUEST['id'];
+          $obj->name = $_REQUEST['id'];
           $obj->activate();
           //remakes export
           exportCfg();
@@ -205,14 +191,12 @@
       else if ($action == 'dup') {
  
          $obj = new strategy();
-         $obj->id = $_REQUEST['id'];
+         $obj->name = $_REQUEST['id'];
          $obj->load();
-         unset($obj->id);
          unset($obj->active);
          $obj->duplicate($obj->name . " (copy)" );
          echo json_encode($response);
       }
-
 
    }
 

@@ -447,6 +447,8 @@ function adamGetCoreCfgDataToEdit(ccid) {
 function adamGetStratDataToEdit(sid) {
 
    var strat = adamObject('get','strategy',{},sid);
+   //adamDebug(strat);
+
    $('#input-strats-name').val(strat.name);
    $('#input-strats-type').val(strat.type);
    var ae = ace.edit("editor");
@@ -2061,8 +2063,9 @@ function adamCheckPendingGitCommit() {
                           if (res.pending) {
                             $('#btn-git-commit').removeClass('disabled');
                             $('#btn-git-commit').addClass('btn-success');
-
                             $('#btn-git-commit').click(function(){ adamShowCommitEditor(); });
+
+                            adamRefreshTable('strategies-table');
 
                           }
 

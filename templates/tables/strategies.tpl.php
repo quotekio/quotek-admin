@@ -18,12 +18,12 @@
 foreach ($strats as $strat) {
     $tdclass = ($strat->active ==1 ) ? 'activated' : '';
     $actbtnclass = ($strat->active == 1) ? "disabled" : "btn-success";
-    $actbtnclick = ($strat->active == 1) ? "" :  "adamActivateStrat(" . $strat->id . ");" ; 
+    $actbtnclick = ($strat->active == 1) ? "" :  "adamActivateStrat(" . $strat->name . ");" ; 
     $delbtnclass = ($strat->active == 1) ? "disabled" : "btn-danger";
-    $deltbtnclick = ($strat->active == 1) ? "" :  "adamDelStrat(" . $strat->id . ");" ;    
+    $deltbtnclick = ($strat->active == 1) ? "" :  "adamDelStrat(" . $strat->name . ");" ;    
 ?>
 
-  <tr id="strategy-line-<?= $strat->id ?>">
+  <tr id="strategy-line-<?= $strat->name ?>">
     <td class="<?= $tdclass  ?>"><?=  $strat->name ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->type ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->author ?></td>
@@ -41,7 +41,7 @@ foreach ($strats as $strat) {
            title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
           <i class="icon-white icon-edit"></i>
         </a>
-        <a onclick="$(this).tooltip('hide');adamCloneStrat(<?= $strat->id ?>);" class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+        <a onclick="$(this).tooltip('hide');adamCloneStrat(<?= $strat->name ?>);" class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
           <i class="icon-white icon-leaf"></i>
         </a>
         <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">

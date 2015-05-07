@@ -34,21 +34,17 @@
   else if ($action == 'getbranches') {
     $branches = array();
     foreach ($repository->getReferences()->getBranches() as $branch) {
+        
         $branches[] = $branch->getName();
     }
     echo json_encode($branches);
   }
 
   else if ($action == 'getinfos') {
-    
-    $commit = $repository->getHeadCommit();
-    foreach ($commit->getTree()->getEntries() as $name => $data ) {
-      if (  strpos($name,".qs") > 0 || strpos($name,".qsm") > 0) {
-        print $name;
-        print_r($data);
-      }
+  
+    foreach ($repository->getReferences()->getBranches() as $branch) {
+      print_r($branch);
     }
-
   }
 
   else if ($action == 'commit') {
