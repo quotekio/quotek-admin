@@ -1966,7 +1966,10 @@ function adamUpdateGitBranches() {
                           $('#strat-git-branchlist').html('');
                           var branches = $.parseJSON(ggb.responseText);
                           $.each(branches, function(index,i) {
-                            $('#strat-git-branchlist').append("<li><a onclick=\"adamCheckoutGitBranch('" + i +  "');\">" + i + "</a></li>");
+                            if (i.active) {
+                              $('#strat-git-branchselector').html(i.name);
+                            }
+                            $('#strat-git-branchlist').append("<li><a onclick=\"adamCheckoutGitBranch('" + i.name +  "');\">" + i.name + "</a></li>");
                             
                           });
                           
@@ -2039,6 +2042,7 @@ function adamCheckoutGitBranch(branch) {
                         async:          true,
                         success: function() {
                           adamUpdateGitBranches();
+                          adamRefreshTable('strategies-table');
                           modalDest();
                         }
   });

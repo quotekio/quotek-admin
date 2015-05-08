@@ -9,6 +9,21 @@
   selectLanguage();
   require_once("lang/$lang/app.lang.php");
 
+  function getActiveBranch() {
+
+    global $repository;
+    $outp = $repository->run('branch',array());
+    $moutp = explode("\n",$outp);
+
+    foreach($moutp as $br) {
+
+      if (preg_match('/^\*/',$br)) {
+        return trim(str_replace('* ','',$br));
+      }
+    }
+    return "None";
+  }
+
   if (!verifyAuth()) die('You are not logged');
 
   if (!isset($_REQUEST['action'])) die('No action Provided');
@@ -32,19 +47,19 @@
   }
 
   else if ($action == 'getbranches') {
+
+    $active_branch = getActiveBranch();
+
     $branches = array();
     foreach ($repository->getReferences()->getBranches() as $branch) {
         
-        $branches[] = $branch->getName();
+        $branches[] = array( 'name' => $branch->getName() , 'active' => ( $branch->getName() == $active_branch ) ? true: false );
     }
     echo json_encode($branches);
   }
 
   else if ($action == 'getinfos') {
-  
-    foreach ($repository->getReferences()->getBranches() as $branch) {
-      print_r($branch);
-    }
+
   }
 
   else if ($action == 'commit') {

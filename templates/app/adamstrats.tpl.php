@@ -26,7 +26,7 @@
 
           <div class="btn-group" style="display:inline!important">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              <?= $lang_array['app']['git_branch']?>
+              <span id="strat-git-branchselector"><?= $lang_array['app']['git_branch']?></span>
             <span class="caret"></span>
             </a>
             <ul id="strat-git-branchlist" class="dropdown-menu">
