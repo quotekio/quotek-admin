@@ -15,14 +15,14 @@
          <div class="span6">
            <label><b><?= $lang_array['app']['name'] ?></b></label>
            <input id="input-values-name" style="height:27px;width:170px" type="text" value="">
-           <span class="help-block">Donnez un nom à la valeur pour l'identifier.</span>
+           <span class="help-block">Donnez un nom à l'actif pour l'identifier.</span>
 
           </div>
 
           <div class="span6">
            <label><b><?= $lang_array['app']['brokerid'] ?></b></label>
            <input id="input-values-broker_map" style="height:27px;width:170px" type="text" value="">
-           <span class="help-block">Indiquez l'identifiant donné à cette valeur par votre courtier.</span>
+           <span class="help-block">Indiquez l'identifiant donné à cet actif par votre courtier.</span>
           </div>
 
       </div>
@@ -35,7 +35,7 @@
             <option value="point">Point</option>
             <option value="pip">PIP</option>
            </select>
-           <span class="help-block">Unité qu'utilise votre courtier pour cette valeur.</span>
+           <span class="help-block">Unité qu'utilise votre courtier pour cet actif.</span>
            </div>
 
            <div class="span6">
@@ -52,13 +52,13 @@
             <div class="span6">
                <label><b><?= $lang_array['app']['value_start_hour'] ?> (<?= getTZ() ?>)</b></label>
                <input id="input-values-start_hour" style="height:27px;width:100px" type="text" value="09:30">
-               <span class="help-block">Indiquez l'heure d'ouverture du marché pour cette valeur.</span>
+               <span class="help-block">Indiquez l'heure d'ouverture du marché pour cet actif.</span>
            </div>
 
             <div class="span6">
                <label><b><?= $lang_array['app']['value_end_hour'] ?> (<?= getTZ() ?>)</b></label>
                <input id="input-values-end_hour" style="height:27px;width:100px" type="text" value="09:30">
-               <span class="help-block">Indiquez l'heure de fermeture du marché pour cette valeur.</span>
+               <span class="help-block">Indiquez l'heure de fermeture du marché pour cet actif.</span>
            </div>
 
            </div>
@@ -66,7 +66,7 @@
            <label><b><?= $lang_array['app']['stoploss'] ?></b></label>
            <input id="input-values-min_stop" style="height:27px;width:100px" type="text" value="10">
            <span class="help-block">Indique le stop-loss minimum que votre courtier vous autorise à mettre sur
-            cette valeur.</span>
+            cet actif.</span>
 
 
           </form>

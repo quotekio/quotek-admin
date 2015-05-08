@@ -54,7 +54,7 @@
   $lang_array['app']['pnlpp'] = 'PP par Point';
   $lang_array['app']['unit'] = 'Unité';
   $lang_array['app']['brokerid'] = 'Identifiant Courtier';
-  $lang_array['app']['newvalue'] = 'Nouvelle Valeur';
+  $lang_array['app']['newvalue'] = 'Nouvel Actif';
   $lang_array['app']['period'] = 'Période';
 
   $lang_array['app']['type'] = 'Type';
@@ -67,7 +67,7 @@
   $lang_array['app']['adamcfg'] = 'Configuration';
   $lang_array['app']['broker'] = 'Courtiers';
   $lang_array['app']['indices'] = 'Indices';
-  $lang_array['app']['values'] = 'Valeurs';
+  $lang_array['app']['values'] = 'Actifs';
   $lang_array['app']['users'] = 'Utilisateurs';
   $lang_array['app']['cfg_indices_title'] = 'Configuration des Indices';
   $lang_array['app']['capital'] = 'Capital';
@@ -91,9 +91,9 @@
   $lang_array['app']['results']  = 'Résultats';
   $lang_array['app']['btof'] = 'Backtest du';
 
-  $lang_array['app']['adamvalues'] = 'Valeurs';
-  $lang_array['app']['adamvalues_subtitle'] = 'Gerez les valeurs que vous souhaitez trader';
-  $lang_array['app']['adamvalues_expl'] = 'Ce menu vous permet de configurer les valeurs 
+  $lang_array['app']['adamvalues'] = 'Actifs';
+  $lang_array['app']['adamvalues_subtitle'] = 'Gerez les actifs que vous souhaitez trader';
+  $lang_array['app']['adamvalues_expl'] = 'Ce menu vous permet de configurer les differents actifs 
   que vous souhaitez échanger sur les marchés par l\' intermédiaire de votre courtier.';
   
   $lang_array['app']['value_start_hour'] = 'Ouverture';
