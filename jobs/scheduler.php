@@ -7,6 +7,7 @@
 
   include ("corecfg.php");
   include ("adamctl.php");
+  include ("user.php");
   include ("brokercfg.php");
 
   $jobs_exclude = array('.','..','scheduler.php','turns.json');

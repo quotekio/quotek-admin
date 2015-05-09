@@ -45,6 +45,12 @@ class strategy extends adamobject {
   }
 
 
+  function delete() {
+    global $GIT_LOCATION;
+    unlink($GIT_LOCATION . '/' . $this->name);
+    
+  }
+
   function activate() {
 
   }

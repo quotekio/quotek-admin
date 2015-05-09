@@ -88,11 +88,11 @@ class user extends adamobject {
       $this->password = sha1($this->salt . $this->newpassword);
       unset($this->newpassword);
     }
-    
+
     parent::save();
     
   }
-
+  
   function checkPermissions($sc) {
     if (! isset($this->permissions)) $this->loadPermissions();
     foreach ($this->permissions as $perm) {

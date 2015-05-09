@@ -2,6 +2,7 @@ INSTALL PROCESS
 ===============
 
 faire un git config --local user.email quotek-dev@quotek.io dans /quotek
+Ajouter le cronjob scheduler.php toutes les minutes
 
 BUGS
 ====
@@ -13,7 +14,7 @@ BUGS
 
 PRIO
 ====
- 
+
  * add inmem_history setting in configuration.
  * create logs plugin
  * Implement genetics backtests result view

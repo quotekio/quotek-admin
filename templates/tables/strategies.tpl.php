@@ -18,9 +18,9 @@
 foreach ($strats as $strat) {
     $tdclass = ($strat->active ==1 ) ? 'activated' : '';
     $actbtnclass = ($strat->active == 1) ? "disabled" : "btn-success";
-    $actbtnclick = ($strat->active == 1) ? "" :  "adamActivateStrat(" . $strat->name . ");" ; 
+    $actbtnclick = ($strat->active == 1) ? "" :  "adamActivateStrat('" . $strat->name . "');" ; 
     $delbtnclass = ($strat->active == 1) ? "disabled" : "btn-danger";
-    $deltbtnclick = ($strat->active == 1) ? "" :  "adamDelStrat(" . $strat->name . ");" ;    
+    $deltbtnclick = ($strat->active == 1) ? "" :  "adamDelStrat('" . $strat->name . "');" ;    
 ?>
 
   <tr id="strategy-line-<?= $strat->name ?>">

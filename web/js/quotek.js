@@ -1997,7 +1997,7 @@ function adamCreateGitBranch() {
 
 function adamCreateGitCommit() {
 
-  var commit_message = $('#input-git-commit-title').val() + "\\n\\n" + $('#input-git-commit-comment').val();
+  var commit_message = $('#input-git-commit-title').val() + "\n\n" + $('#input-git-commit-comment').val();
 
   var gcc = $.ajax({
                         url:            '/async/app/gitctl',

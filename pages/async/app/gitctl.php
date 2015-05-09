@@ -64,11 +64,21 @@
 
   else if ($action == 'commit') {
     $commit_message = $_REQUEST['commit_message'];
+
+    $commit_lines = explode("\n",$commit_message);
+
+    $commit_args = array('--author', 
+                         $_SESSION['uinfos']['username'] . 
+                         ' <' . $_SESSION['uinfos']['username'] . '@' . 
+                         $_SERVER['SERVER_NAME'] . '>' );
+
+    foreach($commit_lines as $line) {
+      $commit_args[] = "-m";
+      $commit_args[] = $line;
+    }
+    
     $repository->run('add', array('-A'));
-    $repository->run('commit', array('--author', $_SESSION['uinfos']['username'] . 
-                                                 ' <' . $_SESSION['uinfos']['username'] . '@' . 
-                                                 $_SERVER['SERVER_NAME'] . '>' , 
-                                                 '-m', "\"$commit_message\""));
+    $repository->run('commit', $commit_args );
   }
 
   else if ($action == 'checkpending') {

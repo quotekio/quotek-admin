@@ -250,4 +250,8 @@
   $lang_array['app']['git_commit_title'] = 'Faire un commit git';
   $lang_array['app']['git_commit_subtitle'] = 'Enregistrez vos changements de code';
 
+  $lang_array['app']['git_newbranch_tooltip'] = 'Creez une nouvelle branche git';
+  $lang_array['app']['git_delbranch_tooltip'] = 'Supprimez une branche git';
+  $lang_array['app']['git_backward_tooltip'] = 'Revenez à un commit précédent';
+  
 ?>
