@@ -16,6 +16,8 @@ function tzOffset() {
 
 function adamRefreshTable(tname) {
 
+     $('.tooltip').not(this).hide();
+     
      var nc = $.ajax({ url: '/async/app/gettable',
                        type: 'POST',
                        data: { 'tname': tname },
