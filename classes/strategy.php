@@ -16,7 +16,8 @@ class strategy extends adamobject {
     $this->type = $type;
     $this->author = $author;
     $this->created = $created;
-    $this->updated = $updated; 
+    $this->updated = $updated;
+    $this->active = 0;
   }
 
   function load() {
@@ -26,6 +27,11 @@ class strategy extends adamobject {
   
     $this->content = file_get_contents($GIT_LOCATION . '/' . $this->name);
     $this->name_noext = preg_replace('/\.(qs|qsm)/', '', $this->name);
+
+    $as = getActiveStrategy();
+
+    if ( $this->name ==  $as  ) $this->active = 1;
+    else $this->active = 0;
 
     if (endsWith($this->name,'.qs')) $this->type = 'normal';
     else if ( endsWith($this->name,'.qsm')) $this->type = 'module';
@@ -63,11 +69,11 @@ class strategy extends adamobject {
 
   }
 
-
   function activate() {
-
+    $acfg = getActiveCfg();
+    $acfg->active_strat = $this->name;
+    $acfg->save();
   }
-
 }
 
 
@@ -80,6 +86,11 @@ function getStratsList() {
     }
     return $slist;
 
+}
+
+function getActiveStrategy() {
+  $acfg = getActiveCfg();
+  return $acfg->active_strat;
 }
 
 function getStrategies() {
@@ -113,7 +124,11 @@ function getStrategies() {
        }
 
        $s = new strategy($f,$type,$author,$created,$updated);
-       $s->active = 0;
+       
+       $as = getActiveStrategy();
+       if ( $f ==  $as  ) $s->active = 1;
+       else $s->active = 0;
+
        $s->content = "";
        $strategies[] = $s;
 
@@ -122,11 +137,5 @@ function getStrategies() {
 
   return $strategies;
 }
-
-
-function getActiveStrat() {
-
-}
-
 
 ?>
