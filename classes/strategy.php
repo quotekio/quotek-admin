@@ -42,6 +42,10 @@ class strategy extends adamobject {
   function save() {
 
     global $GIT_LOCATION;
+
+    if ( $this->type == 'normal' && ! endsWith($this->name,'.qs') ) $this->name .= ".qs";
+    if ( $this->type == 'module' && ! endsWith($this->name,'.qsm') ) $this->name .= ".qsm";
+
     $fh = fopen($GIT_LOCATION . '/' . $this->name,'w');
 
     if ($fh) {
@@ -130,8 +134,9 @@ function getStrategies() {
        else $s->active = 0;
 
        $s->content = "";
+       $s->name_noext = preg_replace('/\.(qs|qsm)/', '', $f);
        $strategies[] = $s;
-
+       
      }
    }
 
