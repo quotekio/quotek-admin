@@ -1,5 +1,5 @@
 * Gerer l'activation des strategies.
 * gerer le Rollback d'un certain commit.
 * Gerer le suffixage .qs/.qsm des fichiers source.
-* Gerer les commits multiligne.
+* Gerer l'effacement des tooltips en cas de refreshtable strategies.
 

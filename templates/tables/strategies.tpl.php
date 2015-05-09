@@ -41,7 +41,7 @@ foreach ($strats as $strat) {
            title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
           <i class="icon-white icon-edit"></i>
         </a>
-        <a onclick="$(this).tooltip('hide');adamCloneStrat(<?= $strat->name ?>);" class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+        <a onclick="$(this).tooltip('hide');adamCloneStrat('<?= $strat->name ?>');" class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
           <i class="icon-white icon-leaf"></i>
         </a>
         <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">

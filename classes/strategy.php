@@ -12,6 +12,7 @@ class strategy extends adamobject {
 
   function __construct($name='', $type='', $author='', $created=0, $updated=0) {
     $this->name = $name;
+    $this->name_noext = preg_replace('/\.(qs|qsm)/', '',$name);
     $this->type = $type;
     $this->author = $author;
     $this->created = $created;
@@ -24,6 +25,7 @@ class strategy extends adamobject {
     global $GIT_LOCATION;
   
     $this->content = file_get_contents($GIT_LOCATION . '/' . $this->name);
+    $this->name_noext = preg_replace('/\.(qs|qsm)/', '', $this->name);
 
     if (endsWith($this->name,'.qs')) $this->type = 'normal';
     else if ( endsWith($this->name,'.qsm')) $this->type = 'module';
@@ -50,6 +52,17 @@ class strategy extends adamobject {
     unlink($GIT_LOCATION . '/' . $this->name);
     
   }
+ 
+  function duplicate() {
+
+    global $GIT_LOCATION;
+    if ($this->type == 'normal') $ext = '.qs';
+    else if ($this->type== 'module') $ext = '.qsm';
+
+    copy($GIT_LOCATION . "/" . $this->name , $GIT_LOCATION . "/" . $this->name_noext . "_copy" . $ext );
+
+  }
+
 
   function activate() {
 
@@ -76,44 +89,28 @@ function getStrategies() {
 
   $strategies = array();
   $commit = $repository->getHeadCommit();
-  $tree = $commit->getTree();
 
-  $nlist = array();
-
-  foreach ( $tree->getEntries() as $name => $data) {
-    //filters only Quotek strategy files and modules.
-    if (endsWith($name,".qs") || endsWith($name,".qsm") ) {
-
-      $nlist[] = $name;
-
-      if (endsWith($name,".qs")) $type = 'normal';
-      else $type = 'module';
-
-      $last = $commit->getLastModification($name);
-      $author = $last->getAuthorName();
-      $created = $last->getAuthorDate()->getTimestamp();
-      $updated = $created;
-
-      $s = new strategy($name,$type,$author,$created,$updated);
-      $s->active = 0;
-      $s->content = "";
-      $strategies[] = $s;
-
-    }
-  }
-
-  //checks for untracked files
+  //checks for files in working copy.
   $allfiles  = opendir($GIT_LOCATION);
   while( $f = readdir($allfiles) ) {
     
-     if ( ( endsWith($f,".qs") || endsWith($f,".qsm") )  && ! in_array($f, $nlist)  ) {
+     if ( ( endsWith($f,".qs") || endsWith($f,".qsm") ) ) {
 
-       if (endsWith($f,".qs")) $type = 'normal';
-       else $type = 'module';
+      if (endsWith($f,".qs")) $type = 'normal';
+      else if (endsWith($f,".qsm")) $type = 'module';
 
-       $author = '--';
-       $created = 0;
-       $updated = 0;
+      try {
+        $last = $commit->getLastModification($f);
+        $author = $last->getAuthorName();
+        $created = $last->getAuthorDate()->getTimestamp();
+        $updated = $created;  
+      }
+
+      catch(Exception $e) {
+         $author = '--';
+         $created = 0;
+         $updated = 0;
+       }
 
        $s = new strategy($f,$type,$author,$created,$updated);
        $s->active = 0;

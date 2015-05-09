@@ -193,8 +193,7 @@
          $obj = new strategy();
          $obj->name = $_REQUEST['id'];
          $obj->load();
-         unset($obj->active);
-         $obj->duplicate($obj->name . " (copy)" );
+         $obj->duplicate();
          echo json_encode($response);
       }
 
