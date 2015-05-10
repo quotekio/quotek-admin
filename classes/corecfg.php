@@ -151,6 +151,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   require_once('valuecfg.php');
 
   global $ADAM_PATH;
+  global $GIT_LOCATION;
 
   if ($cfg_id == null) {
       $cfg = getActiveCfg();
@@ -160,17 +161,6 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
      $cfg->id = $cfg_id;
      $cfg->load();
   }
-
-  /*
-  if ($strat_id == null) {
-      $strat = getActiveStrat();
-  }
-  else {
-     $strat = new strategy();
-     $strat->id = $strat_id;
-     $strat->load();
-  }
-  */
 
   $fh = null;
   if ($dest == null) {
@@ -184,7 +174,8 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   $broker_cfg = $cfg->getBroker();
   $backend = $cfg->getBackendModule();
   $values = getCfgValues($cfg->id); 
-  //$exp_stratname = $strat->export();
+  $strats_path = $GIT_LOCATION;
+  $exp_stratname = $cfg->active_strat;
 
   fwrite($fh,"eval_ticks = " . $cfg->eval_ticks . "\n");
   fwrite($fh,"getval_ticks = " . $cfg->getval_ticks . "\n");
@@ -235,6 +226,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   }
 
   fwrite($fh,"strat = " . $exp_stratname . "\n\n" );
+  fwrite($fh,"strats_path = " . $strats_path . "\n");
   fwrite($fh,"mm_max_openpos = " . $cfg->mm_max_openpos . "\n");
   fwrite($fh,"mm_max_openpos_per_epic = " . $cfg->mm_max_openpos_per_epic . "\n");
   fwrite($fh,"mm_reverse_pos_lock = " . $cfg->mm_reverse_pos_lock . "\n");
