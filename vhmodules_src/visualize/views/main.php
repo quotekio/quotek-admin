@@ -102,6 +102,7 @@
               <div class="span6" style="text-align:right">
                 <div class="btn-group" style="margin-top:11px;margin-right:10px">
                   
+                  <!--
                    <a linked-asset="<?= $v->name ?>" id="visualize-ratebtn" onclick="changeRefresh($(this))" class="btn btn-info" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">20s</a>
 
                    <a linked-asset="<?= $v->name ?>" id="visualize-resbtn" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
@@ -109,6 +110,12 @@
                   <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
                     <i class="icon-indent-right icon-white"></i>
                   </a>
+                  -->
+
+                  <a linked-asset=<?= $v->name ?> id="settings-btn">
+                  </a>
+
+                  
 
                   <a id="rbtn" class="btn btn-primary btn-small" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
                     <i class="icon-fullscreen icon-white"></i>
