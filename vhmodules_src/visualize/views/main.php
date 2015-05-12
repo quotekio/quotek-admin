@@ -113,11 +113,11 @@
                   -->
 
                   <a linked-asset="<?= $v->name ?>" 
-                      class="btn btn-info btn-settings" 
+                      class="btn btn-small btn-info btn-settings" 
                       title="<?= $lang_array['app']['title_graphsettings'] ?>" 
                       id="settings-btn"
                       onclick="toggleGraphSettings('<?= $v->name ?>')">
-                    <i class="icon icon-wrench"></i>
+                       <i class="icon-wrench icon-white"></i>
                   </a>
 
                   <a id="rbtn" class="btn btn-primary btn-small" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
@@ -126,34 +126,49 @@
  
                 </div>
 
-                <div linked-asset="<?= $v->name ?>" id="graph-settings" style="display:none">
+                <div linked-asset="<?= $v->name ?>" id="graph-settings" style="text-align:left;display:none;position:absolute;width:300px;background:white;padding:10px;z-index:100;box-shadow:1px 1px 1px #cccccc">
 
-                  <label><?=  $lang_array['app']['graph_refreshrate'] ?></label>
+
+                  <form>
+
+                  <label><b><?=  $lang_array['app']['graph_refreshrate'] ?></b></label>
                   <input id="refreshrate-slider" type="range" min="1" max="100" />
-                  <span><?=  $lang_array['app']['graph_refreshrate_expl'] ?></span>
+                  <span class="help-block"><?=  $lang_array['app']['graph_refreshrate_expl'] ?></span>
 
-                  <label><?=  $lang_array['app']['graph_resolution'] ?></label>
+                  <label><b><?=  $lang_array['app']['graph_resolution'] ?></b></label>
                   <input id="resolution-slider" type="range" min="1" max="100" />
-                  <span><?=  $lang_array['app']['graph_resolution_expl'] ?></span>
+                  <span class="help-block"><?=  $lang_array['app']['graph_resolution_expl'] ?></span>
 
                   <div style="border-top:1px solid #cccccc;width:100%;height:2px"></div>
 
-                  <label><?=  $lang_array['app']['graph_mvavg20'] ?></label>
-                  <input id="mvavg20" type="checkbox" />
+                  <label><b><?=  $lang_array['app']['graph_mvavg20'] ?></b></label>
+                  <label class="checkbox">
+                    <input id="mvavg20" type="checkbox" />
+                  </label>
                  
-                  <label><?=  $lang_array['app']['graph_mvavg50'] ?></label>
-                  <input id="mvavg50" type="checkbox" />
+                  <label><b><?=  $lang_array['app']['graph_mvavg50'] ?></b></label>
+                  <label class="checkbox">
+                    <input id="mvavg50" type="checkbox" />
+                  </label>
 
 
-                  <label><?=  $lang_array['app']['graph_bollinger'] ?></label>
-                  <input id="bollinger" type="checkbox" class="disabled" />
+                  <label><b><?=  $lang_array['app']['graph_bollinger'] ?></b></label>
+                  <label class="checkbox">
+                    <input id="bollinger" type="checkbox" class="disabled" />
+                  </label>
 
                    
-                  <label><?=  $lang_array['app']['graph_lreg'] ?></label>
-                  <input id="lreg" type="checkbox" />
+                  <label><b><?=  $lang_array['app']['graph_lreg'] ?></b></label>
+                  <label class="checkbox">
+                    <input id="lreg" type="checkbox" />
+                  </label>
                   
-                  <label><?=  $lang_array['app']['graph_raff'] ?></label>
-                  <input id="raff" type="checkbox" />
+                  <label><b><?=  $lang_array['app']['graph_raff'] ?></b></label>
+                  <label class="checkbox">
+                    <input id="raff" type="checkbox" />
+                  </label>
+
+                  </form>
 
 
 
@@ -196,11 +211,16 @@
 
 
   function toggleGraphSettings(iname) {
-    
-    var settings_panel = $('#[linked-asset=' + iname + ']');
 
+    var settings_panel = $('#graph-settings[linked-asset=' + iname + ']');
+    if ( settings_panel.is(':hidden') ) {
 
+      settings_panel.show();
+    }
 
+    else {
+      settings_panel.hide();
+    }
   }
 
 
