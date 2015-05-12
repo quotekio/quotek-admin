@@ -11,6 +11,27 @@
    
 ?>
 
+<datalist id="refreshlist">
+  <option>1</option>
+  <option>5</option>
+  <option>10</option>
+  <option>20</option>
+  <option>50</option>
+</datalist>
+
+<datalist id="reslist">
+  <option>1</option>
+  <option>10</option>
+  <option>20</option>
+  <option>30</option>
+  <option>60</option>
+  <option>300</option>
+  <option>1200</option>
+  <option>3600</option>
+  <option>12800</option>
+  <option>86400</option>
+</datalist>
+
 <div id="visualize-tooltip" style="display:none;position:absolute;padding:4px;background:#131517;border-radius:4px;font-size:11px;opacity:1.0!important;z-index:3000">
 </div>
 
@@ -126,47 +147,87 @@
  
                 </div>
 
-                <div linked-asset="<?= $v->name ?>" id="graph-settings" style="text-align:left;display:none;position:absolute;width:300px;background:white;padding:10px;z-index:100;box-shadow:1px 1px 1px #cccccc">
+                <div linked-asset="<?= $v->name ?>" id="graph-settings" style="text-align:left;display:none;position:absolute;width:400px;background:white;padding:10px;z-index:100;box-shadow:1px 1px 1px #cccccc">
 
 
                   <form>
 
+                  
+                  <h4><?= $lang_array['app']['graphcfg_behaviour'] ?></h4>
+                  
                   <label><b><?=  $lang_array['app']['graph_refreshrate'] ?></b></label>
-                  <input id="refreshrate-slider" type="range" min="1" max="100" />
-                  <span class="help-block"><?=  $lang_array['app']['graph_refreshrate_expl'] ?></span>
+
+                  <table class="table" style="width:100%;text-align:center">
+                    <tr>
+                      <td><input type="radio" name="refreshrate-radio" value="rt"></td>
+                      <td><input type="radio" name="refreshrate-radio" value="5s"></td>
+                      <td><input type="radio" name="refreshrate-radio" value="10s"></td>
+                      <td><input type="radio" name="refreshrate-radio" value="20s" CHECKED></td>
+                      <td><input type="radio" name="refreshrate-radio" value="60s"></td>
+                    </tr>
+
+                    <tr>
+                      <td>rt</td>
+                      <td>5s</td>
+                      <td>10s</td>
+                      <td>20s</td>
+                      <td>60s</td>
+                    </tr>
+
+                  </table>
 
                   <label><b><?=  $lang_array['app']['graph_resolution'] ?></b></label>
-                  <input id="resolution-slider" type="range" min="1" max="100" />
-                  <span class="help-block"><?=  $lang_array['app']['graph_resolution_expl'] ?></span>
 
+                  <table class="table" style="width:100%;text-align:center">
+                    <tr>
+                      <td><input type="radio" name="resolution-radio" value="1s"></td>
+                      <td><input type="radio" name="resolution-radio" value="10s"></td>
+                      <td><input type="radio" name="resolution-radio" value="20s"></td>
+                      <td><input type="radio" name="resolution-radio" value="30s" CHECKED></td>
+                      <td><input type="radio" name="resolution-radio" value="1m"></td>
+                      <td><input type="radio" name="resolution-radio" value="5m"></td>
+                      <td><input type="radio" name="resolution-radio" value="20m"></td>
+                      <td><input type="radio" name="resolution-radio" value="1h"></td>
+                      <td><input type="radio" name="resolution-radio" value="4h"></td>
+                      <td><input type="radio" name="resolution-radio" value="1d"></td>
+
+                    </tr>
+
+                    <tr>
+                      <td>1s</td>
+                      <td>10s</td>
+                      <td>20s</td>
+                      <td>30s</td>
+                      <td>1m</td>
+                      <td>5m</td>
+                      <td>20m</td>
+                      <td>1h</td>
+                      <td>4h</td>
+                      <td>1d</td>
+                    </tr>
+
+                  </table>
+                  
                   <div style="border-top:1px solid #cccccc;width:100%;height:2px"></div>
 
-                  <label><b><?=  $lang_array['app']['graph_mvavg20'] ?></b></label>
-                  <label class="checkbox">
-                    <input id="mvavg20" type="checkbox" />
-                  </label>
-                 
-                  <label><b><?=  $lang_array['app']['graph_mvavg50'] ?></b></label>
-                  <label class="checkbox">
-                    <input id="mvavg50" type="checkbox" />
-                  </label>
+                  <h4><?= $lang_array['app']['graphcfg_tech_analysis'] ?></h4>
 
+                  <div class="graphoption" style="margin-top:5px">
+                    <input id="mvavg20" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg20'] ?></b>
+                  </div>
+                  <div class="graphoption" style="margin-top:5px">
+                    <input id="mvavg50" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg50'] ?></b>
+                  </div>
 
-                  <label><b><?=  $lang_array['app']['graph_bollinger'] ?></b></label>
-                  <label class="checkbox">
-                    <input id="bollinger" type="checkbox" class="disabled" />
-                  </label>
-
-                   
-                  <label><b><?=  $lang_array['app']['graph_lreg'] ?></b></label>
-                  <label class="checkbox">
-                    <input id="lreg" type="checkbox" />
-                  </label>
-                  
-                  <label><b><?=  $lang_array['app']['graph_raff'] ?></b></label>
-                  <label class="checkbox">
-                    <input id="raff" type="checkbox" />
-                  </label>
+                  <div class="graphoption" style="margin-top:5px">
+                    <input id="bollinger" type="checkbox" class="disabled" />&nbsp;<b><?=  $lang_array['app']['graph_bollinger'] ?></b>
+                  </div>
+                  <div class="graphoption" style="margin-top:5px">
+                    <input id="lreg" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_lreg'] ?></b>
+                  </div>
+                  <div class="graphoption" style="margin-top:5px">
+                    <input id="raff" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_raff'] ?></b>
+                  </div>
 
                   </form>
 
@@ -202,6 +263,16 @@
 
 
 <script type="text/javascript">
+
+
+  /*
+  $('#resolution-slider').each(function(index,i){
+    $(this).change(function() {
+      $('#resvalue',$(this).parent()).html($(this).val());
+    } );
+  });
+  */
+  
 
   <?php foreach($vals as $v) { ?>
   var plot<?= str_replace('_','', $v->name) ?> = null;

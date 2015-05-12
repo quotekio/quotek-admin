@@ -15,9 +15,13 @@
 
   $lang_array['app']['graph_mvavg50'] = 'Moyenne Mobile 50 periodes';
 
-  $lang_array['app']['bollinger'] = 'Bandes de Bollinger';
+  $lang_array['app']['graph_bollinger'] = 'Bandes de Bollinger';
 
   $lang_array['app']['graph_lreg'] = 'Regression Linéaire';
   $lang_array['app']['graph_raff'] = 'Canal de Raff';
+  $lang_array['app']['graphcfg_behaviour'] = 'Comportement';
+  $lang_array['app']['graphcfg_tech_analysis'] = 'Indicateurs Techniques';
+  
+
 
 ?>

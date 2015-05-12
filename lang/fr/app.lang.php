@@ -107,7 +107,7 @@
   $lang_array['app']['adamcfg_editor_edit_title'] = "Editer la Configuration <small>modifier la configuration</small>";
   $lang_array['app']['adamcfg_editor_strats_title'] = "Nouvelle Strategie <small>Creez une nouvelle strategie d'investissement</small>"; 
   $lang_array['app']['adamvalue_editor_create_title'] = "Creer une nouvelle valeur";
-  $lang_array['app']['backtest_resviewer_title'] = 'Résultats de la simulation';
+  $lang_array['app']['backtest_resviewer_title'] = 'Résultats du backtest';
   $lang_array['app']['adamvalue_editor_edit_title'] = "Editer la valeur";
 
   $lang_array['app']['newstrat'] = 'Nouvelle Stratégie';
@@ -158,12 +158,12 @@
   $lang_array['app']['valuecfg_actions_delete'] = "Supprimer la valeur";
   $lang_array['app']['valuecfg_actions_clone'] = "Cloner la valeur";
 
-  $lang_array['app']['backtest_actions_edit'] = "Editer la simulation";
-  $lang_array['app']['backtest_actions_delete'] = "Supprimer la simulation";
-  $lang_array['app']['backtest_actions_clone'] = "Cloner la simulation";
+  $lang_array['app']['backtest_actions_edit'] = "Editer le backtest";
+  $lang_array['app']['backtest_actions_delete'] = "Supprimer le backtest";
+  $lang_array['app']['backtest_actions_clone'] = "Cloner le backtest";
 
-  $lang_array['app']['backtest_actions_start'] = "Démarrer la simulation";
-  $lang_array['app']['backtest_actions_stop'] = "Stopper la simulation";
+  $lang_array['app']['backtest_actions_start'] = "Démarrer le backtest";
+  $lang_array['app']['backtest_actions_stop'] = "Stopper le backtest";
 
   $lang_array['app']['backtest_actions_progress'] = "Voir la Progression";
   $lang_array['app']['backtest_actions_results'] = "Voir la feuille de résultats";
@@ -173,13 +173,13 @@
   $lang_array['app']['newbacktest'] = 'Nouveau Backtest';
   
   $lang_array['app']['adambacktest_title'] = 'Backtests';
-  $lang_array['app']['adambacktest_subtitle'] = 'Créez et lancez des simulations.';
+  $lang_array['app']['adambacktest_subtitle'] = 'Créez et lancez des backtests.';
 
   $lang_array['app']['adambacktest_expl'] = 'Ce menu vous permet de lancer des Backtests pour tester la validité
   de vos stratégies sur une certaine periode de temps.';
 
-  $lang_array['app']['adambacktest_editor_create_title'] = 'Creer une nouvelle simulation';
-  $lang_array['app']['adambacktest_editor_edit_title'] = 'Editer la simulation';
+  $lang_array['app']['adambacktest_editor_create_title'] = 'Creer un nouveau backtest';
+  $lang_array['app']['adambacktest_editor_edit_title'] = 'Editer le backtest';
 
   $lang_array['app']['backtest_period_title'] = 'Periode';
   $lang_array['app']['backtest_general_title'] = 'Général';
@@ -223,9 +223,9 @@
 
   $lang_array['app']['corecfg_extra_title'] = 'Paramètres additionels';
 
-  $lang_array['app']['backtest_viewer_title'] = 'Progression de la simulation';
+  $lang_array['app']['backtest_viewer_title'] = 'Progression du backtest';
 
-  $lang_array['app']['backtest_result_delete'] = 'Supprimer le résultat de simulation';
+  $lang_array['app']['backtest_result_delete'] = 'Supprimer le résultat du backtest';
 
   $lang_array['app']['cfg_users_title'] = 'Gestion des utilisateurs';
   $lang_array['app']['cfg_users_subtitle'] = 'Créez des utilisateur et configurez leurs permissions';
