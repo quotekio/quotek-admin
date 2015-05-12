@@ -112,16 +112,54 @@
                   </a>
                   -->
 
-                  <a linked-asset=<?= $v->name ?> id="settings-btn">
+                  <a linked-asset="<?= $v->name ?>" 
+                      class="btn btn-info btn-settings" 
+                      title="<?= $lang_array['app']['title_graphsettings'] ?>" 
+                      id="settings-btn"
+                      onclick="toggleGraphSettings('<?= $v->name ?>')">
+                    <i class="icon icon-wrench"></i>
                   </a>
-
-                  
 
                   <a id="rbtn" class="btn btn-primary btn-small" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
                     <i class="icon-fullscreen icon-white"></i>
                   </a>
  
                 </div>
+
+                <div linked-asset="<?= $v->name ?>" id="graph-settings" style="display:none">
+
+                  <label><?=  $lang_array['app']['graph_refreshrate'] ?></label>
+                  <input id="refreshrate-slider" type="range" min="1" max="100" />
+                  <span><?=  $lang_array['app']['graph_refreshrate_expl'] ?></span>
+
+                  <label><?=  $lang_array['app']['graph_resolution'] ?></label>
+                  <input id="resolution-slider" type="range" min="1" max="100" />
+                  <span><?=  $lang_array['app']['graph_resolution_expl'] ?></span>
+
+                  <div style="border-top:1px solid #cccccc;width:100%;height:2px"></div>
+
+                  <label><?=  $lang_array['app']['graph_mvavg20'] ?></label>
+                  <input id="mvavg20" type="checkbox" />
+                 
+                  <label><?=  $lang_array['app']['graph_mvavg50'] ?></label>
+                  <input id="mvavg50" type="checkbox" />
+
+
+                  <label><?=  $lang_array['app']['graph_bollinger'] ?></label>
+                  <input id="bollinger" type="checkbox" class="disabled" />
+
+                   
+                  <label><?=  $lang_array['app']['graph_lreg'] ?></label>
+                  <input id="lreg" type="checkbox" />
+                  
+                  <label><?=  $lang_array['app']['graph_raff'] ?></label>
+                  <input id="raff" type="checkbox" />
+
+
+
+                </div>
+
+
               </div>
             </div>
               <div linked-asset="<?= $v->name ?>" id="visualize-draw" style="height:267px;text-align:center;">
@@ -154,6 +192,16 @@
   var plot<?= str_replace('_','', $v->name) ?> = null;
   var au<?= str_replace('_','', $v->name) ?> = null;
   <?php } ?>
+
+
+
+  function toggleGraphSettings(iname) {
+    
+    var settings_panel = $('#[linked-asset=' + iname + ']');
+
+
+
+  }
 
 
   function changeRefresh(ratebtn) {
