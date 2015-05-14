@@ -12,6 +12,7 @@
 
   if (isset($_REQUEST['resolution'])) {
     $mean = $_REQUEST['resolution'];
+
   }
   else $mean = 0;
 
@@ -51,7 +52,9 @@
 
   $bw = new backendwrapper();
 
-  $result['data'] = $bw->query($indice,$tinf,$tsup,$mean,$time_offset);
+  $result['data'] = $bw->query($indice,$tinf,$tsup,"${mean}s",$time_offset);
+
+  $result['opts'] = array('indice' => $indice, 'tinf' => $tinf,'tsup' => $tsup, 'mean' => "${mean}s" , 'time_offset' => $time_offset);
 
   if ( $mvavg != 0 ) {
     $result['moving_average'] = movingAverage($result['data'],$mvavg, $add_bollinger);

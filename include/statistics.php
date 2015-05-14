@@ -12,6 +12,7 @@
       $result['XT'][] = $point[0];
       $result['YV'][] = $point[1];
     }
+    return $result;
   }
 
   /*
@@ -23,13 +24,15 @@
     $result = array();
     $offset = 0;
 
-    for ($i=0;$i<count($data_array);$i++) {
+    for ($i=0;$i<count($data_array) - $pack_size ;$i++) {
       $result[$i] = array();
-      for ($j=$offset; $j<$offset+$pack_size; $j++) {
+      for ($j=$offset; $j< $offset + $pack_size; $j++) {
         $result[$i][] = $data_array[$j];
       }
       $offset++;
     }
+
+    return $result;
   }
 
   function average($data) {
@@ -79,19 +82,20 @@
                      'bollinger_1' => array(),
                      'bollinger_2' => array() );
 
-    $dedup_array = dedupDataArray();
-    $packed_array = packDataArrayMoving($dedup_array['YV']);
+    $dedup_array = dedupDataArray($data);
 
+    $packed_array = packDataArrayMoving($dedup_array['YV'], $period);
+    
     for ($i=0;$i< count($packed_array);$i++) {
 
       $cavg = average($packed_array[$i]);
 
-      $result['moving_average'][] = array($dedup_array['XT'][$i] , $cavg );
+      $result['moving_average'][] = array($dedup_array['XT'][$i + $period] , $cavg );
 
       if ($add_bollinger) {
       	$csigma = sigma($packed_array[$i]);
-        $result['bollinger_1'][] = array($dedup_array['XT'][$i], $cavg - 2 * $csigma );
-        $result['bollinger_2'][] = array($dedup_array['XT'][$i], $cavg + 2 * $csigma );
+        $result['bollinger_1'][] = array($dedup_array['XT'][$i + $period], $cavg - 2 * $csigma );
+        $result['bollinger_2'][] = array($dedup_array['XT'][$i + $period], $cavg + 2 * $csigma );
       }
     }
     return $result;

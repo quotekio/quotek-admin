@@ -97,21 +97,8 @@
           <div class="app-headed-white-frame" style="height:300px;padding-bottom:20px">
             <div class="app-headed-frame-header">
               <div class="span6">
-                <h4><?= $v->name ?></h4>
-              </div>
-              <div class="span6" style="text-align:right">
                 <div class="btn-group" style="margin-top:11px;margin-right:10px">
                   
-                  <!--
-                   <a linked-asset="<?= $v->name ?>" id="visualize-ratebtn" onclick="changeRefresh($(this))" class="btn btn-info" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">20s</a>
-
-                   <a linked-asset="<?= $v->name ?>" id="visualize-resbtn" onclick="changeGraphRes($(this))" class="btn btn-success" style="padding:1px!important;padding-left:10px!important;padding-right:10px!important;font-size:10px!important;height:16px!important">30s</a>
-
-                  <a id="candlebtn" class="btn btn-small" rel="tooltip" title="<?= $lang_array['visualize']['candle'] ?>">
-                    <i class="icon-indent-right icon-white"></i>
-                  </a>
-                  -->
-
                   <a linked-asset="<?= $v->name ?>" 
                       class="btn btn-small btn-info btn-settings" 
                       title="<?= $lang_array['app']['title_graphsettings'] ?>" 
@@ -123,15 +110,11 @@
                   <a id="rbtn" class="btn btn-primary btn-small" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
                     <i class="icon-fullscreen icon-white"></i>
                   </a>
- 
                 </div>
 
                 <div linked-asset="<?= $v->name ?>" id="graph-settings" style="text-align:left;display:none;position:absolute;width:400px;background:white;padding:10px;z-index:100;box-shadow:1px 1px 1px #cccccc">
 
-
                   <form>
-
-                  
                   <h4><?= $lang_array['app']['graphcfg_behaviour'] ?></h4>
                   
                   <label><b><?=  $lang_array['app']['graph_refreshrate'] ?></b></label>
@@ -146,7 +129,7 @@
                     </tr>
 
                     <script type="text/javascript">
-                      $('input[name="refreshrate-radio", linked-asset="<?= $v->name ?>"]').
+                      $('input[name="refreshrate-radio"][linked-asset="<?= $v->name ?>"]').
                       change(function() {  changeRefresh('<?= $v->name ?>', $(this).val() ); });
                     </script>
 
@@ -164,16 +147,16 @@
 
                   <table class="table" style="width:100%;text-align:center">
                     <tr>
-                      <td><input type="radio" name="resolution-radio" value="1000"></td>
-                      <td><input type="radio" name="resolution-radio" value="10000"></td>
-                      <td><input type="radio" name="resolution-radio" value="20000"></td>
-                      <td><input type="radio" name="resolution-radio" value="30000" CHECKED></td>
-                      <td><input type="radio" name="resolution-radio" value="60000"></td>
-                      <td><input type="radio" name="resolution-radio" value="300000"></td>
-                      <td><input type="radio" name="resolution-radio" value="1200000"></td>
-                      <td><input type="radio" name="resolution-radio" value="3600000"></td>
-                      <td><input type="radio" name="resolution-radio" value="14400000"></td>
-                      <td><input type="radio" name="resolution-radio" value="86400000"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="1"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="10"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="20"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="30" CHECKED></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="60"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="300"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="1200"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="3600"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="14400"></td>
+                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="86400"></td>
 
                     </tr>
 
@@ -197,20 +180,20 @@
                   <h4><?= $lang_array['app']['graphcfg_tech_analysis'] ?></h4>
 
                   <div class="graphoption" style="margin-top:5px">
-                    <input id="mvavg20" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg20'] ?></b>
+                    <input linked-asset="<?= $v->name ?>" id="mvavg20" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg20'] ?></b>
                   </div>
                   <div class="graphoption" style="margin-top:5px">
-                    <input id="mvavg50" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg50'] ?></b>
+                    <input linked-asset="<?= $v->name ?>" id="mvavg50" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg50'] ?></b>
                   </div>
 
                   <div class="graphoption" style="margin-top:5px">
-                    <input id="bollinger" type="checkbox" class="disabled" />&nbsp;<b><?=  $lang_array['app']['graph_bollinger'] ?></b>
+                    <input linked-asset="<?= $v->name ?>" id="bollinger" type="checkbox" class="disabled" />&nbsp;<b><?=  $lang_array['app']['graph_bollinger'] ?></b>
                   </div>
                   <div class="graphoption" style="margin-top:5px">
-                    <input id="lreg" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_lreg'] ?></b>
+                    <input linked-asset="<?= $v->name ?>" id="lreg" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_lreg'] ?></b>
                   </div>
                   <div class="graphoption" style="margin-top:5px">
-                    <input id="raff" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_raff'] ?></b>
+                    <input linked-asset="<?= $v->name ?>" id="raff" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_raff'] ?></b>
                   </div>
 
                   </form>
@@ -220,6 +203,11 @@
                 </div>
 
 
+
+              </div>
+
+              <div class="span6" style="text-align:right">
+                <h4><?= $v->name ?></h4>
               </div>
             </div>
               <div linked-asset="<?= $v->name ?>" id="visualize-draw" style="height:267px;text-align:center;">
@@ -272,28 +260,13 @@
 
   function changeRefresh(iname, rate_millisecs) {
 
-    var auname = 'au' + iname.replace('_','');t
+    var auname = 'au' + iname.replace('_','');
     eval('clearInterval(' + auname + ');');
 
     set_interval_str = "setInterval(\"" + "displayGraph('" + iname + "', plot" + iname.replace('_','') + ")\"," + rate_millisecs + ");";
     eval( auname + " = " + set_interval_str );
 
   }
-
-  /* Useless now, since we have radio groups *
-  function changeGraphRes(resbtn)  {
-
-    if (resbtn.html() == 'rt') resbtn.html('5s');
-    else if (resbtn.html() == '5s') resbtn.html('30s');
-    else if (resbtn.html() == '30s') resbtn.html('1m');
-    else if (resbtn.html() == '1m') resbtn.html('5m');
-    else if (resbtn.html() == '5m') resbtn.html('20m');
-    else if (resbtn.html() == '20m') resbtn.html('1h');
-    else if (resbtn.html() == '1h') resbtn.html('4h');
-    else if (resbtn.html() == '4h') resbtn.html('1d');
-    else if (resbtn.html() == '1d') resbtn.html('rt');
-  }
-  */
 
   function enlargeGraph(iname) {
 
@@ -393,11 +366,26 @@
 
   function displayGraph(iname, existing_plot, use_dates) {
 
+    //fetch graph settings inputs
+    var mvavg20 = $('#mvavg20[linked-asset="' + iname + '"]');
+    var mvavg50 = $('#mvavg50[linked-asset="' + iname + '"]');
+    var bollinger = $('#bollinger[linked-asset="' + iname + '"]');
+    var lreg = $('#lreg[linked-asset="' + iname + '"]');
+    var raff = $('#raff[linked-asset="' + iname + '"]');
+
     var existing_plot = (typeof existing_plot != 'undefined') ? existing_plot : null;
     var use_dates = (typeof use_dates != 'undefined') ? use_dates : null;
     
     var is_filled = true;
-    var default_time_range = $('input[name="resolution-radio", linked-asset="' + iname + '"]').val() * 300;
+
+    var resolution = $('input[name="resolution-radio-' + iname + '"]:checked').val() ;
+
+    adamDebug(resolution)
+    var default_time_range = resolution * 1000 * 300;
+
+    //trick to avoid averaging.
+    if (resolution == 1) resolution = 0;
+
 
     var tinf = "";
     var tsup = "";
@@ -514,14 +502,49 @@
 
     var plot = null;
 
-    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats?tinf=' + tinf + "&tsup=" + tsup + "&indice=" + iname + "&resolution=" + resolution + "&time_offset=" + tzOffset(),
+
+    var stats_querydata = {
+                         'tinf' : tinf,
+                         'tsup': tsup,
+                         'indice': iname,
+                         'resolution': resolution,
+                         'time_offset': tzOffset(),
+                          };
+
+    if (mvavg20.is(':checked') ) stats_querydata['mvavg'] = 20;
+    else if (mvavg50.is(':checked')) stats_querydata['mvavg'] = 50;
+
+
+    if (bollinger.is(':checked')) stats_querydata['add_bollinger'] = true;
+    if (lreg.is(':checked')) stats_querydata['linear_regression'] = true;
+    if (raff.is(':checked')) stats_querydata['add_raff'] = true;
+
+    var rdata = $.ajax({'url': '/async/vhmodules/visualize/stats',
                        'type': 'GET',
+                       'data': stats_querydata,
                        'cache': false,
                        'async': true,
                        'success': function() {
 
-                          data[0].data = $.parseJSON(rdata.responseText);
-          
+                          var alldata = $.parseJSON(rdata.responseText)
+
+                          data[0].data = alldata.data;
+
+                          if ( typeof alldata.moving_average !== 'undefined' ) {
+
+                            data.push( 
+
+                              { data: alldata.moving_average.moving_average,
+                                lines: { 
+                                          fill: false,
+                                          lineWidth: 1,
+                                          zero: false },
+                                color: '#FF0000',
+                                label: iname + "_mvavg",
+                              }
+                            );
+                          }
+
                           var delta = 0 ;                
                           if ( data[0].data.length >= 2 ) {
                             delta = data[0].data[data[0].data.length -1 ][1] - data[0].data[data[0].data.length - 2 ][1];
@@ -531,8 +554,8 @@
                             }
 
                             delta = delta.toFixed(4);
-
-                            if (resolution == 0 || resolution == '5s') showDelta(iname, delta);
+                            
+                            if (resolution == 0 || resolution == 5) showDelta(iname, delta);
                           }
 
 
