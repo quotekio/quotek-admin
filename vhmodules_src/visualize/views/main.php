@@ -138,12 +138,17 @@
 
                   <table class="table" style="width:100%;text-align:center">
                     <tr>
-                      <td><input type="radio" name="refreshrate-radio" value="rt"></td>
-                      <td><input type="radio" name="refreshrate-radio" value="5s"></td>
-                      <td><input type="radio" name="refreshrate-radio" value="10s"></td>
-                      <td><input type="radio" name="refreshrate-radio" value="20s" CHECKED></td>
-                      <td><input type="radio" name="refreshrate-radio" value="60s"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="refreshrate-radio" value="1000"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="refreshrate-radio" value="5000"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="refreshrate-radio" value="10000"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="refreshrate-radio" value="20000" CHECKED></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="refreshrate-radio" value="60000"></td>
                     </tr>
+
+                    <script type="text/javascript">
+                      $('input[name="refreshrate-radio", linked-asset="<?= $v->name ?>"]').
+                      change(function() {  changeRefresh('<?= $v->name ?>', $(this).val() ); });
+                    </script>
 
                     <tr>
                       <td>rt</td>
@@ -159,16 +164,16 @@
 
                   <table class="table" style="width:100%;text-align:center">
                     <tr>
-                      <td><input type="radio" name="resolution-radio" value="1s"></td>
-                      <td><input type="radio" name="resolution-radio" value="10s"></td>
-                      <td><input type="radio" name="resolution-radio" value="20s"></td>
-                      <td><input type="radio" name="resolution-radio" value="30s" CHECKED></td>
-                      <td><input type="radio" name="resolution-radio" value="1m"></td>
-                      <td><input type="radio" name="resolution-radio" value="5m"></td>
-                      <td><input type="radio" name="resolution-radio" value="20m"></td>
-                      <td><input type="radio" name="resolution-radio" value="1h"></td>
-                      <td><input type="radio" name="resolution-radio" value="4h"></td>
-                      <td><input type="radio" name="resolution-radio" value="1d"></td>
+                      <td><input type="radio" name="resolution-radio" value="1000"></td>
+                      <td><input type="radio" name="resolution-radio" value="10000"></td>
+                      <td><input type="radio" name="resolution-radio" value="20000"></td>
+                      <td><input type="radio" name="resolution-radio" value="30000" CHECKED></td>
+                      <td><input type="radio" name="resolution-radio" value="60000"></td>
+                      <td><input type="radio" name="resolution-radio" value="300000"></td>
+                      <td><input type="radio" name="resolution-radio" value="1200000"></td>
+                      <td><input type="radio" name="resolution-radio" value="3600000"></td>
+                      <td><input type="radio" name="resolution-radio" value="14400000"></td>
+                      <td><input type="radio" name="resolution-radio" value="86400000"></td>
 
                     </tr>
 
@@ -265,41 +270,17 @@
   }
 
 
-  function changeRefresh(ratebtn) {
+  function changeRefresh(iname, rate_millisecs) {
 
-    var rate_millisecs = 20000;
-
-    if (ratebtn.html() == '20s') {
-      ratebtn.html('1s');
-      rate_millisecs = 1000;
-    }
-
-    else if (ratebtn.html() == '1s') {
-      ratebtn.html('5s');
-      rate_millisecs = 5000;
-    }
-
-    else if (ratebtn.html() == '5s') {
-      ratebtn.html('10s');
-      rate_millisecs = 10000;
-    }
-
-    if (ratebtn.html() == '10s') {
-      ratebtn.html('20s');
-      rate_millisecs = 20000;
-    }
-
-    var iname = ratebtn.attr('linked-asset');
-    var auname = 'au' + iname.replace('_','');
-    
+    var auname = 'au' + iname.replace('_','');t
     eval('clearInterval(' + auname + ');');
 
     set_interval_str = "setInterval(\"" + "displayGraph('" + iname + "', plot" + iname.replace('_','') + ")\"," + rate_millisecs + ");";
-
     eval( auname + " = " + set_interval_str );
-    
+
   }
 
+  /* Useless now, since we have radio groups *
   function changeGraphRes(resbtn)  {
 
     if (resbtn.html() == 'rt') resbtn.html('5s');
@@ -311,8 +292,8 @@
     else if (resbtn.html() == '1h') resbtn.html('4h');
     else if (resbtn.html() == '4h') resbtn.html('1d');
     else if (resbtn.html() == '1d') resbtn.html('rt');
-
   }
+  */
 
   function enlargeGraph(iname) {
 
@@ -416,22 +397,7 @@
     var use_dates = (typeof use_dates != 'undefined') ? use_dates : null;
     
     var is_filled = true;
-
-    var resolution = $('#visualize-resbtn[linked-asset=' + iname + ']').html();
-    //if realtime, resolution switches to 0
-    if (resolution == 'rt') resolution = 0;
-    
-    var default_time_range = 9000;
-
-    if (resolution == 0) default_time_range = 300;
-    else if (resolution == '5s') default_time_range = 5 * 300;
-    else if (resolution == '30s') default_time_range = 30 * 300;
-    else if (resolution == '1m') default_time_range = 60 * 300;
-    else if (resolution == '5m') default_time_range = 300 * 300;
-    else if (resolution == '20m') default_time_range = 1200 * 300;
-    else if (resolution == '1h') default_time_range = 3600 * 300;
-    else if (resolution == '4h') default_time_range =  14400 * 300;
-    else if (resolution == '1d') default_time_range = 86400 * 300;
+    var default_time_range = $('input[name="resolution-radio", linked-asset="' + iname + '"]').val() * 300;
 
     var tinf = "";
     var tsup = "";
@@ -443,7 +409,7 @@
 
     if (tinf == "") {
 
-      var pdate = new Date(Date.now() - tzOffset() * 3600000 - default_time_range * 1000 ); 
+      var pdate = new Date(Date.now() - tzOffset() * 3600000 - default_time_range ); 
 
       //pdate.setHours(pdate.getHours()-3);
 
