@@ -11,27 +11,6 @@
    
 ?>
 
-<datalist id="refreshlist">
-  <option>1</option>
-  <option>5</option>
-  <option>10</option>
-  <option>20</option>
-  <option>50</option>
-</datalist>
-
-<datalist id="reslist">
-  <option>1</option>
-  <option>10</option>
-  <option>20</option>
-  <option>30</option>
-  <option>60</option>
-  <option>300</option>
-  <option>1200</option>
-  <option>3600</option>
-  <option>12800</option>
-  <option>86400</option>
-</datalist>
-
 <div id="visualize-tooltip" style="display:none;position:absolute;padding:4px;background:#131517;border-radius:4px;font-size:11px;opacity:1.0!important;z-index:3000">
 </div>
 
@@ -264,15 +243,6 @@
 
 <script type="text/javascript">
 
-
-  /*
-  $('#resolution-slider').each(function(index,i){
-    $(this).change(function() {
-      $('#resvalue',$(this).parent()).html($(this).val());
-    } );
-  });
-  */
-  
 
   <?php foreach($vals as $v) { ?>
   var plot<?= str_replace('_','', $v->name) ?> = null;
