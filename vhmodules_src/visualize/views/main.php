@@ -379,8 +379,6 @@
     var is_filled = true;
 
     var resolution = $('input[name="resolution-radio-' + iname + '"]:checked').val() ;
-
-    adamDebug(resolution)
     var default_time_range = resolution * 1000 * 300;
 
     //trick to avoid averaging.
