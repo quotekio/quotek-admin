@@ -66,7 +66,7 @@
     <script type="text/Javascript">
       loadApp();
       window.onbeforeunload = function() {
-        return "foo";
+        return "Vous vous apprêtez à quitter l'application Quotek";
       }
       $('#codeeditor a[rel=tooltip]').tooltip({placement: 'bottom', container: '#codeeditor'});
     </script>
