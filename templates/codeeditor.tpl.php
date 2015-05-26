@@ -1,6 +1,7 @@
 <div id="codeeditor">
 
-<div class="navbar-inner" id="codeeditor_nav">
+<!-- needs to maintain display:none because app.css is not fully loaded when displayed -->
+<div class="navbar-inner" id="codeeditor_nav" style="display:none">
 
          <div class="row-fluid">
         <div class="span5" style="margin-top:0px">

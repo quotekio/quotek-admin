@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<div class="navbar navbar-static-top">
+<div class="navbar navbar-static-top" style="display:none">
  
   <div class="navbar-inner" id="app-topbar">
 
