@@ -20,7 +20,7 @@
 
       <div class="row-fluid">
 
-        <div class="span3">
+        <div class="span6">
 
           <img src="/img/git-large.png" style="width:30px"/>
 
@@ -42,7 +42,7 @@
 
         </div>
 
-        <div class="span9" style="text-align:right">
+        <div class="span6" style="text-align:right">
           <a id="btn-git-commit" class="btn disabled"><?= $lang_array['app']['git_commit'] ?></a>
         </div>
     </div>
