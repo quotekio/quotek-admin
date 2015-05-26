@@ -6,7 +6,7 @@ class reach {
 
 
     try{
-        $this->dbh = new PDO('sqlite:'.dirname(__FILE__).'/../data/vh.sqlite');
+        $this->dbh = new PDO('sqlite:'.dirname(__FILE__).'/../data/quotek.sqlite');
         $this->dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // ERRMODE_WARNING | ERRMODE_EXCEPTION | ERRMODE_SILENT
     } catch(Exception $e) {
