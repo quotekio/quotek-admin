@@ -36,7 +36,7 @@
                  <div class="span9">
 
                   <div id="visualize-datepicker-tinf" class="input-append date" style="margin-top:15px">
-                  <input id="visualize-input-tinf" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:14px!important;height:24px "></input>
+                  <input id="visualize-input-tinf" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:14px!important;height:22px "></input>
                   <span class="add-on btn-warning" style="padding-top:4px!important;padding-bottom:4px!important;background:#FF9200!important">
                     <i data-time-icon="icon-time icon-white" data-date-icon="icon-calendar icon-white">
                     </i>
@@ -56,7 +56,7 @@
                 <div class="span9">
 
                   <div id="visualize-datepicker-tsup" class="input-append date" style="margin-top:15px">
-                  <input id="visualize-input-tsup" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:14px!important;height:24px "></input>
+                  <input id="visualize-input-tsup" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:14px!important;height:22px "></input>
                   <span class="add-on btn-warning" style="padding-top:4px!important;padding-bottom:4px!important;background:#FF9200!important">
                     <i data-time-icon="icon-time icon-white" data-date-icon="icon-calendar icon-white">
                     </i>
