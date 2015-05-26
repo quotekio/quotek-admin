@@ -43,6 +43,8 @@ function endLoad() {
   ce.setTheme("ace/theme/xcode");
   ce.getSession().setMode("ace/mode/c_cpp");
   
+  $('#app-topbar-container').show();
+  
   appLoadDisp('dashboard');
   
 }
