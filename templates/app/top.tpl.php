@@ -44,8 +44,10 @@
 
   
   <div id="app-titlebar"></div>
-  <!-- Dirty Trick to avoid DOM Elt duplication -->
-  <a class="newbtn btn-warning" id="btn-corecfg-new">
+  <!-- Dirty Trick to avoid DOM Elt duplication
+       puts newbtn to display:false for loading trick
+   -->
+  <a class="newbtn btn-warning" id="btn-corecfg-new" style="display:none">
       <i class="icon icon-white icon-plus"></i>
   </a>
 

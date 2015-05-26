@@ -541,8 +541,75 @@
                                 label: iname + "_mvavg",
                               }
                             );
+
+                            if( typeof alldata.moving_average.bollinger_1 !== 'undefined' ) {
+
+                              data.push( 
+
+                                { data: alldata.moving_average.bollinger_1,
+                                  lines: { 
+                                            fill: false,
+                                            lineWidth: 1,
+                                            zero: false },
+                                  color: '#FFFFFF',
+                                  label: iname + "_bollinger",
+                                }
+                              );
+
+                              data.push( 
+
+                                { data: alldata.moving_average.bollinger_2,
+                                  lines: { 
+                                            fill: false,
+                                            lineWidth: 1,
+                                            zero: false },
+                                  color: '#FFFFFF',
+                                  label: iname + "_bollinger",
+                                }
+                              );
+                            }
                           }
 
+                          if ( typeof alldata.linear_regression !== 'undefined' ) {
+
+                            data.push( 
+
+                              { data: alldata.linear_regression.linear_regression,
+                                lines: { 
+                                          fill: false,
+                                          lineWidth: 1,
+                                          zero: false },
+                                color: '#00FF00',
+                                label: iname + "_lreg",
+                              }
+                            );
+
+                            if ( typeof alldata.linear_regression.raff_1 !== 'undefined' ) {
+                              data.push( 
+                                { data: alldata.linear_regression.linear_raff_1,
+                                  lines: { 
+                                            fill: false,
+                                            lineWidth: 1,
+                                            zero: false },
+                                  color: '#00FF00',
+                                  label: iname + "_raff1",
+                                }
+                              );
+
+                              data.push( 
+                                { data: alldata.linear_regression.linear_raff_2,
+                                  lines: { 
+                                            fill: false,
+                                            lineWidth: 1,
+                                            zero: false },
+                                  color: '#00FF00',
+                                  label: iname + "_raff2",
+                                }
+                              );
+
+                            }
+                          }
+                          
                           var delta = 0 ;                
                           if ( data[0].data.length >= 2 ) {
                             delta = data[0].data[data[0].data.length -1 ][1] - data[0].data[data[0].data.length - 2 ][1];
