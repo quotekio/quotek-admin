@@ -1248,6 +1248,7 @@ function adamCodeEditorSwitchFS() {
 
     $('#btn-save-strat').off('click');
 
+    $('#codeeditor').css('top','0px');
     $('#codeeditor').show();
 }
 
@@ -1256,6 +1257,7 @@ function adamCodeEditorSwitchBackFS() {
     var aceEditor2 = ace.edit("codeeditor_area");
     aceEditor1.setValue(aceEditor2.getValue());
     $('#codeeditor').hide();
+    $('#codeeditor').css('top','-1000px');
 }
 
 

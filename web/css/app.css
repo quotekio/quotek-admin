@@ -420,7 +420,7 @@ padding:15px;
 
 #codeeditor {
   position:absolute;
-  top:0px;
+  top:-1000px;
   left:0px;
   z-index:10000;
   width:100%;
