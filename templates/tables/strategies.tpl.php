@@ -29,7 +29,11 @@ foreach ($strats as $strat) {
     <td class="<?= $tdclass  ?>"><?=  $strat->name ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->type ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->author ?></td>
-    <td class="<?= $tdclass  ?>"> <span class="label label-<?= ($strat->active == 1) ? "success" : "inverse"  ?>"><?=  ($strat->active == 1) ? $lang_array['app']['active']: $lang_array['app']['disabled'] ?> </div></td>
+    <?php if ( $strat->type == "normal" )  { ?>
+      <td class="<?= $tdclass  ?>"> <span class="label label-<?= ($strat->active == 1) ? "success" : "inverse"  ?>"><?=  ($strat->active == 1) ? $lang_array['app']['active']: $lang_array['app']['disabled'] ?> </div></td>
+    <?php } else { ?>
+      <td class="<?= $tdclass  ?>"> -- </td>
+    <?php } ?>
 
     <td class="dtime <?= $tdclass  ?>"><?=  $strat->created ?></td>
     <td class="dtime <?= $tdclass  ?>"><?=  $strat->updated ?></td>

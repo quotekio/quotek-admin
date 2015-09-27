@@ -184,10 +184,13 @@
   $lang_array['app']['opendoc'] = 'Ouvrir les pages de documentation';
   $lang_array['app']['doc_small'] = 'Doc';
 
-  $lang_array['app']['doc_fctmain'] = 'Fonctions Générales';
-  $lang_array['app']['doc_fctmath'] = 'Fonctions Mathématiques';
-  $lang_array['app']['doc_fctbroker'] = 'Fonctions de passage d\'ordre';
-  $lang_array['app']['doc_fctstore'] = 'Fonctions Store';
+  $lang_array['app']['doc_ml'] = 'Machine Learning';
+  $lang_array['app']['doc_ta'] = 'Technical Analysis';
+  $lang_array['app']['doc_broker'] = 'Broker Interactions';
+  
+  $lang_array['app']['doc_datastruct'] = 'Data Structures';
+  $lang_array['app']['doc_datasources'] = 'Data Sources';
+  $lang_array['app']['doc_quant'] = 'Quantitative Analysis';
 
   $lang_array['app']['cfg_broker_title'] = 'Configuration Courtier';
   $lang_array['app']['cfg_broker_subtitle'] = 'gerez vos configurations de courtier';

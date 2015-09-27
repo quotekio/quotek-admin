@@ -33,7 +33,7 @@
            <div class="row-fluid">
              <div class="btn-group">
               <a class="btn" onclick="adamCodeEditorSwitchFS();"><i class="icon icon-fullscreen"></i></a>
-              <a class="btn" target="_new" href="/doc/"><i class="icon icon-question-sign"></i></a>
+              <a class="btn" target="_new" href="http://docs.quotek.io/sdk"><i class="icon icon-question-sign"></i></a>
              </div>
             </div>
 

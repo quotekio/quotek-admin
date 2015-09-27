@@ -17,16 +17,19 @@
         
         <div class="span7" style="text-align:right;margin-top:4px">
           <div id="codehelp" class="btn-group">
-          <a class="btn" title="<?= $lang_array['app']['opendoc'] ?>" target="__new" href="/doc/" rel="tooltip">
+          <a class="btn" title="<?= $lang_array['app']['opendoc'] ?>" target="__new" href="http://docs.quotek.io/sdk" rel="tooltip">
             <i class="icon icon-question-sign"></i> <?= $lang_array['app']['doc_small'] ?></a>
           <a class="btn dropdown-toggle" data-toggle="dropdown">
              &nbsp;<span class="caret"></span>
           </a>
            <ul class="dropdown-menu" style="text-align:left">
-              <li><a target="__new" href="/doc/#main"><?= $lang_array['app']['doc_fctmain']  ?></a> </li>
-              <li><a target="__new" href="/doc/#math"><?= $lang_array['app']['doc_fctmath']  ?></a> </li>
-              <li><a target="__new" href="/doc/#broker"><?= $lang_array['app']['doc_fctbroker']  ?></a> </li>
-              <li><a target="__new" href="/doc/#store"><?= $lang_array['app']['doc_fctstore']  ?></a> </li>
+              <li><a target="__new" href="http://docs.quotek.io/sdk/data_struct.html"><?= $lang_array['app']['doc_datastruct']  ?></a> </li>
+              <li><a target="__new" href="http://docs.quotek.io/sdk/quant.html"><?= $lang_array['app']['doc_quant']  ?></a> </li>
+              <li><a target="__new" href="http://docs.quotek.io/sdk/ml.html"><?= $lang_array['app']['doc_ml']  ?></a> </li>
+              <li><a target="__new" href="http://docs.quotek.io/sdk/data_sources.html"><?= $lang_array['app']['doc_datasources']  ?></a> </li>
+              <li><a target="__new" href="http://docs.quotek.io/sdk/ta.html"><?= $lang_array['app']['doc_ta']  ?></a> </li>
+
+              <li><a target="__new" href="http://docs.quotek.io/sdk/broker.html"><?= $lang_array['app']['doc_fctbroker']  ?></a> </li>
           </ul>
           </div>
           <a class="btn" title="<?= $lang_array['app']['editor_resize_small']  ?>" onclick="adamCodeEditorSwitchBackFS();" rel="tooltip">
