@@ -16,7 +16,7 @@
   $ADAM_AEP_ADDR = "127.0.0.1";
   $ADAM_AEP_PORT = 9999;
   
-  $VH_VERSION = "2.5 beta2";
+  $VH_VERSION = "3.0 alpha1";
   $API_VERSION= "1.0.0";
   $API_LASTMOD = "2013-09-07";
 
@@ -26,6 +26,27 @@
   $TWITTER_CONSUMER_SECRET = '0R9VnDuJn0yCnfdXXUHaG3fJcFx5cf5ARpES49ThejYmKb62KS';
   $TWITTER_ACCESS_TOKEN = '2998838957-7yfKiu7bUIasBQXasI4IXVOiaVoLyHgy2WIRiIo';
   $TWITTER_ACCESS_TOKEN_SECRET = 'szrpOO7X8f66irda1HyjLlpkDGyAW2R9TfSy3ZFhJJFOb';
+
+  $SOURCE_DEFAULT = <<<EOT
+class newstrat: public strategy {
+  public:
+
+    quotek::broker* br0;
+                  
+    int initialize() {
+
+      //put your init code here
+
+    }
+
+    void evaluate() {
+
+      //put your evaluation code here
+
+    }
+};
+
+EOT;
 
   $INCLUDE_PATHS = array ('/usr/local/adam/admin',
 			  '/usr/local/adam/admin/includes',

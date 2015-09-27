@@ -49,6 +49,10 @@ function loadVHModules() {
   foreach ($vhm_list as $vhm ) {
 
     @include ( $MODULES_PATH . "/" . $vhm . "/vhmodule.php" );
+
+    if (!isset($vhmodule_entries) ) $vhmodule_entries = array();
+    if (!isset($vhmodule_icon) ) $vhmodule_icon = "";
+
     $vhms[] = new vhmodule(
     	               $vhm,
     	               $vhmodule_longname,
@@ -56,12 +60,14 @@ function loadVHModules() {
     	               $vhmodule_version,
     	               $vhmodule_entries,
     	               $vhmodule_views);
+
+
     unset($vhmodule_longname);
     unset($vhmodule_version);
-    unset($vhmodule_entries);
     unset($vhmodule_views);
-    unset($vhmodule_icon);
 
+    unset($vhmodule_entries);
+    unset($vhmodule_icon);
 
     if (isset($vhmodule_routing)) {
       $routing += $vhmodule_routing;

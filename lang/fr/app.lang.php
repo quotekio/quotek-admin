@@ -86,6 +86,9 @@
   $lang_array['app']['progress'] = 'Progression';
   $lang_array['app']['graphics'] = 'Graphiques';
   $lang_array['app']['delete'] = 'Supprimer';
+  $lang_array['app']['active'] = 'Activé';
+  $lang_array['app']['disabled'] = 'Desactivé';
+
 
   $lang_array['app']['backtests']  = 'Backtests';
   $lang_array['app']['results']  = 'Résultats';

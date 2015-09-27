@@ -38,7 +38,7 @@
             </div>
 
 
-           <div id="editor">//<?= $lang_array['app']['code'] ?></div>
+           <div id="editor"><?= $SOURCE_DEFAULT ?></div>
  
          </form>
           </div>

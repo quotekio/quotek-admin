@@ -85,6 +85,10 @@
   $lang_array['app']['graphics'] = 'Graphics';
   $lang_array['app']['delete'] = 'Delete';
 
+  $lang_array['app']['active'] = 'Active';
+  $lang_array['app']['disabled'] = 'Disabled';
+
+
   $lang_array['app']['backtests']  = 'Backtests';
   $lang_array['app']['results']  = 'Résults';
   $lang_array['app']['btof'] = 'Backtest of';

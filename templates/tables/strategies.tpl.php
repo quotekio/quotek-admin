@@ -8,6 +8,7 @@
     <th><?= $lang_array['app']['name'] ?></th>
     <th><?= $lang_array['app']['type'] ?></th>
     <th><?= $lang_array['app']['author'] ?></th>
+    <th><?= $lang_array['app']['status'] ?></th>
     <th><?= $lang_array['app']['createdon'] ?></th>
     <th><?= $lang_array['app']['updatedon'] ?></th>
     <th><?= $lang_array['app']['actions'] ?></th>
@@ -17,7 +18,8 @@
 
 foreach ($strats as $strat) {
     $tdclass = ($strat->active ==1 ) ? 'activated' : '';
-    $actbtnclass = ($strat->active == 1) ? "disabled" : "btn-success";
+    $togglebtn_class = ($strat->active == 1) ? "btn-info" : "btn-success";
+    $togglebtn_icon = ($strat->active == 1) ? "icon-stop" : "icon-play";
     $actbtnclick = ($strat->active == 1) ? "" :  "adamActivateStrat('" . $strat->name . "');" ; 
     $delbtnclass = ($strat->active == 1) ? "disabled" : "btn-danger";
     $deltbtnclick = ($strat->active == 1) ? "" :  "adamDelStrat('" . $strat->name . "');" ;    
@@ -27,6 +29,8 @@ foreach ($strats as $strat) {
     <td class="<?= $tdclass  ?>"><?=  $strat->name ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->type ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->author ?></td>
+    <td class="<?= $tdclass  ?>"> <span class="label label-<?= ($strat->active == 1) ? "success" : "inverse"  ?>"><?=  ($strat->active == 1) ? $lang_array['app']['active']: $lang_array['app']['disabled'] ?> </div></td>
+
     <td class="dtime <?= $tdclass  ?>"><?=  $strat->created ?></td>
     <td class="dtime <?= $tdclass  ?>"><?=  $strat->updated ?></td>
     <td class="<?= $tdclass  ?>">
@@ -34,7 +38,7 @@ foreach ($strats as $strat) {
 
         <?php if ($strat->type == "normal") {  ?>
 
-        <a class="btn <?= $actbtnclass ?> btn-activate-strat" id="btn-activate-strat" onclick="<?= $actbtnclick ?>" ><i class="icon-white icon-ok"></i></a>
+        <a class="btn <?= $togglebtn_class ?> btn-toggle-strat" id="btn-toggle-strat" onclick="<?= $actbtnclick ?>" ><i class="icon-white <?= $togglebtn_icon ?>"></i></a>
         <?php } ?>
         <a class="btn btn-inverse btn-strat-edit" 
            rel="tooltip"

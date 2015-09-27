@@ -28,9 +28,9 @@ class strategy extends adamobject {
     $this->content = file_get_contents($GIT_LOCATION . '/' . $this->name);
     $this->name_noext = preg_replace('/\.(qs|qsm)/', '', $this->name);
 
-    $as = getActiveStrategy();
+    $astrats = getActiveStrategies();
 
-    if ( $this->name ==  $as  ) $this->active = 1;
+    if ( in_array($this->name, $astrats) ) $this->active = 1;
     else $this->active = 0;
 
     if (endsWith($this->name,'.qs')) $this->type = 'normal';
@@ -92,15 +92,19 @@ function getStratsList() {
 
 }
 
-function getActiveStrategy() {
+function getActiveStrategies() {
   $acfg = getActiveCfg();
-  return $acfg->active_strat;
+  return $acfg->getActiveStrats();
 }
 
 function getStrategies() {
 
   global $repository;
   global $GIT_LOCATION;
+
+  $astrats = getActiveStrategies();
+
+
 
   $strategies = array();
   $commit = $repository->getHeadCommit();
@@ -128,9 +132,8 @@ function getStrategies() {
        }
 
        $s = new strategy($f,$type,$author,$created,$updated);
-       
-       $as = getActiveStrategy();
-       if ( $f ==  $as  ) $s->active = 1;
+
+       if ( in_array($f, $astrats)  ) $s->active = 1;
        else $s->active = 0;
 
        $s->content = "";

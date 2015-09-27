@@ -98,7 +98,35 @@ class corecfg  extends adamobject {
     parent::delete();
   }
 
-}
+
+  function getActiveStrats() {
+
+    $result = explode(",", $this->active_strategies);
+    return $result;
+  }
+
+  function addActiveStrat($name) {
+
+    $sarray = explode(",", $this->active_strategies);
+    if (! in_array($name,$sarray)) {
+      if (strlen($this->active_strategies) != 0) $this->active_strategies .= "," . $name;
+      else $this->active_strategies = $name;
+    }
+  }
+
+  function removeActiveStrat($name) {
+
+    $sarray = explode(",", $this->active_strategies);
+
+    for($i=0;$i<count($sarray);$i++) {
+      if ( $name == $sarray[$i] ) {
+        
+      }
+
+    }
+  }
+
+} /* corecfg classdef end */
 
 
 function getCoreConfigs() {
@@ -175,7 +203,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   $backend = $cfg->getBackendModule();
   $values = getCfgValues($cfg->id); 
   $strats_path = $GIT_LOCATION;
-  $exp_stratname = $cfg->active_strat;
+  $exp_active_strategies = $cfg->active_strategies;
 
   fwrite($fh,"eval_ticks = " . $cfg->eval_ticks . "\n");
   fwrite($fh,"getval_ticks = " . $cfg->getval_ticks . "\n");
@@ -225,7 +253,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
       fwrite($fh,$valuestr);
   }
 
-  fwrite($fh,"strat = " . $exp_stratname . "\n\n" );
+  fwrite($fh,"active_strats = " . $exp_active_strategies . "\n\n" );
   fwrite($fh,"strats_path = " . $strats_path . "\n");
   fwrite($fh,"mm_max_openpos = " . $cfg->mm_max_openpos . "\n");
   fwrite($fh,"mm_max_openpos_per_epic = " . $cfg->mm_max_openpos_per_epic . "\n");

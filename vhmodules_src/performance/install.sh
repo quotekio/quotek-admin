@@ -30,7 +30,7 @@ cp -rp async/* $INSTALL_DIR/pages/async/vhmodules/performance/
 cp -rp classes/* $INSTALL_DIR/classes/
 
 #SQL
-sqlite3 $INSTALL_DIR/data/vh.sqlite < ./install.sql
+sqlite3 $INSTALL_DIR/data/quotek.sqlite < ./install.sql
 
 
 
