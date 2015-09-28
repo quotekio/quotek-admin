@@ -123,6 +123,7 @@ class corecfg  extends adamobject {
         unset($sarray[$i]);
       }
     }
+    
     $this->active_strategies = '';
     for($i=0;$i<count($sarray);$i++) {
       if ($i==0) $this->active_strategies = $sarray[$i];
