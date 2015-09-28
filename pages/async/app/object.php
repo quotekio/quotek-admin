@@ -183,6 +183,16 @@
           echo json_encode($response);
       }
 
+      else if ($action == 'disable') {
+          $obj = new strategy();
+          $obj->name = $_REQUEST['id'];
+          $obj->disable();
+          //remakes export
+          exportCfg();
+          echo json_encode($response);
+      }
+
+
       else if ($action == 'getall') {
          $objs = getStratsList();
          echo json_encode($objs);

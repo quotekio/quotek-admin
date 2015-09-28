@@ -109,21 +109,26 @@ class corecfg  extends adamobject {
 
     $sarray = explode(",", $this->active_strategies);
     if (! in_array($name,$sarray)) {
-      if (strlen($this->active_strategies) != 0) $this->active_strategies .= "," . $name;
+      if (strlen($this->active_strategies) != 0) $this->active_strategies .= ',' . $name;
       else $this->active_strategies = $name;
     }
   }
 
   function removeActiveStrat($name) {
 
-    $sarray = explode(",", $this->active_strategies);
+    $sarray = explode(',', $this->active_strategies);
 
     for($i=0;$i<count($sarray);$i++) {
       if ( $name == $sarray[$i] ) {
-        
+        unset($sarray[$i]);
       }
-
     }
+    $this->active_strategies = '';
+    for($i=0;$i<count($sarray);$i++) {
+      if ($i==0) $this->active_strategies = $sarray[$i];
+      else $this->active_strategies .= ',' . $sarray[$i];
+    }
+    
   }
 
 } /* corecfg classdef end */

@@ -75,9 +75,16 @@ class strategy extends adamobject {
 
   function activate() {
     $acfg = getActiveCfg();
-    $acfg->active_strat = $this->name;
+    $acfg->addActiveStrat($this->name);
     $acfg->save();
   }
+
+  function disable() {
+    $acfg = getActiveCfg();
+    $acfg->removeActiveStrat($this->name);
+    $acfg->save();
+  }
+
 }
 
 

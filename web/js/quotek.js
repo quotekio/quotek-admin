@@ -468,41 +468,52 @@ function adamDelStrat(sid) {
     }
 }
 
-function adamActivateStrat(sid) {
+function adamToggleStrat(btn) {
 
-   var r = adamObject('activate','strategy',{},sid);
-   if (r.answer == 'OK') {
+  line = btn.parent().parent().parent();
+  status_lbl = $('.label',line);
+  sid = line.attr('id').replace(/strategy-line-/g,"");
 
-        $('.btn-activate-strat').each(function() {
+  if ( btn.hasClass("btn-success") ) {
 
-           if ($(this).hasClass('disabled')) {
+    r = adamObject('activate','strategy',{},sid);
+    if (r.answer == 'OK') {
 
-               var line2 =  $(this).parent().parent().parent();
-               var sid2 = line2.attr('id').replace(/strategy-line-/g,"");
-               line2.children().each(function() {  $(this).removeClass('activated');    } );
+      btn.removeClass('btn-success');
+      btn.addClass('btn-info');
+      btn.html('<i class="icon-white icon-stop"></i>');
+      status_lbl.removeClass('label-inverse');
+      status_lbl.addClass('label-success');
+      status_lbl.html( status_lbl.attr('text-active') );
 
-               $('#btn-activate-strat',line2).click(function(){ adamActivateStrat(sid2); } );
-               $('#btn-activate-strat',line2).addClass('btn-success');
-               $('#btn-activate-strat',line2).removeClass('disabled');
+      $('#btn-del-strat',line).off('click');
+      $('#btn-del-strat',line).addClass('disabled');
+      $('#btn-del-strat',line).removeClass('btn-danger');
 
-               $('#btn-del-strat',line2).click(function(){ adamDelStrat(sid2); } );
-               $('#btn-del-strat',line2).addClass('btn-danger');
-               $('#btn-del-strat',line2).removeClass('disabled');
+    }
 
-           }
-        });
+  }
 
-        var line = $('#strategy-line-' + sid);
-        line.children().each(function() {  $(this).addClass('activated');    } );
-        $('#btn-activate-strat',line).off('click');
-        $('#btn-activate-strat',line).addClass('disabled');
-        $('#btn-activate-strat',line).removeClass('btn-success');
+  else {
 
-        $('#btn-del-strat',line).off('click');
-        $('#btn-del-strat',line).addClass('disabled');
-        $('#btn-del-strat',line).removeClass('btn-danger');
-   }
-}
+    r = adamObject('disable','strategy',{},sid);
+    if (r.answer == 'OK') {
+
+      btn.addClass('btn-success');
+      btn.removeClass('btn-info');
+      btn.html('<i class="icon-white icon-play"></i>');
+      status_lbl.addClass('label-inverse');
+      status_lbl.removeClass('label-success');
+      status_lbl.html( status_lbl.attr('text-disabled') );
+
+      $('#btn-del-strat',line).click(function(){ adamDelStrat(sid); } );
+      $('#btn-del-strat',line).addClass('btn-danger');
+      $('#btn-del-strat',line).removeClass('disabled');
+
+    }
+  }
+} 
+
 
 function adamGetBacktestDataToEdit(bid) {
 
