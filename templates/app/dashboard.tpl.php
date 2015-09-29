@@ -79,17 +79,17 @@
 
               <ul class="nav nav-tabs">
                  <li class="active">
-                    <a href="#app-dashboard-lastlogs" onclick="" class="" id ="lastlogs-tab"><?= $lang_array['app']['lastlog'] ?></a>
+                    <a onclick="adamLogNav($(this));" id ="lastlogs"><?= $lang_array['app']['lastlog'] ?></a>
                   </li>
                  <li>
-                    <a href="#app-dashboard-compile-errors"  onclick="" class="" id="compiler-tab"><?= $lang_array['app']['compiler'] ?></a>
+                    <a onclick="adamLogNav($(this));" id="compiler"><?= $lang_array['app']['compiler'] ?></a>
                   </li> 
 
               </ul>         
 
-              <div class="tab-pane" id="app-dashboard-lastlogs">foo</div>
+              <div class="lognav" id="app-dashboard-lastlogs">foo</div>
 
-              <div class="tab-pane" id="app-dashboard-compile-errors">bla</div>
+              <div class="lognav" id="app-dashboard-compile-errors">bla</div>
 
             </div>
 
@@ -120,5 +120,16 @@
 
 
   });
+
+
+  function adamLogNav(obj) {
+
+    $('.corecfg-editor-frame').hide();
+    $('#corecfg-editor-' +  obj.attr('id') ).show();
+
+    $('.corecfg-editor-navlink').parent().removeClass('active');
+    obj.parent().addClass('active');
+    
+  }
 
 </script>
