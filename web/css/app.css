@@ -477,7 +477,7 @@ padding:15px;
   
 }
 
-#app-dashboard-lastlogs {
+#app-dashboard-lastlogs, #app-dashboard-compiler {
 
 background-color:#white;
 color:#38b7e5;

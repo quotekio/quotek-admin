@@ -42,7 +42,7 @@
     $compile_errors = $ac->getCompileErrors();
 
     $message = $lang_array['app']['adam_mode']["$state"];
-    
+
     $res = array('state' => $state, 
                 'message' => $message, 
                 'needs_restart' => $nr, 

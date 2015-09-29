@@ -136,9 +136,13 @@ class adamctl {
 
   function getCompileErrors() {
 
-    $cp_errors = file_get_contents("$ADAM_TMP/compile.errors.log");
+    global $ADAM_TMP;
+
+    $cp_errors = file_get_contents("$ADAM_TMP/compiler.errors.log");
+    $cp_errors = trim( str_replace("\n","<br>", $cp_errors) );
+    if ($cp_errors === false) $cp_errors = "";
     return $cp_errors;
-    
+
   }
 
 

@@ -79,17 +79,17 @@
 
               <ul class="nav nav-tabs">
                  <li class="active">
-                    <a onclick="adamLogNav($(this));" id ="lastlogs"><?= $lang_array['app']['lastlog'] ?></a>
+                    <a class="logs-navlink" onclick="adamLogNav($(this));" id ="lastlogs"><?= $lang_array['app']['lastlog'] ?></a>
                   </li>
                  <li>
-                    <a onclick="adamLogNav($(this));" id="compiler"><?= $lang_array['app']['compiler'] ?></a>
+                    <a class="logs-navlink" onclick="adamLogNav($(this));" id="compiler"><?= $lang_array['app']['compiler'] ?> <span id="app-dashboard-compiler-nberrors" class="label label-success">0</span></a>
                   </li> 
 
               </ul>         
 
-              <div class="lognav" id="app-dashboard-lastlogs">foo</div>
+              <div class="lognav" id="app-dashboard-lastlogs"></div>
 
-              <div class="lognav" id="app-dashboard-compile-errors">bla</div>
+              <div class="lognav" id="app-dashboard-compiler"></div>
 
             </div>
 
@@ -124,10 +124,10 @@
 
   function adamLogNav(obj) {
 
-    $('.corecfg-editor-frame').hide();
-    $('#corecfg-editor-' +  obj.attr('id') ).show();
+    $('.lognav').hide();
+    $('#app-dashboard-' +  obj.attr('id') ).show();
 
-    $('.corecfg-editor-navlink').parent().removeClass('active');
+    $('.logs-navlink').parent().removeClass('active');
     obj.parent().addClass('active');
     
   }

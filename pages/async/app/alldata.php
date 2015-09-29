@@ -27,7 +27,8 @@ $ac = new adamctl();
 $state = $ac->checkStatus($ac->supid);
 $nr = file_exists('/tmp/adam/needs_restart') ;
 $message = $lang_array['app']['adam_mode']["$state"];
-$res['adamstatus'] = array('state' => $state, 'message' => $message, 'needs_restart' => $nr );
+$cp_errors = $ac->getCompileErrors();
+$res['adamstatus'] = array('state' => $state, 'message' => $message, 'needs_restart' => $nr, 'compile' => $cp_errors );
 
 /* 
 ==============
