@@ -39,9 +39,14 @@
 
     $state = $ac->checkStatus($ac->supid);
     $nr = file_exists('/tmp/adam/needs_restart') ;
+    $compile_errors = $ac->getCompileErrors();
 
     $message = $lang_array['app']['adam_mode']["$state"];
-    $res = array('state' => $state, 'message' => $message, 'needs_restart' => $nr );
+    
+    $res = array('state' => $state, 
+                'message' => $message, 
+                'needs_restart' => $nr, 
+                'compile' => $compile_errors );
  
     echo json_encode($res);
 

@@ -70,14 +70,31 @@
       <div class="row-fluid" style="margin-top:30px">
 
       	<div class="span12">
-      	  <div class="app-headed-white-frame" style="height:200px">
+      	  <div class="app-headed-white-frame" style="height:300px">
       	    <div class="app-headed-frame-header" style="margin-bottom:0px">
-      	  	    <h4><?= $lang_array['app']['lastlog'] ?></h4>
+      	  	    <h4><?= $lang_array['app']['robot_logs'] ?></h4>
       	    </div>
 
-            <div id="app-dashboard-lastlogs"></div>
+            <div style="padding:15px">
 
-      	  </div>
+              <ul class="nav nav-tabs">
+                 <li class="active">
+                    <a href="#app-dashboard-lastlogs" onclick="" class="" id ="lastlogs-tab"><?= $lang_array['app']['lastlog'] ?></a>
+                  </li>
+                 <li>
+                    <a href="#app-dashboard-compile-errors"  onclick="" class="" id="compiler-tab"><?= $lang_array['app']['compiler'] ?></a>
+                  </li> 
+
+              </ul>         
+
+              <div class="tab-pane" id="app-dashboard-lastlogs">foo</div>
+
+              <div class="tab-pane" id="app-dashboard-compile-errors">bla</div>
+
+            </div>
+
+          </div>
+
       	</div>      
 
       </div>

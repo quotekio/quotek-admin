@@ -134,4 +134,12 @@ class adamctl {
     }
   }
 
+  function getCompileErrors() {
+
+    $cp_errors = file_get_contents("$ADAM_TMP/compile.errors.log");
+    return $cp_errors;
+    
+  }
+
+
 }?>

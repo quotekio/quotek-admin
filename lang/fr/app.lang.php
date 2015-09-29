@@ -63,7 +63,11 @@
   $lang_array['app']['progress'] = 'Progression';
 
   $lang_array['app']['nbpos'] = 'Positions Ouvertes';
+  
+  $lang_array['app']['robot_logs'] = "Journaux";
   $lang_array['app']['lastlog'] = 'Dernières entrées du journal';
+  $lang_array['app']['compiler'] = "Compilateur";
+
   $lang_array['app']['adamcfg'] = 'Configuration';
   $lang_array['app']['broker'] = 'Courtiers';
   $lang_array['app']['indices'] = 'Indices';

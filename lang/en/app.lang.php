@@ -61,7 +61,11 @@
   $lang_array['app']['progress'] = 'Progress';
 
   $lang_array['app']['nbpos'] = 'Open Positions';
+  
+  $lang_array['app']['robot_logs'] = 'Logs';
   $lang_array['app']['lastlog'] = 'Last Log Entries';
+  $lang_array['app']['compiler'] = 'Compiler';
+
   $lang_array['app']['adamcfg'] = 'Configuration';
   $lang_array['app']['broker'] = 'Brokers';
   $lang_array['app']['indices'] = 'Assets';
