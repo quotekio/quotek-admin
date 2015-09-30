@@ -38,8 +38,8 @@ $phistlist = $b->query_history($cur_month,time(0));
     <td><?=$pos->open ?></td>
     <td><?=$pos->stop ?></td>
     <td><?=$pos->limit ?></td>
-    <td><?= $pos->open_time ?></td>
-    <td><?= $pos->close_time ?></td>
+    <td><?= $pos->open_date ?></td>
+    <td><?= $pos->close_date ?></td>
     <td style="font-weight:bold;color:<?= ($pos->pnl > 0) ? '#699e00' : '#c00' ?>" ><?=$pos->pnl ?></td>
     <td style="font-weight:bold;color:<?= ($pos->pnl_peak > 0) ? '#699e00' : '#c00' ?>" ><?=$pos->pnl_peak ?></td>
     
