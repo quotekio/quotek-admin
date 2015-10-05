@@ -42,6 +42,11 @@
   $lang_array['app']['open_time'] = 'Ouverture';
   $lang_array['app']['close_time'] = 'Fermeture';
 
+  $lang_array['app']['day'] = 'Jour';
+  $lang_array['app']['week'] = 'Semaine';
+  $lang_array['app']['month'] = 'Mois';
+  $lang_array['app']['year'] = 'Année';
+
   $lang_array['app']['highest'] = 'Plus Haut';
   $lang_array['app']['lowest'] = 'Plus Bas';
   $lang_array['app']['stddev'] = 'Ecart Type';
@@ -93,6 +98,15 @@
   $lang_array['app']['active'] = 'Activé';
   $lang_array['app']['disabled'] = 'Desactivé';
 
+  $lang_array['app']['running_algos'] = 'Algorithmes lancés';
+  $lang_array['app']['trade_stats'] = 'Statistiques de trades';
+
+  $lang_array['app']['total'] = 'Total';
+  $lang_array['app']['winning'] = 'Gagnants';
+  $lang_array['app']['losing'] = 'Perdants';
+  $lang_array['app']['neutral'] = 'Neutres';
+
+  $lang_array['app']['history'] = 'Historique des Trades';
 
   $lang_array['app']['backtests']  = 'Backtests';
   $lang_array['app']['results']  = 'Résultats';
@@ -243,6 +257,7 @@
   
   $lang_array['app']['general']  = 'Général';
   $lang_array['app']['permissions']= 'Permissions';
+  $lang_array['app']['performance'] = 'Performance';
   $lang_array['app']['usercfg_editor_create_title']  = 'Nouvel Utilisateur';
   $lang_array['app']['usercfg_editor_edit_title']  = 'Editer L\'utilisateur';
   $lang_array['app']['rsa_pubkey'] = 'Clé Publique RSA';

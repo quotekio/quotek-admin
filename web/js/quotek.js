@@ -2135,3 +2135,228 @@ function adamCheckPendingGitCommit() {
   });
   
 }
+
+
+function adamUpdateHistory() {
+
+    var uhr = $.ajax({
+      url: '/async/app/histview',
+      type: 'GET',
+      cache: false,
+      async: true,
+      success: function() {
+        $('#hist-ct').html(uhr.responseText); 
+      }
+    });
+
+}
+
+
+function adamUpdatePerfStats(scale) {
+
+  if (scale == 'day') bar_width = 3600 * 1000 ;
+  else if (scale == 'month') bar_width = 86400 * 1000;
+  else if (scale == 'year') bar_width =  604800 * 1000;
+  
+  var rps = $.ajax({ url: '/async/app/stats/perf',
+                     type: 'GET',
+                     data: {'scale': scale },
+                     async: true,
+                     cache: false,
+                     success: function() {
+
+                       d_raw = $.parseJSON(rps.responseText);
+
+                       perf_placeholder = $('#dashboard-graph-performance');
+                       perf_placeholder.width( perf_placeholder.parent().width() );
+
+                       var perf_options = {
+                               xaxis: {
+                                mode: "time",
+                                 //timeformat: "%W",
+                                 //tickSize: [1, "week"],
+                                 axisLabel: scale
+                               },   
+                               grid: {
+                                      show: true,
+                                      borderWidth: 0,
+                                },
+                                legend: {
+                                         show: false
+                                },
+
+                       };
+
+                       var perf_data = [
+                          
+                           {
+                                       label: "Perf-",
+                                       data: d_raw.perf_negative ,
+                                       bars: {
+                                          show: true,
+                                          fill: true,
+                                          fillColor: 'rgba(204, 0, 0, .6)',
+                                          barWidth: bar_width,
+                                       },
+                                       color: "#c00"
+                                   },
+
+                              {
+                                          label: "Perf+",
+                                          data: d_raw.perf ,
+                                          bars: {
+                                              show:true,
+                                              fill: true,
+                                              fillColor: 'rgba(105, 158, 0, .6)',
+
+                                              barWidth: bar_width,
+                                            },
+                                            color: "#699e00"
+                              },
+                       ]; 
+                         
+                       $.plot(perf_placeholder, perf_data, perf_options);
+
+
+       }
+
+
+  });
+
+
+}
+
+function adamUpdateRunningAlgosStats() {
+
+}
+
+function adamUpdateTradeStats() {
+
+     var rsr = $.ajax({ url: '/async/app/stats/trades' ,
+               cache: false,
+               async:true,
+               success: function() {
+
+                           var d_raw = $.parseJSON(rsr.responseText);
+
+                           /* ###### TRADE RATIOS RENDER ###### */
+
+                           var trade_ratio_options = { series: {
+                                 pie: {
+                                       innerRadius: 0.8,
+                                       radius: 1,
+                                       show: true,
+                                       label: { show:false },
+                                       stroke:{
+                                         width:0
+                                       }
+                                     },
+                                 },
+                                 legend: {
+                                   show: false,
+                                 },
+                               };
+
+                           var trade_ratio_day_data = [{ label: "profit", data: d_raw.trade_ratios.day[0] , color: '#699e00' },
+                                              { label: "loss", data: d_raw.trade_ratios.day[1], color: '#c00'}
+                                             ];
+
+                           var trade_ratio_week_data = [{ label: "profit", data: d_raw.trade_ratios.week[0], color: '#699e00' },
+                                              { label: "loss", data: d_raw.trade_ratios.week[1], color: '#c00', }
+                                             ];
+
+                           var trade_ratio_month_data = [{ label: "profit", data: d_raw.trade_ratios.month[0], color: '#699e00'},
+                                               { label: "loss", data: d_raw.trade_ratios.month[1], color: '#c00'}
+                                              ];
+
+                           if (d_raw.trade_ratios.day[0] == 0 && d_raw.trade_ratios.day[1] == 0 ) {
+                             trade_ratio_day_data = [{ label: "nulldata", data: 1 , color: '#cccccc' }]; 
+                           }
+
+                           if (d_raw.trade_ratios.week[0] == 0 && d_raw.trade_ratios.week[1] == 0 ) {
+                             trade_ratio_week_data = [{ label: "nulldata", data: 1 , color: '#cccccc'}]; 
+                           }
+
+                           if (d_raw.trade_ratios.month[0] == 0 && d_raw.trade_ratios.month[1] == 0 ) {
+                             trade_ratio_month_data = [{ label: "nulldata", data: 1 , color: '#cccccc'}]; 
+                           }
+
+                           $.plot($('#performance-trdph'),trade_ratio_day_data,trade_ratio_options);
+                           $.plot($('#performance-trwph'),trade_ratio_week_data,trade_ratio_options);
+                           $.plot($('#performance-trmph'),trade_ratio_month_data,trade_ratio_options);
+
+                           $('#performance-trdph-label').html( d_raw.trade_ratios.day[0] + "/" + (d_raw.trade_ratios.day[0] + d_raw.trade_ratios.day[1]));
+                           $('#performance-trwph-label').html( d_raw.trade_ratios.week[0] + "/" + (d_raw.trade_ratios.week[0] + d_raw.trade_ratios.week[1]));
+                           $('#performance-trmph-label').html( d_raw.trade_ratios.month[0] + "/" + (d_raw.trade_ratios.month[0] + d_raw.trade_ratios.month[1]) );
+
+                           if (  d_raw.trade_ratios.day[0] >= d_raw.trade_ratios.day[1] ) {
+                             $('#performance-trdph-label').css('color','#699e00');
+                           }
+
+                           else if (  d_raw.trade_ratios.day[0] < d_raw.trade_ratios.day[1] ) {
+                             $('#performance-trdph-label').css('color','#c00000');
+                           }
+
+                           if ( d_raw.trade_ratios.week[0] >= d_raw.trade_ratios.week[1] ) {
+                             $('#performance-trwph-label').css('color','#699e00');
+                           }
+
+                           else if (  d_raw.trade_ratios.week[0] < d_raw.trade_ratios.week[1] ) {
+                             $('#performance-trwph-label').css('color','#c00000');
+                           }
+
+                           if ( d_raw.trade_ratios.month[0] >= d_raw.trade_ratios.month[1] ) {
+                             $('#performance-trmph-label').css('color','#699e00');
+                           }
+
+                           else if (  d_raw.trade_ratios.month[0] < d_raw.trade_ratios.month[1] ) {
+                             $('#performance-trmph-label').css('color','#c00000');
+                           }
+
+
+
+                           /* ##### TRADE STATS RENDER ##### */
+
+                           $('#apnl-daily').html( d_raw.trade_apnls.day );
+                           $('#apnl-p-daily').html( d_raw.trade_apnlps.day );
+                           $('#apnl-weekly').html( d_raw.trade_apnls.week );
+                           $('#apnl-p-weekly').html( d_raw.trade_apnlps.week );
+                           $('#apnl-monthly').html( d_raw.trade_apnls.month );
+                           $('#apnl-p-monthly').html( d_raw.trade_apnlps.month );
+
+                           if ( d_raw.trade_apnls.day >= 0 ) $('#apnl-daily').css('color','#699e00');
+                           else $('#apnl-daily').css('color','#c00000');
+                           if ( d_raw.trade_apnlps.day >= 0 ) $('#apnl-p-daily').css('color','#699e00');
+                           else $('#apnl-p-daily').css('color','#c00000');
+
+                           if ( d_raw.trade_apnls.week >= 0 ) $('#apnl-weekly').css('color','#699e00');
+                           else $('#apnl-weekly').css('color','#c00000');
+                           if ( d_raw.trade_apnlps.week >= 0 ) $('#apnl-p-weekly').css('color','#699e00');
+                           else $('#apnl-p-weekly').css('color','#c00000');
+
+                           if ( d_raw.trade_apnls.month >= 0 ) $('#apnl-monthly').css('color','#699e00');
+                           else $('#apnl-monthly').css('color','#c00000');
+                           if ( d_raw.trade_apnlps.month >= 0 ) $('#apnl-p-monthly').css('color','#699e00');
+                           else $('#apnl-p-monthly').css('color','#c00000');
+
+
+
+
+  
+
+
+
+
+
+                           /* ################################## */
+
+
+
+
+               }
+
+
+              });
+
+
+}

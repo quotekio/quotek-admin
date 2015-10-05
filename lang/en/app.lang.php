@@ -40,6 +40,11 @@
   $lang_array['app']['open_time'] = 'Open';
   $lang_array['app']['close_time'] = 'Close';
 
+  $lang_array['app']['day'] = 'Day';
+  $lang_array['app']['week'] = 'Week';
+  $lang_array['app']['month'] = 'Month';
+  $lang_array['app']['year'] = 'Year';
+
   $lang_array['app']['highest'] = 'Highest';
   $lang_array['app']['lowest'] = 'Lowest';
   $lang_array['app']['stddev'] = 'Standard Deviation';
@@ -92,6 +97,15 @@
   $lang_array['app']['active'] = 'Active';
   $lang_array['app']['disabled'] = 'Disabled';
 
+  $lang_array['app']['running_algos'] = 'Running Algos';
+  $lang_array['app']['trade_stats'] = 'Trades Statistics';
+
+  $lang_array['app']['total'] = 'Total';
+  $lang_array['app']['winning'] = 'Winning';
+  $lang_array['app']['losing'] = 'Losing';
+  $lang_array['app']['neutral'] = 'Neutral';
+
+  $lang_array['app']['history'] = 'Trades History';
 
   $lang_array['app']['backtests']  = 'Backtests';
   $lang_array['app']['results']  = 'Résults';
@@ -229,6 +243,7 @@
   
   $lang_array['app']['general']  = 'General';
   $lang_array['app']['permissions']= 'Permissions';
+  $lang_array['app']['performance'] = 'Performance';
   $lang_array['app']['usercfg_editor_create_title']  = 'New User';
   $lang_array['app']['usercfg_editor_edit_title']  = 'Edit User';
   $lang_array['app']['rsa_pubkey'] = 'RSA Public Key';
