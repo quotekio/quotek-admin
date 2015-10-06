@@ -62,7 +62,7 @@ class backendWrapper {
     if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
     if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
 
-    $query = "SELECT * from __history__ WHERE time >'" . $tinf . "' AND time >'" . $tsup . "' ORDER DESC;";
+    $query = "SELECT * from __history__ WHERE time >'" . $tinf . "' AND time <'" . $tsup . "' ORDER DESC;";
 
     try {$ires = $this->dbh->query($query);}catch(Exception $e){return $result;}
 
