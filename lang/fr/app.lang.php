@@ -28,6 +28,7 @@
   $lang_array['app']['adam_restart'] = 'Redémarrer le robot Adam';
   
   $lang_array['app']['logs'] = 'Journaux';  
+  $lang_array['app']['asset'] = 'Actif';
   $lang_array['app']['strats'] = 'Strategies';  
   $lang_array['app']['strat'] = 'Stratégie';
   $lang_array['app']['backtest'] = 'Backtests';  

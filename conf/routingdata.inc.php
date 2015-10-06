@@ -30,7 +30,7 @@
                     '/async/app/sess2json' => 'async/app/sess2json.php',
                     '/async/app/gitctl' => 'async/app/gitctl.php',
                     '/async/app/histview' => 'async/app/histview.php',
-
+                    
                     '/async/app/stats/trades' => 'async/app/stats/trades.php',
                     '/async/app/stats/perf' => 'async/app/stats/perf.php'
 

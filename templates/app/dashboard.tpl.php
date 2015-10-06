@@ -48,39 +48,51 @@
           <div style="padding:10px">
 
           <div class="ralgos_ct">
-            <div class="span3 label-warning">
-        
-             <div><?= $lang_array['app']['total'] ?></div>
 
-             <h2 id="dashboard-algos-total">0</h2>
+            <div class="row-fluid">
 
-            </div>
-            <div class="span3 label-success">
-            
-            <div><?= $lang_array['app']['winning'] ?></div>  
-
-            <h2 id="dashboard-algos-winning">0</h2>
-
-            </div>
-            <div class="span3 label-important">
-            
-            <div><?= $lang_array['app']['losing'] ?></div>
-
-            <h2 id="dashboard-algos-losing">0</h2>
+              <div class="span3 label-warning">
+               <div><?= $lang_array['app']['total'] ?></div>
+               <h2 id="dashboard-algos-total">0</h2>
+              </div>
               
+              <div class="span3 label-success">
+            
+                <div><?= $lang_array['app']['winning'] ?></div>  
+                <h2 id="dashboard-algos-winning">0</h2>
+              </div>
+              <div class="span3 label-important">
+                <div><?= $lang_array['app']['losing'] ?></div>
+                <h2 id="dashboard-algos-losing">0</h2>
+              </div>
+
+              <div class="span3 label-info">
+                <div><?= $lang_array['app']['neutral'] ?></div>
+                <h2 id="dashboard-algos-neutral">0</h2>
+              </div>
+        
             </div>
 
-            <div class="span3 label-info">
+          </div>
 
-            <div><?= $lang_array['app']['neutral'] ?></div>
-            <h2 id="dashboard-algos-neutral">0</h2>
+            <div class="ralgos_list">
+
+              <table class="table table-striped" id="dashboard-algos-list">
+
+                <tr>
+                  <th><?= $lang_array['app']['name'] ?></th>
+                  <th><?= $lang_array['app']['asset'] ?></th>
+                  <th><?= $lang_array['app']['pnl'] ?></th>
+                </tr>
+
+              </table>
+
+
             </div>
-          
+
           </div>
 
          </div>
-
-        </div>
 
         <div class="span6 app-headed-white-frame" style="height:268px">
 
@@ -251,6 +263,8 @@
   setInterval('adamUpdateTradeStats()',20000);
   setInterval('adamUpdateHistory()',20000);
 
+  setInterval('adamUpdateRunningAlgosStats()',10000);
+
   setInterval(function() {
     adamUpdatePerfStats($('#perf-scale').attr('scale'));
   },20000);
@@ -260,6 +274,7 @@
     adamUpdatePerfStats($('#perf-scale').attr('scale'));
     adamUpdateTradeStats();
     adamUpdateHistory();
+    adamUpdateRunningAlgosStats();
 
   });
 

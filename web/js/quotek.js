@@ -2158,9 +2158,12 @@ function adamUpdatePerfStats(scale) {
   else if (scale == 'month') bar_width = 86400 * 1000;
   else if (scale == 'year') bar_width =  604800 * 1000;
   
+  //tzOffset() * 1000 * 3600 * 2 : Nasty !
+
   var rps = $.ajax({ url: '/async/app/stats/perf',
                      type: 'GET',
-                     data: {'scale': scale },
+                     data: {'scale': scale,
+                            'offset': tzOffset() * 1000 * 3600 * 2 },
                      async: true,
                      cache: false,
                      success: function() {
@@ -2227,6 +2230,52 @@ function adamUpdatePerfStats(scale) {
 }
 
 function adamUpdateRunningAlgosStats() {
+
+  var raq = $.ajax({ url: '/async/app/adamctl' ,
+               type: 'GET',
+               data: { 'action': 'getAlgos' },
+               cache: false,
+               async:true,
+               success: function() {
+
+                 ralgos = $.parseJSON(raq.responseText);
+  
+                 total = ralgos.length;
+                 neutral  = 0;
+                 pos = 0;
+                 neg = 0;
+
+                 $('.algo-line').remove();
+
+                 $.each(ralgos,function(index,value) {
+
+                   if (value.pnl > 0) pos++;
+                   else if (value.pnl < 0) neg++;
+                   else neutral++;
+
+                   vsplit = value.identifier.split('@');
+
+                   $('#dashboard-algos-list').append('<tr class="algo-line"><td>' + 
+                                          vsplit[0] + 
+                                          '</td><td>' + 
+                                          vsplit[1] + 
+                                          '</td><td>' + 
+                                          value.pnl + 
+                                          '</td></tr>'  );
+
+                  
+
+                 });
+
+                $('#dashboard-algos-total').html(total);
+                $('#dashboard-algos-winning').html(pos);
+                $('#dashboard-algos-losing').html(neg);
+                $('#dashboard-algos-neutral').html(neutral);
+
+               }
+
+             });
+
 
 }
 

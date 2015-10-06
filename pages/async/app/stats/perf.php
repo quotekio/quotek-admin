@@ -9,6 +9,10 @@
   //fetches historical data from adam backend
   $b = new backendwrapper();
 
+  $offset = 0;
+
+  if (isset($_REQUEST['offset'])) $offset = $_REQUEST['offset'];
+
   $scale = $_REQUEST['scale'];
   
   $result = array( 'perf' => array(),
@@ -29,11 +33,11 @@
       }
 
       if ( $hourly_pnl < 0 ) {
-        $result['perf_negative'][] = array( $cday * 1000 , $hourly_pnl );
+        $result['perf_negative'][] = array( $cday * 1000 + $offset , $hourly_pnl );
       }
 
       else {
-        $result['perf'][] = array( $cday * 1000 , $hourly_pnl );
+        $result['perf'][] = array( $cday * 1000  + $offset, $hourly_pnl );
       }
   
 
@@ -59,7 +63,7 @@
       }
 
       if ( $daily_pnl < 0 ) {
-        $result['perf_negative'][] = array( $cmonth * 1000 , $daily_pnl );
+        $result['perf_negative'][] = array( $cmonth * 1000, $daily_pnl );
       }
 
       else {
@@ -91,7 +95,7 @@
       }
 
       else {
-        $result['perf'][] = array( $cyear * 1000 , $weekly_pnl );
+        $result['perf'][] = array( $cyear * 1000, $weekly_pnl );
       }
 
       $cyear += 7 * 86400;

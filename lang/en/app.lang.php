@@ -25,7 +25,8 @@
   $lang_array['app']['adam_stop'] = 'Stop adam bot';
   $lang_array['app']['adam_restart'] = 'Restart adam bot';
   
-  $lang_array['app']['logs'] = 'Logs';  
+  $lang_array['app']['logs'] = 'Logs'; 
+  $lang_array['app']['asset'] = 'Asset'; 
   $lang_array['app']['strats'] = 'Strategies';  
   $lang_array['app']['strat'] = 'Strategy';
   $lang_array['app']['backtest'] = 'Backtests';  

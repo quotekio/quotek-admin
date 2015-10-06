@@ -526,3 +526,9 @@ padding:10px;
   margin-top:0px!important;
   margin-bottom:0px!important;
 }
+
+.ralgos_list {
+  margin-top:10px;
+  height: 130px;
+  overflow-y: scroll;
+}

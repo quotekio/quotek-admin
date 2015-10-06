@@ -89,6 +89,12 @@
     }  
   }
 
+  else if ($_REQUEST['action'] == 'getAlgos') {
+
+    if ($ac->AEPStartCLient()) {
+      echo $ac->AEPIssueCmd('algos');
+    }  
+  }
 
   else if ($_REQUEST['action'] == 'getVersion') {
     if ($ac->AEPStartCLient()) {
