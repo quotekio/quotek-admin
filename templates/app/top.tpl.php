@@ -37,8 +37,13 @@
         <?php  loadVHViews($vhms,'top') ?>
       </div>
 
-      <div class="langsel-ct" style="float:right;margin-right:40px;">
-        <a class="btn btn-info" onclick="adamChLang();"><i class="icon-white icon-globe"></i></a> 
+      <div class="langsel-ct dropdown" style="float:right;margin-right:40px;">
+        <a id="app-langsel" class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" rel="tooltip" title="<?= $lang_array['app']['langsel'] ?>"><i class="icon-white icon-globe"></i></a> 
+        <ul class="dropdown-menu pull-right">
+          <li><a href="#">Français</a></li>
+          <li><a href="#">English</a></li>
+        </ul>
+
       </div>
 
     </div>
@@ -66,16 +71,19 @@
 
 <script type="text/javascript">
 
-  $('#adam-cmdprompt').keydown(function (event) {
-         var keypressed = event.keyCode || event.which;
-         if (keypressed == 13) {
-             adamSendOrder();
-         }
+  $(document).ready(function() {
+
+    $('#app-stopadam').tooltip({placement:'bottom',container: 'body'});
+    $('#app-startadam').tooltip({placement:'bottom',container: 'body'});
+    $('#app-restartadam').tooltip({placement:'bottom',container: 'body'});
+
+    $('#app-langsel').tooltip({placement:'bottom', container:'body'});
+
+
   });
 
-  $('#adam-cmdsend-btn').click(function(){ adamSendOrder(); });
+  
 
-  $('#app-stopadam').tooltip({placement:'bottom',container: 'body'});
-  $('#app-startadam').tooltip({placement:'bottom',container: 'body'});
-  $('#app-restartadam').tooltip({placement:'bottom',container: 'body'});
+
+
 </script>

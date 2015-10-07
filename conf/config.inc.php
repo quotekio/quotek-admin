@@ -27,6 +27,7 @@
   $TWITTER_ACCESS_TOKEN = '2998838957-7yfKiu7bUIasBQXasI4IXVOiaVoLyHgy2WIRiIo';
   $TWITTER_ACCESS_TOKEN_SECRET = 'szrpOO7X8f66irda1HyjLlpkDGyAW2R9TfSy3ZFhJJFOb';
 
+
   $SOURCE_DEFAULT = <<<EOT
 class newstrat: public strategy {
   public:
@@ -36,6 +37,9 @@ class newstrat: public strategy {
     int initialize() {
 
       //put your init code here
+
+      br0 = new quotek::broker(this);
+      return 0;
 
     }
 

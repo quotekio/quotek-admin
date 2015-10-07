@@ -13,10 +13,12 @@
   $lang_array['app']['dashboard_subtitle'] = 'Main View';
   $lang_array['app']['adam_mode_'] = 'Status';
   $lang_array['app']['adam_mode']['off'] = 'Stopped';
-  
+
   $lang_array['app']['adam_mode']['demo'] = 'Demo';
   $lang_array['app']['adam_mode']['live'] = 'Live';
   $lang_array['app']['adam_mode']['Live'] = 'Live';
+
+  $lang_array['app']['langsel'] = 'Change Language';
 
   $lang_array['app']['adam_mode']['running'] = 'Runing';
   $lang_array['app']['adam_mode']['preparing'] = 'Preparing';

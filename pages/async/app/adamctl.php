@@ -90,6 +90,7 @@
       //here we will round first
       $outp = $ac->AEPIssueCmd('algos');
 
+      
       $aldata = json_decode($outp);
       
       for ($i=0;$i<count($aldata);$i++) {
@@ -98,7 +99,10 @@
 
       echo json_encode($aldata); 
 
-    }  
+    }
+
+    else echo "[]";
+
   }
 
   else if ($_REQUEST['action'] == 'getVersion') {

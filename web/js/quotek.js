@@ -833,7 +833,6 @@ function adamUpdateAll() {
           adamUpdateLastLogs_NoFetch(alldata.adamlastlogs);
           adamUpdateStatus_NoFetch(alldata.adamstatus);
           adamUpdateAllBacktests_NoFetch(alldata.backteststatuses);
-          adamUpdateAllGW_NoFetch(alldata.gwstatuses);
 
         }
         });
@@ -1364,37 +1363,6 @@ function adamChangeBacktestEditorView() {
     $('#input-backtest-strategy_id').html(adamGetSelectContent('strategies','genetics'));
   }
 }
-
-
-
-function adamUpdateAllGW_NoFetch(gw_statuses) {
-
-  for (i=0;i<gw_statuses.length;i++) {
-    var gw_status = gw_statuses[i];
-    var line = $('#brokercfg-line-'+ gw_status.id);
-    var gwbtn = $('#btn-togglegw-' + gw_status.id);
-
-    if (gw_status.state == 'real' && $('i',gwbtn).hasClass('icon-play') ) {
-
-      $('i',gwbtn).removeClass('icon-play');
-      $('i',gwbtn).addClass('icon-stop');
-      gwbtn.tooltip('destroy');
-      gwbtn.attr('title',gwbtn.attr('titlestop'));
-      gwbtn.tooltip({placement: 'bottom', container: 'body'});
-    }
-
-    else if (gw_status.state == 'off' && $('i',gwbtn).hasClass('icon-stop') ) {
-  
-      $('i',gwbtn).removeClass('icon-stop');
-      $('i',gwbtn).addClass('icon-play');
-      gwbtn.attr('title',gwbtn.attr('titlestart'));
-      gwbtn.tooltip('destroy');
-      gwbtn.tooltip({placement: 'bottom', container: 'body'});
-
-    }
-  }
-}
-
      
 /* This function makes a full check of all the listed backtests */
 function adamUpdateAllBacktests_NoFetch(bt_statuses) {

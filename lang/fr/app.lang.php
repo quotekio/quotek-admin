@@ -20,6 +20,7 @@
   $lang_array['app']['adam_mode']['live'] = 'Réel';
   $lang_array['app']['adam_mode']['Live'] = 'Réel';
   
+  $lang_array['app']['langsel'] = 'Changer la langue';
 
   $lang_array['app']['adam_mode']['running'] = 'En cours';
   $lang_array['app']['adam_mode']['preparing'] = 'Préparation';
