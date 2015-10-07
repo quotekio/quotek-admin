@@ -139,22 +139,6 @@ function adamStopGW(bid) {
 }
 
 
-function adamGWIsRunning(bid) {
-
-  var cgws = $.ajax({url:'/async/app/gwctl',
-                  type:'POST',
-                  data: { 'id': bid, 'action': 'getStatus'},
-                  async: false,
-                  cache: false
-                 });
-
-  var r = $.parseJSON($.trim(cgws.responseText));
-
-  if (r.state == 'running') return true;
-  else return false;
-}
-
-
 function adamSaveCoreCfg(ccid) {
 
   ccid = (typeof ccid == 'undefined' ) ? -1 : ccid;
@@ -858,13 +842,13 @@ function adamUpdateAll() {
 
 
 function adamUpdateCorestats_NoFetch(fdata) {
-  if (typeof(fdata.pnl) != "undefined") {
-    $('#app-corestats-pnl').html(fdata.pnl + " &euro;");
+  if (typeof(fdata.unrealized_pnl) != "undefined") {
+    $('#app-corestats-upnl').html(fdata.unrealized_pnl + " &euro;");
   }
   $('#app-corestats-nbpos').html(fdata.nbpos);
 
-  if (fdata.pnl != "--") {
-    if (parseFloat(fdata.pnl) < 0 ) {
+  if (fdata.unrealized_pnl != "--") {
+    if (parseFloat(fdata.unrealized_pnl) < 0 ) {
       $('#pnl_leftpanel').css('color','#FF0000');
     }
     else {
@@ -884,7 +868,7 @@ function adamUpdateCorestats() {
         success: function() {   
 
                     var res  = $.parseJSON(cs.responseText);
-                    $('#app-corestats-pnl').html(res.pnl);
+                    $('#app-corestats-upnl').html(res.unrealized_pnl);
                    $('#app-corestats-nbpos').html(res.nbpos); 
                 }
         });

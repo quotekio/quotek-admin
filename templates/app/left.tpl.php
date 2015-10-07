@@ -106,8 +106,8 @@
   
 
   <div id="pnl_leftpanel" style="padding-left:16px;padding-right:20px;color:#779148">
-    <?= $lang_array['app']['pnl']?><br>
-    <h3 id="app-corestats-pnl" style="margin-top:3px;padding-top:3px;color:inherit">--</h3>
+    <?= $lang_array['app']['pnl_unrealized']?><br>
+    <h3 id="app-corestats-upnl" style="margin-top:3px;padding-top:3px;color:inherit">--</h3>
   </div>
 
   <div style="padding-left:16px;padding-right:20px;color:#6E97AA">

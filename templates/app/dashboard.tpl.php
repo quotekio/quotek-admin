@@ -82,7 +82,7 @@
                 <tr>
                   <th><?= $lang_array['app']['name'] ?></th>
                   <th><?= $lang_array['app']['asset'] ?></th>
-                  <th><?= $lang_array['app']['pnl'] ?></th>
+                  <th><?= $lang_array['app']['pnl_unrealized'] ?></th>
                 </tr>
 
               </table>

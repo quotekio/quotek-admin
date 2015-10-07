@@ -14,7 +14,13 @@
   $lang_array['app']['dashboard'] = 'Tableau de bord';
   $lang_array['app']['dashboard_subtitle'] = 'Vue générale';
   $lang_array['app']['adam_mode_'] = 'Status';
+
   $lang_array['app']['adam_mode']['off'] = 'Eteint';
+  $lang_array['app']['adam_mode']['demo'] = 'Démo';
+  $lang_array['app']['adam_mode']['live'] = 'Réel';
+  $lang_array['app']['adam_mode']['Live'] = 'Réel';
+  
+
   $lang_array['app']['adam_mode']['running'] = 'En cours';
   $lang_array['app']['adam_mode']['preparing'] = 'Préparation';
   $lang_array['app']['adam_mode']['real'] = 'Réel';
@@ -34,6 +40,11 @@
   $lang_array['app']['backtest'] = 'Backtests';  
   $lang_array['app']['pos'] = 'Positions';
   $lang_array['app']['pnl'] = 'Pertes et Profits';
+
+  $lang_array['app']['pnl_unrealized'] = 'Pertes et Profits (Latents)';
+  $lang_array['app']['unrealized'] = 'Latents';
+  
+
   $lang_array['app']['takenpos'] = 'Positions Prises';
   $lang_array['app']['remainingpos'] = 'Positions Restantes';
   $lang_array['app']['size'] = 'Taille';

@@ -59,14 +59,8 @@
       $cs_str = $ac->AEPIssueCmd('corestats');
       $cs = json_decode($cs_str);
 
-      if (isset($cs->pnl) ) {
-        global $dbhandler;
-        $t = time();
-        $qstr = sprintf("INSERT INTO corestats_history (t,pnl,nbpos) VALUES ('%d','%f','%d');" , $t,$cs->pnl,$cs->nbpos);
-        $dbh = $dbhandler->query($qstr);
-        $ans = $dbh->execute();
-      }
-      echo $cs_str;
+      $cs->unrealized_pnl  = sprintf("%.2f", $cs->unrealized_pnl);
+      echo json_encode($cs);
     }
     else echo "{}";
 

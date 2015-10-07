@@ -128,7 +128,7 @@ class adamctl {
         $result = shell_exec(sprintf("ps %d", $pid));
 
           if( count(preg_split("/\n/", $result)) > 2){
-            return 'real';
+            return 'on';
           }
      return 'off';
     }

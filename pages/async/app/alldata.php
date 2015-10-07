@@ -2,6 +2,7 @@
 
 @require_once('include/functions.inc.php');
 @require_once('classes/adamctl.php');
+@require_once('classes/corecfg.php');
 @require_once('classes/brokercfg.php');
 @require_once('classes/backtest.php');
 
@@ -12,7 +13,6 @@ selectLanguage();
 $res = array ('adamstatus' => array(),
 	          'adamcorestats' => array(),
 	          'adamlastlogs' => array(),
-	          'gwstatuses' => array(),
 	          'backteststatuses' => array() );
 
 if (!verifyAuth()) die('You are not logged');
@@ -25,6 +25,16 @@ ADAM STATUS
 
 $ac = new adamctl();
 $state = $ac->checkStatus($ac->supid);
+
+if ($state == 'on') {
+
+  $acfg = getActiveCfg();
+  $brcfg = $acfg->getBroker();
+  $state = $brcfg->broker_account_mode;
+
+}
+
+
 $nr = file_exists('/tmp/adam/needs_restart') ;
 $message = $lang_array['app']['adam_mode']["$state"];
 $cp_errors = $ac->getCompileErrors();
@@ -40,15 +50,9 @@ if ($ac->AEPStartCLient()) {
 
   $cs_str = $ac->AEPIssueCmd('corestats');
   $cs = json_decode($cs_str);
+  $cs->unrealized_pnl = sprintf("%.2f", $cs->unrealized_pnl);
 
-  if (isset($cs->pnl) ) {
-    global $dbhandler;
-    $t = time();
-    $qstr = sprintf("INSERT INTO corestats_history (t,pnl,nbpos) VALUES ('%d','%f','%d');" , $t,$cs->pnl,$cs->nbpos);
-    $dbh = $dbhandler->query($qstr);
-    $ans = $dbh->execute();
-  }
-   $res['adamcorestats'] =  $cs;
+  $res['adamcorestats'] = $cs;
   
 }
 
@@ -64,20 +68,6 @@ if ($ac->AEPStartCLient()) {
   $res['adamlastlogs'] = $cs;
 }
 
-/*
-===========
-GW STATUSES
-===========
-*/
-
-$brokers = getBrokerConfigs();
-foreach($brokers as $broker) {
-  if ($broker->requiresGW() != "") {
-    $gw = new gwctl($broker->id);
-    $state = $gw->checkStatus();
-    $res['gwstatuses'][] = array('id' => $broker->id ,'state' => $state);
-  }
-}
 
 /* 
 =================

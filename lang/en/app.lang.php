@@ -13,6 +13,11 @@
   $lang_array['app']['dashboard_subtitle'] = 'Main View';
   $lang_array['app']['adam_mode_'] = 'Status';
   $lang_array['app']['adam_mode']['off'] = 'Stopped';
+  
+  $lang_array['app']['adam_mode']['demo'] = 'Demo';
+  $lang_array['app']['adam_mode']['live'] = 'Live';
+  $lang_array['app']['adam_mode']['Live'] = 'Live';
+
   $lang_array['app']['adam_mode']['running'] = 'Runing';
   $lang_array['app']['adam_mode']['preparing'] = 'Preparing';
   $lang_array['app']['adam_mode']['real'] = 'Real';
@@ -32,6 +37,10 @@
   $lang_array['app']['backtest'] = 'Backtests';  
   $lang_array['app']['pos'] = 'Positions';
   $lang_array['app']['pnl'] = 'Profit and Loss';
+
+  $lang_array['app']['pnl_unrealized'] = 'Unrealized Profit and Loss';
+  $lang_array['app']['unrealized'] = 'Unrealized';
+
   $lang_array['app']['takenpos'] = 'Taken Positions';
   $lang_array['app']['remainingpos'] = 'Remaining Positions';
   $lang_array['app']['size'] = 'Size';

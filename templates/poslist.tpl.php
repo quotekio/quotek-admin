@@ -43,7 +43,7 @@ if (count($positions) > 0) {
 	  <th class="s_hide"><?= $lang_array['app']['open'] ?></th>
 	  <th class="s_hide"><?= $lang_array['app']['stop'] ?></th>
 	  <th class="s_hide"><?= $lang_array['app']['limit'] ?></th>
-	  <th>PNL</th>
+	  <th>PNL (<?= $lang_array['app']['unrealized'] ?>)</th>
 	  <th><?= $lang_array['app']['actions'] ?></th>
 
   </tr>
