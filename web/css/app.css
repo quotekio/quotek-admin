@@ -13,6 +13,18 @@ a:hover {
   left:200px;
 }
 
+.robotcontrol {
+  position:absolute;
+  top:20px;
+  left:50%;
+  margin-left:-75px;
+  border-radius:5px;
+  background:#333333;
+  width:150px;
+  padding:4px;
+
+}
+
 #app-topbar {
   background:#F3F3F4!important;
   background-image:none!important;

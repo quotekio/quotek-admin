@@ -1,13 +1,28 @@
 <?php ?>
 
-<div id="adam-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
-  <div id="notify-restart">
-     <?= $lang_array['app']['notify_restart'] ?>
-     <script type="text/javascript">
-       $('#notify-restart a').click(function() {  adamRestart(); });
-     </script>
+<div class="robotcontrol">
+
+  <div class="btn-group">
+    
+    <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
+      <i class="icon-white icon-stop"></i>
+    </a>
+    <a class="btn disabled" 
+             id="app-startadam" 
+             rel="tooltip" 
+             title="<?= $lang_array['app']['adam_start'] ?>">
+             <i class="icon-white icon-play"></i>
+    </a>
+    <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
+    
   </div>
+
+  <img style="height:25px;margin-left:3px" src="/img/bot_small.png"/>
+
+
+
 </div>
+
 
 <div id="app-topbar-container" class="navbar navbar-static-top" style="display:none">
  
@@ -22,25 +37,22 @@
         <?php  loadVHViews($vhms,'top') ?>
       </div>
 
-      <div class="btn-group" style="float:right;margin-right:20px;margin-top:10px">
-        
-        <?php  loadVHViews($vhms,'topbtn') ?>
-
-        <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
-        	<i class="icon-white icon-stop"></i>
-        </a>
-        <a class="btn disabled" 
-                 id="app-startadam" 
-                 rel="tooltip" 
-                 title="<?= $lang_array['app']['adam_start'] ?>">
-                 <i class="icon-white icon-play"></i>
-        </a>
-
-        <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
-        
+      <div class="langsel-ct" style="float:right;margin-right:40px;">
+        <a class="btn btn-info" onclick="adamChLang();"><i class="icon-white icon-globe"></i></a> 
       </div>
+
     </div>
   </div>
+
+  <div id="adam-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
+  <div id="notify-restart">
+     <?= $lang_array['app']['notify_restart'] ?>
+     <script type="text/javascript">
+       $('#notify-restart a').click(function() {  adamRestart(); });
+     </script>
+  </div>
+  </div>
+
 
   
   <div id="app-titlebar"></div>
