@@ -2245,23 +2245,37 @@ function adamUpdateRunningAlgosStats() {
                  pos = 0;
                  neg = 0;
 
+                 spclass = "";
+
                  $('.algo-line').remove();
 
                  $.each(ralgos,function(index,value) {
 
-                   if (value.pnl > 0) pos++;
-                   else if (value.pnl < 0) neg++;
-                   else neutral++;
+                   if (value.pnl > 0) { 
+                    pos++;
+                    spclass = "label-success";
+                   }
+                   else if (value.pnl < 0) {
+                    neg++;
+                    spclass="label-important";
+
+                   }
+                   else {
+                    neutral++;
+                    spclass = "label-info";
+                   }
 
                    vsplit = value.identifier.split('@');
+
+                  
 
                    $('#dashboard-algos-list').append('<tr class="algo-line"><td>' + 
                                           vsplit[0] + 
                                           '</td><td>' + 
                                           vsplit[1] + 
-                                          '</td><td>' + 
+                                          '</td><td><span class="label '  + spclass + '">' + 
                                           value.pnl + 
-                                          '</td></tr>'  );
+                                          '</span></td></tr>'  );
 
                   
 

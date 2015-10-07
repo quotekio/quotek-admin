@@ -92,7 +92,18 @@
   else if ($_REQUEST['action'] == 'getAlgos') {
 
     if ($ac->AEPStartCLient()) {
-      echo $ac->AEPIssueCmd('algos');
+
+      //here we will round first
+      $outp = $ac->AEPIssueCmd('algos');
+
+      $aldata = json_decode($outp);
+      
+      for ($i=0;$i<count($aldata);$i++) {
+        $aldata[$i]->pnl =  sprintf("%.2f",$aldata[$i]->pnl) ;
+      }
+
+      echo json_encode($aldata); 
+
     }  
   }
 

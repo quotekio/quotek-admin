@@ -73,5 +73,16 @@ if (count($hist_day_data) > 0) {
   $perf_data['trade_apnlps']['day'] /= count($hist_day_data);
 }
 
+//rounding
+$perf_data['trade_apnls']['day'] =  floatval( sprintf("%.2f",$perf_data['trade_apnls']['day'] )) ;
+$perf_data['trade_apnlps']['day'] = floatval( sprintf("%.2f",$perf_data['trade_apnlps']['day'] )) ;
+
+$perf_data['trade_apnls']['week'] = floatval( sprintf("%.2f",$perf_data['trade_apnls']['week'] )) ;
+$perf_data['trade_apnlps']['week'] = floatval( sprintf("%.2f",$perf_data['trade_apnlps']['week'] )) ;
+
+$perf_data['trade_apnls']['month'] = floatval( sprintf("%.2f",$perf_data['trade_apnls']['month'] )) ;
+$perf_data['trade_apnlps']['month'] = floatval( sprintf("%.2f",$perf_data['trade_apnlps']['month'] )) ;
+
+
 echo json_encode($perf_data);
 ?>
