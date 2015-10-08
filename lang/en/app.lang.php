@@ -277,5 +277,6 @@
   $lang_array['app']['git_newbranch_tooltip'] = 'Create a new git branch';
   $lang_array['app']['git_delbranch_tooltip'] = 'Delete a git branch';
   $lang_array['app']['git_backward_tooltip'] = 'Go back to a previous commit';
+
   
 ?>

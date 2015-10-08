@@ -292,5 +292,59 @@
   $lang_array['app']['git_newbranch_tooltip'] = 'Creez une nouvelle branche git';
   $lang_array['app']['git_delbranch_tooltip'] = 'Supprimez une branche git';
   $lang_array['app']['git_backward_tooltip'] = 'Revenez à un commit précédent';
+
+  $lang_array['hint']['asset_name'] = 'Donnez un nom à l\'actif pour l\'identifier.';
+  $lang_array['hint']['asset_broker_id'] = 'Indiquez l\'identifiant donné à cet actif par votre courtier.';
+  $lang_array['hint']['asset_unit'] = 'Unité qu\'utilise votre courtier pour cet actif.';
+  $lang_array['hint']['asset_cost_per_point'] = 'Indique les pertes et profits par point.';
+  $lang_array['hint']['asset_open'] = 'Indiquez l\'heure d\'ouverture du marché pour cet actif.';
+  $lang_array['hint']['asset_close'] = 'Indiquez l\'heure de fermeture du marché pour cet actif.';
+  $lang_array['hint']['asset_max_sl'] = 'Indique le stop-loss minimum que votre courtier vous autorise à mettre sur cet actif.';
+
+  $lang_array['hint']['config_name'] = 'Donnez un nom a votre configuration pour l\'identifier.';
+  $lang_array['hint']['config_capital'] = 'Indiquez votre capital de départ';
+  $lang_array['hint']['config_eval_ticks'] )= 'Indiquez le ticks pour les fonctions d\'évaluation (µs)';
+  $lang_array['hint']['config_poll_ticks'] = 'Indiquez le ticks pour la récupération des valeurs (µs)';
+  $lang_array['hint']['config_broker'] = 'Choisissez le courtier à utiliser pour cette configuration.';
+  $lang_array['hint']['config_assets'] = 'Selectionnez ci-dessus les valeurs avec lesquelles vous souhaitez travailler.';
+  $lang_array['hint']['config_maxpos']  = 'Définit le nombre max de positions concurrentes qui peuvent etre prises.';
+  $lang_array['hint']['config_maxpos_pv'] = 'Définit le nombre max de positions concurrentes qui peuvent etre prise, par valeurs.';
+  $lang_array['hint']['config_maxrisk'] = 'Définit le risque maximal, en pourcentage du capital, qui peut etre pris pour chaque trade. Si un ordre d\'ouverture dépasse ce risque (trop de volume ou stop-loss trop large), le money manager refusera l\'ordre.';
+  $lang_array['hint']['config_maxloss'] = 'Définit le seuil de pertes en pourcentage du capital, au dela duquel Adam se coupe d\'urgence, pour redonner la main à un opérateur humain afin qu\'il évalue la situation.';
+  $lang_array['hint']['config_reverse'] = 'Lorsque cette option est activée, le money manager empeche l\'ouverture de positions inverses à celles en cours.';
+  $lang_array['hint']['config_force_reverse'] = 'Si cette option est active, le money manager forcera le debouclage de positions inverses pour toute nouvelle ouverture de position sur le même actif. Cette option s\'averre pratique pour jouer sur des marches à forte volatilité, et est mutuellement exclusive avec "Désactiver le hedging".';
+  $lang_array['hint']['config_backend'] = 'Choissez le type de backend à utiliser avec Adam.';
+  $lang_array['hint']['config_backend_host'] = 'Définit l\'hote sur lequel Adam doit se connecter pour s\'interfacer au backend.';
+  $lang_array['hint']['config_backend_port'] = 'Définit le port TCP/UDP sur lequel le service backend est en écoute.';
+  $lang_array['hint']['config_backend_user'] = 'Définit l\'utilisateur requis pour acceder au backend.';
+  $lang_array['hint']['config_backend_password'] = 'Définit le mot de passe requis pour acceder au backend';
+  $lang_array['hint']['config_backend_db'] = 'Définit quelle base de donnée sera utilisée pour stocker et prendre les données sur le backend.';
+  $lang_array['hint']['config_extra'] = 'Vous pouvez ajouter à cette configuration Adam du texte libre pour inclure des options pas/non-encore supportées par l\'interface Quotek.';
+
+  $lang_array['hint']['broker_name'] = 'Donnez un nom à cette configuration courtier pour l\'identifier.';
+  $lang_array['hint']['broker_module'] = 'Choissiez le module courtier qui doit être utilisé par Adam.';
+  $lang_array['hint']['broker_id'] = 'Entrez l\'identifiant de votre compte courtier.';
+  $lang_array['hint']['broker_password'] = 'Indiquez le Mot de passe du compte courtier.';
+  $lang_array['hint']['broker_key'] = 'Indiquez la clé API, si nécéssaire.';
+
+
+  $lang_array['app']['cfg_maxpos'] = 'Positions Max';
+  $lang_array['app']['cfg_maxpos_pv'] = 'Positions Max par valeurs';
+  $lang_array['app']['cfg_maxrisk'] = 'Pourcentage de pertes Max autorisé par trade';
+  $lang_array['app']['cfg_maxloss'] = 'Seuil de coupure d\'urgence';
+  $lang_array['app']['cfg_reverse'] = 'Désactiver le hedging';
+  $lang_array['app']['cfg_force_reverse'] = 'Fermeture des positions inverses';
   
+  $lang_array['app']['cfg_backend'] = 'Module Backend';
+  $lang_array['app']['cfg_backend_host'] = 'Hôte du Backend';
+  $lang_array['app']['cfg_backend_port'] = 'Port du Backend';
+  $lang_array['app']['cfg_backend_user'] = 'Utilisateur du Backend';
+  $lang_array['app']['cfg_backend_password'] = 'Mot de Passe du Backend';
+  $lang_array['app']['cfg_backend_db'] = 'Base de donnée du Backend';
+
+  $lang_array['app']['cfg_extra'] = 'Paramètres additionels';
+  
+  $lang_array['app']['chk_reverse'] = 'Activer le verouillage de positions inverses.';
+  $lang_array['app']['chk_force_reverse'] = 'Activer le debouclage de positions inverses.';
+
 ?>

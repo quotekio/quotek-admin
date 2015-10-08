@@ -18,7 +18,7 @@
        
            <label><b><?= $lang_array['app']['name'] ?></b></label>
            <input id="input-brokercfg-name" style="height:27px;width:170px" type="text" value="">
-           <span class="help-block">Donnez un nom à cette configuration courtier pour l'identifier.</span>
+           <span class="help-block"><?= $lang_array['hint']['broker_name'] ?></span>
 
            <label><b><?= $lang_array['app']['brokermodule'] ?></b></label>
            <select id="input-brokercfg-broker_id" style="height:27px;width:150px;padding-top:1px">
@@ -26,19 +26,19 @@
                <option value="<?= $bmodule['id'] ?>"><?= $bmodule['name'] ?></option>
             <?php } ?>
            </select>
-           <span class="help-block">Choissiez le module courtier qui doit être utilisé par Adam.</span>
+           <span class="help-block"><?= $lang_array['hint']['broker_module'] ?></span>
 
            <label><b><?= $lang_array['app']['username'] ?></b></label>
            <input id="input-brokercfg-username" style="height:27px;width:150px" type="text" value="">
-           <span class="help-block">Entrez l'identifiant de votre compte courtier.</span>
+           <span class="help-block"><?= $lang_array['hint']['broker_id'] ?></span>
 
            <label><b><?= $lang_array['app']['password'] ?></b></label>
            <input id="input-brokercfg-password" style="height:27px;width:150px" type="password" value="">
-           <span class="help-block">Indiquez le Mot de passe du compte courtier.</span>
+           <span class="help-block"><?= $lang_array['hint']['broker_password'] ?></span>
 
            <label><b><?= $lang_array['app']['apikey'] ?></b></label>
            <input id="input-brokercfg-apikey" style="height:27px;width:210px" type="text" value="">
-           <span class="help-block">Indiquez la clé API, si nécéssaire.</span>
+           <span class="help-block"><?= $lang_array['hint']['broker_key'] ?></span>
 
            <label><b><?= $lang_array['app']['brokermode'] ?></b></label>
            <select id="input-brokercfg-broker_mode" style="height:27px;width:150px;padding-top:1px">
