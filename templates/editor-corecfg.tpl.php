@@ -109,29 +109,29 @@ $backends = getBackends();
            <input id="input-corecfg-mm_max_openpos" style="height:27px;width:80px" type="text" value="5">
            <span class="help-block"><?= $lang_array['hint']['config_maxpos'] ?></span>
 
-           <label><b><?= $lang_array['hint']['cfg_maxpos_pv'] ?></b></label>
+           <label><b><?= $lang_array['app']['cfg_maxpos_pv'] ?></b></label>
            <input id="input-corecfg-mm_max_openpos_per_epic" style="height:27px;width:80px" type="text" value="2">
            <span class="help-block"><?= $lang_array['hint']['config_maxpos_pv'] ?></span>
       
-           <label><b><?= $lang_array['hint']['cfg_maxrisk'] ?></b></label>
+           <label><b><?= $lang_array['app']['cfg_maxrisk'] ?></b></label>
            <input id="input-corecfg-mm_max_loss_percentage_per_trade" style="height:27px;width:80px" type="text" value="15">
            <!--<div id="corecfg-editor-mlpt" style="margin:10px;width:300px"></div> -->
            <span class="help-block"><?= $lang_array['hint']['config_maxrisk'] ?></span>
 
-           <label><b><?= $lang_array['hint']['cfg_maxloss'] ?></b></label>
+           <label><b><?= $lang_array['app']['cfg_maxloss'] ?></b></label>
            <input id="input-corecfg-mm_critical_loss_percentage" style="height:27px;width:80px" type="text" value="30">
            <!--<div id="corecfg-editor-clp" style="margin:10px;width:300px"></div> -->
            <span class="help-block"><?= $lang_array['hint']['config_maxloss'] ?></span>
 
 
-           <label><b><?= $lang_array['hint']['cfg_reverse'] ?></b></label>
+           <label><b><?= $lang_array['app']['cfg_reverse'] ?></b></label>
            <label class="checkbox">
               <input id="input-corecfg-mm_reverse_pos_lock" type="checkbox" CHECKED><?= $lang_array['app']['chk_reverse'] ?>
            </label>
            <span class="help-block"><?= $lang_array['hint']['config_reverse'] ?></span>
 
 
-           <label><b><?= $lang_array['hint']['cfg_force_reverse'] ?></b></label>
+           <label><b><?= $lang_array['app']['cfg_force_reverse'] ?></b></label>
            <label class="checkbox">
               <input id="input-corecfg-mm_reverse_pos_force_close" type="checkbox"><?= $lang_array['app']['chk_force_reverse'] ?>
            </label>

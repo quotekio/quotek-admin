@@ -303,7 +303,7 @@
 
   $lang_array['hint']['config_name'] = 'Donnez un nom a votre configuration pour l\'identifier.';
   $lang_array['hint']['config_capital'] = 'Indiquez votre capital de départ';
-  $lang_array['hint']['config_eval_ticks'] )= 'Indiquez le ticks pour les fonctions d\'évaluation (µs)';
+  $lang_array['hint']['config_eval_ticks'] = 'Indiquez le ticks pour les fonctions d\'évaluation (µs)';
   $lang_array['hint']['config_poll_ticks'] = 'Indiquez le ticks pour la récupération des valeurs (µs)';
   $lang_array['hint']['config_broker'] = 'Choisissez le courtier à utiliser pour cette configuration.';
   $lang_array['hint']['config_assets'] = 'Selectionnez ci-dessus les valeurs avec lesquelles vous souhaitez travailler.';
