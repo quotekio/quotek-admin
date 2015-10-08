@@ -125,28 +125,30 @@
 
   $lang_array['app']['adamvalues'] = 'Assets';
   $lang_array['app']['adamvalues_subtitle'] = 'Manage the assets that you want to trade.';
-  $lang_array['app']['adamvalues_expl'] = 'Ce menu vous permet de configurer les differents actifs 
-  que vous souhaitez échanger sur les marchés par l\' intermédiaire de votre courtier.';
+  $lang_array['app']['adamvalues_expl']  = 'This section allows to configure multiple assets that you whish to trade on the markets.'
   
   $lang_array['app']['value_start_hour'] = 'Opening';
   $lang_array['app']['value_end_hour'] = 'Closing';
 
   $lang_array['app']['adamstrats'] = 'Strategies';
   $lang_array['app']['save_strat'] = 'Save the strategy modifications';
-  $lang_array['app']['adamstrats_subtitle'] = 'Gerez vos stragies et creez en de nouvelles';
-  $lang_array['app']['adamstrats_expl'] = 'Ce menu vous permet de manager vos stratégies de trading Adam et d\'en programmer de nouvelles.';
-  $lang_array['app']['adamcfg_editor_create_title'] = "Nouvelle Configuration <small>Creer une nouvelle configuration</small>";
-  $lang_array['app']['adamcfg_editor_edit_title'] = "Editer la Configuration <small>modifier la configuration</small>";
-  $lang_array['app']['adamcfg_editor_strats_title'] = "Nouvelle Strategie <small>Creez une nouvelle strategie d'investissement</small>"; 
+  $lang_array['app']['adamstrats_subtitle'] = 'Manage your existing strategies and create some new ones.';
+  $lang_array['app']['adamstrats_expl'] = 'This section allows to manage your trading strategies and also to code some new ones.';
+  $lang_array['app']['adamcfg_editor_create_title'] = "New Configuration <small>Create a new Configuration</small>";
+  $lang_array['app']['adamcfg_editor_edit_title'] = "Edit Configuration <small>modify this configuration</small>";
+  $lang_array['app']['adamcfg_editor_strats_title'] = "New Strategy <small>Create a new automated trading strategy</small>"; 
+  
   $lang_array['app']['adamvalue_editor_create_title'] = "Create new Asset";
   $lang_array['app']['backtest_resviewer_title'] = 'Backtest Results';
   $lang_array['app']['adamvalue_editor_edit_title'] = "Edit Asset";
 
   $lang_array['app']['newstrat'] = 'New Strategy';
-  $lang_array['app']['corecfg_general_title'] = 'Général';
+  $lang_array['app']['corecfg_general_title'] = 'General';
   $lang_array['app']['corecfg_mm_title'] = 'Money Management';
   $lang_array['app']['adamcfg_subtitle'] = 'Manage your adam configurations';
-  $lang_array['app']['adamcfg_expl'] = 'Cet écran vous permet de manager les différentes configurations Adam et d\'en créer de nouvelles.' ;
+
+  $lang_array['app']['adamcfg_expl'] = 'This section allows to manage your configurations and to create some new ones.' ;
+  
   $lang_array['app']['actions'] = 'Actions';
   $lang_array['app']['strats'] = 'Strategies';
   $lang_array['app']['comment'] = 'Comment';
@@ -160,19 +162,15 @@
 
   $lang_array['app']['corecfg_backend_title'] = 'Backend';
 
-  $lang_array['app']['brokercfg_actions_edit'] = "Editer la configuration courtier";
-  $lang_array['app']['brokercfg_actions_delete'] = "Supprimer la configuration courtier";
-  $lang_array['app']['brokercfg_actions_clone'] = "Cloner la configuration courtier";
+  $lang_array['app']['brokercfg_actions_edit'] = "Edit this broker configuration";
 
-  $lang_array['app']['brokercfg_actions_startgw'] = "Démarrer la passerelle courtier";
-  $lang_array['app']['brokercfg_actions_stopgw'] = "Eteindre la passerelle courtier";
+  $lang_array['app']['brokercfg_actions_delete'] = "Delete this broker configuration";
+  $lang_array['app']['brokercfg_actions_clone'] = "Clone this broker configuration";
 
-
-  $lang_array['app']['strategy_actions_activate'] = "Activer la stratégie";  
-  $lang_array['app']['strategy_actions_edit'] = "Editer la stratégie";
-  $lang_array['app']['strategy_actions_delete'] = "Supprimer la stratégie";
-  $lang_array['app']['strategy_actions_clone'] = "Cloner la stratégie";
-
+  $lang_array['app']['strategy_actions_activate'] = "Enable this strategy";  
+  $lang_array['app']['strategy_actions_edit'] = "Edit this strategy";
+  $lang_array['app']['strategy_actions_delete'] = "Delete this strategy";
+  $lang_array['app']['strategy_actions_clone'] = "Clone this strategy";
 
   $lang_array['app']['valuecfg_actions_edit'] = "Edit Asset";
   $lang_array['app']['valuecfg_actions_delete'] = "Delete Asset";
@@ -182,12 +180,11 @@
   $lang_array['app']['backtest_actions_delete'] = "Delete Backtest";
   $lang_array['app']['backtest_actions_clone'] = "Clone Backtest";
 
-  $lang_array['app']['backtest_actions_start'] = "Démarrer le backtest";
-  $lang_array['app']['backtest_actions_stop'] = "Stopper le backtest";
+  $lang_array['app']['backtest_actions_start'] = "Start Backtest";
+  $lang_array['app']['backtest_actions_stop'] = "Stop Backtest";
 
-  $lang_array['app']['backtest_actions_progress'] = "Voir la Progression";
-  $lang_array['app']['backtest_actions_results'] = "Voir la feuille de résultats";
-
+  $lang_array['app']['backtest_actions_progress'] = "See Progress";
+  $lang_array['app']['backtest_actions_results'] = "View Backtest Report";
 
 
   $lang_array['app']['newbacktest'] = 'New Backtest';
@@ -195,8 +192,7 @@
   $lang_array['app']['adambacktest_title'] = 'Backtests';
   $lang_array['app']['adambacktest_subtitle'] = 'Create and Launch backtests.';
 
-  $lang_array['app']['adambacktest_expl'] = 'Ce menu vous permet de lancer des Backtests pour tester la validité
-  de vos stratégies sur une certaine periode de temps.';
+  $lang_array['app']['adambacktest_expl'] = 'This section allows to launch backtest in order to assess the efficiency of your strategies before putting them in production.';
 
   $lang_array['app']['adambacktest_editor_create_title'] = 'Create new backtest';
   $lang_array['app']['adambacktest_editor_edit_title'] = 'Edit Backtest';
@@ -211,7 +207,7 @@
   $lang_array['app']['max_generations'] = 'Max Generations';
 
   $lang_array['app']['editor_resize_small'] = 'Switch back to normal view';
-  $lang_array['app']['opendoc'] = 'Ouvrir les pages de documentation';
+  $lang_array['app']['opendoc'] = 'Open Documentation Pages';
   $lang_array['app']['doc_small'] = 'Doc';
 
   $lang_array['app']['doc_ml'] = 'Machine Learning';
@@ -222,13 +218,15 @@
   $lang_array['app']['doc_datasources'] = 'Data Sources';
   $lang_array['app']['doc_quant'] = 'Quantitative Analysis';
 
-  $lang_array['app']['cfg_broker_title'] = 'Configuration Courtier';
-  $lang_array['app']['cfg_broker_subtitle'] = 'gerez vos configurations de courtier';
-  $lang_array['app']['cfg_broker_expl'] = 'Ce menu vous permet de gérer vos comptes chez les différents Brokers Compatibles avec Adam.';
+  $lang_array['app']['cfg_broker_title'] = 'Broker Configuration';
+  $lang_array['app']['cfg_broker_subtitle'] = 'Manage your broker configurations.';
+
+  $lang_array['app']['cfg_broker_expl'] = 'This section allows to manage your different accounts for the brokers compatible with Quotek.';
+
   $lang_array['app']['creds'] = 'Credentials';
   $lang_array['app']['brokermodule'] = 'Broker Module';
-  $lang_array['app']['brokermode'] = 'Mode Module Courtier';
-  $lang_array['app']['brokeraccountmode'] = 'Type du Compte';
+  $lang_array['app']['brokermode'] = 'Broker Mode';
+  $lang_array['app']['brokeraccountmode'] = 'Account Type';
 
   $lang_array['app']['newbroker'] = 'New Broker';
 
@@ -242,10 +240,9 @@
   $lang_array['app']['selectall'] = 'Select All';
   $lang_array['app']['deselectall'] = 'Remove All';  
 
-  $lang_array['app']['notify_restart'] = 'Adam doit etre redemarré pour prendre en compte la nouvelle configuration. <a href="#"> Clickez içi pour redemarrer</a>';
-
+  $lang_array['app']['notify_restart'] = 'The robot must be restarted to take the new parameters into account. <a href="#">Click here to restart</a>';
+  
   $lang_array['app']['corecfg_extra_title'] = 'Additional Parameters';
-
   $lang_array['app']['backtest_viewer_title'] = 'Backtest Progress';
 
   $lang_array['app']['backtest_result_delete'] = 'Remove Backtest Result';
@@ -278,5 +275,61 @@
   $lang_array['app']['git_delbranch_tooltip'] = 'Delete a git branch';
   $lang_array['app']['git_backward_tooltip'] = 'Go back to a previous commit';
 
+  $lang_array['hint']['asset_name'] = 'Name the asset to identify it.';
+  $lang_array['hint']['asset_broker_id'] = 'Give the broker\'s id for this asset.';
+  $lang_array['hint']['asset_unit'] = 'Give the unit of the asset (Point, PIP).';
+  $lang_array['hint']['asset_cost_per_point'] = 'Indicates what is the profit per point.';
+  $lang_array['hint']['asset_open'] = 'Give the opening hour for this asset.';
+  $lang_array['hint']['asset_close'] = 'Give the closing hour for this asset.';
+  $lang_array['hint']['asset_max_sl'] = 'Give the minimum Stop-Loss (int points) allowed for this asset.';
+
+  $lang_array['hint']['config_name'] = 'Name your configuration to identify it later.';
+  $lang_array['hint']['config_capital'] = 'Give your starting Capital.';
+  $lang_array['hint']['config_eval_ticks'] = 'Give the ticks you want for evaluation functions (µs)';
+  $lang_array['hint']['config_poll_ticks'] = 'Give the ticks you want for polling (µs)';
+  $lang_array['hint']['config_broker'] = 'Choose the broker you want to use with this config.';
+  $lang_array['hint']['config_assets'] = 'Select above the assets you want to work with.';
   
+  $lang_array['hint']['config_maxpos']  = 'Defines the max amount of position that can be taken at a given time.';
+  $lang_array['hint']['config_maxpos_pv'] = 'Defines the max amount of concurrent positions that can be taken for a given asset.';
+  
+  $lang_array['hint']['config_maxrisk'] = 'Defines the maximum risk in capital\'s percentage that is allowed for each trade. If a position opening going beyond that risk is asked to the money manager (too much leverage or stop-loss too far), it will refuse to give the order to the broker.' ;
+  $lang_array['hint']['config_maxloss'] = 'Defines the loss thereshold (in capital\'s percentage) beyond what the robot processes to an emergency shutdown, to give back hand to a human operator so that he can evaluate the situation.';  
+  $lang_array['hint']['config_reverse'] = 'When this option is active, the money manager forbids to open reverse positions to those already open.';
+  $lang_array['hint']['config_force_reverse'] = 'When this option is active, the money manager will force the closing of existing positions which are on the opposite side for the same asset. This option might be useful when trading on hyper volatile markets, and is mutually exclusive with "Disable symetric hedging".';
+
+  $lang_array['hint']['config_backend'] = 'Choose the type of backend to use in the list of supported ones.';
+  $lang_array['hint']['config_backend_host'] = 'Defines the host on which the robot must connect to access backend.';
+  $lang_array['hint']['config_backend_port'] = 'Defines the TCP/UDP port on which the backend service is listening.';
+  $lang_array['hint']['config_backend_user'] = 'Defines the username to connect to the backend service.';
+  $lang_array['hint']['config_backend_password'] = 'Defines the password to connect to the backend service.';  
+  $lang_array['hint']['config_backend_db'] = 'Defines which database will be used to store and retrieve data from backend.';
+  
+  $lang_array['hint']['config_extra'] = 'You can add extra parameters to this configuration to include options not yet supported by Quotek Frontend.';
+
+  $lang_array['hint']['broker_name'] = 'Name this configuration to identify it later.';
+  $lang_array['hint']['broker_module'] = 'Choose the broker module to use with quotek.';
+  $lang_array['hint']['broker_id'] = 'Give your broker account id.';
+  $lang_array['hint']['broker_password'] = 'Give your broker account password.';
+  $lang_array['hint']['broker_key'] = 'Provide an API Key, if necessary.';
+
+  $lang_array['app']['cfg_maxpos'] = 'Max Positions';
+  $lang_array['app']['cfg_maxpos_pv'] = 'Max Positions per asset';
+  $lang_array['app']['cfg_maxrisk'] = 'Max loss percentage allowed per trade';
+  $lang_array['app']['cfg_maxloss'] = 'Emmergency shutdown Thereshold';
+  $lang_array['app']['cfg_reverse'] = 'Disable symetric hedging';
+  $lang_array['app']['cfg_force_reverse'] = 'Force closing of reverse positions';
+  
+  $lang_array['app']['cfg_backend'] = 'Backend Module';
+  $lang_array['app']['cfg_backend_host'] = 'Backend Host';
+  $lang_array['app']['cfg_backend_port'] = 'Backend Port';
+  $lang_array['app']['cfg_backend_user'] = 'backend User';
+  $lang_array['app']['cfg_backend_password'] = 'backend Password';
+  $lang_array['app']['cfg_backend_db'] = 'Backend Database';
+
+  $lang_array['app']['cfg_extra'] = 'Additional Parameters';
+  
+  $lang_array['app']['chk_reverse'] = 'Enable locking of reverse positions.';
+  $lang_array['app']['chk_force_reverse'] = 'Enable auto closing of reverse positions.';
+
 ?>
