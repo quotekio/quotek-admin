@@ -347,4 +347,8 @@
   $lang_array['app']['chk_reverse'] = 'Activer le verouillage de positions inverses.';
   $lang_array['app']['chk_force_reverse'] = 'Activer le debouclage de positions inverses.';
 
+  $lang_array['hint']['user_name'] = 'Nom de l\'utilisateur, qui lui sert à s\'authentifier.';
+  $lang_array['hint']['user_password'] = 'Définit le mot de passe de l\'utilisateur.';
+  $lang_array['hint']['user_key'] = 'Ajoutez une clé Publique RSA au profil utilisateur pour pouvoir interagir avec le service GIT.';
+
 ?>

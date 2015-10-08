@@ -66,7 +66,7 @@
   $lang_array['app']['never'] = 'Never';
    
   $lang_array['app']['stoploss'] = 'Minimum Stop';
-  $lang_array['app']['pnlpp'] = 'PP par Point';
+  $lang_array['app']['pnlpp'] = 'Profit per point';
   $lang_array['app']['unit'] = 'Unit';
   $lang_array['app']['brokerid'] = 'Broker Id';
   $lang_array['app']['newvalue'] = 'New Asset';
@@ -125,7 +125,7 @@
 
   $lang_array['app']['adamvalues'] = 'Assets';
   $lang_array['app']['adamvalues_subtitle'] = 'Manage the assets that you want to trade.';
-  $lang_array['app']['adamvalues_expl']  = 'This section allows to configure multiple assets that you whish to trade on the markets.'
+  $lang_array['app']['adamvalues_expl']  = 'This section allows to configure multiple assets that you whish to trade on the markets.';
   
   $lang_array['app']['value_start_hour'] = 'Opening';
   $lang_array['app']['value_end_hour'] = 'Closing';
@@ -292,7 +292,7 @@
   
   $lang_array['hint']['config_maxpos']  = 'Defines the max amount of position that can be taken at a given time.';
   $lang_array['hint']['config_maxpos_pv'] = 'Defines the max amount of concurrent positions that can be taken for a given asset.';
-  
+
   $lang_array['hint']['config_maxrisk'] = 'Defines the maximum risk in capital\'s percentage that is allowed for each trade. If a position opening going beyond that risk is asked to the money manager (too much leverage or stop-loss too far), it will refuse to give the order to the broker.' ;
   $lang_array['hint']['config_maxloss'] = 'Defines the loss thereshold (in capital\'s percentage) beyond what the robot processes to an emergency shutdown, to give back hand to a human operator so that he can evaluate the situation.';  
   $lang_array['hint']['config_reverse'] = 'When this option is active, the money manager forbids to open reverse positions to those already open.';
@@ -331,5 +331,9 @@
   
   $lang_array['app']['chk_reverse'] = 'Enable locking of reverse positions.';
   $lang_array['app']['chk_force_reverse'] = 'Enable auto closing of reverse positions.';
+
+  $lang_array['hint']['user_name'] = 'Name that the user will use to authentify himself.';
+  $lang_array['hint']['user_password'] = 'Defines the user\'s password.';
+  $lang_array['hint']['user_key'] = 'You can add an RSA key to the user profile in order to interact with the embedded GIT service.';
 
 ?>

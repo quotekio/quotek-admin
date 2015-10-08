@@ -29,8 +29,8 @@
 
               <div class="span4">
 
-                <div class="span3">
-                    <h4>Début:</h4>
+                <div class="span3" style="margin-top:8px">
+                    <h4><?= $lang_array['visualize']['beginning'] ?>:</h4>
                  </div>
 
                  <div class="span9">
@@ -49,8 +49,8 @@
               </div>
 
               <div class="span4">
-                <div class="span3">
-                  <h4>Fin:</h4>
+                <div class="span3" style="margin-top:10px">
+                  <h4><?= $lang_array['visualize']['end'] ?>:</h4>
                 </div>
 
                 <div class="span9">
@@ -107,7 +107,7 @@
                        <i class="icon-wrench icon-white"></i>
                   </a>
 
-                  <a id="rbtn" class="btn btn-primary btn-small" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
+                  <a id="rbtn" class="btn btn-primary btn-small btn-enlarge" onclick="enlargeGraph('<?= $v->name ?>');" rel="tooltip" title="<?= $lang_array['visualize']['enlarge_graph'] ?>">
                     <i class="icon-fullscreen icon-white"></i>
                   </a>
                 </div>
@@ -707,8 +707,13 @@
   });
 
 
-  $('#rbtn').tooltip({placement:'bottom',container: 'body'});
-  $('#candlebtn').tooltip({placement:'bottom',container: 'body'});
+  $(document).ready(function() {
+
+     $('.btn-enlarge').tooltip({placement:'bottom',container: 'body'});
+     $('.btn-settings').tooltip({placement:'bottom',container: 'body'});
+
+  });
+
 
 </script>
 

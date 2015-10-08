@@ -21,15 +21,15 @@
           <form style="padding-bottom:0px;margin-bottom:0px">
            <label><b><?= $lang_array['app']['username'] ?></b></label>
            <input id="input-usercfg-username" style="height:27px;width:150px" type="text" value="">
-           <span class="help-block">Nom de l'utilisateur, qui lui sert à s'authentifier.</span>
+           <span class="help-block"><?= $lang_array['hint']['user_name'] ?></span>
 
            <label><b><?= $lang_array['app']['password'] ?></b></label>
            <input type="password" id="input-usercfg-password" style="height:27px;width:100px" type="text" value="2000">
-           <span class="help-block">Définit le mot de passe de l'utilisateur</span>
+           <span class="help-block"><?= $lang_array['hint']['user_password'] ?></span>
 
            <label><b><?= $lang_array['app']['rsa_pubkey'] ?></b></label>
            <textarea id="input-usercfg-rsakey" style="width:100%;height:200px"></textarea>
-           <span class="help-block">Ajoutez une clé Publique RSA au profil utilisateur pour pouvoir interagir avec le service GIT.</span>
+           <span class="help-block"><?= $lang_array['hint']['user_key'] ?></span>
           </form>
           </div>
 
