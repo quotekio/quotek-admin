@@ -1,29 +1,5 @@
 <?php ?>
 
-<div class="robotcontrol">
-
-  <div class="btn-group">
-    
-    <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
-      <i class="icon-white icon-stop"></i>
-    </a>
-    <a class="btn disabled" 
-             id="app-startadam" 
-             rel="tooltip" 
-             title="<?= $lang_array['app']['adam_start'] ?>">
-             <i class="icon-white icon-play"></i>
-    </a>
-    <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
-    
-  </div>
-
-  <img style="height:25px;margin-left:3px" src="/img/bot_small.png"/>
-
-
-
-</div>
-
-
 <div id="app-topbar-container" class="navbar navbar-static-top" style="display:none">
  
   <div class="navbar-inner" id="app-topbar">
@@ -40,8 +16,12 @@
       <div class="langsel-ct dropdown" style="float:right;margin-right:40px;">
         <a id="app-langsel" class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" rel="tooltip" title="<?= $lang_array['app']['langsel'] ?>"><i class="icon-white icon-globe"></i></a> 
         <ul class="dropdown-menu pull-right">
-          <li><a href="#">Français</a></li>
-          <li><a href="#">English</a></li>
+ 
+          <?php
+            foreach($LANG_LIST as $k => $v) {
+          ?>
+             <li><a href="/?lang=<?= $k ?>"><?= $v ?></a></li>
+          <?php } ?>
         </ul>
 
       </div>
@@ -67,6 +47,32 @@
   <a class="newbtn btn-warning" id="btn-corecfg-new" style="display:none">
       <i class="icon icon-white icon-plus"></i>
   </a>
+
+
+
+<div class="robotcontrol" style="display:none">
+
+  <div class="btn-group">
+    
+    <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
+      <i class="icon-white icon-stop"></i>
+    </a>
+    <a class="btn disabled" 
+             id="app-startadam" 
+             rel="tooltip" 
+             title="<?= $lang_array['app']['adam_start'] ?>">
+             <i class="icon-white icon-play"></i>
+    </a>
+    <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
+    
+  </div> 
+
+  <img style="height:25px;margin-left:3px" src="/img/bot_small.png"/>
+
+</div>
+
+
+
 
 
 <script type="text/javascript">

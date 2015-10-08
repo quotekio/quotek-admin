@@ -48,5 +48,15 @@
 </div>
 
 <script type="text/javascript">
+
+  /*
+  onkeydown = function(e){
+      if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
+        e.preventDefault();
+        adamSaveStrat(editor2.getValue(),parseInt(sid),1);
+        }
+      }
+  */
+  
   $('#codehelp').dropdown();
 </script>

@@ -86,6 +86,7 @@ $('.btn-strat-edit').each(function() {
              adamSaveStrat(editor2.getValue(),parseInt(sid),1);
          });
 
+
          $('#editor-action').off('click');
          $('#editor-action').click(function() {
              adamSaveStrat(editor.getValue(),parseInt(sid));

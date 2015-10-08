@@ -4,6 +4,15 @@
 
   if (!isset($_SESSION)) session_start();
 
+  //language change code
+  if (isset($_REQUEST['lang']) && isset($_SESSION['uinfos']) ) {
+    
+    $_SESSION['lang'] = $_REQUEST['lang'];
+    header('location:/app');
+    
+  }
+
+
   if (is_file( dirname(__FILE__) . '/install.php') && isset($_SESSION['uinfos'])) header('location:/install') ;
   else if (isset($_SESSION['uinfos'])) header('location:/app');
 

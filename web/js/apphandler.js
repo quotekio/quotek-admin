@@ -30,6 +30,8 @@ function endLoad() {
   $('#app-left').fadeIn(1000);
   $('#app-mainview').fadeIn(1000);
 
+  $('.robotcontrol').show();
+
   var dispwidth = $(window).innerWidth() - $('#app-left').width();
   
   $('#app-mainview').width(dispwidth);
