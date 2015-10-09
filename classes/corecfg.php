@@ -209,6 +209,8 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fwrite($fh,"eval_ticks = " . $cfg->eval_ticks . "\n");
   fwrite($fh,"getval_ticks = " . $cfg->getval_ticks . "\n");
 
+  fwrite($fh, "inmem_history = ". $cfg->inmem_history . "\n");
+  
   fwrite($fh,"aep_enable = " . $cfg->aep_enable . "\n");
   fwrite($fh,"aep_listen_addr = " . $cfg->aep_listen_addr . "\n");
   fwrite($fh,"aep_listen_port = " . $cfg->aep_listen_port . "\n\n");

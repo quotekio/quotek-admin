@@ -351,4 +351,8 @@
   $lang_array['hint']['user_password'] = 'Définit le mot de passe de l\'utilisateur.';
   $lang_array['hint']['user_key'] = 'Ajoutez une clé Publique RSA au profil utilisateur pour pouvoir interagir avec le service GIT.';
 
+  $lang_array['app']['inmem_history']  = 'Historique en RAM (s)';
+  $lang_array['hint']['config_inmem_history']  = 'Indique le temps de cotation que le robot doit charger en mémoire depuis son stockage persistant, lorsqu\'il démarre. Une valeur à 0 signifie qu\'aucune cotation ne sera chargée.';
+
+
 ?>

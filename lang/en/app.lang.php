@@ -336,4 +336,7 @@
   $lang_array['hint']['user_password'] = 'Defines the user\'s password.';
   $lang_array['hint']['user_key'] = 'You can add an RSA key to the user profile in order to interact with the embedded GIT service.';
 
+  $lang_array['app']['inmem_history']  = 'History in memory (s)';
+  $lang_array['hint']['config_inmem_history']  = 'This parameter indicates the length of cotations the robot must load in memory when it starts. 0 value means no records will be loaded at start.';
+  
 ?>

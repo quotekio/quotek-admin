@@ -148,6 +148,7 @@ function adamSaveCoreCfg(ccid) {
                  'eval_ticks':null,
                  'getval_ticks': null,
                  'broker_id': null,
+                 'inmem_history': null,
                  'values': null,
                  'mm_max_openpos': null,
                  'mm_max_openpos_per_epic':null,
@@ -173,6 +174,7 @@ function adamSaveCoreCfg(ccid) {
   corecfg.mm_capital = parseInt($('#input-corecfg-mm_capital').val());
   corecfg.eval_ticks = parseInt($('#input-corecfg-eval_ticks').val());
   corecfg.getval_ticks = parseInt($('#input-corecfg-getval_ticks').val());
+  corecfg.inmem_history = parseInt($('#input-corecfg-inmem_history').val());
 
   corecfg.broker_id = parseInt($('#input-corecfg-broker_id').val());
   corecfg.mm_max_openpos = parseInt($('#input-corecfg-mm_max_openpos').val());
@@ -399,6 +401,8 @@ function adamGetCoreCfgDataToEdit(ccid) {
   $('#input-corecfg-eval_ticks').val(ccfg.eval_ticks);
   $('#input-corecfg-getval_ticks').val(ccfg.getval_ticks);
 
+  $('#input-corecfg-inmem_history').val(ccfg.inmem_history);
+  
   $('#input-corecfg-broker_id').val( ccfg.broker_id);
   $('#input-corecfg-mm_max_openpos').val(ccfg.mm_max_openpos);
   $('#input-corecfg-mm_max_openpos_per_epic').val(ccfg.mm_max_openpos_per_epic);

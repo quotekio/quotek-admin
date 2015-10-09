@@ -58,6 +58,11 @@ $backends = getBackends();
            <input id="input-corecfg-getval_ticks" style="height:27px;width:100px" type="text" value="1000000">
            <span class="help-block"><?= $lang_array['hint']['config_poll_ticks'] ?></span>
 
+           <label><b><?= $lang_array['app']['inmem_history'] ?></b></label>
+           <input id="input-corecfg-inmem_history" style="height:27px;width:100px" type="text" value="0">
+           <span class="help-block"><?= $lang_array['hint']['config_inmem_history'] ?></span>
+           
+
            <label><b><?= $lang_array['app']['broker'] ?></b></label>
            <select id="input-corecfg-broker_id" style="height:27px;width:150px;padding-top:1px">
             <?php foreach($brokers as $broker) { ?>

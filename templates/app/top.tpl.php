@@ -12,7 +12,7 @@
       <div style="float:left;margin-left:20px;width:300px;height:40px;margin-top:-5px" id="adam-top-modules">
         <?php  loadVHViews($vhms,'top') ?>
       </div>
-
+      
       <div class="langsel-ct dropdown" style="float:right;margin-right:40px;">
         <a id="app-langsel" class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" rel="tooltip" title="<?= $lang_array['app']['langsel'] ?>"><i class="icon-white icon-globe"></i></a> 
         <ul class="dropdown-menu pull-right">
