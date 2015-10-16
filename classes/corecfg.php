@@ -243,12 +243,12 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
   foreach($values as $value) {
 
-      $valuestr = sprintf("indice = %s %d %d %s %s %s %s\n",
+      $valuestr = sprintf("indice = %s %d %d %s %f %s %s\n",
                           $value->name,
                           $value->pnl_pp,
                           $value->min_stop,
                           $value->broker_map,
-                          $value->unit,
+                          $value->variation,
                           $value->start_hour,
                           $value->end_hour
       );

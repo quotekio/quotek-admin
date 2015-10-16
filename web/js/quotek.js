@@ -283,7 +283,7 @@ function adamSaveValue(id) {
                 'broker_map': null,
                 'min_stop': null,
                 'pnl_pp': null,
-                'unit': null,
+                'variation': null,
                 'start_hour': null,
                  'end_hour' : null};
 
@@ -293,7 +293,7 @@ function adamSaveValue(id) {
   value.min_stop = $('#input-values-min_stop').val();
   value.start_hour = $('#input-values-start_hour').val();
   value.end_hour = $('#input-values-end_hour').val();
-  value.unit = $('#input-values-unit').val();
+  value.variation = $('#input-values-variation').val();
 
   if (id != -1) {
     value.id = id;
@@ -326,7 +326,7 @@ function adamGetValueDataToEdit(vid) {
   $('#input-values-min_stop').val(valuecfg.min_stop);
   $('#input-values-start_hour').val(valuecfg.start_hour);
   $('#input-values-end_hour').val(valuecfg.end_hour);
-  $('#input-values-unit').val(valuecfg.unit);
+  $('#input-values-variation').val(valuecfg.variation);
 
 }
 

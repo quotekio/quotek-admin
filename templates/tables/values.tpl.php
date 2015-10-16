@@ -8,7 +8,7 @@
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>
       <th><?= $lang_array['app']['brokerid'] ?></th>
-      <th><?= $lang_array['app']['unit'] ?></th>
+      <th><?= $lang_array['app']['variation'] ?></th>
       <th><?= $lang_array['app']['pnlpp'] ?></th>
       <th><?= $lang_array['app']['stoploss'] ?></th>
       <th><?= $lang_array['app']['value_start_hour']?></th>
@@ -24,7 +24,7 @@
       <tr id="value-line-<?= $v->id ?>">
       	<td><?= $v->name ?></td>
         <td><?= $v->broker_map ?></td>
-        <td><?= $v->unit ?></td>
+        <td><?= $v->variation ?></td>
         <td><?= $v->pnl_pp ?>€</td>
       	<td><?= $v->min_stop ?> Points</td>
       	<td><?= $v->start_hour ?></td>

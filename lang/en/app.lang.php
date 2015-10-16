@@ -62,12 +62,12 @@
   $lang_array['app']['stddev'] = 'Standard Deviation';
   $lang_array['app']['variation'] = 'Variation';
 
+
   $lang_array['app']['close'] = 'Close';
   $lang_array['app']['never'] = 'Never';
    
   $lang_array['app']['stoploss'] = 'Minimum Stop';
   $lang_array['app']['pnlpp'] = 'Profit per point';
-  $lang_array['app']['unit'] = 'Unit';
   $lang_array['app']['brokerid'] = 'Broker Id';
   $lang_array['app']['newvalue'] = 'New Asset';
   $lang_array['app']['period'] = 'Period';
@@ -277,7 +277,7 @@
 
   $lang_array['hint']['asset_name'] = 'Name the asset to identify it.';
   $lang_array['hint']['asset_broker_id'] = 'Give the broker\'s id for this asset.';
-  $lang_array['hint']['asset_unit'] = 'Give the unit of the asset (Point, PIP).';
+  $lang_array['hint']['asset_variation'] = 'Asset variation representing 1 PIP.';
   $lang_array['hint']['asset_cost_per_point'] = 'Indicates what is the profit per point.';
   $lang_array['hint']['asset_open'] = 'Give the opening hour for this asset.';
   $lang_array['hint']['asset_close'] = 'Give the closing hour for this asset.';

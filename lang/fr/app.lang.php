@@ -70,7 +70,6 @@
    
   $lang_array['app']['stoploss'] = 'Stop Minimum';
   $lang_array['app']['pnlpp'] = 'PP par Point';
-  $lang_array['app']['unit'] = 'Unité';
   $lang_array['app']['brokerid'] = 'Identifiant Courtier';
   $lang_array['app']['newvalue'] = 'Nouvel Actif';
   $lang_array['app']['period'] = 'Période';
@@ -295,7 +294,7 @@
 
   $lang_array['hint']['asset_name'] = 'Donnez un nom à l\'actif pour l\'identifier.';
   $lang_array['hint']['asset_broker_id'] = 'Indiquez l\'identifiant donné à cet actif par votre courtier.';
-  $lang_array['hint']['asset_unit'] = 'Unité qu\'utilise votre courtier pour cet actif.';
+  $lang_array['hint']['asset_variation'] = 'Variation du cours pour que l\'actif prenne un pip';
   $lang_array['hint']['asset_cost_per_point'] = 'Indique les pertes et profits par point.';
   $lang_array['hint']['asset_open'] = 'Indiquez l\'heure d\'ouverture du marché pour cet actif.';
   $lang_array['hint']['asset_close'] = 'Indiquez l\'heure de fermeture du marché pour cet actif.';
