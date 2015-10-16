@@ -21,6 +21,8 @@
 
   $('#adamcfg-broker').bind('afterShow',function() {
 
+    $('.newbtn').removeAttr('href');
+    $('.newbtn').removeAttr('target');
     $('.newbtn').click(function() {
                                  adamShowBrokercfgEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adambroker_editor_create_title']  ?>");

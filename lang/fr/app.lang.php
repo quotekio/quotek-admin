@@ -353,5 +353,8 @@
   $lang_array['app']['inmem_history']  = 'Historique en RAM (s)';
   $lang_array['hint']['config_inmem_history']  = 'Indique le temps de cotation que le robot doit charger en mémoire depuis son stockage persistant, lorsqu\'il démarre. Une valeur à 0 signifie qu\'aucune cotation ne sera chargée.';
 
+  $lang_array['app']['saveas'] = 'Enregistrer le fichier sous';
+  $lang_array['app']['filename'] = 'Nom du fichier';
+
 
 ?>

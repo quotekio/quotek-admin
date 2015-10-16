@@ -31,6 +31,8 @@
 
   $('#adamcfg-core').bind('afterShow',function()  {
 
+    $('.newbtn').removeAttr('href');
+    $('.newbtn').removeAttr('target');
     $('.newbtn').click(function() {
                                    adamShowCorecfgEditor();
                                    $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_create_title']  ?>");

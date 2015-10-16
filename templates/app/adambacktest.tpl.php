@@ -26,6 +26,8 @@
 
   $('#adambacktest').bind('afterShow',function() {
 
+    $('.newbtn').removeAttr('href');
+    $('.newbtn').removeAttr('target');
     $('.newbtn').click(function() {
                                  adamShowBacktestEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adambacktest_editor_create_title']  ?>");

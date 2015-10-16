@@ -36,6 +36,8 @@
 
   $('#adamcfg-users').bind('afterShow',function()  {
 
+    $('.newbtn').removeAttr('href');
+    $('.newbtn').removeAttr('target');
     $('.newbtn').click(function() {
                                    adamShowUserEditor();
                                    $('#editor-title').html("<?= $lang_array['app']['usercfg_editor_create_title']  ?>");

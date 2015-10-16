@@ -40,10 +40,6 @@ function endLoad() {
 
   adamUpdateAll();
   setInterval('adamUpdateAll()',3000);
-
-  var ce = ace.edit("codeeditor_area");
-  ce.setTheme("ace/theme/xcode");
-  ce.getSession().setMode("ace/mode/c_cpp");
   
   $('#app-topbar-container').show();
   

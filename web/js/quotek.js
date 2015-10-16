@@ -342,46 +342,6 @@ function adamDelValue(vid) {
 }
 
 
-
-
-
-function adamSaveStrat(ct,id,noclose) {
-
-    id = ( typeof id == 'undefined' ) ? -1 : id;
-    noclose = ( typeof noclose == 'undefined' ) ? 0 : 1;
-    var strat;
-    if (id == -1) {
-       strat = { 'name': null, 
-                  'content': null };
-    }
-    else {
-       strat = { 'id': id ,
-                 'name': null, 
-                 'content': null }; 
-    }
-
-    strat.name = $('#input-strats-name').val();
-    strat.type = $('#input-strats-type').val();
-    strat.content = ct;
-    var r = adamObject('add','strategy',strat,-1);
-
-    
-    if (r.answer == 'OK') {
-        adamRefreshTable('strategies-table');
-
-        if (noclose != 1) {
-          modalDest();
-        }
-    }
-
-    else {
-      console.log( r.answer );
-    }
-
-
-}
-
-
 function adamCloneStrat(sid) {
 
    var r = adamObject('dup','strategy',{},sid);
@@ -434,17 +394,6 @@ function adamGetCoreCfgDataToEdit(ccid) {
 
 }
 
-function adamGetStratDataToEdit(sid) {
-
-   var strat = adamObject('get','strategy',{},sid);
-   //adamDebug(strat);
-
-   $('#input-strats-name').val(strat.name);
-   $('#input-strats-type').val(strat.type);
-   var ae = ace.edit("editor");
-   ae.setValue(strat.content);
-
-}
 
 function adamDelStrat(sid) {
     var r = adamObject('del','strategy',{'null': ' null'},sid);
@@ -1279,25 +1228,6 @@ function modalDest() {
   $('#modal_win').hide();
   $('#modal_bg').hide();
 }
-
-function adamCodeEditorSwitchFS() {
-    
-    var aceEditor1 = ace.edit("editor");
-    var aceEditor2 = ace.edit("codeeditor_area");
-    aceEditor2.setValue(aceEditor1.getValue());
-
-    $('#btn-save-strat').off('click');
-    $('#codeeditor').show();
-}
-
-function adamCodeEditorSwitchBackFS() {
-    var aceEditor1 = ace.edit("editor");
-    var aceEditor2 = ace.edit("codeeditor_area");
-    aceEditor1.setValue(aceEditor2.getValue());
-    $('#codeeditor').hide();
-    
-}
-
 
 function modalInst(modwidth,modheight,content) {
 

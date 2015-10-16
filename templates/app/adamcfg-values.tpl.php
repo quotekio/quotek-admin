@@ -25,6 +25,8 @@
 
   $('#adamcfg-values').bind('afterShow',function() {
 
+      $('.newbtn').removeAttr('href');
+      $('.newbtn').removeAttr('target');
       $('.newbtn').click(function() {
                                  adamShowValueEditor();
                                  $('#editor-title').html("<?= $lang_array['app']['adamvalue_editor_create_title']  ?>");

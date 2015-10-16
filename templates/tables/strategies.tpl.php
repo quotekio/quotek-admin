@@ -44,7 +44,7 @@ foreach ($strats as $strat) {
 
         <a class="btn <?= $togglebtn_class ?> btn-toggle-strat" id="btn-toggle-strat" onclick="<?= $actbtnclick ?>" ><i class="icon-white <?= $togglebtn_icon ?>"></i></a>
         <?php } ?>
-        <a class="btn btn-inverse btn-strat-edit" 
+        <a class="btn btn-inverse btn-strat-edit" target="_blank" href="/app/editor?strat=<?= $strat->name ?>"
            rel="tooltip"
            title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
           <i class="icon-white icon-edit"></i>
@@ -64,6 +64,8 @@ foreach ($strats as $strat) {
 </table>
 
 <script type="text/javascript">
+
+/* DEPRECATED, REMOVE ASAP
 
 $('.btn-strat-edit').each(function() {
 
@@ -96,5 +98,7 @@ $('.btn-strat-edit').each(function() {
 
 
   });
+
+  */
 
 </script>

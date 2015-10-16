@@ -55,8 +55,6 @@
 
 </div>
 
-<script src="/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-
 <script type="text/javascript">
 
   adamRefreshTable('strategies-table');
@@ -70,25 +68,8 @@
 
       var cpclock = setInterval('adamCheckPendingGitCommit();',5000);
 
-      $('.newbtn').click(function() {
-
-                                 $('#codesave').hide();
-                                 adamShowStratEditor();
-                                 $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_strats_title']  ?>");
-                                 $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
-
-                                 var editor = ace.edit("editor");
-                                 editor.setTheme("ace/theme/xcode");
-                                 editor.getSession().setMode("ace/mode/c_cpp");
-
-                                 $('#editor-action').off('click');
-                                 $('#editor-action').click(function() {
-                                    adamSaveStrat(editor.getValue());
-                                 });
-
-                                 
-
-                               });
+      $('.newbtn').attr('href', "/app/editor");
+      $('.newbtn').attr('target', "_blank");
 
   });
 

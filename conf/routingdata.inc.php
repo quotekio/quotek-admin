@@ -4,13 +4,8 @@
                     '/app' => 'app.php',
                     '/app/signout' => 'app.php',
                     '/install' => 'install.php',
+                    '/app/editor' => 'editor.php',
 
-                    //ACE hack
-                    '/mode-c_cpp.js' => 'acehack/mode-c_cpp.js',
-                    '/theme-monokai.js' => 'acehack/theme-monokai.js',
-                    '/theme-xcode.js' => 'acehack/theme-xcode.js',
-                    '/theme-chaos.js' => 'acehack/theme-chaos.js',
-                    
 		    		'/async/auth' => 'async/auth.php',
 		    		'/async/chlang' => 'async/chlang.php',
 		    		'/async/gettemplate' => 'async/gettemplate.php',
