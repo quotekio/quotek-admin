@@ -18,6 +18,24 @@ if (isset($_REQUEST['strat'])) {
 
 }
 
+function listThemes() {
+
+  $themes = array();
+
+  $d = opendir(  dirname(__FILE__) . "/../web/js/ace/" );
+  while ( $f = readdir($d) ) {
+    //var_dump($f);
+    if (  preg_match('/^theme-/', $f)  ) {
+      $th = str_replace('theme-', '', $f);
+      $th = str_replace('.js', '', $th);
+      $themes[] = trim($th);
+    }
+  }
+  return $themes;
+}
+
+$themes = listThemes();
+
 ?>
 
 <!DOCTYPE HTML>
@@ -103,6 +121,22 @@ if (isset($_REQUEST['strat'])) {
 
 	        
 	        <div class="span7" style="text-align:right;margin-top:4px">
+
+            <div id="chtheme-group" class="btn-group">
+
+            <a id="chtheme" class="btn" data-toggle="dropdown" title="<?= $lang_array['app']['chtheme'] ?>" rel="tooltip"><i class="icon icon-tint"></i></a>
+            
+            <a class="btn dropdown-toggle" data-toggle="dropdown">
+               &nbsp;<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu themes-menu" style="text-align:left;font-size:10px!important">
+              <?php foreach ($themes as $th) { ?>
+                <li><a href="#" class="thlink"><?= $th ?></a></li>
+              <?php } ?>
+            </ul>
+
+            </div>
+
 	          <div id="codehelp" class="btn-group">
 	          <a class="btn" title="<?= $lang_array['app']['opendoc'] ?>" target="__new" href="http://docs.quotek.io/sdk" rel="tooltip">
 	            <i class="icon icon-question-sign"></i></a>
@@ -139,6 +173,14 @@ if (isset($_REQUEST['strat'])) {
         editor.setFontSize(fsize);
 
         $(document).ready(function() {
+
+          function chTheme(theme) {
+            editor.setTheme("ace/theme/" + theme);
+          }
+
+          $('.thlink').each(function(index,i){
+            $(this).click(function() { chTheme($(this).html()); });
+          });
 
           function saveStratAs() {
             name = $('#save-name').val();

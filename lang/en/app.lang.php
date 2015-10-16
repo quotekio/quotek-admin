@@ -341,5 +341,7 @@
   
   $lang_array['app']['saveas'] = 'Save file as';
   $lang_array['app']['filename'] = 'File Name';
+  $lang_array['app']['chtheme'] = 'Change Editor Theme';
+
 
 ?>
