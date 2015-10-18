@@ -161,7 +161,8 @@ $themes = listThemes();
 	       </div>      
 	</div>
 
-	<div id="editor"><?= ( ! isset($strat) ) ? $SOURCE_DEFAULT : $strat->content ?></div>
+  <textarea id="editor-preload" style="display:none"><?= ( ! isset($strat) ) ? $SOURCE_DEFAULT : $strat->content ?></textarea>
+	<div id="editor"></div>
 
 	<script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script>
@@ -175,7 +176,8 @@ $themes = listThemes();
         editor.setTheme("ace/theme/" + editor_theme );
         editor.getSession().setMode("ace/mode/c_cpp");
         editor.setFontSize(parseInt(fsize));
-
+        editor.setValue($("#editor-preload").val());
+        editor.clearSelection();
 
         $(document).ready(function() {
 
