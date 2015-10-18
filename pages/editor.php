@@ -166,16 +166,22 @@ $themes = listThemes();
 	<script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script>
  
-        var fsize = 11;
+        var editor_theme = localStorage.getItem("theme");
+        if (editor_theme == null) editor_theme = "monokai";
+        var fsize = localStorage.getItem("fontsize");
+        if (fsize == null) fsize = 11;
+
         var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/monokai");
+        editor.setTheme("ace/theme/" + editor_theme );
         editor.getSession().setMode("ace/mode/c_cpp");
-        editor.setFontSize(fsize);
+        editor.setFontSize(parseInt(fsize));
+
 
         $(document).ready(function() {
 
           function chTheme(theme) {
             editor.setTheme("ace/theme/" + theme);
+            localStorage.setItem("theme",theme);
           }
 
           $('.thlink').each(function(index,i){
@@ -241,14 +247,17 @@ $themes = listThemes();
             if (  e.ctrlKey && e.keyCode == 187 && ! e.shiftKey ) {
               e.preventDefault();
               fsize--;
+              localStorage.setItem("fontsize",fsize);
               editor.setFontSize(fsize);
-
+              
             }
             //zoom +
             if (  e.ctrlKey && e.keyCode == 187 && e.shiftKey ) {
               e.preventDefault();
               fsize++;
+              localStorage.setItem("fontsize",fsize);
               editor.setFontSize(fsize);
+              
 
             }
 
