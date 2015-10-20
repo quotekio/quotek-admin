@@ -63,7 +63,7 @@ ADAM LASTLOGS
 */
 
 if ($ac->AEPStartCLient()) {
-  $cs_str = $ac->AEPIssueCmd('lastlogs 10');
+  $cs_str = $ac->AEPIssueCmd('lastlogs 100');
   $cs = json_decode($cs_str);
   $res['adamlastlogs'] = $cs;
 }

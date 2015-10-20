@@ -1138,7 +1138,7 @@ function adamUpdateBacktestLogs(backtest_id) {
   var ll = $.ajax({
         url:            '/async/app/backtestctl',
         type:           'POST',
-        data:           {action: 'getLastLogs',nb_entries: 20, id: backtest_id },
+        data:           {action: 'getLastLogs',nb_entries: 100, id: backtest_id },
         cache:          false,
         async:          true,
         success: function() {
