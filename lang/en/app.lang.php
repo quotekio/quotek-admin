@@ -343,5 +343,9 @@
   $lang_array['app']['filename'] = 'File Name';
   $lang_array['app']['chtheme'] = 'Change Editor Theme';
 
+  $lang_array['app']['source'] = 'Source';
+  $lang_array['app']['from'] = 'From';
+  $lang_array['app']['to'] = 'To';
+
 
 ?>

@@ -356,7 +356,9 @@
   $lang_array['app']['saveas'] = 'Enregistrer le fichier sous';
   $lang_array['app']['filename'] = 'Nom du fichier';
   $lang_array['app']['chtheme'] = 'Changer le theme de l\'editeur';
-  
 
+  $lang_array['app']['source'] = 'Source';
+  $lang_array['app']['from'] = 'De';
+  $lang_array['app']['to'] = 'à';
 
 ?>

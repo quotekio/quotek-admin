@@ -17,13 +17,12 @@ $phistlist = $b->query_history($cur_month,time(0));
 
   <tr>
 	  <th><?=  $lang_array['app']['name'] ?></th>
-	  <th>Id <?= $lang_array['app']['broker'] ?></th>
 	  <th><?= $lang_array['app']['size'] ?></th>
 	  <th><?= $lang_array['app']['open'] ?></th>
 	  <th><?= $lang_array['app']['stop'] ?></th>
 	  <th><?= $lang_array['app']['limit'] ?></th>
-    <th><?= $lang_array['app']['open_time'] ?></th>
-    <th><?= $lang_array['app']['close_time'] ?></th>
+    <th><?= $lang_array['app']['period'] ?></th>
+    <th><?= $lang_array['app']['source'] ?></th>
 
 	  <th>PNL</th>
     <th> PNL Peak</th>
@@ -33,13 +32,15 @@ $phistlist = $b->query_history($cur_month,time(0));
 
   <tr>
     <td><?= $pos->indice ?></td>
-    <td><?= $pos->epic ?></td>
     <td><?=$pos->size ?></td>
     <td><?=$pos->open ?></td>
     <td><?=$pos->stop ?></td>
     <td><?=$pos->limit ?></td>
-    <td class="dtime"><?= $pos->open_date ?></td>
-    <td class="dtime"><?= $pos->close_date ?></td>
+    <td>
+      <?= $lang_array['app']['from'] ?>&nbsp;<span class="dtime"><?= $pos->open_date ?></span><br>
+      <?= $lang_array['app']['to'] ?>&nbsp;<span class="dtime"><?= $pos->close_date ?></span>
+    </td>
+    <td><?= $pos->identifier ?></td>
     <td style="font-weight:bold;color:<?= ($pos->pnl > 0) ? '#699e00' : '#c00' ?>" ><?=  sprintf("%.2f",$pos->pnl) ?></td>
     <td style="font-weight:bold;color:<?= ($pos->pnl_peak > 0) ? '#699e00' : '#c00' ?>" ><?= sprintf("%.2f",$pos->pnl_peak) ?></td>
     
