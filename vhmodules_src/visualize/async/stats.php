@@ -10,6 +10,11 @@
   if (!verifyAuth()) die('You are not logged');
   if (!  isset($_REQUEST['tinf']) || ! isset($_REQUEST['tsup']) || ! isset($_REQUEST['indice']) ) die ('missing stats parameter');
 
+  if (isset($_REQUEST['chart'])) {
+    $chart = $_REQUEST['chart'];
+  }
+  else $chart = 'line';
+
   if (isset($_REQUEST['resolution'])) {
     $mean = $_REQUEST['resolution'];
 
@@ -52,7 +57,10 @@
 
   $bw = new backendwrapper();
 
-  $result['data'] = $bw->query($indice,$tinf,$tsup,"${mean}s",$time_offset);
+
+  if ($chart == 'candle') $result['data'] = $bw->query_ohlc($indice,$tinf,$tsup,"${mean}s",$time_offset);
+  
+  else $result['data'] = $bw->query($indice,$tinf,$tsup,"${mean}s",$time_offset);
 
   $result['opts'] = array('indice' => $indice, 'tinf' => $tinf,'tsup' => $tsup, 'mean' => "${mean}s" , 'time_offset' => $time_offset);
 

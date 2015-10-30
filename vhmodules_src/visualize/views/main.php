@@ -117,6 +117,22 @@
                   <form>
                   <h4><?= $lang_array['app']['graphcfg_behaviour'] ?></h4>
                   
+                  <label><b><?= $lang_array['app']['graphcfg_ctype'] ?></b></label>
+
+                  <table class="table" style="width:100%;text-align:center">
+                    <tr>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="line" CHECKED></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="candle"></td>
+                     
+                    </tr>
+                    <tr>
+                      <td><?= $lang_array['app']['ctype_line'] ?></td>
+                      <td><?= $lang_array['app']['ctype_candle'] ?></td>
+                    </tr>
+                  </table>
+
+
+
                   <label><b><?=  $lang_array['app']['graph_refreshrate'] ?></b></label>
 
                   <table class="table" style="width:100%;text-align:center">
@@ -147,16 +163,17 @@
 
                   <table class="table" style="width:100%;text-align:center">
                     <tr>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="1"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="10"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="20"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="30" CHECKED></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="60"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="300"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="1200"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="3600"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="14400"></td>
-                      <td><input type="radio" name="resolution-radio-<?= $v->name ?>" value="86400"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="1"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="10"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="20"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="30" CHECKED></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="60"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="120"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="300"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="1200"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="3600"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="14400"></td>
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="resolution-radio-<?= $v->name ?>" value="86400"></td>
 
                     </tr>
 
@@ -166,6 +183,7 @@
                       <td>20s</td>
                       <td>30s</td>
                       <td>1m</td>
+                      <td>2m</td>
                       <td>5m</td>
                       <td>20m</td>
                       <td>1h</td>
@@ -240,6 +258,14 @@
   <?php foreach($vals as $v) { ?>
   var plot<?= str_replace('_','', $v->name) ?> = null;
   var au<?= str_replace('_','', $v->name) ?> = null;
+
+  $('input[linked-asset="<?= $v->name ?>"]').change( function() {
+
+    displayGraph('<?= $v->name ?>');
+
+  } );
+
+
   <?php } ?>
 
 
@@ -273,11 +299,11 @@
     var graphbox = $('#visualize-draw[linked-asset=' + iname + ']').parent().parent();
     var graphlarge = $('#graphlarge');
 
-    graphlarge.append(graphbox.html());
+    graphbox.detach().appendTo(graphlarge);
+    graphbox.css({ 'width' : '100%'});
 
     var exframe = $('#visualize-draw[linked-asset='+ iname + ']', graphlarge).parent();
     exframe.css({'margin-bottom':'25px'});
-
 
     $('#rbtn', exframe).removeClass('btn-primary');
     $('#rbtn', exframe).addClass('btn-danger');
@@ -286,9 +312,11 @@
     $('#rbtn', exframe).attr('onclick', null);
     $('#rbtn', exframe).off('click');
     $('#rbtn', exframe).click(function() {
-      exframe.remove();
-    });
 
+      exframe.remove();
+      //exframe.detach().appendTo(graphbox);
+
+    });
 
     displayGraph(iname);
 
@@ -379,6 +407,8 @@
     var is_filled = true;
 
     var resolution = $('input[name="resolution-radio-' + iname + '"]:checked').val() ;
+    var chart_type = $('input[name="charttype-radio-'  + iname + '"]:checked').val() ;
+
     var default_time_range = resolution * 1000 * 300;
 
     //trick to avoid averaging.
@@ -486,9 +516,18 @@
                     mode: "x"
              },
 
-    };
+      };
 
-    var data = [{ data: null,
+      if (chart_type == "candle") {
+
+        options.series = { candle: true, lines: false };
+      }
+      
+
+    var data ;
+    
+    if (chart_type == "line") {
+      data = [{ data: null,
                  lines: { 
                           fill: is_filled,
                           lineWidth: 2,
@@ -498,8 +537,13 @@
                  
                   }, ];
 
-    var plot = null;
+    }
 
+    else if (chart_type == "candle") {
+      data = [{ data: null, candle: true, lines: false}];
+    }
+
+    var plot = null;
 
     var stats_querydata = {
                          'tinf' : tinf,
@@ -507,6 +551,7 @@
                          'indice': iname,
                          'resolution': resolution,
                          'time_offset': tzOffset(),
+                         'chart': chart_type
                           };
 
     if (mvavg20.is(':checked') ) stats_querydata['mvavg'] = 20;

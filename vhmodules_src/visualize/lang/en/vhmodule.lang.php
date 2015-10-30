@@ -24,6 +24,9 @@
   $lang_array['app']['graphcfg_behaviour'] = 'Behaviour';
   $lang_array['app']['graphcfg_tech_analysis'] = 'Technical Indicators';
   
+  $lang_array['app']['graphcfg_ctype'] = 'Chart Type';
+  $lang_array['app']['ctype_line'] = 'Line';
+  $lang_array['app']['ctype_candle'] = 'Candlesticks';
 
 
 

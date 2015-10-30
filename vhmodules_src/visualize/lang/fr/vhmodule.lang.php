@@ -23,6 +23,11 @@
   $lang_array['app']['graph_raff'] = 'Canal de Raff';
   $lang_array['app']['graphcfg_behaviour'] = 'Comportement';
   $lang_array['app']['graphcfg_tech_analysis'] = 'Indicateurs Techniques';
+
+
+  $lang_array['app']['graphcfg_ctype'] = 'Type de graphique';
+  $lang_array['app']['ctype_line'] = 'Ligne';
+  $lang_array['app']['ctype_candle'] = 'Chandeliers';
   
 
 
