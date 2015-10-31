@@ -393,5 +393,21 @@ function apiinfos() {
   global $API_VERSION;
   global $API_LASTMOD;
   echo "Chiliconfig API Version $API_VERSION\n";
-  echo "Last Modifications: $API_LASTMOD\n";  
-}?>
+  echo "Last Modifications: $API_LASTMOD\n"; 
+}
+
+function getPermissionsList() {
+  global $dbhandler;
+
+  $result = array();
+  
+  $ans = $dbhandler->query("PRAGMA table_info(user_permissions)");
+
+  $plist = $ans->fetchAll();
+
+  var_dump($plist);
+
+  return $result;
+
+}
+?>
