@@ -55,8 +55,8 @@
                 <td><?= $p ?></td>
                 <td>
                 		<select name="permission-<?= $p ?>">
-                			<option value="<?= $lang_array['app']['yes'] ?>" SELECTED> <?=$lang_array['app']['yes']?></option>
-                				<option value="<?= $lang_array['app']['no'] ?>"><?= $lang_array['app']['no'] ?></option>
+                			<option value="<?= $lang_array['yes'] ?>" SELECTED> <?=$lang_array['yes']?></option>
+                				<option value="<?= $lang_array['no'] ?>"><?= $lang_array['no'] ?></option>
                 			</select>
                 </td>
               </tr>
@@ -64,7 +64,7 @@
              <?php } ?>
 
             </table>
-            
+
           </form>
           </div>
           

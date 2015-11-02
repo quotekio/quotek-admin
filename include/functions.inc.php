@@ -400,13 +400,15 @@ function getPermissionsList() {
   global $dbhandler;
 
   $result = array();
-  
+
   $ans = $dbhandler->query("PRAGMA table_info(user_permissions)");
 
   $plist = $ans->fetchAll();
 
-  var_dump($plist);
-
+  foreach($plist as $p) {
+    if ($p['type']== 'BOOLEAN') $result[] = $p['name'];
+  }
+  
   return $result;
 
 }

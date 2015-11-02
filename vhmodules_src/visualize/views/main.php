@@ -297,10 +297,17 @@
   function enlargeGraph(iname) {
 
     var graphbox = $('#visualize-draw[linked-asset=' + iname + ']').parent().parent();
+
+    //hides tooltip
+    $('#rbtn',graphbox).tooltip('hide');
+
+    var graphrow = graphbox.parent();
     var graphlarge = $('#graphlarge');
 
-    graphbox.detach().appendTo(graphlarge);
-    graphbox.css({ 'width' : '100%'});
+    var gcopy = graphbox.clone();
+
+    graphlarge.append(graphbox.html());
+    graphbox.remove();
 
     var exframe = $('#visualize-draw[linked-asset='+ iname + ']', graphlarge).parent();
     exframe.css({'margin-bottom':'25px'});
@@ -313,9 +320,25 @@
     $('#rbtn', exframe).off('click');
     $('#rbtn', exframe).click(function() {
 
+      graphrow.append(gcopy);
+      
+      //hides tooltip
+      $('#rbtn',exframe).tooltip('hide');
+      
       exframe.remove();
-      //exframe.detach().appendTo(graphbox);
+      displayGraph(iname);
 
+      $('input[linked-asset="' + iname + '"]').change( function() {
+          displayGraph(iname);
+      });
+
+      $('.btn-enlarge').tooltip({placement:'bottom',container: 'body'});
+      $('.btn-settings').tooltip({placement:'bottom',container: 'body'});
+
+    });
+
+    $('input[linked-asset="' + iname + '"]').change( function() {
+          displayGraph(iname);
     });
 
     displayGraph(iname);
