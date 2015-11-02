@@ -5,6 +5,8 @@ CREATE TABLE "user_permissions" (  "id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT 
 	                               "start_bot" BOOLEAN DEFAULT TRUE,
                                    "restart_bot" BOOLEAN DEFAULT TRUE,
 
+#OK
+
                                    "create_config" BOOLEAN DEFAULT TRUE,
 	                               "edit_config" BOOLEAN DEFAULT TRUE,
 	                               "delete_config" BOOLEAN DEFAULT TRUE,

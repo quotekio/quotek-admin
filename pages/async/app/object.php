@@ -10,21 +10,32 @@
    require_once('include/functions.inc.php');
    if (!verifyAuth()) die("ERROR: Not authenticated");
 
-   if (! isset($_REQUEST['type']) || ! isset($_REQUEST['action']) ) {
-   	   var_dump($_REQUEST);
-       die("ERROR: Invalid object request");
-   }
+   $u = new user();
+   $u->id = $_SESSION['uinfos']['id'];
+   $u->load();
+   $u->loadPermissions();
 
-   $response = array('answer' => 'OK', 'message' => null);
+   $resp = array("status" => "OK", "message" => "");
+
+   if (! isset($_REQUEST['type']) || ! isset($_REQUEST['action']) ) {
+       $resp["status"] = "ERROR";
+       $resp['message'] = 'Invalid object resquest';
+       die(json_encode($resp));
+   }
 
    $type = $_REQUEST['type'];
    $action = $_REQUEST['action'];
+
+   if ( ($action == "add" || $action == "mod") && ! isset($_REQUEST['data'])) {
+     $resp['status'] = 'ERROR';
+     $resp['message'] = 'No data provided.';
+     die(json_encode($resp));
+   }
 
    if ($type == 'corecfg') {
 
       if ($action == 'add' || $action == 'mod') {
 
-          if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
           $data = json_decode($_REQUEST['data']);
           $obj = new corecfg();
           $obj->remap($data);
@@ -34,7 +45,6 @@
           and asks for restart if requested. */
           $obj->load();
           if ($obj->active == 1) exportCfg();
-          echo json_encode($response);
       }
 
       else if ($action == 'activate') {
@@ -43,21 +53,19 @@
           $obj->activate();
           //remakes export
           exportCfg();
-          echo json_encode($response);
       }
 
       else if ($action == 'del') {
           $obj = new corecfg();
           $obj->id = $_REQUEST['id'];
           $obj->delete();
-          echo json_encode($response);
       }
 
       else if ($action == 'get') {
           $obj = new corecfg();
           $obj->id = $_REQUEST['id'];
           $obj->load();
-          echo json_encode($obj);
+          $resp['message'] = $obj;
       }
 
       else if ($action == 'dup') {
@@ -73,13 +81,6 @@
          unset($obj->id);
          unset($obj->active);
          $obj->duplicate($obj->name . " (copy)" );
-         echo json_encode($response);
-      }
-
-
-      else if ($action == 'getall') {
-         $objs = getCoreConfigs();
-         echo json_encode($objs);
       }
 
    }
@@ -95,7 +96,7 @@
          foreach($values as $value) {
            $values_id[] = $value->id;
          }
-         echo json_encode($values_id);
+         $resp['message'] = $values_id;
       }
    }
 
@@ -103,31 +104,23 @@
 
       if ($action == 'add' || $action == 'mod') {
 
-          if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
           $data = json_decode($_REQUEST['data']);
           $obj = new brokercfg();
           $obj->remap($data);
           $obj->save();
-          echo json_encode($response);
       }
       
       else if ($action == 'del') {
           $obj = new brokercfg();
           $obj->id = $_REQUEST['id'];
           $obj->delete();
-          echo json_encode($response);
       }
 
       else if ($action == 'get') {
           $obj = new brokercfg();
           $obj->id = $_REQUEST['id'];
           $obj->load();
-          echo json_encode($obj);
-      }
-
-      else if ($action == 'getall') {
-         $objs = getBrokerConfigs();
-         echo json_encode($objs);
+          $resp['message'] = $obj;
       }
 
       else if ($action == 'dup') {
@@ -137,9 +130,7 @@
          $obj->load();
          unset($obj->id);
          $obj->duplicate($obj->name . " (copy)" );
-         echo json_encode($response);
       }
-
 
    }
 
@@ -148,30 +139,23 @@
 
       if ($action == 'add' || $action == 'mod') {
 
-          if (!isset($_REQUEST['data'])) {
-              $response['answer'] = 'ERR';
-              $response['message'] = 'Missing strategy data';
-          }
           $data = json_decode($_REQUEST['data']);
-
           $obj = new strategy();
           $obj->remap($data);          
           $obj->save();
-          echo json_encode($response);
       }
       
       else if ($action == 'del') {
           $obj = new strategy();
           $obj->name = $_REQUEST['id'];
           $obj->delete();
-          echo json_encode($response);
       }
 
       else if ($action == 'get') {
           $obj = new strategy();
           $obj->name = $_REQUEST['id'];
           $obj->load();
-          echo json_encode($obj);
+          $resp['message'] = $obj;
       }
 
       else if ($action == 'activate') {
@@ -180,7 +164,6 @@
           $obj->activate();
           //remakes export
           exportCfg();
-          echo json_encode($response);
       }
 
       else if ($action == 'disable') {
@@ -189,51 +172,38 @@
           $obj->disable();
           //remakes export
           exportCfg();
-          echo json_encode($response);
       }
 
-
-      else if ($action == 'getall') {
-         $objs = getStratsList();
-         echo json_encode($objs);
-      }
-   
       else if ($action == 'dup') {
  
          $obj = new strategy();
          $obj->name = $_REQUEST['id'];
          $obj->load();
          $obj->duplicate();
-         echo json_encode($response);
       }
-
    }
 
    else if ($type== "valuecfg") {
 
        if ($action == 'add' || $action == 'mod') {
 
-          if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
           $data = json_decode($_REQUEST['data']);
           $obj = new valuecfg();
           $obj->remap($data);
           $obj->save();
-          echo json_encode($response);
-
       }
 
       else if ($action == 'get') {
          $obj = new valuecfg();
          $obj->id = $_REQUEST['id'];
          $obj->load();
-         echo json_encode($obj);
+         $resp['message'] = $obj;
       }
 
       else if ($action == 'del') {
           $obj = new valuecfg();
           $obj->id = $_REQUEST['id'];
           $obj->delete();
-          echo json_encode($response);
       }
 
       else if ($action == 'dup') {
@@ -243,7 +213,6 @@
          $obj->load();
          unset($obj->id);
          $obj->duplicate($obj->name . " (copy)" );
-         echo json_encode($response);
       }
 
   }
@@ -252,28 +221,24 @@
 
     if ($action == 'add' || $action == 'mod') {
 
-          if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
           $data = json_decode($_REQUEST['data']);
           $obj = new backtest();
           $obj->remap($data);
           $obj->save();
-          echo json_encode($response);
-
       }
 
       else if ($action == 'get') {
           $obj = new backtest();
           $obj->id = $_REQUEST['id'];
           $obj->load();
-          echo json_encode($obj);
+          $resp['message'] = $obj;
       }
 
       else if ($action == 'del') {
           $obj = new backtest();
           $obj->id = $_REQUEST['id'];
           $obj->delete();
-          $response['message'] = 'Backtest ' . $obj->id . ' successfully deleted';
-          echo json_encode($response);
+          $resp['message'] = 'Backtest ' . $obj->id . ' successfully deleted';
       }
 
 
@@ -284,7 +249,6 @@
          $obj->load();
          unset($obj->id);
          $obj->duplicate($obj->name . " (copy)" );
-         echo json_encode($response);
       }
     
   }
@@ -293,14 +257,12 @@
 
     if ($action == 'add' || $action == 'mod') {
 
-          if (!isset($_REQUEST['data'])) die("ERROR: No data provided");
           $data = json_decode($_REQUEST['data']);
 
           if ($action == 'add'  && $data->password == '') {
-            $response['answer'] = 'ERR';
-            $response['message'] = 'User Password is empty';
-            echo json_encode($response);
-            exit();
+            $resp['status'] = 'ERROR';
+            $resp['message'] = 'User Password is empty';
+            die(json_encode($resp));
           }
 
           else if ( $data->password != '' ) {
@@ -312,7 +274,6 @@
           $obj = new user();
           $obj->remap($data);
           $obj->save();
-          echo json_encode($response);
 
       }
 
@@ -320,15 +281,14 @@
           $obj = new user();
           $obj->id = $_REQUEST['id'];
           $obj->load();
-          echo json_encode($obj);
+          $resp["message"] = $obj;
       }
 
       else if ($action == 'del') {
           $obj = new user();
           $obj->id = $_REQUEST['id'];
           $obj->delete();
-          $response['message'] = 'Backtest ' . $obj->id . ' successfully deleted';
-          echo json_encode($response);
+          $resp['message'] = 'User ' . $obj->id . ' successfully deleted';
       }
 
       else if ($action == 'dup') {
@@ -338,18 +298,14 @@
          $obj->load();
          unset($obj->id);
          $obj->duplicate($obj->name . "_copy" );
-         echo json_encode($response);
       }
     
   }
 
   else {
-
-    $response['answer'] = 'ERR';
-    $response['message'] = 'Invalid Object Type';
-    echo json_encode($response);
-
+    $resp['status'] = 'ERROR';
+    $resp['message'] = 'Invalid Object Type';
   }
 
-
+  echo json_encode($resp);
 ?>

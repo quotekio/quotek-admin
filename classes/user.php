@@ -3,25 +3,14 @@
 require_once('adamobject.php');
 require_once('include/functions.inc.php');
 
-$PERM_NONE = 0x00;
-$PERM_READ = 0x01;
-$PERM_WRITE = 0x02;
-
-class permission extends adamobject {
-
-}
 
 function loadPermissions($user_id) {
-  $permissions = array();
+
   global $dbhandler;
-  $dbh = $dbhandler->query("SELECT id FROM permission WHERE user_id= '" . $user_id . "';");
-  while( $ans = $dbh->fetch() ) {
-    $perm = new permission();
-    $perm->id = $ans['id'];
-    $perm->load();
-    $permissions[] = $perm;
-  }
+  $dbh = $dbhandler->query("SELECT * FROM user_permissions WHERE user_id= '" . $user_id . "';");
+  $pemissions = $dbh->fetchAll();
   return $permissions;
+
 }
 
 function getUserList() {
@@ -71,6 +60,7 @@ class user extends adamobject {
    }
 
 
+
   function loadPermissions() {
     $this->permissions = loadPermissions($this->id);
     return $this->permissions;
@@ -93,14 +83,14 @@ class user extends adamobject {
     
   }
   
-  function checkPermissions($sc) {
+  function checkPermissions($tocheck) {
     if (! isset($this->permissions)) $this->loadPermissions();
-    foreach ($this->permissions as $perm) {
-      if ($sc == $perm->scope) {
-        return $perm->right;
-      }
+    foreach ($tocheck as $tc) {
+     
+      if (! in_array($tc, $this->permissions)) return false;
+      else if ($this->permissions[$tc] === false) return false
     }
-    return $PERM_NONE;
+    return true;
   }
 }
 

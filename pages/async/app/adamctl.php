@@ -15,24 +15,54 @@
 
   if (!verifyAuth()) die('You are not logged');
 
+  $u = new user();
+  $u->id = $_SESSION['uinfos']['id'];
+  $u->load();
+  $u->loadPermissions();
+
+  $resp = array("status" => "OK","message" => "");
+
   if ( $_REQUEST['action'] == 'startReal') {
-    exportCfg();
-    $ac->startReal();
+
+    if ( $u->checkPermissions(array('start_bot'))  ) {
+      exportCfg();
+      $ac->startReal();
+    }
+
+    else {
+      $resp["status"] = "ERROR";
+      $resp["message"] ="NO_PERMISSION:start_bot";
+    }
+
+    echo json_encode($resp);
+
   }
 
-  else if ( $_REQUEST['action'] == 'startDebug') {
-    exportCfg();
-    $ac->startReal($debug = true);
-  }
-  
   else if ( $_REQUEST['action'] == 'stop') {
-    $ac->stop();
+    if ( $u->checkPermissions(array('stop_bot'))  ) {
+      $ac->stop();
+    }
+    else {
+      $resp["status"] = "ERROR";
+      $resp["message"] ="NO_PERMISSION:stop_bot"; 
+    }
+
+    echo json_encode($resp);
+
   }
   
   else if ( $_REQUEST['action'] == 'restart') {
-    $ac->stop();
-    exportCfg();
-    $ac->startReal();
+    if ( $u->checkPermissions(array('restart_bot'))  ) {
+      $ac->stop();
+      exportCfg();
+      $ac->startReal();
+    }
+    else {
+      $resp["status"] = "ERROR";
+      $resp["message"] ="NO_PERMISSION:restart_bot";
+    }
+
+    echo json_encode($resp);
   }
   
   else if ( $_REQUEST['action'] == 'getStatus') {

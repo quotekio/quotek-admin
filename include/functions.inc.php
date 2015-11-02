@@ -290,54 +290,6 @@ function endsWith($haystack, $needle) {
     return $needle === "" || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== FALSE);
 }
 
-function updatePassword($user_id,$oldpassword,$newpassword) {
-
-
-  if (strlen($newpassword) < 6) die ('Erreur: Le nouveau mot de passe est trop court !');
-
-  global $dbhandler;
-  global $SALT;
-
-  $oldpassword_hash = sha1( $SALT .  $oldpassword);
-  $newpassword_hash = sha1( $SALT .  $newpassword);
-
-
-  $dbh = mysql_query("SELECT password from utilisateur WHERE id_hexstring= '$user_id';",$dbhandler);
-  
-  $ans = mysql_fetch_assoc($dbh);
-
-  if ($ans['password'] != $oldpassword_hash) die ('Erreur: Mot de passe courrant invalide !');
-
- 
-  $dbh = mysql_query("UPDATE utilisateur set password = '$newpassword_hash' WHERE id_hexstring= '$user_id';",$dbhandler);
-
-
-}
-
-
-
-function updateEmail($user_id,$email) {
-
-   if ( checkExists('email',$email)) {
-
-      die ('Erreur: cet email éxiste déjà dans notre base de données');
-
-   }
-
-  if ( ! emailValidate($email) ) {
-
-    die ('Erreur: L\'email fourni n\'est pas au bon format');
-
-  }
-
-  $dba = mysql_query("UPDATE utilisateur set email ='$email' WHERE id_hexstring = '$user_id' ; ");
-
-  $_SESSION['email'] = $email;
-       
-}
-
-
-
 
 /*
 function selectLanguage() {
@@ -408,8 +360,9 @@ function getPermissionsList() {
   foreach($plist as $p) {
     if ($p['type']== 'BOOLEAN') $result[] = $p['name'];
   }
-  
+
   return $result;
 
 }
+
 ?>
