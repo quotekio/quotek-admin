@@ -7,6 +7,8 @@
    include "classes/backtest.php";
    include "classes/user.php";
 
+   $resp = array("status" => "OK", "message" => "");
+
    require_once('include/functions.inc.php');
    if (!verifyAuth()) die("ERROR: Not authenticated");
 
@@ -15,7 +17,43 @@
    $u->load();
    $u->loadPermissions();
 
-   $resp = array("status" => "OK", "message" => "");
+   $perms_map = array ( );
+
+   $perms_map['corecfg'] = array('add' => 'create_config' , 
+                                 'get' => 'edit_config', 
+                                 'mod' => 'edit_confg',
+                                 'del' => 'delete_config',
+                                 'enable' => 'enable_config' );
+
+   $perms_map['vmap'] = array('get' => 'edit_config');
+
+   $perms_map['valuecfg'] = array('add' => 'create_asset' , 
+                                 'get' => 'edit_asset', 
+                                 'mod' => 'edit_asset',
+                                 'del' =>  'delete_asset');
+
+   $perms_map['strategy'] = array('add' => 'create_strat' , 
+                                 'get' => 'edit_strat', 
+                                 'mod' => 'edit_strat',
+                                 'del' => 'delete_strat',
+                                 'enable' => 'enable_strat',
+                                 'disable' => 'disable_strat');
+
+   $perms_map['user'] = array('add' => 'create_user' , 
+                              'get' => 'edit_user', 
+                              'mod' => 'edit_user',
+                              'del' => 'delete_user');
+
+   $perms_map['brokercfg'] = array('add' => 'create_broker' , 
+                                   'get' => 'edit_broker', 
+                                   'mod' => 'edit_broker',
+                                   'del' =>  'delete_broker');
+
+   $perms_map['backtest'] = array('add' => 'create_backtest' , 
+                                  'get' => 'edit_backtest', 
+                                  'mod' => 'edit_backtest',
+                                  'del' => 'delete_backtest');
+    
 
    if (! isset($_REQUEST['type']) || ! isset($_REQUEST['action']) ) {
        $resp["status"] = "ERROR";
@@ -25,6 +63,15 @@
 
    $type = $_REQUEST['type'];
    $action = $_REQUEST['action'];
+
+   //First Pass of permissions checking
+   $tc_perm = $perms_map[$type][$action];
+   if (! $u->checkPermissions(array($tc_perm))  ) {
+     $resp['status'] = "ERROR";
+     $resp['message'] = "NO_PERMISSION:" . $tc_perm;
+     die(json_encode($resp));
+   }
+
 
    if ( ($action == "add" || $action == "mod") && ! isset($_REQUEST['data'])) {
      $resp['status'] = 'ERROR';

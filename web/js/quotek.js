@@ -541,9 +541,14 @@ function adamObject(action,objtype,params,id) {
                     async: false,
                     cache: false});
 
-   //adamDebug(r.responseText);
-   return $.parseJSON($.trim(r.responseText));
+   var rjson = $.parseJSON($.trim(r.responseText));
 
+   if (rjson.status == "OK") return json.message;
+   else {
+
+     
+
+   }
 }
 
 function adamRestart() {
@@ -1810,12 +1815,12 @@ function adamSaveUser(id) {
     }
 
     else {
-       strat = { 'id': id ,
+       user = { 'id': id ,
                  'username': null, 
                  'password': null,
                  'rsa_key': null }; 
     }
-
+    
     user.username = $('#input-usercfg-username').val();
     user.password = $('#input-usercfg-password').val();
     user.rsa_key = $('#input-usercfg-rsakey').val();
