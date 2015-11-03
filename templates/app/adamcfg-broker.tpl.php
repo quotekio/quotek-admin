@@ -33,7 +33,8 @@
                                  });
                                });
 
-    $('.newbtn').attr('title','<?= $lang_array['app']['newbroker'] ?>');
+   $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newbroker_tooltip'] ?>')
+    .tooltip('fixTitle');
     
   });
 

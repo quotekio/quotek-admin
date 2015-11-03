@@ -359,5 +359,11 @@
 
   $lang_array['app']['err_noperm'] = 'You don\'t have the permission to make the following action: {}';  
 
+  $lang_array['app']['newstrat_tooltip'] = 'Create a new strategy';
+  $lang_array['app']['newconf_tooltip'] = 'Create a new configuration';
+  $lang_array['app']['newbroker_tooltip'] = 'Create a new configuration';
+  $lang_array['app']['newvalue_tooltip'] = 'Create a new asset';
+  $lang_array['app']['newbacktest_tooltip'] = 'Create a new backtest';
+  $lang_array['app']['newuser_tooltip'] = 'Create a new user';
 
 ?>

@@ -84,6 +84,8 @@
     $('#app-restartadam').tooltip({placement:'bottom',container: 'body'});
 
     $('#app-langsel').tooltip({placement:'bottom', container:'body'});
+    
+    $('.newbtn').tooltip({placement: 'left', container: 'body'});
 
 
   });

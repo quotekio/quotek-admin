@@ -71,6 +71,9 @@
       $('.newbtn').attr('href', "/app/editor");
       $('.newbtn').attr('target', "_blank");
 
+     $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newstrat_tooltip'] ?>')
+     .tooltip('fixTitle');
+
   });
 
 

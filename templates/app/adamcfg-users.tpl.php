@@ -47,6 +47,9 @@
                                       adamSaveUser();
                                    });
                                  });
+
+    $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newuser_tooltip'] ?>').tooltip('fixTitle');
+
   });
 
 

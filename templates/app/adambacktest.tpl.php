@@ -40,7 +40,8 @@
 
                            });
 
-    $('.newbtn').attr('title','<?= $lang_array['app']['newbacktest'] ?>');
+    $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newbacktest_tooltip'] ?>')
+    .tooltip('fixTitle');
 
    });
 

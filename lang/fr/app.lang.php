@@ -373,4 +373,11 @@
 
   $lang_array['app']['err_noperm'] = 'Vous n\'avez pas les droits pour executer l\'action suivante: {}';
   
+  $lang_array['app']['newstrat_tooltip'] = 'Créer une nouvelle stratégie';
+  $lang_array['app']['newconf_tooltip'] = 'Créer une nouvelle configuration';
+  $lang_array['app']['newbroker_tooltip'] = 'Créer une nouvelle configuration courtier';
+  $lang_array['app']['newvalue_tooltip'] = 'Créer un nouvel actif';
+  $lang_array['app']['newbacktest_tooltip'] = 'Créer un nouveau backtest';
+  $lang_array['app']['newuser_tooltip'] = 'Créer une nouvel utilisateur';
+
 ?>

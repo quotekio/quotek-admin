@@ -37,7 +37,9 @@
 
                                });
 
-      $('.newbtn').attr('title','<?= $lang_array['app']['adamvalues_new'] ?>');
+     $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newvalue_tooltip'] ?>')
+    .tooltip('fixTitle');
+
   });
 
 

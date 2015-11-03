@@ -33,6 +33,7 @@
 
     $('.newbtn').removeAttr('href');
     $('.newbtn').removeAttr('target');
+    
     $('.newbtn').click(function() {
                                    adamShowCorecfgEditor();
                                    $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_create_title']  ?>");
@@ -42,6 +43,10 @@
                                       adamSaveCoreCfg();
                                    });
                                  });
+    
+    $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newconf_tooltip'] ?>')
+    .tooltip('fixTitle');
+
   });
 
 
