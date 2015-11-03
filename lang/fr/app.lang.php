@@ -292,7 +292,9 @@
   $lang_array['app']['git_newbranch_tooltip'] = 'Creez une nouvelle branche git';
   $lang_array['app']['git_delbranch_tooltip'] = 'Supprimez une branche git';
   $lang_array['app']['git_backward_tooltip'] = 'Revenez à un commit précédent';
-
+  $lang_array['app']['git_branch_hint'] = 'Entrer le nom de la branche à créer';
+  $lang_array['app']['git_delbranch_hint'] = 'Selectionnez la branche à supprimer. Notez que vous ne devez pas être placé dessus.';
+  
   $lang_array['hint']['asset_name'] = 'Donnez un nom à l\'actif pour l\'identifier.';
   $lang_array['hint']['asset_broker_id'] = 'Indiquez l\'identifiant donné à cet actif par votre courtier.';
   $lang_array['hint']['asset_variation'] = 'Variation du cours pour que l\'actif prenne un pip';

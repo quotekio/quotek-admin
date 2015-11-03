@@ -29,7 +29,7 @@
                <?php } ?>
                </select>
 
-               <span class="help-block">Selectionnez la branche git à supprimer.</span>
+               <span class="help-block"><?= $lang_array['app']['git_delbranch_hint'] ?></span>
             </div>
           </div>
         </form>

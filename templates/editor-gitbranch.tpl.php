@@ -12,7 +12,7 @@
             <div class="span12">
                <label><b><?= $lang_array['app']['name'] ?></b></label>
                <input id="input-git-newbranch" style="height:27px;width:350px" type="text" value="">
-               <span class="help-block">Donnez un nom à votre nouvelle branche git.</span>
+               <span class="help-block"><?= $lang_array['app']['git_branch_hint'] ?></span>
             </div>
           </div>
         </form>

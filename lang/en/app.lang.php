@@ -275,6 +275,8 @@
   $lang_array['app']['git_newbranch_tooltip'] = 'Create a new git branch';
   $lang_array['app']['git_delbranch_tooltip'] = 'Delete a git branch';
   $lang_array['app']['git_backward_tooltip'] = 'Go back to a previous commit';
+  $lang_array['app']['git_branch_hint'] = 'Enter the branch name to create';
+  $lang_array['app']['git_delbranch_hint'] = 'Select the branch to create. Note that you cannot be placed on it';
 
   $lang_array['hint']['asset_name'] = 'Name the asset to identify it.';
   $lang_array['hint']['asset_broker_id'] = 'Give the broker\'s id for this asset.';
