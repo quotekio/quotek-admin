@@ -21,8 +21,8 @@ CREATE TABLE "user_permissions" (  "id" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT 
 	                               "edit_asset" BOOLEAN DEFAULT TRUE,
 	                               "delete_asset" BOOLEAN DEFAULT TRUE,
 
-                                   "enable_config" BOOLEAN DEFAULT TRUE,
-                                   "enable_strat" BOOLEAN DEFAULT TRUE,
+                                   "activate_config" BOOLEAN DEFAULT TRUE,
+                                   "activate_strat" BOOLEAN DEFAULT TRUE,
                                    "disable_strat" BOOLEAN DEFAULT TRUE,
 
                                    "create_user" BOOLEAN DEFAULT TRUE,

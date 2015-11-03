@@ -17,39 +17,45 @@
    $u->load();
    $u->loadPermissions();
 
-   $perms_map = array ( );
+   $perms_map = array ();
 
-   $perms_map['corecfg'] = array('add' => 'create_config' , 
+   $perms_map['corecfg'] = array('add' => 'create_config' ,
+                                 'dup' => 'create_config',
                                  'get' => 'edit_config', 
                                  'mod' => 'edit_confg',
                                  'del' => 'delete_config',
-                                 'enable' => 'enable_config' );
+                                 'activate' => 'activate_config' );
 
    $perms_map['vmap'] = array('get' => 'edit_config');
 
-   $perms_map['valuecfg'] = array('add' => 'create_asset' , 
-                                 'get' => 'edit_asset', 
-                                 'mod' => 'edit_asset',
-                                 'del' =>  'delete_asset');
+   $perms_map['valuecfg'] = array('add' => 'create_asset' ,
+                                  'dup' => 'create_asset', 
+                                  'get' => 'edit_asset', 
+                                  'mod' => 'edit_asset',
+                                  'del' =>  'delete_asset');
 
    $perms_map['strategy'] = array('add' => 'create_strat' , 
-                                 'get' => 'edit_strat', 
-                                 'mod' => 'edit_strat',
-                                 'del' => 'delete_strat',
-                                 'enable' => 'enable_strat',
-                                 'disable' => 'disable_strat');
+                                  'dup' =>  'create_strat',
+                                  'get' => 'edit_strat', 
+                                  'mod' => 'edit_strat',
+                                  'del' => 'delete_strat',
+                                  'activate' => 'activate_strat',
+                                  'disable' => 'disable_strat');
 
-   $perms_map['user'] = array('add' => 'create_user' , 
+   $perms_map['user'] = array('add' => 'create_user' ,
+                              'dup' => 'create_user', 
                               'get' => 'edit_user', 
                               'mod' => 'edit_user',
                               'del' => 'delete_user');
 
-   $perms_map['brokercfg'] = array('add' => 'create_broker' , 
+   $perms_map['brokercfg'] = array('add' => 'create_broker' ,
+                                   'dup' => 'create_broker', 
                                    'get' => 'edit_broker', 
                                    'mod' => 'edit_broker',
                                    'del' =>  'delete_broker');
 
-   $perms_map['backtest'] = array('add' => 'create_backtest' , 
+   $perms_map['backtest'] = array('add' => 'create_backtest' ,
+                                  'dup' => 'create_backtest', 
                                   'get' => 'edit_backtest', 
                                   'mod' => 'edit_backtest',
                                   'del' => 'delete_backtest');
@@ -328,6 +334,7 @@
           $obj = new user();
           $obj->id = $_REQUEST['id'];
           $obj->load();
+          $obj->loadPermissions();
           $resp["message"] = $obj;
       }
 

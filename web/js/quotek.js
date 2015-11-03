@@ -59,7 +59,7 @@ function adamSaveBrokerCfg(id) {
   brokercfg.broker_account_mode = $('#input-brokercfg-broker_account_mode').val();
 
   var r = adamObject('add','brokercfg',brokercfg,-1);
-  if (r.answer == 'OK') {
+  if (r.status == 'OK') {
     adamRefreshTable('brokercfg-table');
     modalDest();
   }
@@ -69,7 +69,7 @@ function adamSaveBrokerCfg(id) {
 function adamCloneBrokerCfg(bid) {
 
    var r = adamObject('dup','brokercfg',{},bid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
        adamRefreshTable('brokercfg-table');
    }
 }
@@ -91,7 +91,7 @@ function adamGetBrokerCfgDataToEdit(bid) {
 function adamDelBrokerCfg(bid) {
 
    var r = adamObject('del','brokercfg',{},bid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
      var line = $('#brokercfg-line-' + bid);
      $('#btn-del-brokercfg',line).tooltip('hide');
      $('#btn-del-brokercfg',line).off();
@@ -217,7 +217,7 @@ function adamSaveCoreCfg(ccid) {
 function adamCloneCoreCfg(cid) {
   
   var r = adamObject('dup','corecfg',{},cid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
        adamRefreshTable('corecfg-table');
    }
 }
@@ -226,7 +226,7 @@ function adamCloneCoreCfg(cid) {
 function adamDelCoreCfg(cid) {
 
     var r = adamObject('del','corecfg',{},cid);
-    if (r.answer == 'OK') {
+    if (r.status == 'OK') {
         var line = $('#corecfg-line-' + cid);
         $('#btn-del-corecfg',line).tooltip('hide');
         $('#btn-del-corecfg',line).off();
@@ -237,7 +237,8 @@ function adamDelCoreCfg(cid) {
 function adamActivateCoreCfg(cid) {
 
    var r = adamObject('activate','corecfg',{},cid);
-   if (r.answer == 'OK') {
+
+   if (r.status == 'OK') {
 
         $('.btn-activate-corecfg').each(function() {
 
@@ -271,6 +272,8 @@ function adamActivateCoreCfg(cid) {
         line.children().each(function() {  $(this).addClass('activated');    } );
    }
 
+   //Errors handling
+   else processError(r);
 }
 
 
@@ -301,7 +304,7 @@ function adamSaveValue(id) {
 
   var r = adamObject('add','valuecfg',value,-1);
 
-  if (r.answer == 'OK') {
+  if (r.status == 'OK') {
         adamRefreshTable('values-table');
         modalDest();
   }
@@ -311,7 +314,7 @@ function adamSaveValue(id) {
 function adamCloneValue(vid) {
 
    var r = adamObject('dup','valuecfg',{},vid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
        adamRefreshTable('values-table');
    }
 }
@@ -333,7 +336,7 @@ function adamGetValueDataToEdit(vid) {
 
 function adamDelValue(vid) {
     var r = adamObject('del','valuecfg',{'null': ' null'},vid);
-    if (r.answer == 'OK') {
+    if (r.status == 'OK') {
         var line = $('#value-line-' + vid);
         $('#btn-del-value',line).tooltip('hide');
         $('#btn-del-value',line).off();
@@ -345,7 +348,7 @@ function adamDelValue(vid) {
 function adamCloneStrat(sid) {
 
    var r = adamObject('dup','strategy',{},sid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
        adamRefreshTable('strategies-table');
    }
 
@@ -397,7 +400,7 @@ function adamGetCoreCfgDataToEdit(ccid) {
 
 function adamDelStrat(sid) {
     var r = adamObject('del','strategy',{'null': ' null'},sid);
-    if (r.answer == 'OK') {
+    if (r.status == 'OK') {
         var line = $('#strategy-line-' + sid);
         $('#btn-del-strat',line).tooltip('hide');
         $('#btn-del-strat',line).off();
@@ -412,9 +415,8 @@ function adamToggleStrat(btn) {
   sid = line.attr('id').replace(/strategy-line-/g,"");
 
   if ( btn.hasClass("btn-success") ) {
-
     r = adamObject('activate','strategy',{},sid);
-    if (r.answer == 'OK') {
+    if (r.status == 'OK') {
 
       btn.removeClass('btn-success');
       btn.addClass('btn-info');
@@ -429,12 +431,14 @@ function adamToggleStrat(btn) {
 
     }
 
+    else processError(r);
+
   }
 
   else {
 
     r = adamObject('disable','strategy',{},sid);
-    if (r.answer == 'OK') {
+    if (r.status == 'OK') {
 
       btn.addClass('btn-success');
       btn.removeClass('btn-info');
@@ -448,6 +452,8 @@ function adamToggleStrat(btn) {
       $('#btn-del-strat',line).removeClass('disabled');
 
     }
+    else processError(r);
+
   }
 } 
 
@@ -501,7 +507,7 @@ function adamSaveBacktest(id) {
 
   var r = adamObject('add','backtest',backtest,-1);
 
-  if (r.answer == 'OK') {
+  if (r.status == 'OK') {
     modalDest();
     adamRefreshTable('backtests-table');
   }
@@ -511,7 +517,7 @@ function adamSaveBacktest(id) {
 function adamCloneBacktest(vid) {
 
    var r = adamObject('dup','backtest',{},vid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
        adamRefreshTable('backtests-table');
    }
 }
@@ -520,7 +526,7 @@ function adamCloneBacktest(vid) {
 function adamDelBacktest(id) {
 
    var r = adamObject('del','backtest',{},id);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
      var line = $('#backtest-line-' + id);
      $('#btn-del-backtest',line).tooltip('hide');
      $('#btn-del-backtest',line).off();
@@ -542,13 +548,8 @@ function adamObject(action,objtype,params,id) {
                     cache: false});
 
    var rjson = $.parseJSON($.trim(r.responseText));
+   return rjson;
 
-   if (rjson.status == "OK") return json.message;
-   else {
-
-     
-
-   }
 }
 
 function adamRestart() {
@@ -562,15 +563,8 @@ function adamRestart() {
 
   var st_json = $.parseJSON(st.responseText);
   
-  if ( st_json.status == "ERROR" ) {
-
-    if ( st_json.message.search("NO_PERMISSION:") == 0  ) {
-      perm_name = st_json.message.replace("NO_PERMISSION:","");
-      error("err-noperm",perm_name);
-    }
-  }
-
-  else adamUpdateStatus();
+  if ( st_json.status == "OK" ) adamUpdateStatus();
+  else processError(st_json);
 
 }
 
@@ -586,15 +580,8 @@ function adamStop() {
 
   var st_json = $.parseJSON(st.responseText);
 
-  if ( st_json.status == "ERROR" ) {
-
-    if ( st_json.message.search("NO_PERMISSION:") == 0  ) {
-      perm_name = st_json.message.replace("NO_PERMISSION:","");
-      error("err-noperm",perm_name);
-    }
-  }
-
-  else adamUpdateStatus();
+  if ( st_json.status == "OK" ) adamUpdateStatus();
+  else processError(st_json);
 
 }
 
@@ -611,15 +598,8 @@ function adamStartReal() {
 
   var st_json = $.parseJSON(st.responseText);
   
-  if ( st_json.status == "ERROR" ) {
-
-    if ( st_json.message.search("NO_PERMISSION:") == 0  ) {
-      perm_name = st_json.message.replace("NO_PERMISSION:","");
-      error("err-noperm",perm_name);
-    }
-  }
-
-  else adamUpdateStatus();
+  if ( st_json.status == "OK" ) adamUpdateStatus();
+  else processError(st_json);
 }
 
 
@@ -1262,6 +1242,17 @@ function modalDest() {
   $('#modal_bg').hide();
 }
 
+
+/* process error returned by the API */
+function processError(r) {
+
+  if (r.message.search("NO_PERMISSION:") == 0  ) {
+      perm_name = r.message.replace("NO_PERMISSION:","");
+      error("err-noperm",perm_name);
+    }
+
+} 
+
 /* Displays API error inside a bootstrap modal */
 
 function error(errname,arg) {
@@ -1871,7 +1862,7 @@ function adamSaveUser(id) {
     user.rsa_key = $('#input-usercfg-rsakey').val();
     var r = adamObject('add','user',user,-1);
 
-    if (r.answer == 'OK') {
+    if (r.status == 'OK') {
         adamRefreshTable('usercfg-table');
         modalDest();
     }
@@ -1884,7 +1875,7 @@ function adamSaveUser(id) {
 function adamDelUser(uid) {
 
    var r = adamObject('del','user',{},uid);
-   if (r.answer == 'OK') {
+   if (r.status == 'OK') {
      var line = $('#user-line-' + uid);
      $('#btn-del-usercfg',line).tooltip('hide');
      $('#btn-del-usercfg',line).off();
@@ -1894,11 +1885,27 @@ function adamDelUser(uid) {
 
 function adamGetUserDataToEdit(uuid) {
 
-   var userdata = adamObject('get','user',{},uuid);
+   var r = adamObject('get','user',{},uuid)
 
-   $('#input-usercfg-username').val(userdata.username);
-   $('#input-usercfg-password').val('');
-   $('#input-usercfg-rsakey').val(userdata.rsa_key);
+   if (r.status == 'OK') {
+
+     $('#input-usercfg-username').val(r.message.username);
+     $('#input-usercfg-password').val('');
+     $('#input-usercfg-rsakey').val(r.message.rsa_key);
+
+     $.each(r.message.permissions, function(key, val) {
+
+       val = $.trim(val.toLowerCase());
+       if ( val == "true" ) $('#permission-' + key ).val("true");
+       else $('#permission-' + key).val("false");
+
+     });
+
+
+   }
+
+   else processError(r); 
+
 
 }
 
