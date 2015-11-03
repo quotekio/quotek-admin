@@ -24,7 +24,7 @@
       <tr id="user-line-<?= $user->id ?>">
       	<td><?= $user->username ?></td>
         <td>*******</td>
-        <td><?= ($user->lastconn == 0) ? $lang_array['app']['never'] : $user->lastconn ?></td>
+        <td class="dtime" id="usert"><?= $user->lastconn ?></td>
         <td><?= ($user_is_revoked == 0) ? $lang_array['no'] : $lang_array['yes'] ?></td>
       	<td>
 

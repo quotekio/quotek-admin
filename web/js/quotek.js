@@ -28,6 +28,7 @@ function adamRefreshTable(tname) {
      var t = $('#' + tname);
      $('a[rel=tooltip]',t).tooltip({placement: 'bottom', container: 'body'});
      $('.dtime',t).each(function() {
+
         formatDate($(this));
      });
 }
@@ -1267,10 +1268,13 @@ function padStr(i) {
 
 function formatDate(obj) {
    var t_epoch = obj.html();
-   var d = new Date(0);
-   d.setUTCSeconds(parseInt(t_epoch));
-   obj.html(d.toLocaleString().replace(/(CET|CEST|EST|PST)/g,''));
 
+   if (! isNaN(t_epoch) ) {
+     var d = new Date(0);
+     d.setUTCSeconds(parseInt(t_epoch));
+     obj.html(d.toLocaleString().replace(/(CET|CEST|EST|PST)/g,''));
+   }
+   
 }
 
 function formatDate2(dt) {
