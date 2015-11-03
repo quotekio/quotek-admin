@@ -9,9 +9,31 @@ function updateProgress() {
   }
 }
 
+function checkForScrollbar(prev_sbstate) {
+
+    if ($(window).height() < $(document).height()) {
+        $(window).trigger('resize');
+        return true;
+    }  
+
+    else if (prev_sbstate == true) { 
+      $(window).trigger('resize');
+      return false;
+    }
+
+  return true;
+
+}
+
+
 function endLoad() {
 
   $('body').css('background','#111111');
+
+  //periodically checks if scrollbar is here or not;
+  var prev_sbstate = false;
+  setInterval(function() { prev_sbstate = checkForScrollbar(prev_sbstate); }, 500);
+
   $(window).resize(function(){
 
             var dispwidth = $(window).innerWidth() - $('#app-left').width();
@@ -19,9 +41,6 @@ function endLoad() {
 
             $('#modal_bg').width($(window).width());
             $('#modal_bg').height($(window).height());
-
-            $('#codeeditor_area').width($(window).width());
-            $('#codeeditor_area').height($(window).height()-42);
 
           });
 
