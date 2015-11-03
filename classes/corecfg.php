@@ -183,6 +183,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   global $GIT_LOCATION;
   global $DEMO_MODE;
   global $DEMO_BROKER_PARAMS;
+  global $DEMO_BROKER_MODULE;
 
   if ($cfg_id == null) {
       $cfg = getActiveCfg();
@@ -217,7 +218,8 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fwrite($fh,"aep_listen_addr = " . $cfg->aep_listen_addr . "\n");
   fwrite($fh,"aep_listen_port = " . $cfg->aep_listen_port . "\n\n");
 
-  fwrite($fh, "broker = " . $broker['module_name'] . "\n");
+  if ($DEMO_MODE) fwrite($fh, "broker = " . $DEMO_BROKER_MODULE . "\n");
+  else fwrite($fh, "broker = " . $broker['module_name'] . "\n");
 
   fwrite($fh, "broker_mode = " . $broker_cfg->broker_mode . "\n");
 

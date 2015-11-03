@@ -357,5 +357,7 @@
                                      '(like shutdown/reboot of the robot, strategy and config activation..).<br><br>'.
                                      'To Sign-in, use the following login/password: <b>demo/demo</b>';
 
+  $lang_array['app']['err_noperm'] = 'You don\'t have the permission to make the following action: {}';  
+
 
 ?>

@@ -371,5 +371,6 @@
                                      . 'ne seront pas directement accessibles (demarrage/eteignage du robot, activation de strategies et de configuration..)<br><br>' .
                                      'Pour vous connecter, utilisez les login/mot de passe suivants: <b>demo/demo</b>';
 
-
+  $lang_array['app']['err_noperm'] = 'Vous n\'avez pas les droits pour executer l\'action suivante: {}';
+  
 ?>

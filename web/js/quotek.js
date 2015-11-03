@@ -560,8 +560,18 @@ function adamRestart() {
         async:          false
         });
 
-  adamUpdateStatus();
-  return st.responseText;
+  var st_json = $.parseJSON(st.responseText);
+  
+  if ( st_json.status == "ERROR" ) {
+
+    if ( st_json.message.search("NO_PERMISSION:") == 0  ) {
+      perm_name = st_json.message.replace("NO_PERMISSION:","");
+      error("err-noperm",perm_name);
+    }
+  }
+
+  else adamUpdateStatus();
+
 }
 
 function adamStop() {
@@ -574,8 +584,17 @@ function adamStop() {
         async:          false
         });
 
-  adamUpdateStatus();
-  return st.responseText;
+  var st_json = $.parseJSON(st.responseText);
+
+  if ( st_json.status == "ERROR" ) {
+
+    if ( st_json.message.search("NO_PERMISSION:") == 0  ) {
+      perm_name = st_json.message.replace("NO_PERMISSION:","");
+      error("err-noperm",perm_name);
+    }
+  }
+
+  else adamUpdateStatus();
 
 }
 
@@ -590,8 +609,17 @@ function adamStartReal() {
         async:          false
         });
 
-  adamUpdateStatus();
-  return st.responseText;
+  var st_json = $.parseJSON(st.responseText);
+  
+  if ( st_json.status == "ERROR" ) {
+
+    if ( st_json.message.search("NO_PERMISSION:") == 0  ) {
+      perm_name = st_json.message.replace("NO_PERMISSION:","");
+      error("err-noperm",perm_name);
+    }
+  }
+
+  else adamUpdateStatus();
 }
 
 
@@ -1233,6 +1261,23 @@ function modalDest() {
   $('#modal_win').hide();
   $('#modal_bg').hide();
 }
+
+/* Displays API error inside a bootstrap modal */
+
+function error(errname,arg) {
+
+  var arg = ( typeof arg != 'undefined'  ) ? arg : null;
+  errlist = $('.errlist');
+  errcontent = $('#' + errname, errlist).html();
+  if ( arg != null ) {
+    errcontent = errcontent.replace("{}",arg);
+  }
+
+  $('#errormodal-msg').html(errcontent);
+  $('#errormodal').modal();
+
+}
+
 
 function modalInst(modwidth,modheight,content) {
 
