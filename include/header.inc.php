@@ -33,4 +33,31 @@
   <div class="wrapper">
     <div style="background:white;color:black" id="ajaxdbg"></div>
     <div class="modal" id="modal_win" style="display:none"></div>
+
+    <!-- Err Modal -->
+    <div id="errormodal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><?= $lang_array['app']['error'] ?></h4>
+          </div>
+          <div class="modal-body">
+
+          <div id="errormodal-msg" class="alert alert-error">
+            
+          </div>
+
+          </div>
+          <div class="modal-footer">
+            <button id="ack" type="button" class="btn btn-critical" data-dismiss="modal"><?= $lang_array['ok'] ?></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
     <div id="modal_bg" style="display:block!important"></div>

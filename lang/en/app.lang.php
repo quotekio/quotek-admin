@@ -8,6 +8,7 @@
   $lang_array['app']['name'] = 'Name';
   $lang_array['yes'] = 'Yes';
   $lang_array['no'] = 'No';
+  $lang_array['ok'] = 'OK';
 
   $lang_array['app']['dashboard'] = 'Dashboard';
   $lang_array['app']['dashboard_subtitle'] = 'Main View';
@@ -346,6 +347,13 @@
   $lang_array['app']['source'] = 'Source';
   $lang_array['app']['from'] = 'From';
   $lang_array['app']['to'] = 'To';
+
+  $lang_array['app']['error'] = 'There was an error !';
+
+  $lang_array['app']['demo_title'] = 'Quotek Demo';
+  $lang_array['app']['demo_descr'] = 'This Quotek instance is running in demo mode, which implies that some features are not available to the logged users'.
+                                     '(like shutdown/reboot of the robot, strategy and config activation..).<br><br>'.
+                                     'To Sign-in, use the following login/password: <b>demo/demo</b>';
 
 
 ?>

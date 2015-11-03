@@ -6,7 +6,7 @@
   selectLanguage();
 
   require_once("lang/$lang/app.lang.php");
-  require_once("classes/vhuser.php");
+  require_once("classes/user.php");
   require_once("classes/adamctl.php");
   require_once("classes/corecfg.php");
   //require_once("lang/$lang/success.lang.php");

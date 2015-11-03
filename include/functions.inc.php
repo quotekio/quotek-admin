@@ -291,7 +291,6 @@ function endsWith($haystack, $needle) {
 }
 
 
-/*
 function selectLanguage() {
   global $lang;
   global $LANG_LIST;
@@ -316,9 +315,9 @@ function selectLanguage() {
   }
   else $lang = 'en';
 }
-*/
 
-/* temp function for selectlanguage, which gives priority to fr */
+
+/* temp function for selectlanguage, which gives priority to fr
 function selectLanguage() {
   global $lang;
   global $LANG_LIST;
@@ -327,6 +326,7 @@ function selectLanguage() {
   if (isset($_SESSION['lang'])) $lang = $_SESSION['lang'];
   else $lang = 'fr';
 }
+*/
 
 
  function getPageTitle() {

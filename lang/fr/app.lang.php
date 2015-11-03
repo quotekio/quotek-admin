@@ -9,6 +9,7 @@
   $lang_array['app']['name'] = 'Nom';
   $lang_array['yes'] = 'Oui';
   $lang_array['no'] = 'Non';
+  $lang_array['ok'] = 'Ok';
 
 
   $lang_array['app']['dashboard'] = 'Tableau de bord';
@@ -360,5 +361,13 @@
   $lang_array['app']['source'] = 'Source';
   $lang_array['app']['from'] = 'De';
   $lang_array['app']['to'] = 'à';
+
+  $lang_array['app']['error'] = 'Une erreur s\'est produite';
+
+  $lang_array['app']['demo_title'] = 'Quotek Démo';
+  $lang_array['app']['demo_descr'] = 'Cette instance de Quotek fonctionne en mode démo, ce qui implique que certaines fonctions '
+                                     . 'ne seront pas directement accessibles (demarrage/eteignage du robot, activation de strategies et de configuration..)<br><br>' .
+                                     'Pour vous connecter, utilisez les login/mot de passe suivants: <b>demo/demo</b>';
+
 
 ?>

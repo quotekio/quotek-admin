@@ -20,6 +20,9 @@
   $API_VERSION= "1.0.0";
   $API_LASTMOD = "2013-09-07";
 
+  $DEMO_MODE = false;
+  $DEMO_BROKER_PARAMS = '{"username":"***REMOVED***","password":"***REMOVED***","api_key":"***REMOVED***","api_url":"https://demo-api.ig.com"}';
+
   $LANG_LIST = array('en' => 'English' , 'fr' => 'Français');
 
   $TWITTER_CONSUMER_KEY = 'hp9gZjRQzuz1vq88P0vqevEE2';

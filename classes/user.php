@@ -8,7 +8,7 @@ function loadPermissions($user_id) {
 
   global $dbhandler;
   $dbh = $dbhandler->query("SELECT * FROM user_permissions WHERE user_id= '" . $user_id . "';");
-  $pemissions = $dbh->fetchAll();
+  $permissions = $dbh->fetchAll();
   return $permissions;
 
 }
@@ -88,7 +88,7 @@ class user extends adamobject {
     foreach ($tocheck as $tc) {
      
       if (! in_array($tc, $this->permissions)) return false;
-      else if ($this->permissions[$tc] === false) return false
+      else if ($this->permissions[$tc] === false) return false;
     }
     return true;
   }

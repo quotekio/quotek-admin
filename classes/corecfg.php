@@ -181,6 +181,8 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
   global $ADAM_PATH;
   global $GIT_LOCATION;
+  global $DEMO_MODE;
+  global $DEMO_BROKER_PARAMS;
 
   if ($cfg_id == null) {
       $cfg = getActiveCfg();
@@ -221,11 +223,15 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
   $api_url = (  $broker_cfg->broker_account_mode == "demo" ) ? $broker['demo_url'] : $broker['live_url'];
 
-  $broker_params = json_encode( array( 'username' => $broker_cfg->username , 
+  if ( $DEMO_MODE) $broker_params = $DEMO_BROKER_PARAMS;
+  
+  else $broker_params = json_encode( array( 'username' => $broker_cfg->username , 
                                  'password' => $broker_cfg->password ,
                                  'api_key' => $broker_cfg->api_key ,
                                  'api_url' => $api_url ),
                                 JSON_UNESCAPED_SLASHES);
+
+
 
   fwrite($fh, "broker_params = " . $broker_params . "\n\n");
 

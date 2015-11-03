@@ -5,12 +5,7 @@
   selectLanguage();
   include("lang/$lang/main.lang.php");
   include("lang/$lang/app.lang.php");  
-  require_once("classes/vhuser.php");
-  $cu = new vhuser();
-  $cu->setID($_SESSION['uinfos']['id']);
-  $cu->load();
-
-
+  
   if (isset($_REQUEST['part'])) {
 
   switch ($_REQUEST['part']) {

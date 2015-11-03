@@ -18,6 +18,7 @@
 
   include('include/header.inc.php');
   require_once("lang/$lang/templates/login.lang.php");
+  require_once("lang/$lang/app.lang.php");
 
 ?>
 
@@ -31,6 +32,15 @@
    <div id="login_formbox">
 
     <div style="margin-top:0px">
+      
+       <?php if ( $DEMO_MODE ) { ?>
+      <div class="alert alert-info">
+        <h3><?= $lang_array['app']['demo_title']?></h3>
+        <?= $lang_array['app']['demo_descr'] ?>
+        
+      </div>
+      <?php } else { ?>
+
       <div class="row-fluid">
         <div class="span1"></div>
         <div class="span10" style="">
@@ -39,9 +49,10 @@
 	        </h3>
 
         </div>
-        
       </div>
       
+      <?php } ?>
+
       <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
         <div id="modal-alert"></div>
       </div>
