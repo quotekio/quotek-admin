@@ -63,6 +63,7 @@ function adamSaveBrokerCfg(id) {
     adamRefreshTable('brokercfg-table');
     modalDest();
   }
+  else processError(r);
 
 }
 
@@ -72,20 +73,24 @@ function adamCloneBrokerCfg(bid) {
    if (r.status == 'OK') {
        adamRefreshTable('brokercfg-table');
    }
+   else processError(r);
 }
 
 
 
 function adamGetBrokerCfgDataToEdit(bid) {
-  var brokercfg = adamObject('get','brokercfg',{},bid);
-  $('#input-brokercfg-name').val(brokercfg.name);
-  $('#input-brokercfg-broker_id').val(brokercfg.broker_id);
-  $('#input-brokercfg-username').val(brokercfg.username);
-  $('#input-brokercfg-password').val(brokercfg.password);
-  $('#input-brokercfg-apikey').val(brokercfg.api_key);
-  $('#input-brokercfg-broker_mode').val(brokercfg.broker_mode);
-  $('#input-brokercfg-broker_account_mode').val(brokercfg.broker_account_mode);
-  
+  var r = adamObject('get','brokercfg',{},bid);
+  if (r.status == 'OK') {
+    brokercfg = r.message;
+    $('#input-brokercfg-name').val(brokercfg.name);
+    $('#input-brokercfg-broker_id').val(brokercfg.broker_id);
+    $('#input-brokercfg-username').val(brokercfg.username);
+    $('#input-brokercfg-password').val(brokercfg.password);
+    $('#input-brokercfg-apikey').val(brokercfg.api_key);
+    $('#input-brokercfg-broker_mode').val(brokercfg.broker_mode);
+    $('#input-brokercfg-broker_account_mode').val(brokercfg.broker_account_mode);
+  }
+  else processError(r);
 }
 
 function adamDelBrokerCfg(bid) {
@@ -97,6 +102,7 @@ function adamDelBrokerCfg(bid) {
      $('#btn-del-brokercfg',line).off();
      line.remove();
    }
+   else processError(r);
 }
 
 function adamDeleteBTResult(btid,tstamp) {
@@ -205,11 +211,13 @@ function adamSaveCoreCfg(ccid) {
   corecfg.backend_password = $('#input-corecfg-backend_password').val();
   corecfg.backend_db = $('#input-corecfg-backend_db').val();
 
-
   r = adamObject('add','corecfg',corecfg,-1);
-  //adamDebug(JSON.stringify(corecfg));
-  adamRefreshTable('corecfg-table');
-  modalDest();
+  if (r.status == "OK") {
+    //adamDebug(JSON.stringify(corecfg));
+    adamRefreshTable('corecfg-table');
+    modalDest();
+  }
+  else processError(r);
 
 }
 
@@ -220,6 +228,7 @@ function adamCloneCoreCfg(cid) {
    if (r.status == 'OK') {
        adamRefreshTable('corecfg-table');
    }
+   else processError();
 }
 
 
@@ -232,6 +241,7 @@ function adamDelCoreCfg(cid) {
         $('#btn-del-corecfg',line).off();
         line.remove();
     }
+    else processError(r);
 }
 
 function adamActivateCoreCfg(cid) {
@@ -309,6 +319,8 @@ function adamSaveValue(id) {
         modalDest();
   }
 
+  else processError(r);
+
 }
 
 function adamCloneValue(vid) {
@@ -317,19 +329,26 @@ function adamCloneValue(vid) {
    if (r.status == 'OK') {
        adamRefreshTable('values-table');
    }
+   else processError(r);
 }
 
 
 function adamGetValueDataToEdit(vid) {
 
-  var valuecfg = adamObject('get','valuecfg',{},vid);
-  $('#input-values-name').val(valuecfg.name);
-  $('#input-values-broker_map').val(valuecfg.broker_map);
-  $('#input-values-pnl_pp').val( valuecfg.pnl_pp);
-  $('#input-values-min_stop').val(valuecfg.min_stop);
-  $('#input-values-start_hour').val(valuecfg.start_hour);
-  $('#input-values-end_hour').val(valuecfg.end_hour);
-  $('#input-values-variation').val(valuecfg.variation);
+  var r = adamObject('get','valuecfg',{},vid);
+
+  if (r.status == 'OK') {
+
+    valuecfg = r.message;
+    $('#input-values-name').val(valuecfg.name);
+    $('#input-values-broker_map').val(valuecfg.broker_map);
+    $('#input-values-pnl_pp').val( valuecfg.pnl_pp);
+    $('#input-values-min_stop').val(valuecfg.min_stop);
+    $('#input-values-start_hour').val(valuecfg.start_hour);
+    $('#input-values-end_hour').val(valuecfg.end_hour);
+    $('#input-values-variation').val(valuecfg.variation);
+  }
+  else processError(r);
 
 }
 
@@ -342,6 +361,7 @@ function adamDelValue(vid) {
         $('#btn-del-value',line).off();
         line.remove();
     }
+    else processError(r);
 }
 
 
@@ -351,49 +371,67 @@ function adamCloneStrat(sid) {
    if (r.status == 'OK') {
        adamRefreshTable('strategies-table');
    }
+   else processError(r);
 
 }
 
 
 function adamGetCoreCfgDataToEdit(ccid) {
 
-  var ccfg = adamObject('get','corecfg',{},ccid);
-  $('#input-corecfg-name').val(ccfg.name);
-  $('#input-corecfg-mm_capital').val(ccfg.mm_capital);
+  var r0 = adamObject('get','corecfg',{},ccid);
   
-  $('#input-corecfg-eval_ticks').val(ccfg.eval_ticks);
-  $('#input-corecfg-getval_ticks').val(ccfg.getval_ticks);
+  if (r0.status == 'OK') {
 
-  $('#input-corecfg-inmem_history').val(ccfg.inmem_history);
-  
-  $('#input-corecfg-broker_id').val( ccfg.broker_id);
-  $('#input-corecfg-mm_max_openpos').val(ccfg.mm_max_openpos);
-  $('#input-corecfg-mm_max_openpos_per_epic').val(ccfg.mm_max_openpos_per_epic);
-  $('#input-corecfg-mm_max_loss_percentage_per_trade').val(ccfg.mm_max_loss_percentage_per_trade);
-  $('#input-corecfg-mm_critical_loss_percentage').val(ccfg.mm_critical_loss_percentage);
+    ccfg = r0.message;
 
-  $('#input-corecfg-extra').val(ccfg.extra);
+    $('#input-corecfg-name').val(ccfg.name);
+    $('#input-corecfg-mm_capital').val(ccfg.mm_capital);
+    
+    $('#input-corecfg-eval_ticks').val(ccfg.eval_ticks);
+    $('#input-corecfg-getval_ticks').val(ccfg.getval_ticks);
 
-  $('#input-corecfg-backend_module').val(ccfg.backend_id);
-  $('#input-corecfg-backend_host').val(ccfg.backend_host);
-  $('#input-corecfg-backend_port').val(ccfg.backend_port);
-  $('#input-corecfg-backend_username').val(ccfg.backend_username);
-  $('#input-corecfg-backend_password').val(ccfg.backend_password);
-  $('#input-corecfg-backend_db').val(ccfg.backend_db);
+    $('#input-corecfg-inmem_history').val(ccfg.inmem_history);
+    
+    $('#input-corecfg-broker_id').val( ccfg.broker_id);
+    $('#input-corecfg-mm_max_openpos').val(ccfg.mm_max_openpos);
+    $('#input-corecfg-mm_max_openpos_per_epic').val(ccfg.mm_max_openpos_per_epic);
+    $('#input-corecfg-mm_max_loss_percentage_per_trade').val(ccfg.mm_max_loss_percentage_per_trade);
+    $('#input-corecfg-mm_critical_loss_percentage').val(ccfg.mm_critical_loss_percentage);
 
-  var vmap = adamObject('get','vmap',{},ccid);
+    $('#input-corecfg-extra').val(ccfg.extra);
 
-  for(i=0;i<vmap.length;i++) {
-      $('#' + vmap[i]).get(0).checked = true;
+    $('#input-corecfg-backend_module').val(ccfg.backend_id);
+    $('#input-corecfg-backend_host').val(ccfg.backend_host);
+    $('#input-corecfg-backend_port').val(ccfg.backend_port);
+    $('#input-corecfg-backend_username').val(ccfg.backend_username);
+    $('#input-corecfg-backend_password').val(ccfg.backend_password);
+    $('#input-corecfg-backend_db').val(ccfg.backend_db);
+  }
+
+  else {
+    processError(r);
+    return;
+  }
+
+  var r1 = adamObject('get','vmap',{},ccid);
+
+  if (r1.status == "OK") {
+
+    vmap = r1.message;
+
+    for(i=0;i<vmap.length;i++) {
+        $('#' + vmap[i]).get(0).checked = true;
+      }
+
+    if (ccfg.mm_reverse_pos_lock == 1) {
+        $('#input-corecfg-mm_reverse_pos_lock').get(0).checked = true;
     }
 
-  if (ccfg.mm_reverse_pos_lock == 1) {
-      $('#input-corecfg-mm_reverse_pos_lock').get(0).checked = true;
+    else if (ccfg.mm_reverse_pos_force_close == 1) {
+        $('#input-corecfg-mm_reverse_pos_force_close').get(0).checked = true;
+    }
   }
-
-  else if (ccfg.mm_reverse_pos_force_close == 1) {
-      $('#input-corecfg-mm_reverse_pos_force_close').get(0).checked = true;
-  }
+  else processError(r);
 
 }
 
@@ -406,6 +444,7 @@ function adamDelStrat(sid) {
         $('#btn-del-strat',line).off();
         line.remove();
     }
+    else processError(r);
 }
 
 function adamToggleStrat(btn) {
@@ -460,17 +499,25 @@ function adamToggleStrat(btn) {
 
 function adamGetBacktestDataToEdit(bid) {
 
-  var backtest = adamObject('get','backtest',{},bid);
-  $('#input-backtest-name').val(backtest.name);
-  $('#input-backtest-type').val(backtest.type);
-  $('#input-backtest-start').val(formatDate2(backtest.start));
-  $('#input-backtest-end').val(formatDate2(backtest.end));
-  $('#input-backtest-config_id').val(backtest.config_id);
-  $('#input-backtest-strategy_id').val(backtest.strategy_id);
-  $('#input-backtest-genetics_population').val(backtest.genetics_population);
-  $('#input-backtest-genetics_survivors').val(backtest.genetics_survivors);
-  $('#input-backtest-genetics_converge_thold').val(backtest.genetics_converge_thold);
-  $('#input-backtest-genetics_max_generations').val(backtest.genetics_max_generations);
+  var r = adamObject('get','backtest',{},bid);
+
+  if (r.status == 'OK') {
+
+    backtest = r.message;
+
+    $('#input-backtest-name').val(backtest.name);
+    $('#input-backtest-type').val(backtest.type);
+    $('#input-backtest-start').val(formatDate2(backtest.start));
+    $('#input-backtest-end').val(formatDate2(backtest.end));
+    $('#input-backtest-config_id').val(backtest.config_id);
+    $('#input-backtest-strategy_id').val(backtest.strategy_id);
+    $('#input-backtest-genetics_population').val(backtest.genetics_population);
+    $('#input-backtest-genetics_survivors').val(backtest.genetics_survivors);
+    $('#input-backtest-genetics_converge_thold').val(backtest.genetics_converge_thold);
+    $('#input-backtest-genetics_max_generations').val(backtest.genetics_max_generations);
+  }
+
+  else processError(r);
 }
 
 
@@ -511,6 +558,7 @@ function adamSaveBacktest(id) {
     modalDest();
     adamRefreshTable('backtests-table');
   }
+  else processError(r);
   
 }
 
@@ -520,6 +568,7 @@ function adamCloneBacktest(vid) {
    if (r.status == 'OK') {
        adamRefreshTable('backtests-table');
    }
+   else processError(r);
 }
 
 
@@ -532,6 +581,7 @@ function adamDelBacktest(id) {
      $('#btn-del-backtest',line).off();
      line.remove();
    }
+   else processError(r);
 }
 
 function adamObject(action,objtype,params,id) {
@@ -1866,10 +1916,8 @@ function adamSaveUser(id) {
         adamRefreshTable('usercfg-table');
         modalDest();
     }
-    else {
-      console.log( r.answer );
-    }
-
+    else processError(r);
+    
 }
 
 function adamDelUser(uid) {
@@ -1881,6 +1929,7 @@ function adamDelUser(uid) {
      $('#btn-del-usercfg',line).off();
      line.remove();
    }
+   else processError(r);
 }
 
 function adamGetUserDataToEdit(uuid) {
@@ -1889,11 +1938,12 @@ function adamGetUserDataToEdit(uuid) {
 
    if (r.status == 'OK') {
 
-     $('#input-usercfg-username').val(r.message.username);
+     user = r.message;
+     $('#input-usercfg-username').val(user.username);
      $('#input-usercfg-password').val('');
-     $('#input-usercfg-rsakey').val(r.message.rsa_key);
+     $('#input-usercfg-rsakey').val(user.rsa_key);
 
-     $.each(r.message.permissions, function(key, val) {
+     $.each(user.permissions, function(key, val) {
 
        val = $.trim(val.toLowerCase());
        if ( val == "true" ) $('#permission-' + key ).val("true");
