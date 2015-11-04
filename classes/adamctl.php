@@ -41,33 +41,33 @@ class adamctl {
 
   }
 
-  function startReal($debug=false) {
+  function startReal() {
     global $ADAM_PATH;
     global $ADAM_TMP;
     $outp = array();
 
-    $pidtries = 10;
+    //$pidtries = 10;
 
-    if (!$debug) $cmd = "sudo $ADAM_PATH/bin/adam";
-    else $cmd = "sudo screen -d -m -S adamdbg gdb -ex run $ADAM_PATH/bin/adam";
+    $cmd = "sudo /etc/init.d/adam start";
 
     if (file_exists("$ADAM_TMP/needs_restart")) {
       unlink("$ADAM_TMP/needs_restart");
     }
+
     if ($this->checkStatus($this->supid) == 'off') {
       
-      if (!$debug) exec(sprintf("%s >/dev/null 2>&1 & ", $cmd),$outp);
-      else exec($cmd,$outp);
+      exec($cmd,$outp);
 
+      /*
       $this->supid = $this->findRealPID();
-
       while ($pidtries > 0 && $this->supid == "")  {
         $pidtries--;
         $this->supid = $this->findRealPID();
         sleep(.2);
       }
+      */
 
-      $this->setPID($this->supid);
+      //$this->setPID($this->supid);
 
     }
     
@@ -77,10 +77,12 @@ class adamctl {
 
   function stop() {
     global $ADAM_PIDFILE;
-    exec("sudo kill " . $this->supid );
+    exec("sudo /etc/init.d/adam stop");
     $this->mode = 'off';
   }
 
+/*//POTENTIALLY DEPRECATED ! 
+  //(but might still be useful if we launch adam foreground, inside  a screen)
   function setPID($pid,$pidfile=null) {
     global $ADAM_PIDFILE;
     if ($pidfile == null) {
@@ -95,7 +97,6 @@ class adamctl {
 
   }
 
-
   function findRealPID()  {
     global $ADAM_PATH;
     exec("ps aux|grep $ADAM_PATH|egrep -v '(sudo|gdb|screen|grep|php)'|awk '{print $2}'",$outp);
@@ -103,21 +104,17 @@ class adamctl {
     else return "";
 
   }
-
+  */
 
   function getPID($pid_f=null) {
     global $ADAM_PIDFILE;
-    $pid = 'none';
     if ($pid_f == null ) $pidfile = $ADAM_PIDFILE;
     else $pidfile = $pid_f;
+    
+    $pid = @file_get_contents($pidfile);
+    if ( $pid === false ) return 'none';
+    else return $pid;
 
-    if (file_exists($pidfile)) {
-      $fh = fopen($pidfile,"r");
-      if (!$fh) return 'none';
-      $pid = fgets($fh);
-      fclose($fh);
-    }
-    return $pid;
   }
 
 
