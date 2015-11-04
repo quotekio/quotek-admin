@@ -115,12 +115,12 @@
 
                 <table class="table table-bordered">
                   <tr>
-                    <th>PNL (AVG)</th>
-                    <th>PNL-P (AVG)</th>
+                    <th>Profit Factor</th>
+                    <th>Max Drawdown</th>
                   </tr>
                   <tr>
-                    <td id="apnl-daily">0</td>
-                    <td id="apnl-p-daily">0</td>
+                    <td id="pf-daily">0</td>
+                    <td id="mdd-daily" style="color:#C00000">0</td>
                   </tr>
                 </table>
               </div>
@@ -140,12 +140,12 @@
               <div id="performance-pnlstats-weekly" style="font-size:10px;margin-top:50px">
                 <table class="table table-bordered">
                   <tr>
-                    <th>PNL (AVG)</th>
-                    <th>PNL-P (AVG)</th>
+                    <th>Profit Factor</th>
+                    <th>Max Drawdown</th>
                   </tr>
                   <tr>
-                    <td id="apnl-weekly">0</td>
-                    <td id="apnl-p-weekly">0</td>
+                    <td id="pf-weekly">0</td>
+                    <td id="mdd-weekly" style="color:#C00000">0</td>
                   </tr>
                 </table>
               </div>
@@ -164,12 +164,12 @@
               <div id="performance-pnlstats-monthly" style="font-size:10px;margin-top:50px">
                 <table class="table table-bordered">
                   <tr>
-                    <th>PNL (AVG)</th>
-                    <th>PNL-P (AVG)</th>
+                    <th>Profit Factor</th>
+                    <th>Max Drawdown</th>
                   </tr>
                   <tr>
-                    <td id="apnl-monthly">0</td>
-                    <td id="apnl-p-monthly">0</td>
+                    <td id="pf-monthly">0</td>
+                    <td id="mdd-monthly" style="color:#C00000">0</td>
                   </tr>
                 </table>
               </div>

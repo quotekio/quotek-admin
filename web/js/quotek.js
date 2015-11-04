@@ -2390,27 +2390,22 @@ function adamUpdateTradeStats() {
 
                            /* ##### TRADE STATS RENDER ##### */
 
-                           $('#apnl-daily').html( d_raw.trade_apnls.day );
-                           $('#apnl-p-daily').html( d_raw.trade_apnlps.day );
-                           $('#apnl-weekly').html( d_raw.trade_apnls.week );
-                           $('#apnl-p-weekly').html( d_raw.trade_apnlps.week );
-                           $('#apnl-monthly').html( d_raw.trade_apnls.month );
-                           $('#apnl-p-monthly').html( d_raw.trade_apnlps.month );
+                           $('#pf-daily').html( d_raw.trade_pf.day );
+                           $('#mdd-daily').html( d_raw.trade_mdd.day );
+                           $('#pf-weekly').html( d_raw.trade_pf.week );
+                           $('#mdd-weekly').html( d_raw.trade_mdd.week );
+                           $('#pf-monthly').html( d_raw.trade_pf.month );
+                           $('#mdd-monthly').html( d_raw.trade_mdd.month );
 
-                           if ( d_raw.trade_apnls.day >= 0 ) $('#apnl-daily').css('color','#699e00');
-                           else $('#apnl-daily').css('color','#c00000');
-                           if ( d_raw.trade_apnlps.day >= 0 ) $('#apnl-p-daily').css('color','#699e00');
-                           else $('#apnl-p-daily').css('color','#c00000');
+                           if ( d_raw.trade_pf.day >= 2 ) $('#pf-daily').css('color','#699e00');
+                           else $('#pf-daily').css('color','#c00000');
 
-                           if ( d_raw.trade_apnls.week >= 0 ) $('#apnl-weekly').css('color','#699e00');
-                           else $('#apnl-weekly').css('color','#c00000');
-                           if ( d_raw.trade_apnlps.week >= 0 ) $('#apnl-p-weekly').css('color','#699e00');
-                           else $('#apnl-p-weekly').css('color','#c00000');
+                           if ( d_raw.trade_pf.week >= 2 ) $('#pf-weekly').css('color','#699e00');
+                           else $('#pf-weekly').css('color','#c00000');
 
-                           if ( d_raw.trade_apnls.month >= 0 ) $('#apnl-monthly').css('color','#699e00');
-                           else $('#apnl-monthly').css('color','#c00000');
-                           if ( d_raw.trade_apnlps.month >= 0 ) $('#apnl-p-monthly').css('color','#699e00');
-                           else $('#apnl-p-monthly').css('color','#c00000');
+                           if ( d_raw.trade_pf.month >= 2 ) $('#pf-monthly').css('color','#699e00');
+                           else $('#pf-monthly').css('color','#c00000');
+                           
 
 
 

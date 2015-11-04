@@ -288,6 +288,12 @@
   
   $lang_array['app']['git_commit_title'] = 'Faire un commit git';
   $lang_array['app']['git_commit_subtitle'] = 'Enregistrez vos changements de code';
+  $lang_array['app']['git_commit_tooltip'] = 'Créer un nouveau commit.';
+  $lang_array['app']['git_commit_sd_hint'] = 'Donnez une description rapide du commit.';
+  $lang_array['app']['git_commit_ld_hint'] = 'Décrivez plus précisément la nature du commit.';
+
+  $lang_array['app']['git_chbranch_tooltip'] = 'Changer la branche git courrante.';
+  
 
   $lang_array['app']['git_newbranch_tooltip'] = 'Creez une nouvelle branche git';
   $lang_array['app']['git_delbranch_tooltip'] = 'Supprimez une branche git';
@@ -382,6 +388,7 @@
 
   $lang_array['app']['perm_name'] = 'Nom Permission';
   $lang_array['app']['authorized'] = 'Autorisé';
+
 
 
 ?>

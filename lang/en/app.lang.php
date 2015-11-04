@@ -271,6 +271,11 @@
   
   $lang_array['app']['git_commit_title'] = 'Create a git commit';
   $lang_array['app']['git_commit_subtitle'] = 'Save your code changes';
+  $lang_array['app']['git_commit_tooltip'] = 'Create a new commit';
+  $lang_array['app']['git_commit_sd_hint'] = 'Briefly describe your commit.';
+  $lang_array['app']['git_commit_ld_hint'] = 'Déscribe more precisely the nature of the commit.';
+
+  $lang_array['app']['git_chbranch_tooltip'] = 'Change the current branch.';
 
   $lang_array['app']['git_newbranch_tooltip'] = 'Create a new git branch';
   $lang_array['app']['git_delbranch_tooltip'] = 'Delete a git branch';

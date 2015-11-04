@@ -12,8 +12,8 @@ $cur_day = gmmktime (0, 0, 0);
 $perf_data = array();
 
 $perf_data['trade_ratios'] = array( 'day' => null, 'week' => null, 'month' => null );
-$perf_data['trade_apnls'] = array( 'day' => 0, 'week' => 0, 'month' => 0 );
-$perf_data['trade_apnlps'] = array( 'day' => 0, 'week' => 0, 'month' => 0 );
+$perf_data['trade_pf'] = array( 'day' => 0, 'week' => 0, 'month' => 0 );
+$perf_data['trade_mdd'] = array( 'day' => 0, 'week' => 0, 'month' => 0 );
 
 
 //fetches historical data from adam backend
@@ -27,61 +27,92 @@ $hist_day_data = $b->query_history($cur_day,time(0));
 $nbwins = 0;
 $nbloss = 0;
 
-foreach($hist_month_data as $hmd) {
-  if ($hmd->pnl > 0) $nbwins++;
-  else $nbloss++;
-  $perf_data['trade_apnls']['month'] += $hmd->pnl;
-  $perf_data['trade_apnlps']['month'] += $hmd->pnl_peak;
-}
-$perf_data['trade_ratios']['month'] = array($nbwins, $nbloss);
+$sum_gains = 0;
+$sum_losses = 0;
 
-if (count($hist_month_data) > 0) {
-  $perf_data['trade_apnls']['month'] /= count($hist_month_data);
-  $perf_data['trade_apnlps']['month'] /= count($hist_month_data);
+$mdd = 0;
+
+
+foreach($hist_month_data as $hmd) {
+  if ($hmd->pnl > 0) { 
+    $nbwins++;
+    $sum_gains += $hmd->pnl;
+  }
+  else {
+    $nbloss++;
+    $sum_losses += $hmd->pnl;
+  }
+
+  if ($hmd->pnl < $mdd) $mdd = $hmd->pnl;
 }
+
+$perf_data['trade_ratios']['month'] = array($nbwins, $nbloss);
+if ($sum_losses != 0) $perf_data['trade_pf']['month'] = $sum_gains / abs($sum_losses) ;
+else $perf_data['trade_pf']['month'] = 0;
+$perf_data['trade_mdd']['month'] = $mdd;
+
 
 $nbwins = 0;
 $nbloss = 0;
+
+$sum_gains = 0;
+$sum_losses = 0;
+
+$mdd = 0;
 
 foreach($hist_week_data as $hwd) {
-  if ($hwd->pnl > 0) $nbwins++;
-  else $nbloss++;
-  $perf_data['trade_apnls']['week'] += $hwd->pnl;
-  $perf_data['trade_apnlps']['week'] += $hwd->pnl_peak;
+  if ($hwd->pnl > 0) { 
+    $nbwins++;
+    $sum_gains += $hwd->pnl;
+  }
+  else {
+    $nbloss++;
+    $sum_losses += $hwd->pnl;
+  }
+
+  if ($hwd->pnl < $mdd) $mdd = $hwd->pnl;
+
 }
 $perf_data['trade_ratios']['week'] = array($nbwins, $nbloss);
-
-if (count($hist_week_data) > 0) {
-  $perf_data['trade_apnls']['week'] /= count($hist_week_data);
-  $perf_data['trade_apnlps']['week'] /= count($hist_week_data);
-}
+if ($sum_losses != 0) $perf_data['trade_pf']['week'] = $sum_gains / abs($sum_losses) ;
+else $perf_data['trade_pf']['week'] = 0;
+$perf_data['trade_mdd']['week'] = $mdd;
 
 $nbwins = 0;
 $nbloss = 0;
 
-foreach($hist_day_data as $hdd) {
-  if ($hdd->pnl > 0) $nbwins++;
-  else $nbloss++;
-  $perf_data['trade_apnls']['day'] += $hdd->pnl;
-  $perf_data['trade_apnlps']['day'] += $hdd->pnl_peak;
+$sum_gains = 0;
+$sum_losses = 0;
 
+$mdd = 0;
+
+
+foreach($hist_day_data as $hdd) {
+  if ($hdd->pnl > 0) { 
+    $nbwins++;
+    $sum_gains += $hdd->pnl;
+  }
+  else {
+    $nbloss++;
+    $sum_losses += $hdd->pnl;
+  }
+  if ($hdd->pnl < $mdd) $mdd = $hdd->pnl;
 }
 $perf_data['trade_ratios']['day'] = array($nbwins, $nbloss);
+if ($sum_losses != 0) $perf_data['trade_pf']['day'] = $sum_gains / abs($sum_losses) ;
+else $perf_data['trade_pf']['day'] = 0;
+$perf_data['trade_mdd']['day'] = $mdd;
 
-if (count($hist_day_data) > 0) {
-  $perf_data['trade_apnls']['day'] /= count($hist_day_data);
-  $perf_data['trade_apnlps']['day'] /= count($hist_day_data);
-}
 
 //rounding
-$perf_data['trade_apnls']['day'] =  floatval( sprintf("%.2f",$perf_data['trade_apnls']['day'] )) ;
-$perf_data['trade_apnlps']['day'] = floatval( sprintf("%.2f",$perf_data['trade_apnlps']['day'] )) ;
+$perf_data['trade_pf']['day'] =  floatval( sprintf("%.2f",$perf_data['trade_pf']['day'] )) ;
+$perf_data['trade_mdd']['day'] = floatval( sprintf("%.2f",$perf_data['trade_mdd']['day'] )) ;
 
-$perf_data['trade_apnls']['week'] = floatval( sprintf("%.2f",$perf_data['trade_apnls']['week'] )) ;
-$perf_data['trade_apnlps']['week'] = floatval( sprintf("%.2f",$perf_data['trade_apnlps']['week'] )) ;
+$perf_data['trade_pf']['week'] = floatval( sprintf("%.2f",$perf_data['trade_pf']['week'] )) ;
+$perf_data['trade_mdd']['week'] = floatval( sprintf("%.2f",$perf_data['trade_mdd']['week'] )) ;
 
-$perf_data['trade_apnls']['month'] = floatval( sprintf("%.2f",$perf_data['trade_apnls']['month'] )) ;
-$perf_data['trade_apnlps']['month'] = floatval( sprintf("%.2f",$perf_data['trade_apnlps']['month'] )) ;
+$perf_data['trade_pf']['month'] = floatval( sprintf("%.2f",$perf_data['trade_pf']['month'] )) ;
+$perf_data['trade_mdd']['month'] = floatval( sprintf("%.2f",$perf_data['trade_mdd']['month'] )) ;
 
 
 echo json_encode($perf_data);

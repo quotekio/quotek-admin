@@ -67,10 +67,12 @@
       <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
    </li>
 
+  <!-- Not implemented yet -->
+  <!--
   <li>
     <a class="left-menu-link" onclick="appLoadDisp('adambacktest',true);appUpdateLeft($(this));">
       <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
-  </li>
+  </li> -->
 
 
    <div class="accordion" id="app-left-wizzards-accordion">

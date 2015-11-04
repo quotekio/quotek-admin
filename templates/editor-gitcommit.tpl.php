@@ -12,11 +12,11 @@
             <div class="span12">
                <label><b><?= $lang_array['app']['title'] ?></b></label>
                <input id="input-git-commit-title" style="height:27px;width:450px" type="text" value="">
-               <span class="help-block">Donnez une description rapide du commit.</span>
+               <span class="help-block"><?= $lang_array['app']['git_commit_sd_hint'] ?></span>
 
                <label><b><?= $lang_array['app']['comment'] ?></b></label>
                <textarea id="input-git-commit-comment" style="height:200px;width:450px" value=""></textarea>
-               <span class="help-block">Décrivez plus précisément la nature du commit.</span>
+               <span class="help-block"><?= $lang_array['app']['git_commit_ld_hint'] ?></span>
 
             </div>
           </div>

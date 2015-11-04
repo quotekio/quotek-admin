@@ -2,10 +2,7 @@ PRIO (pre-demo)
 ===============
 
 * Sauvegarde des permissions utilisateur, avec checking de la perm edit_userperms.
-* Bug tooltip sur les bouton add branch/delete/rollback.
 * Creer la fenetre de rollback commit avec le code backend.
-* Desactiver le menu backtest.
 * Bugfix candlesticks
-* Remplacer les stats de trade PNL-P (AVG)  et PNL (AVG) PAR PNL ET MAX_DRAWDOWN.
 * Creer des petites strats pour faire tourner le truc.
 

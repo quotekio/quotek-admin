@@ -25,7 +25,7 @@
           <img src="/img/git-large.png" style="width:30px"/>
 
           <div class="btn-group" style="display:inline!important">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#" rel="tooltip" title="<?= $lang_array['app']['git_chbranch_tooltip'] ?>">
               <span id="strat-git-branchselector"><?= $lang_array['app']['git_branch']?></span>
             <span class="caret"></span>
             </a>
@@ -35,15 +35,15 @@
           </div>
 
           <div class="btn-group" style="display:inline!important;margin-left:15px!important">
-            <a id="btn-git-newbranch" title="<?= $lang_array['app']['git_newbranch_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
-            <a id="btn-git-delbranch" title="<?= $lang_array['app']['git_delbranch_tooltip'] ?>" class="btn btn-danger"><i class="icon-white icon-minus"></i></a>
-            <a id="btn-git-backward" title="<?= $lang_array['app']['git_backward_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-repeat"></i></a>
+            <a id="btn-git-newbranch" rel="tooltip" title="<?= $lang_array['app']['git_newbranch_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
+            <a id="btn-git-delbranch" rel="tooltip" title="<?= $lang_array['app']['git_delbranch_tooltip'] ?>" class="btn btn-danger"><i class="icon-white icon-minus"></i></a>
+            <a id="btn-git-backward"  rel="tooltip" title="<?= $lang_array['app']['git_backward_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-repeat"></i></a>
           </div>
 
         </div>
 
         <div class="span6" style="text-align:right">
-          <a id="btn-git-commit" class="btn disabled"><?= $lang_array['app']['git_commit'] ?></a>
+          <a id="btn-git-commit" class="btn disabled" title="<?= $lang_array['app']['git_commit_tooltip'] ?>" rel="tooltip"><?= $lang_array['app']['git_commit'] ?></a>
         </div>
     </div>
   </div>
@@ -73,6 +73,8 @@
 
      $('.newbtn').attr('data-original-title', '<?= $lang_array['app']['newstrat_tooltip'] ?>')
      .tooltip('fixTitle');
+     
+     $('a[rel="tooltip"]').tooltip({placement: 'bottom', container: 'body'});
 
   });
 
