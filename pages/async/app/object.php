@@ -194,7 +194,19 @@
 
           $data = json_decode($_REQUEST['data']);
           $obj = new strategy();
-          $obj->remap($data);          
+          $obj->remap($data); 
+
+          //second pass verif: edit_running_strat
+          $obj->loadState();
+          if ( $obj->active == 1 &&  
+               $u->checkPermissions(array('edit_running_strat')) == false ) {
+ 
+            $resp['status'] = 'ERROR';
+            $resp['message'] = 'NO_PERMISSION:edit_running_strat';
+            die(json_encode($resp));
+
+          }
+          
           $obj->save();
       }
       

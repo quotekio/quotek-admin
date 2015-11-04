@@ -69,6 +69,37 @@ $themes = listThemes();
     <input type="hidden" id="strat-name" value="<?= $strat->name ?>">
     <input type="hidden" id="strat-type" value="<?= $strat->type ?>">
   <?php } ?>
+  
+  <!-- Err Modal -->
+  <div id="errormodal" class="modal fade" role="dialog">
+
+    <!-- Error strings -->
+    <div class="errlist" style="display:none">
+      <span id="err-noperm"><?= $lang_array['app']['err_noperm'] ?></span>
+    </div>
+
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><?= $lang_array['app']['error'] ?></h4>
+        </div>
+        <div class="modal-body">
+
+        <div id="errormodal-msg" class="alert alert-error">
+        
+        </div>
+
+        </div>
+        <div class="modal-footer">
+          <button id="ack" type="button" class="btn btn-danger" data-dismiss="modal"><?= $lang_array['ok'] ?></button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
  <!-- Save Modal -->
  <div id="saveas" class="modal fade" role="dialog">
@@ -209,13 +240,12 @@ $themes = listThemes();
               strat.content = editor.getValue() ;
               var r = adamObject('add','strategy',strat,-1);
 
-              if (r.answer == 'OK') {
-              
+              if (r.status == 'OK') {
+                
               }
 
-              else {
-                console.log( r.answer );
-              }
+              else processError(r);
+              
 
           }
          

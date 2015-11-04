@@ -28,14 +28,19 @@ class strategy extends adamobject {
     $this->content = file_get_contents($GIT_LOCATION . '/' . $this->name);
     $this->name_noext = preg_replace('/\.(qs|qsm)/', '', $this->name);
 
-    $astrats = getActiveStrategies();
-
-    if ( in_array($this->name, $astrats) ) $this->active = 1;
-    else $this->active = 0;
+    $this->loadState();
 
     if (endsWith($this->name,'.qs')) $this->type = 'normal';
     else if ( endsWith($this->name,'.qsm')) $this->type = 'module';
 
+  }
+
+  function loadState() {
+
+    $astrats = getActiveStrategies();
+    if ( in_array($this->name, $astrats) ) $this->active = 1;
+    else $this->active = 0;
+    
   }
 
 
