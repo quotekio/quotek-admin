@@ -122,12 +122,13 @@
                   <table class="table" style="width:100%;text-align:center">
                     <tr>
                       <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="line" CHECKED></td>
-                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="candle"></td>
+                      <!-- <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="candle"></td> -->
                      
                     </tr>
                     <tr>
                       <td><?= $lang_array['app']['ctype_line'] ?></td>
-                      <td><?= $lang_array['app']['ctype_candle'] ?></td>
+                      <!-- <td><?= $lang_array['app']['ctype_candle'] ?></td> -->
+
                     </tr>
                   </table>
 
@@ -204,6 +205,8 @@
                     <input linked-asset="<?= $v->name ?>" id="mvavg50" type="checkbox" />&nbsp;<b><?= $lang_array['app']['graph_mvavg50'] ?></b>
                   </div>
 
+                  <!-- Disabled tech indicators -->
+                  <!--
                   <div class="graphoption" style="margin-top:5px">
                     <input linked-asset="<?= $v->name ?>" id="bollinger" type="checkbox" class="disabled" />&nbsp;<b><?=  $lang_array['app']['graph_bollinger'] ?></b>
                   </div>
@@ -213,6 +216,7 @@
                   <div class="graphoption" style="margin-top:5px">
                     <input linked-asset="<?= $v->name ?>" id="raff" type="checkbox" />&nbsp;<b><?=  $lang_array['app']['graph_raff'] ?></b>
                   </div>
+                  -->
 
                   </form>
 

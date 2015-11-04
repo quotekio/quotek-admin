@@ -37,7 +37,7 @@
           <div class="btn-group" style="display:inline!important;margin-left:15px!important">
             <a id="btn-git-newbranch" rel="tooltip" title="<?= $lang_array['app']['git_newbranch_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-plus"></i></a>
             <a id="btn-git-delbranch" rel="tooltip" title="<?= $lang_array['app']['git_delbranch_tooltip'] ?>" class="btn btn-danger"><i class="icon-white icon-minus"></i></a>
-            <a id="btn-git-backward"  rel="tooltip" title="<?= $lang_array['app']['git_backward_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-repeat"></i></a>
+            <!-- <a id="btn-git-backward"  rel="tooltip" title="<?= $lang_array['app']['git_backward_tooltip'] ?>" class="btn btn-inverse"><i class="icon-white icon-repeat"></i></a> -->
           </div>
 
         </div>

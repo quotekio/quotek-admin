@@ -1,9 +1,10 @@
 PRIO (pre-demo)
 ===============
 
+2Late:
+
 * Creer la fenetre de rollback commit avec le code backend.
 * Bugfix candlesticks
-
 
 * Creer des petites strats pour faire tourner le truc.
 
