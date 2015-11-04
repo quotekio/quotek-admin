@@ -22,7 +22,7 @@
    $perms_map['corecfg'] = array('add' => 'create_config' ,
                                  'dup' => 'create_config',
                                  'get' => 'edit_config', 
-                                 'mod' => 'edit_confg',
+                                 'mod' => 'edit_config',
                                  'del' => 'delete_config',
                                  'activate' => 'activate_config' );
 

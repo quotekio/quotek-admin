@@ -410,6 +410,7 @@ function adamGetCoreCfgDataToEdit(ccid) {
   }
 
   else {
+    modalDest();
     processError(r);
     return;
   }
@@ -1980,7 +1981,10 @@ function adamGetUserDataToEdit(uuid) {
 
    }
 
-   else processError(r); 
+   else {
+    modalDest();
+    processError(r);
+   }
 
 
 }
