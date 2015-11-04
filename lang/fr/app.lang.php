@@ -380,4 +380,8 @@
   $lang_array['app']['newbacktest_tooltip'] = 'Créer un nouveau backtest';
   $lang_array['app']['newuser_tooltip'] = 'Créer une nouvel utilisateur';
 
+  $lang_array['app']['perm_name'] = 'Nom Permission';
+  $lang_array['app']['authorized'] = 'Autorisé';
+
+
 ?>

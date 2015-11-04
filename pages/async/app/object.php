@@ -92,6 +92,14 @@
           $data = json_decode($_REQUEST['data']);
           $obj = new corecfg();
           $obj->remap($data);
+
+          if ( ! $obj->validateName() ) {
+            $resp['status'] = 'ERROR';
+            $resp['message'] = 'MALFORMED_STRING:Name';
+            die(json_encode($resp));
+          }
+
+
           $obj->save();
 
           /*checks if config is currently active, 
@@ -160,6 +168,13 @@
           $data = json_decode($_REQUEST['data']);
           $obj = new brokercfg();
           $obj->remap($data);
+
+          if ( ! $obj->validateName() ) {
+            $resp['status'] = 'ERROR';
+            $resp['message'] = 'MALFORMED_STRING:Name';
+            die(json_encode($resp));
+          }
+
           $obj->save();
       }
       
@@ -255,6 +270,13 @@
           $data = json_decode($_REQUEST['data']);
           $obj = new valuecfg();
           $obj->remap($data);
+
+          if ( ! $obj->validateName() ) {
+            $resp['status'] = 'ERROR';
+            $resp['message'] = 'MALFORMED_STRING:Name';
+            die(json_encode($resp));
+          }
+
           $obj->save();
       }
 
@@ -338,6 +360,13 @@
 
           $obj = new user();
           $obj->remap($data);
+
+          if ( ! $obj->validateName() ) {
+            $resp['status'] = 'ERROR';
+            $resp['message'] = 'MALFORMED_STRING:Name';
+            die(json_encode($resp));
+          }
+
           $obj->save();
 
       }

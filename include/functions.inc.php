@@ -360,7 +360,7 @@ function getPermissionsList() {
   foreach($plist as $p) {
     if ($p['type']== 'BOOLEAN') $result[] = $p['name'];
   }
-
+  
   return $result;
 
 }

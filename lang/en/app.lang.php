@@ -366,4 +366,7 @@
   $lang_array['app']['newbacktest_tooltip'] = 'Create a new backtest';
   $lang_array['app']['newuser_tooltip'] = 'Create a new user';
 
+  $lang_array['app']['perm_name'] = 'Permission Name';
+  $lang_array['app']['authorized'] = 'Authorized';
+
 ?>

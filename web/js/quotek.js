@@ -1305,6 +1305,8 @@ function processError(r) {
       error("err-noperm",perm_name);
     }
 
+  else error_(r.message);
+  
 } 
 
 /* Displays API error inside a bootstrap modal */
@@ -1322,6 +1324,17 @@ function error(errname,arg) {
   $('#errormodal').modal();
 
 }
+
+/* Same than above but simpler */
+
+function error_(msg) {
+
+  $('#errormodal-msg').html(msg);
+  $('#errormodal').modal();
+
+}
+
+
 
 
 function modalInst(modwidth,modheight,content) {

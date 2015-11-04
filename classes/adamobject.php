@@ -4,6 +4,13 @@ if (!isset($ADAMOBJ_DEF) ) {
 
 class adamobject {
 	
+    function validateName(){
+
+      if ( ! preg_match ('/^[\w\.-]*$/', $this->name) ) return false;
+      if ( strlen($this->name) > 32 ) return false;
+      return true; 
+    }
+
     function duplicate($newname) {
 
       $newobj = clone $this;

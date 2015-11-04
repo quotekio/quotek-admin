@@ -6,17 +6,18 @@ require_once('include/functions.inc.php');
 
 function loadPermissions($user_id) {
 
+  $result = array();
+
   global $dbhandler;
   $dbh = $dbhandler->query("SELECT * FROM user_permissions WHERE user_id= '" . $user_id . "';");
   $permissions = $dbh->fetch();
 
   //we remove id and user_id from permissions
-  array_shift ($permissions);
-  array_shift ($permissions);
+  array_shift($permissions);
+  array_shift($permissions);
   //
   
   return $permissions;
-
 }
 
 function getUserList() {
@@ -41,6 +42,13 @@ class user extends adamobject {
     $_SESSION['uinfos']['id'] = $this->id;
     $_SESSION['uinfos']['username'] = $this->username;    
   }
+
+  function validateName(){
+
+      if ( ! preg_match ('/^[\w\.-]*$/', $this->username) ) return false;
+      if ( strlen($this->username) > 32 ) return false;
+      return true; 
+    }
 
   /* Convenience function because we don't know user id in advance */
   function loadByUsername($username) {
