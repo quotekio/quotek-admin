@@ -1914,15 +1914,24 @@ function adamSaveUser(id) {
     if (id == -1) {
        user = { 'username': null, 
                 'password': null,
-                'rsa_key': null };
+                'rsa_key': null,
+                'permissions': {} };
     }
 
     else {
        user = { 'id': id ,
                  'username': null, 
                  'password': null,
-                 'rsa_key': null }; 
+                 'rsa_key': null,
+                 'permissions': {} }; 
     }
+    
+    //get permissions
+    $('.userperm').each(function(index,i) {
+
+      pname = $(this).attr('id').replace('permission-','');
+      user.permissions[pname] = $(this).val();
+    });
     
     user.username = $('#input-usercfg-username').val();
     user.password = $('#input-usercfg-password').val();

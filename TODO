@@ -1,8 +1,9 @@
 PRIO (pre-demo)
 ===============
 
-* Sauvegarde des permissions utilisateur, avec checking de la perm edit_userperms.
 * Creer la fenetre de rollback commit avec le code backend.
 * Bugfix candlesticks
+
+
 * Creer des petites strats pour faire tourner le truc.
 

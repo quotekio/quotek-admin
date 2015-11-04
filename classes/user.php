@@ -87,6 +87,8 @@ class user extends adamobject {
   
   function save() {
 
+    if ( isset($this->permissions)  ) unset($this->permissions);
+
     if ( isset($this->newpassword) ) {
       $this->salt = genSalt();
       $this->password = sha1($this->salt . $this->newpassword);
@@ -96,7 +98,43 @@ class user extends adamobject {
     parent::save();
     
   }
-  
+
+  function savePermissions($perms) {
+
+    global $dbhandler;
+    $id = $this->id;
+
+    $perms = get_object_vars($perms);
+
+    $hasperms_q = "SELECT id from user_permissions WHERE user_id='${id}';";
+    $dbh = $dbhandler->query($hasperms_q);
+
+    //we create entry if does not exist.
+    if ( count($dbh->fetchAll() ) == 0 ) {
+      $dbhandler->query("INSERT INTO user_permissions(user_id) VALUES ('${id}')");
+    }
+
+    $query = "UPDATE user_permissions SET ";
+    
+    $i =0;
+    foreach ($perms as $pname => $pvalue) {
+
+      $pvalue = strtoupper($pvalue);
+      $query .= "${pname}='${pvalue}'" ;
+
+      if ($i < count($perms) - 1) {
+        $query .= ',';
+       
+      }
+      $i++;
+    }
+
+    $query .= " WHERE user_id='" . $this->id . "';";
+    
+    $dbh = $dbhandler->query($query);
+
+  }
+
   function checkPermissions($tocheck) {
     if (! isset($this->permissions)) $this->loadPermissions();
     foreach ($tocheck as $tc) {

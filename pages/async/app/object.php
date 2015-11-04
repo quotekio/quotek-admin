@@ -356,18 +356,27 @@
             $data->newpassword = $data->password;
           }
 
-          unset($data->password);
-
           $obj = new user();
+          $perms = $data->permissions;
+
+          unset($data->password);
+          unset($data->permissions);
+          
           $obj->remap($data);
 
           if ( ! $obj->validateName() ) {
             $resp['status'] = 'ERROR';
-            $resp['message'] = 'MALFORMED_STRING:Name';
+            $resp['message'] = 'MALFORMED_STRING:username';
             die(json_encode($resp));
           }
 
           $obj->save();
+
+          //second pass verification: edit_userperms
+          if ( $u->checkPermissions(array('edit_userperms')) == true ) {
+            $obj->savePermissions($perms);
+          }
+
 
       }
 

@@ -54,7 +54,7 @@
               <tr>
                 <td><?= $p ?></td>
                 <td>
-                		<select id="permission-<?= $p ?>">
+                		<select class="userperm" id="permission-<?= $p ?>">
                 			<option value="true" SELECTED> <?=$lang_array['yes']?></option>
                 				<option value="false"><?= $lang_array['no'] ?></option>
                 			</select>
