@@ -212,6 +212,44 @@ $themes = listThemes();
 
         $(document).ready(function() {
 
+          /* process error returned by the API */
+          function processError(r) {
+
+            if (r.message.search("NO_PERMISSION:") == 0  ) {
+                perm_name = r.message.replace("NO_PERMISSION:","");
+                error("err-noperm",perm_name);
+              }
+
+            else error_(r.message);
+            
+          } 
+
+          /* Displays API error inside a bootstrap modal */
+
+          function error(errname,arg) {
+
+            var arg = ( typeof arg != 'undefined'  ) ? arg : null;
+            errlist = $('.errlist');
+            errcontent = $('#' + errname, errlist).html();
+            if ( arg != null ) {
+              errcontent = errcontent.replace("{}",arg);
+            }
+
+            $('#errormodal-msg').html(errcontent);
+            $('#errormodal').modal();
+
+          }
+          
+          /* Same than above but simpler */
+
+          function error_(msg) {
+
+            $('#errormodal-msg').html(msg);
+            $('#errormodal').modal();
+
+          }
+
+
           function chTheme(theme) {
             editor.setTheme("ace/theme/" + theme);
             localStorage.setItem("theme",theme);
