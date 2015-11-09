@@ -28,9 +28,9 @@
   <body>
 
    <!--Loads notif sounds -->
-   <audio id="audio_notif1" src="/sounds/notif1.wav" preload="auto"></audio>
-   <audio id="audio_notif2" src="/sounds/notif2.mp3" preload="auto"></audio>
-   
+   <audio id="audio_notif_1" src="/sounds/notif_1.wav" preload="auto"></audio>
+   <audio id="audio_notif_2" src="/sounds/notif_2.wav" preload="auto"></audio>
+
    <div id="modal_bg"></div>
    <div class="modal" id="modal_win" style="display:none"></div>
    <div id="debug" style="height:200px;overflow:scroll;width:100%;background:black;color:white;display:none"></div>

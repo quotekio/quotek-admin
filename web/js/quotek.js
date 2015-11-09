@@ -862,6 +862,13 @@ function adamUpdateCorestats_NoFetch(fdata) {
   if (typeof(fdata.unrealized_pnl) != "undefined") {
     $('#app-corestats-upnl').html(fdata.unrealized_pnl + " &euro;");
   }
+
+  prev_nbpos = parseInt($('#app-corestats-nbpos').html());
+
+  //Plays sound if needed.
+  if (  prev_nbpos > fdata.nbpos ) document.getElementById('audio_notif_1').play();
+  else if ( prev_nbpos < fdata.nbpos ) document.getElementById('audio_notif_2').play();
+
   $('#app-corestats-nbpos').html(fdata.nbpos);
 
   if (fdata.unrealized_pnl != "--") {
@@ -885,8 +892,14 @@ function adamUpdateCorestats() {
         success: function() {   
 
                     var res  = $.parseJSON(cs.responseText);
+
+                    prev_nbpos = parseInt($('#app-corestats-nbpos').html());
+                    //Plays sound if needed.
+                    if (  prev_nbpos > res.nbpos ) document.getElementById('audio_notif_1').play();
+                    else if ( prev_nbpos < res.nbpos ) document.getElementById('audio_notif_2').play();
+                    
                     $('#app-corestats-upnl').html(res.unrealized_pnl);
-                   $('#app-corestats-nbpos').html(res.nbpos); 
+                    $('#app-corestats-nbpos').html(res.nbpos); 
                 }
         });
 
