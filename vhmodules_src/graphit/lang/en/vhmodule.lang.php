@@ -18,6 +18,21 @@
   $lang_array['app']['ctype_line'] = 'Line';
   $lang_array['app']['ctype_candle'] = 'Candlesticks';
 
+  $lang_array['graphit']['name'] = 'Chart Name';
+  $lang_array['graphit']['name_hint'] = 'Give your chart a name.';
+  $lang_array['graphit']['refresh'] = 'Refresh Period';
+  $lang_array['graphit']['refresh_hint'] = 'Indicate here the time (in seconds) period for which you want a chart refresh';
+
+  $lang_array['graphit']['component_title'] = 'Chart Components';
+
+  $lang_array['graphit']['tag_th']  = "Tag";
+  $lang_array['graphit']['color_th'] = "Colour" ;
+  $lang_array['graphit']['type_th'] = "Type";
+  $lang_array['graphit']['query_th'] = "Query" ;
+  $lang_array['graphit']['action_th'] = "Action" ;
+
+  $lang_array['app']['add'] = 'Add';
+  $lang_array['app']['del'] = 'Delete';
 
 
 ?>

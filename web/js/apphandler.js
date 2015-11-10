@@ -90,6 +90,10 @@ function loadApp() {
   $("head").append($("<script type='text/javascript' src='/js/bootstrap-datetimepicker.min.js' charset='utf-8'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/bootstrap-datetimepicker.min.css' type='text/css'>"));
 
+  /* COLOR PICKER */
+  $("head").append($("<script type='text/javascript' src='/js/bootstrap-colorpicker.min.js' charset='utf-8'></script>"));
+  $("head").append($("<link rel='stylesheet' href='/css/bootstrap-colorpicker.min.css' type='text/css'>"));  
+  
   /* APP */
   $("head").append($("<script type='text/javascript' src='/js/quotek.js'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/app.css' type='text/css'>"));

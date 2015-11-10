@@ -18,6 +18,21 @@
   $lang_array['app']['ctype_line'] = 'Ligne';
   $lang_array['app']['ctype_candle'] = 'Chandeliers';
   
+  $lang_array['graphit']['name'] = 'Nom du graphique';
+  $lang_array['graphit']['name_hint'] = 'Donnez un nom à votre graphique.';
+  $lang_array['graphit']['refresh'] = 'Rafraichissement';
+  $lang_array['graphit']['refresh_hint'] = 'Indiquez le temps (en secondes) au bout du quel le graphique doit être rafraichi.';
+  $lang_array['graphit']['component_title'] = 'Composants du graphique';
+
+  $lang_array['graphit']['tag_th']  = "Tag";
+  $lang_array['graphit']['color_th'] = "Couleur" ;
+  $lang_array['graphit']['type_th'] = "Type";
+  $lang_array['graphit']['query_th'] = "Requête" ;
+  $lang_array['graphit']['action_th'] = "Action" ;
+
+  $lang_array['app']['add'] = 'Ajouter';
+  $lang_array['app']['del'] = 'Supprimer';
+
 
 
 ?>
