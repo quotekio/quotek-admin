@@ -30,8 +30,8 @@
   $lang_array['graphit']['query_th'] = "Requête" ;
   $lang_array['graphit']['action_th'] = "Action" ;
 
-  $lang_array['app']['add'] = 'Ajouter';
-  $lang_array['app']['del'] = 'Supprimer';
+  $lang_array['app']['save'] = 'Sauvegarder';
+
 
 
 

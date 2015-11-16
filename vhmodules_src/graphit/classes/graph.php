@@ -20,6 +20,37 @@ class graph extends adamobject  {
 
   function loadComponents() {
     $this->components = getGraphComponents($this->id);
+    //file_put_contents("/tmp/adam/comps.txt", $this->components);
+  }
+
+  function setComponents($tmpcomp) {
+    if ( !isset($this->components) ) $this->components = array();
+    foreach ($tmpcomp as $c) {
+      $cp = new graph_component();
+      $cp->remap($c);
+      $this->components[] = $cp;
+    }
+  }
+
+  function save() {
+
+    if (isset($this->components) ) {
+      $tmpcomp = $this->components;
+      unset($this->components);
+    }
+
+    parent::save();
+
+    if ( isset($tmpcomp)  ) $this->components = $tmpcomp;
+
+  }
+
+  function saveComponents() {
+
+    foreach($this->components as $comp) {
+      if ( ! isset($comp->graph_id) ) $comp->graph_id = $this->id;
+      $comp->save();
+    }
   }
 
 }
@@ -57,6 +88,7 @@ function getGraphComponents($gid) {
     $gc = new graph_component();
     $gc->id = $ans['id'];
     $gc->load();
+    $gc->influx_query = str_replace('"','\\"',$gc->influx_query);
     $result[] = $gc;
   }
 

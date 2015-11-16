@@ -29,10 +29,10 @@
 
   }
 
+
+
   $data = json_decode($_REQUEST['data']);
   
-  var_dump($data);
-
   $action = $_REQUEST['action'];
   $type = $_REQUEST['type'];
 
@@ -45,7 +45,6 @@
       
       $gr->load();
       $gr->loadComponents();
-
       $resp['message'] = $gr;
 
     }
@@ -53,8 +52,15 @@
     if ($action == 'add' | $action == 'mod') {
 
       $gr = new graph();
+      
+      $components = $data->components;
+      unset($data->components);
+
       $gr->remap($data);
+      $gr->setComponents($components);
       $gr->save();
+      $gr->saveComponents();
+
     } 
 
     else if ($action == 'del') {

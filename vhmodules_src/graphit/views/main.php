@@ -85,7 +85,7 @@
                   </td>
 
                   <td style="border-radius:0px 5px 5px 0px">
-                    <a class="btn btn-warning" onclick="addComponent();" ><?= $lang_array['app']['add'] ?></a>
+                    <a class="btn btn-info" id="addcomp" ><i class="icon icon-white icon-plus"></i></a>
                   </td>
 
                 </tr>
@@ -93,6 +93,10 @@
 
               </table>
             </div>
+          </div>
+
+          <div class="modal-footer" style="background:#404040!important;">
+            <a id ="input-grapheditor-save" class="btn btn-warning"><?= $lang_array['app']['save'] ?></a>
           </div>
 
         </div>
@@ -107,6 +111,7 @@
 
         $i=0;
         foreach($graphs as $g) {
+          $g->loadComponents();
           $i++;
         ?>
 
@@ -118,11 +123,17 @@
                 <h4><?= $g->name ?></h4>
               </div>
             </div>
-              <div linked-asset="<?= $g->name ?>" id="visualize-draw" style="height:267px;text-align:center;">
+              <div graphname="<?= $g->name ?>" id="visualize-draw" style="height:267px;text-align:center;">
               <br><img src="/img/loader2.gif" style="width:25px;margin-top:100px"/>
              </div>
           </div>
         </div>
+
+        <script type="text/javascript">
+
+          setInterval(function() { dispGraph('<?= $g->name ?>', '<?= json_encode($g->components) ?>');  }, <?= $g->refresh * 1000 ?>  );
+
+        </script>
 
         <?php
           if ($i %2 == 0) {
@@ -132,6 +143,8 @@
 
         ?>
 
+
+
       </div>
 
 </div>
@@ -139,9 +152,11 @@
 
 <script type="text/javascript">
 
+  $('#addcomp').click(function() { addComponent()  });
+
   $('.cpicker').colorpicker();
 
-  function grapObject(action, type, data) {
+  function graphObject(action, type, data) {
 
     data = (typeof data == 'undefined') ? "" : data;
 
@@ -151,7 +166,7 @@
       type: 'POST',
       data : { 'action': action,
               'type': type,
-              'data': data },
+              'data': JSON.stringify(data) },
       async: true,
       cache: false,
       success: function() {
@@ -163,14 +178,23 @@
   }
 
 
-  function dispGraph(tag, existing_plot) {
+  function dispGraph(graphname,rcomponents) {
+
+    var components = $.parseJSON(rcomponents);
+    $.each(components, function(index,i) {
+
+
+      var qraw = $.ajax({   });
+
+
+    } );
+
 
   }
 
   function dispAllGraph() {
 
   }
-
 
   function addComponent() {
 
@@ -182,22 +206,68 @@
    //$('td',nc).css('padding','0px');
    $('td',nc).css('padding-bottom','0px');
 
-   $('a',nc).toggleClass('btn-warning btn-danger');
-   $('a',nc).html('<?= $lang_array['app']['del'] ?>');
-   
+   $('a',nc).toggleClass('btn-info btn-danger');
+   $('i',nc).toggleClass('icon-plus icon-minus');
+
+   $('a',nc).off('click');
+   $('a',nc).click(function() {  cline = $(this).parent().parent();
+                                 cline.remove(); });
+
    var head = $('#input-grapheditor-head');
    head.after(nc);
-   //nc.appendTo(slot);
 
+  }
 
+  function saveGraphCfg(gid) {
+
+    var graphcfg = {
+
+      id: null,
+      name: null,
+      refresh: null,
+      components: [] }; 
+    
+    if ( typeof gid  != 'undefined'  ) graphcfg.id = gid
+    else delete graphcfg.id;
+
+    graphcfg.name = $('#input-grapheditor-name').val();
+    graphcfg.refresh = $('#input-grapheditor-refresh').val();
+
+    $('.component-line').each(function(index,i){
+
+       var comp = { tag: null,
+                 graph_type: null,
+                 color: null,
+                 influx_query: null
+               };
+
+       comp.tag = $('#input-component-tag').val();
+       comp.graph_type = $('#input-component-graph_type').val();
+       comp.color = $('#input-component-color').val();
+       comp.influx_query = $('#input-component-influx_query').val();
+
+       graphcfg.components.push(comp);
+
+    });
+
+    var r = graphObject('add','graph',graphcfg);
 
   }
 
 
-  function showGraphEditor(mode) {
 
-    if (mode == "create") $('#grapheditor-title').html('<?= $lang_array['graphit']['editor_create_title'] ?>');
-    else $('#grapheditor-title').html('<?= $lang_array['graphit']['editor_edit_title']   ?>');
+  function showGraphEditor(mode,gid) {
+
+    $('#input-grapheditor-save').off('click');
+
+    if (mode == "create") {
+      $('#grapheditor-title').html('<?= $lang_array['graphit']['editor_create_title'] ?>');
+      $('#input-grapheditor-save').click(function () {  saveGraphCfg(); } );
+    }
+
+    else {
+      $('#grapheditor-title').html('<?= $lang_array['graphit']['editor_edit_title']   ?>');
+    }
 
     $('#grapheditor').slideDown("fast");
 
