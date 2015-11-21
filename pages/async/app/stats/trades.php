@@ -33,9 +33,13 @@ $sum_losses = 0;
 $mdd = 0;
 $cmin =  10000000000;
 $cmax = -10000000000;
+$compound_pnl = 0;
 
 
 foreach($hist_month_data as $hmd) {
+
+  $compound_pnl += $hmd->pnl;
+
   if ($hmd->pnl > 0) { 
     $nbwins++;
     $sum_gains += $hmd->pnl;
@@ -45,13 +49,13 @@ foreach($hist_month_data as $hmd) {
     $sum_losses += $hmd->pnl;
   }
 
-  if ($hmd->pnl > $cmax) { 
-    $cmax = $hmd->pnl;
+  if ($compound_pnl > $cmax) { 
+    $cmax = $compound_pnl;
     $cmin = 1000000000;
   }
 
-  if ($hmd->pnl < $cmin) {
-    $cmin = $hmd->pnl;
+  if ($compound_pnl < $cmin) {
+    $cmin = $compound_pnl;
   }
 
 }
@@ -74,8 +78,12 @@ $sum_losses = 0;
 $mdd = 0;
 $cmin =  10000000000;
 $cmax = -10000000000;
+$compound_pnl = 0;
 
 foreach($hist_week_data as $hwd) {
+
+  $compound_pnl += $hwd->pnl;
+
   if ($hwd->pnl > 0) { 
     $nbwins++;
     $sum_gains += $hwd->pnl;
@@ -85,13 +93,13 @@ foreach($hist_week_data as $hwd) {
     $sum_losses += $hwd->pnl;
   }
 
-  if ($hwd->pnl > $cmax) { 
-    $cmax = $hwd->pnl;
+  if ($compound_pnl > $cmax) { 
+    $cmax = $compound_pnl;
     $cmin = 1000000000;
   }
 
-  if ($hwd->pnl < $cmin) {
-    $cmin = $hwd->pnl;
+  if ($compound_pnl < $cmin) {
+    $cmin = $compound_pnl;
   }
 
 }
@@ -113,8 +121,12 @@ $sum_losses = 0;
 $mdd = 0;
 $cmin =  10000000000;
 $cmax = -10000000000;
+$compound_pnl = 0;
 
 foreach($hist_day_data as $hdd) {
+
+  $compound_pnl += $hdd->pnl;
+
   if ($hdd->pnl > 0) { 
     $nbwins++;
     $sum_gains += $hdd->pnl;
@@ -123,13 +135,13 @@ foreach($hist_day_data as $hdd) {
     $nbloss++;
     $sum_losses += $hdd->pnl;
   }
-  if ($hdd->pnl > $cmax) { 
-    $cmax = $hdd->pnl;
+  if ($compound_pnl > $cmax) { 
+    $cmax = $compound_pnl;
     $cmin = 1000000000;
   }
 
-  if ($hdd->pnl < $cmin) {
-    $cmin = $hdd->pnl;
+  if ($compound_pnl < $cmin) {
+    $cmin = $compound_pnl;
   }
 }
 
