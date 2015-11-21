@@ -31,6 +31,8 @@ $sum_gains = 0;
 $sum_losses = 0;
 
 $mdd = 0;
+$cmin =  10000000000;
+$cmax = -10000000000;
 
 
 foreach($hist_month_data as $hmd) {
@@ -43,8 +45,19 @@ foreach($hist_month_data as $hmd) {
     $sum_losses += $hmd->pnl;
   }
 
-  if ($hmd->pnl < $mdd) $mdd = $hmd->pnl;
+  if ($hmd->pnl > $cmax) { 
+    $cmax = $hmd->pnl;
+    $cmin = 1000000000;
+  }
+
+  if ($hmd->pnl < $cmin) {
+    $cmin = $hmd->pnl;
+  }
+
 }
+
+if ( $cmax - $cmin > 0 ) $mdd = $cmax - $cmin;
+else $mdd = 0; 
 
 $perf_data['trade_ratios']['month'] = array($nbwins, $nbloss);
 if ($sum_losses != 0) $perf_data['trade_pf']['month'] = $sum_gains / abs($sum_losses) ;
@@ -59,6 +72,8 @@ $sum_gains = 0;
 $sum_losses = 0;
 
 $mdd = 0;
+$cmin =  10000000000;
+$cmax = -10000000000;
 
 foreach($hist_week_data as $hwd) {
   if ($hwd->pnl > 0) { 
@@ -70,9 +85,20 @@ foreach($hist_week_data as $hwd) {
     $sum_losses += $hwd->pnl;
   }
 
-  if ($hwd->pnl < $mdd) $mdd = $hwd->pnl;
+  if ($hwd->pnl > $cmax) { 
+    $cmax = $hwd->pnl;
+    $cmin = 1000000000;
+  }
+
+  if ($hwd->pnl < $cmin) {
+    $cmin = $hwd->pnl;
+  }
 
 }
+
+if ( $cmax - $cmin > 0 ) $mdd = $cmax - $cmin;
+else $mdd = 0; 
+
 $perf_data['trade_ratios']['week'] = array($nbwins, $nbloss);
 if ($sum_losses != 0) $perf_data['trade_pf']['week'] = $sum_gains / abs($sum_losses) ;
 else $perf_data['trade_pf']['week'] = 0;
@@ -85,7 +111,8 @@ $sum_gains = 0;
 $sum_losses = 0;
 
 $mdd = 0;
-
+$cmin =  10000000000;
+$cmax = -10000000000;
 
 foreach($hist_day_data as $hdd) {
   if ($hdd->pnl > 0) { 
@@ -96,8 +123,19 @@ foreach($hist_day_data as $hdd) {
     $nbloss++;
     $sum_losses += $hdd->pnl;
   }
-  if ($hdd->pnl < $mdd) $mdd = $hdd->pnl;
+  if ($hdd->pnl > $cmax) { 
+    $cmax = $hdd->pnl;
+    $cmin = 1000000000;
+  }
+
+  if ($hdd->pnl < $cmin) {
+    $cmin = $hdd->pnl;
+  }
 }
+
+if ( $cmax - $cmin > 0 ) $mdd = $cmax - $cmin;
+else $mdd = 0; 
+
 $perf_data['trade_ratios']['day'] = array($nbwins, $nbloss);
 if ($sum_losses != 0) $perf_data['trade_pf']['day'] = $sum_gains / abs($sum_losses) ;
 else $perf_data['trade_pf']['day'] = 0;
