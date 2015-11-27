@@ -374,4 +374,18 @@
   $lang_array['app']['perm_name'] = 'Permission Name';
   $lang_array['app']['authorized'] = 'Authorized';
 
+  $lang_array['app']['editor_compile_tooltip'] = 'Compile strategy';
+  $lang_array['app']['editor_backtest_tooltip'] = 'Backtest strategy';
+
+  $lang_array['app']['editor_compile_success'] = 'Compilation was successful';
+  $lang_array['app']['editor_console_compile_output_title'] = 'Compiler Output';
+
+  $lang_array['app']['bt_lday'] = 'Last day';
+  $lang_array['app']['bt_lweek'] = 'Last Week';
+  $lang_array['app']['bt_lmonth'] = 'Last Month';
+  $lang_array['app']['bt_lyear'] = 'Last Year';
+
+  $lang_array['app']['conf'] = 'Configuration';
+  $lang_array['app']['launch'] = 'Start';
+
 ?>

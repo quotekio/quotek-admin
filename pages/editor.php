@@ -9,6 +9,9 @@ selectLanguage();
 include "lang/$lang/app.lang.php";
 
 include "strategy.php";
+require_once "corecfg.php";
+
+$cfgs = getCoreConfigs();
 
 if (isset($_REQUEST['strat'])) {
 
@@ -91,9 +94,45 @@ $themes = listThemes();
     </div>
 
     <div class="console-tab well" id="console-backtest" style="display:none">
-    <label><b>Backtest<b></label>
+ 
+      <div class="row-fluid">
 
-     
+        <div class="span5">
+
+          <label><b><?= $lang_array['app']['period'] ?></b></label>
+
+          <select id="editor-bt-period" style="width:150px">
+            <option value="lday"><?= $lang_array['app']['bt_lday'] ?></option>
+            <option value="lweek"><?= $lang_array['app']['bt_lweek'] ?></option>
+            <option value="lmonth"><?= $lang_array['app']['bt_lmonth'] ?></option>
+            <option value="lyear"><?= $lang_array['app']['bt_lyear'] ?></option>
+          </select>
+        </div>
+
+        <div class="span5">
+          <label><b><?= $lang_array['app']['conf'] ?></b></label>
+
+          <select id="editor-bt-config" style="width:150px">
+            <?php foreach ($cfgs as $cfg) { ?>
+
+              <option value="<?= $cfg->id ?>"><?= $cfg->name ?></option>
+
+            <?php } ?>
+          </select>
+        </div>
+
+        <div class="span2">
+          <label><b>&nbsp;</b></label>
+          
+          <a class="btn btn-info"><?= $lang_array['app']['launch'] ?></a>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+
 
     </div>
 

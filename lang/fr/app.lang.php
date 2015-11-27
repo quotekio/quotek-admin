@@ -395,6 +395,17 @@
   $lang_array['app']['editor_compile_success'] = 'Stratégie compilée avec succès';
   $lang_array['app']['editor_console_compile_output_title'] = 'Sortie de compilation';
 
+  $lang_array['app']['bt_lday'] = 'Dernier jour';
+  $lang_array['app']['bt_lweek'] = 'Derniere semaine';
+  $lang_array['app']['bt_lmonth'] = 'Dernier mois';
+  $lang_array['app']['bt_lyear'] = 'Derniere année';
+
+  $lang_array['app']['conf'] = 'Configuration';
+  $lang_array['app']['launch'] = 'Démarrer';
+
+
+
+
 
 
 
