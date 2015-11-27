@@ -41,6 +41,26 @@ class adamctl {
 
   }
 
+
+  function compile($data) {
+    
+    global $ADAM_PATH;
+    global $ADAM_TMP;
+    $outp = array();
+
+    $result = 0;
+
+    $tmp_cpath = "${ADAM_TMP}/cenv/";
+    file_put_contents("${tmp_cpath}/temp.qs", $data);
+
+    $cmd = "sudo ${ADAM_PATH}/bin/adam --compile -x ${tmp_cpath} -s temp.qs";
+
+    exec($cmd,$outp,$result);
+    return $result;
+    
+  }
+
+
   function startReal() {
     global $ADAM_PATH;
     global $ADAM_TMP;

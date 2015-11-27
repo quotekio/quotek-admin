@@ -70,8 +70,39 @@ $themes = listThemes();
     <input type="hidden" id="strat-type" value="<?= $strat->type ?>">
   <?php } ?>
   
+  <!-- Editor console -->
+  <a href="#" class="btn btn-info" id="editor-console-btn"><i class="icon-white icon-chevron-left"></i></a>
+
+  <div id="editor-console">
+
+    <ul class="nav nav-tabs">
+      <li class="console-tentry active" id="console-tentry-compile">
+        <a onclick="toggleConsoleTabs('compile')" href="#"><?= $lang_array['app']['compiler'] ?> <span id="editor-compiler-nberrors" class="label">0</span></a>
+      </li>
+      <li class="console-tentry" id="console-tentry-backtest"><a onclick="toggleConsoleTabs('backtest')" href="#">Backtester</a></li>
+    </ul>
+
+     <div class="console-tab well" id="console-compile">
+      
+      <label><b><?= $lang_array['app']['editor_console_compile_output_title'] ?></b></label>
+
+      <div id="console-output" style="width:100%;overflow-y:scroll;background:white"></div>
+
+    </div>
+
+    <div class="console-tab well" id="console-backtest" style="display:none">
+    <label><b>Backtest<b></label>
+
+     
+
+    </div>
+
+
+
+  </div>
+
   <!-- Err Modal -->
-  <div id="errormodal" class="modal fade" role="dialog">
+  <div id="errormodal" class="modal fade hide" role="dialog">
 
     <!-- Error strings -->
     <div class="errlist" style="display:none">
@@ -102,7 +133,7 @@ $themes = listThemes();
   </div>
 
  <!-- Save Modal -->
- <div id="saveas" class="modal fade" role="dialog">
+ <div id="saveas" class="modal hide fade" role="dialog">
    <div class="modal-dialog">
 
      <!-- Modal content-->
@@ -139,8 +170,10 @@ $themes = listThemes();
 
 	<div class="navbar-inner" id="codeeditor_nav">
 
-	         <div class="row-fluid">
-	        <div class="span5" style="margin-top:0px">
+	  <div class="row-fluid">
+
+    
+	        <div class="span4" style="margin-top:0px;overflow:hidden!important">
 	          <div style="float:left;width:200px;margin-top:5px">  
 	              <img style="height:30px" src="/img/quotek-logo.png"> 
 	          </div>
@@ -150,8 +183,15 @@ $themes = listThemes();
 
 	        </div>
 
-	        
-	        <div class="span7" style="text-align:right;margin-top:4px">
+           <div class="span4" style="margin-top:4px;text-align:center">
+
+               <a href="#" id="compile" class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['editor_compile_tooltip'] ?> (ctrl + b)"><i class="icon-white icon-cog"></i></a>
+               <a href="#" id="backtest" class="btn btn-info" rel="tooltip" title="<?= $lang_array['app']['editor_backtest_tooltip'] ?> (ctrl + shift + b)"><i class="icon-white icon-repeat"></i></a>
+
+          </div>
+
+
+	        <div class="span4" style="text-align:right;margin-top:4px">
 
             <div id="chtheme-group" class="btn-group">
 
@@ -210,7 +250,100 @@ $themes = listThemes();
         editor.setValue($("#editor-preload").val());
         editor.clearSelection();
 
+        function toggleConsoleTabs(tab) {
+
+            $('.console-tentry').removeClass('active');
+            $('#console-tentry-' + tab).addClass('active');
+
+            $('.console-tab').hide();
+            ctab = $('#console-' + tab);
+            ctab.show();
+        }
+
         $(document).ready(function() {
+
+
+          function compile() {
+
+            $('#console-output').html('');
+            $("#editor-compiler-nberrors").removeClass('label-success');
+            $("#editor-compiler-nberrors").removeClass('label-important');
+            $('#editor-compiler-nberrors').html('0');
+
+            if ( ! $('#editor-console-btn i').hasClass('icon-chevron-right') ) showConsole();
+            
+            toggleConsoleTabs('compile');
+
+            source = editor.getValue();
+
+            var rq = $.ajax({
+              url: '/async/app/adamctl',
+              type: 'GET',
+              data: {'action': 'compile', 'source': source},
+              cache: false,
+              async: true,
+              success: function() {
+
+                prq = $.parseJSON($.trim(rq.responseText));
+                
+              
+                if (prq.status == "ERROR") {
+                 
+                  if (prq.message.search("COMPILE_ERRORS:") == 0 ) {
+
+                    cperr = prq.message.replace('COMPILE_ERRORS:','');
+                    $('#console-output').css('color','#c00000');
+                    $('#console-output').html(cperr);
+                    $('#editor-compiler-nberrors').addClass('label-important');
+
+                    var nberr = (cperr.match(/error:/g) || []).length;
+                    $('#editor-compiler-nberrors').html(nberr);
+
+                  }
+                }
+
+                else {
+                  $('#console-output').css('color','#699e00');
+                  $('#editor-compiler-nberrors').addClass('label-success');
+                  $('#console-output').html('<?=  $lang_array['app']['editor_compile_success'] ?>');
+                }
+
+              }
+            });
+
+          }
+
+          function showConsole(tab) {
+
+            var tab = (typeof tab != 'undefined') ? tab : null ;
+            if (tab != null) toggleConsoleTabs(tab);
+
+            $('.console-tab').height( $('#editor').height() - 100 );
+            $('.console-tab').css('margin-bottom','0px');
+            $('#console-output').height($('.console-tab').height() -20 );
+
+
+            $('#editor-console-btn i').toggleClass('icon-chevron-left icon-chevron-right');
+
+            if ( $('#editor-console-btn i').hasClass('icon-chevron-right') ) {
+  
+              ec = $('#editor-console');
+              ec.height($('#editor').height());
+              ec.width( $('#editor').width() * 2 / 5  );
+              ec.css('margin-left', -1 * ec.width() -1 );
+              ec.css('top', $('#editor').position().top );
+            
+              $('#editor-console-btn').css('margin-left', -1 * ec.width() - 13 );
+
+               ec.show();
+             }
+
+             else {
+               ec.hide();
+               $('#editor-console-btn').css('margin-left', - 14 );
+             }
+
+          }
 
           /* process error returned by the API */
           function processError(r) {
@@ -258,6 +391,8 @@ $themes = listThemes();
           $('.thlink').each(function(index,i){
             $(this).click(function() { chTheme($(this).html()); });
           });
+
+          $('#editor-console-btn').click(function() { showConsole();  });
 
           function saveStratAs() {
             name = $('#save-name').val();
@@ -312,6 +447,20 @@ $themes = listThemes();
                 e.preventDefault();
                 $('#codesave').click();
             }
+
+            //compile + backtest;
+            if ( e.ctrlKey && e.keyCode == 'B'.charCodeAt(0)  ) {
+
+              if (e.shiftKey) {
+                showConsole('backtest');
+              }
+
+              else {
+                compile();
+              }
+
+            }
+
 
             //zoom -
             if (  e.ctrlKey && e.keyCode == 187 && ! e.shiftKey ) {

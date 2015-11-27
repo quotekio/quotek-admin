@@ -389,6 +389,13 @@
   $lang_array['app']['perm_name'] = 'Nom Permission';
   $lang_array['app']['authorized'] = 'Autorisé';
 
+  $lang_array['app']['editor_compile_tooltip'] = 'Compiler la stratégie';
+  $lang_array['app']['editor_backtest_tooltip'] = 'Backtester la stratégie';
+
+  $lang_array['app']['editor_compile_success'] = 'Stratégie compilée avec succès';
+  $lang_array['app']['editor_console_compile_output_title'] = 'Sortie de compilation';
+
+
 
 
 ?>

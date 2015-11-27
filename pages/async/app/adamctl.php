@@ -22,7 +22,24 @@
 
   $resp = array("status" => "OK","message" => "");
 
-  if ( $_REQUEST['action'] == 'startReal') {
+
+  if ( $_REQUEST['action'] == 'compile'  ) {
+
+    $source = $_REQUEST['source'];
+
+    exportCfg();
+    $res = $ac->compile($source);
+
+    if ($res != 0) {
+      $resp["status"] = "ERROR";
+      $resp["message"] = "COMPILE_ERRORS:" . $ac->getCompileErrors();
+    }
+
+    echo json_encode($resp);
+    
+  }
+
+  else if ( $_REQUEST['action'] == 'startReal') {
 
     if ( $u->checkPermissions(array('start_bot'))  ) {
       exportCfg();
