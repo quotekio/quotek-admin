@@ -132,6 +132,47 @@ $themes = listThemes();
 
       <hr>
 
+      <div class="row-fluid">
+
+        <div id="editor-bt-perfgraph">
+
+        </div>
+
+      </div>
+
+      <div class="row-fluid">
+
+      <div class="span6">
+        <div id="editor-bt-winloss">
+
+        </div>
+      </div>
+
+      <div class="span6">
+
+        <table class="table" style="font-size:20px">
+
+          <tr>
+            <td>Max Drawdown</td>
+            <td id="editor-bt-mdd">0</td>
+          </tr>
+
+          <tr>
+            <td>Profit Factor</td>
+            <td id="editor-bt-pf">0</td>
+          </tr>
+
+        </table>
+
+
+
+      </div>
+
+
+
+      </div>      
+
+
 
 
     </div>
