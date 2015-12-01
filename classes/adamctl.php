@@ -1,5 +1,7 @@
 <?php
 
+require_once "corecfg.php";
+
 class adamctl {
 
   function __construct() {
@@ -60,6 +62,26 @@ class adamctl {
     
   }
 
+  //quick backtest for non-saved strats, without saving.
+  function qbacktest($data, $cfgid, $from, $to) {
+
+    global $ADAM_PATH;
+    global $ADAM_TMP;
+    global $ADAM_AEP_PORT;
+
+    $poffset = $this->findPort();
+    $port = $ADAM_AEP_PORT + $ofset;
+
+    $tmp_cpath = "${ADAM_TMP}/cenv/";
+    file_put_contents("${tmp_cpath}/temp.qs", $data);
+
+    //exports config
+    exportCfg($cfgid ,null,"${tmp_cpath}/temp.cfg",false);
+
+    $cmd = "sudo ${ADAM_PATH}/bin/adam -c ${tmp_cpath}/temp.cfg --backtest --backtest-from ${from} --backtest-to ${to} -p ${port} -x ${tmp_cpath} -s temp.qs &";
+    exec($cmd,$outp,$result);
+    return $offset;
+  }
 
   function startReal() {
     global $ADAM_PATH;
@@ -137,7 +159,6 @@ class adamctl {
 
   }
 
-
   function checkStatus($pid) {
     
     if ($pid === 'none') return 'off';
@@ -148,6 +169,19 @@ class adamctl {
             return 'on';
           }
      return 'off';
+    }
+  }
+
+
+  //This function finds an available port for backtesting
+  function findPort() {
+
+    global $ADAM_AEP_ADDR;
+    global $ADAM_AEP_PORT;
+
+    for ($offset=1;$offset< 1000;$offset++) {
+      $this->sock = @fsockopen($ADAM_AEP_ADDR,$ADAM_AEP_PORT + $offset,$errno,$errstr,1);
+      if (! $this->sock) return $offset;
     }
   }
 

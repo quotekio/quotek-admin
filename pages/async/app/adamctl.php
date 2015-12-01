@@ -39,6 +39,21 @@
     
   }
 
+  else if ( $_REQUEST['action'] == 'qbacktest' ) {
+
+    $source = $_REQUEST['source'];
+    $from = $_REQUEST['from'];
+    $to = $_REQUEST['to'];
+    $cfgid = $_REQUEST['cfg'];
+
+    $res = $ac->qbacktest($source, $cfgid, $from, $to);
+    $resp['message'] = $res;
+
+    echo json_encode($resp);
+
+  }
+
+
   else if ( $_REQUEST['action'] == 'startReal') {
 
     if ( $u->checkPermissions(array('start_bot'))  ) {

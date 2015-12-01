@@ -62,6 +62,9 @@ $themes = listThemes();
      <script type="text/javascript" src="/js/jquery.js"></script>
      <script type="text/javascript" src="/js/bootstrap.js"></script>
      <script type="text/javascript" src="/js/quotek.js"></script>
+     <script type="text/javascript" src="/js/flot/jquery.flot.min.js"></script>
+     <script type="text/javascript" src="/js/flot/jquery.flot.time.min.js"></script>
+     <script type="text/javascript" src="/js/flot/jquery.flot.pie.min.js"></script>
 
      <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
      <title>Quotek Code Editor</title>
@@ -102,14 +105,14 @@ $themes = listThemes();
           <label><b><?= $lang_array['app']['period'] ?></b></label>
 
           <select id="editor-bt-period" style="width:150px">
-            <option value="lday"><?= $lang_array['app']['bt_lday'] ?></option>
-            <option value="lweek"><?= $lang_array['app']['bt_lweek'] ?></option>
-            <option value="lmonth"><?= $lang_array['app']['bt_lmonth'] ?></option>
-            <option value="lyear"><?= $lang_array['app']['bt_lyear'] ?></option>
+            <option value="-86400"><?= $lang_array['app']['bt_lday'] ?></option>
+            <option value="-604800"><?= $lang_array['app']['bt_lweek'] ?></option>
+            <option value="-2592000"><?= $lang_array['app']['bt_lmonth'] ?></option>
+            <option value="-31104000"><?= $lang_array['app']['bt_lyear'] ?></option>
           </select>
         </div>
 
-        <div class="span5">
+        <div class="span4">
           <label><b><?= $lang_array['app']['conf'] ?></b></label>
 
           <select id="editor-bt-config" style="width:150px">
@@ -121,10 +124,27 @@ $themes = listThemes();
           </select>
         </div>
 
-        <div class="span2">
+        <div class="span3" style="text-align:right">
           <label><b>&nbsp;</b></label>
-          
-          <a class="btn btn-info"><?= $lang_array['app']['launch'] ?></a>
+          <a id="editor-bt-launchbtn" class="btn btn-info"><?= $lang_array['app']['launch'] ?></a>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="progress progress-info">
+        <div class="bar" style="width: 0.1%" id="editor-bt-progress"></div>
+      </div>
+ 
+      <hr>
+
+      <div class="row-fluid" style="text-align:center">
+
+        <div style="text-align:left"><label><b><?= $lang_array['app']['performance'] ?></b></label></div>
+
+        <div id="editor-bt-perfgraph" style="width:500px;height:90px;margin-left:auto;margin-right:auto;">
 
         </div>
 
@@ -134,18 +154,9 @@ $themes = listThemes();
 
       <div class="row-fluid">
 
-        <div id="editor-bt-perfgraph">
-
-        </div>
-
-      </div>
-
-      <div class="row-fluid">
-
-      <div class="span6">
-        <div id="editor-bt-winloss">
-
-        </div>
+      <div class="span6" style="text-align:center">
+        <div id="editor-bt-winloss" style="width:150px;height:150px;margin-left:auto;margin-right:auto;"></div>
+        <div style="color:#cccccc;font-size:30px;font-weight:bold;position:absolute;margin-top:-85px;margin-left:105px">0/0</div>
       </div>
 
       <div class="span6">
@@ -317,7 +328,40 @@ $themes = listThemes();
 
 	<script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script>
- 
+
+        var bt_wloptions = { series: {
+              pie: {
+                    innerRadius: 0.8,
+                    radius: 1,
+                    show: true,
+                    label: { show:false },
+                    stroke:{
+                      width:0
+                    }
+                  },
+              },
+              legend: {
+                show: false,
+              },
+        };
+
+        var bt_perf_options = {
+                               xaxis: {
+                                mode: "time",
+                              
+                               },   
+                               grid: {
+                                      show: true,
+                                      borderWidth: 0,
+                                },
+                                legend: {
+                                         show: false
+                                },
+
+        };
+
+
+
         var editor_theme = localStorage.getItem("theme");
         if (editor_theme == null) editor_theme = "monokai";
         var fsize = localStorage.getItem("fontsize");
@@ -329,6 +373,40 @@ $themes = listThemes();
         editor.setFontSize(parseInt(fsize));
         editor.setValue($("#editor-preload").val());
         editor.clearSelection();
+
+        $('#editor-bt-launchbtn').click(function() {
+          qbacktest();
+        });
+
+
+        function qbacktest() {
+
+          from = $('#editor-bt-period').val();
+          to = -1,
+          cfg= $('#editor-bt-config').val();
+          
+          source = editor.getValue();
+
+          var qbtr = $.ajax({
+          url: '/async/app/adamctl',
+          type: 'GET',
+          data: { 'action': 'qbacktest',
+                  'source': source,
+                  'from' : from,
+                  'to': to,
+                  'cfg': cfg  },
+          cache: false,
+          async: true,
+          success: function() {
+
+            jqbtr = $.parseJSON(qbtr.responseText);
+            alert(jqbtr.message);
+
+          }
+
+          });
+
+        }
 
         function toggleConsoleTabs(tab) {
 
@@ -402,6 +480,11 @@ $themes = listThemes();
             $('.console-tab').css('margin-bottom','0px');
             $('#console-output').height($('.console-tab').height() -20 );
 
+            //$('#editor-bt-perfgraph').height(60);
+            //$('#editor-bt-perfgraph').width();
+
+            $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
+            $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [0,1] , color: '#cccccc'}], bt_perf_options);
 
             $('#editor-console-btn i').toggleClass('icon-chevron-left icon-chevron-right');
 
