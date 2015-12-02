@@ -1,6 +1,7 @@
 <?php
 
 require_once "corecfg.php";
+require_once "executor.php";
 
 class adamctl {
 
@@ -68,9 +69,10 @@ class adamctl {
     global $ADAM_PATH;
     global $ADAM_TMP;
     global $ADAM_AEP_PORT;
+    global $EXEC_QUEUE_FILE;
 
     $poffset = $this->findPort();
-    $port = $ADAM_AEP_PORT + $ofset;
+    $port = $ADAM_AEP_PORT + $offset;
 
     $tmp_cpath = "${ADAM_TMP}/cenv/";
     file_put_contents("${tmp_cpath}/temp.qs", $data);
@@ -79,8 +81,12 @@ class adamctl {
     exportCfg($cfgid ,null,"${tmp_cpath}/temp.cfg",false);
 
     $cmd = "sudo ${ADAM_PATH}/bin/adam -c ${tmp_cpath}/temp.cfg --backtest --backtest-from ${from} --backtest-to ${to} -p ${port} -x ${tmp_cpath} -s temp.qs &";
-    exec($cmd,$outp,$result);
-    return $offset;
+    
+   
+    $ec = new executor($EXEC_QUEUE_FILE);
+    $ec->enqueue($cmd);
+    return $poffset;
+
   }
 
   function startReal() {

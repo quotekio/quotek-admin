@@ -6,7 +6,9 @@
 
   $ADAM_PATH = "/usr/local/adam/";
   $ADAM_TMP = "/tmp/adam";
+  
   $ADAM_PIDFILE = "$ADAM_TMP/adam.pid";
+  $EXEC_QUEUE_FILE = "${ADAM_TMP}/run.queue";
 
   $GIT_USER = 'git';
   $GIT_LOCATION='/quotek';

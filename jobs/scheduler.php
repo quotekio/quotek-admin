@@ -10,7 +10,7 @@
   include ("user.php");
   include ("brokercfg.php");
 
-  $jobs_exclude = array('.','..','scheduler.php','turns.json');
+  $jobs_exclude = array('.','..','scheduler.php','asyncexec.php','turns.json');
 
   function load_turns() {
   	global $JOBS_DIR;

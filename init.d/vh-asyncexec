@@ -1,0 +1,29 @@
+#!/bin/bash
+
+BIN=/usr/bin/php
+ADAM_USER=www-data
+ADAM_PID="/tmp/adam/asyncexec.pid"
+ADAM_CHROOT="/tmp/adam/chroot"
+
+case $1 in
+
+  start)
+    start-stop-daemon --chuid $ADAM_USER --start --quiet --background --oknodo --make-pidfile --pidfile $ADAM_PID --exec $BIN -- /usr/local/adam/admin/jobs/asyncexec.php
+  ;;
+
+  startfg)
+    start-stop-daemon --chuid $ADAM_USER --start --quiet --oknodo --make-pidfile --pidfile $ADAM_PID --exec $BIN -- /usr/local/adam/admin/jobs/asyncexec.php
+  ;;
+
+  stop)
+    kill `cat /tmp/adam/asyncexec.pid`
+  ;;
+
+  restart)
+    $0 stop
+    $0 start
+  
+esac
+
+
+
