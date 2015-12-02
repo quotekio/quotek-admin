@@ -72,7 +72,7 @@ class adamctl {
     global $EXEC_QUEUE_FILE;
 
     $poffset = $this->findPort();
-    $port = $ADAM_AEP_PORT + $offset;
+    $port = $ADAM_AEP_PORT + $poffset;
 
     $tmp_cpath = "${ADAM_TMP}/cenv/";
     file_put_contents("${tmp_cpath}/temp.qs", $data);
