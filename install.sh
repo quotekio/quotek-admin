@@ -85,6 +85,12 @@ do
   fi
 done
 
+cd ..
+
+echo "copying init scripts.."
+cp ./init.d/* /etc/init.d/
+
 echo "setting directory rights.."
 chown -R www-data $INSTALL_DIR
+
 
