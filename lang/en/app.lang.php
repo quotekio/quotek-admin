@@ -388,4 +388,19 @@
   $lang_array['app']['conf'] = 'Configuration';
   $lang_array['app']['launch'] = 'Start';
 
+  $lang_array['app']['notify'] = 'Notifications';
+  $lang_array['app']['notify_to'] = 'SendTo Email';
+  $lang_array['app']['notify_to_hint'] = 'Tells to which email address to send notifications.';
+
+  $lang_array['app']['notify_shut'] = 'Shutdown Notifications';
+  $lang_array['app']['notify_shut_enable'] = 'Enable Shutdown Notifications.';
+
+  $lang_array['app']['notify_shut_hint'] = 'If enabled, quotek will send an email whenever it detects the trading bot is not running.';
+  $lang_array['app']['notify_report'] = 'Report Notifications';
+  $lang_array['app']['notify_report_enable'] = 'Enable Report Notifications.';
+
+  $lang_array['app']['notify_report_hint'] = 'When enabled, quotek will send periodical report emails';
+  $lang_array['app']['notify_report_every'] = 'Reports Frequency (h)';
+  $lang_array['app']['notify_report_every_hint'] = 'Tells when quotek must send its performance reports e.g: every 6h will send 4 reports a day at {0,6,12,18}h';
+
 ?>

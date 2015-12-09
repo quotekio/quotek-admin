@@ -34,6 +34,9 @@ $backends = getBackends();
               <li>
                  <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="backend"><?= $lang_array['app']['corecfg_backend_title'] ?></a>
                </li>
+              <li>
+                <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="notify"><?= $lang_array['app']['notify'] ?></a>
+              </li>
              <li>
                 <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="extra"><?= $lang_array['app']['corecfg_extra_title'] ?></a>
               </li>
@@ -181,6 +184,32 @@ $backends = getBackends();
           <span class="help-block"><?= $lang_array['hint']['config_backend_db'] ?></span>
           
           </div>
+
+
+          <div class="corecfg-editor-frame well" id="corecfg-editor-notify" style="display:none"> 
+          
+            <label><b><?= $lang_array['app']['notify_shut'] ?></b></label>
+            <label class="checkbox">
+               <input id="input-corecfg-notify_shutdown" type="checkbox"><?= $lang_array['app']['notify_shut_enable']  ?>
+            </label>
+            <span class="help-block"><?= $lang_array['app']['notify_shut_hint'] ?></span>
+            
+            <label><b><?= $lang_array['app']['notify_report'] ?></b></label>
+            <label class="checkbox">
+               <input id="input-corecfg-notify_report" type="checkbox"><?=  $lang_array['app']['notify_report_enable'] ?>
+            </label>
+            <span class="help-block"><?= $lang_array['app']['notify_report_hint'] ?></span>
+
+            <label><b><?= $lang_array['app']['notify_report_every'] ?></b></label>
+            <input id="input-corecfg-notify_report_every" style="height:27px;width:80px" type="text" value="8">
+            <span class="help-block"><?= $lang_array['app']['notify_report_every_hint'] ?></span>            
+
+            <label><b><?= $lang_array['app']['notify_to'] ?></b></label>
+            <input id="input-corecfg-notify_to" style="height:27px;width:150px" type="text" value="email@domain.tld">
+            <span class="help-block"><?= $lang_array['app']['notify_to_hint'] ?></span>
+
+          </div>
+
 
 
           <div class="corecfg-editor-frame well" id="corecfg-editor-extra" style="display:none"> 

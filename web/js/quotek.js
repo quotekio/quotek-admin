@@ -169,7 +169,11 @@ function adamSaveCoreCfg(ccid) {
                  'backend_port':null,
                  'backend_username': null,
                  'backend_password': null,
-                 'backend_db': null
+                 'backend_db': null,
+                 'notify_to': null,
+                 'notify_shutdown': null,
+                 'notify_report': null,
+                 'notify_report_every': null
                };
 
 
@@ -211,6 +215,11 @@ function adamSaveCoreCfg(ccid) {
   corecfg.backend_username = $('#input-corecfg-backend_username').val();
   corecfg.backend_password = $('#input-corecfg-backend_password').val();
   corecfg.backend_db = $('#input-corecfg-backend_db').val();
+
+  corecfg.notify_to = $('#input-corecfg-notify_to').val();
+  corecfg.notify_shutdown = ( $('#input-corecfg-notify_shutdown').is(':checked') ) ? 1 : 0 ;
+  corecfg.notify_report = ( $('#input-corecfg-notify_report').is(':checked') ) ? 1 : 0 ;
+  corecfg.notify_report_every = $('#input-corecfg-notify_report_every').val();
 
   r = adamObject('add','corecfg',corecfg,-1);
   if (r.status == "OK") {
@@ -407,6 +416,12 @@ function adamGetCoreCfgDataToEdit(ccid) {
     $('#input-corecfg-backend_username').val(ccfg.backend_username);
     $('#input-corecfg-backend_password').val(ccfg.backend_password);
     $('#input-corecfg-backend_db').val(ccfg.backend_db);
+
+    $('#input-corecfg-notify_to').val(ccfg.notify_to);
+    $('#input-corecfg-notify_report_every').val(ccfg.notify_report_every);
+    $('#input-corecfg-notify_shutdown').get(0).checked = (ccfg.notify_shutdown == 1) ? true: false;
+    $('#input-corecfg-notify_report').get(0).checked = ( ccfg.notify_report == 1 ) ? true : false ;
+    
   }
 
   else {

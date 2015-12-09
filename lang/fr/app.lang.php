@@ -403,10 +403,19 @@
   $lang_array['app']['conf'] = 'Configuration';
   $lang_array['app']['launch'] = 'Démarrer';
 
+  $lang_array['app']['notify'] = 'Notifications';
+  $lang_array['app']['notify_to'] = 'Destinataire';
+  $lang_array['app']['notify_to_hint'] = 'Indique à quel email les notifications doivent être envoyées.';
 
+  $lang_array['app']['notify_shut'] = 'Notifications d\'arrêt';
+  $lang_array['app']['notify_shut_enable'] = 'Activer les Notifications d\'arrêt.';
 
+  $lang_array['app']['notify_shut_hint'] = 'Si cette option est activée, quotek enverra un mail lorsqu\'il détecte que le robot est arrêté';
+  $lang_array['app']['notify_report'] = 'Rapports de performance';
+  $lang_array['app']['notify_report_enable'] = 'Activer les rapports de performance.';
 
-
-
+  $lang_array['app']['notify_report_hint'] = 'Activée, cette option fera en sorte d\'envoyer des rapports de performance periodiques.';
+  $lang_array['app']['notify_report_every'] = 'Frequence d\'envoi des rapports';
+  $lang_array['app']['notify_report_every_hint'] = 'Indique à quelle fréquence en heures envoyer les rapports de performance. ex: pour une valeur de 6, quotek enverra 4 rapports par jour , à {0,6,12,18}h.';
 
 ?>
