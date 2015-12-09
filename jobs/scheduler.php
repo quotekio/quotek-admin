@@ -48,6 +48,8 @@
     else {
       $nexec = $exec;
       $nexec();
+      exit(0);
+
     }
  
   }
