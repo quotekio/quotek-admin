@@ -2234,6 +2234,7 @@ function adamUpdatePerfStats(scale) {
                                grid: {
                                       show: true,
                                       borderWidth: 0,
+                                      hoverable: true,
                                 },
                                 legend: {
                                          show: false
@@ -2258,6 +2259,7 @@ function adamUpdatePerfStats(scale) {
                               {
                                           label: "Perf+",
                                           data: d_raw.perf ,
+
                                           bars: {
                                               show:true,
                                               fill: true,
@@ -2270,6 +2272,41 @@ function adamUpdatePerfStats(scale) {
                        ]; 
                          
                        $.plot(perf_placeholder, perf_data, perf_options);
+                       
+                       
+                       var previousPoint = null, previousLabel = null;
+
+                       perf_placeholder.on("plothover", function (event, pos, item) {
+
+                           if (item) {
+
+                             //console.log(item.series.label);
+
+                             if ((previousLabel != item.series.label) || (previousPoint != item.dataIndex)) {
+                               previousPoint = item.dataIndex;
+                               previousLabel = item.series.label;
+                               $("#tooltip").remove();
+                              
+                               var x = item.datapoint[0];
+                               var y = item.datapoint[1];
+                               var color = item.series.color;
+                              
+                               //console.log(item.series.xaxis.ticks[x].label);                
+                               showTooltip(item.pageX,
+                                           item.pageY,
+                                           color,
+                                          "<strong>" + y + "</strong>",
+                                          item.series.label);
+                              }
+
+                              else {
+                                $("#tooltip").remove();
+                                previousPoint = null;
+                              }
+
+                           }
+                       });
+
 
 
        }
@@ -2469,3 +2506,23 @@ function adamUpdateTradeStats() {
 
 
 }
+
+/** To help dispay bar charts tooltips */
+function showTooltip(x, y, color, contents,label) {
+
+            var yoffset = (label == "Perf+") ? y - 20 : y + 5;
+
+            $('<div id="tooltip">' + contents + '</div>').css({
+                position: 'absolute',
+                display: 'none',
+                top: yoffset,
+                left: x,
+                color: color,
+                border: '0px solid ' + color,
+                padding: '3px',
+                'font-size': '9px',
+                'border-radius': '5px',
+                'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+                opacity: 0.9
+            }).appendTo("body").fadeIn(200);
+        }
