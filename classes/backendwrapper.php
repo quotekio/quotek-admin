@@ -34,6 +34,18 @@ class backendWrapper {
 
     } 
 
+    else if ($this->backend->module_name == "postgresqlbe") {
+
+      $connstr = 'pgsql:host=' .  $this->backend_params['host'];
+      $connstr = ';port=' .  $this->backend_params['port'];
+      $connstr .= ';dbname=' . $this->backend_params['database'];
+
+      $this->dbh = new PDO($connstr,
+                           $this->backend_params['username'],
+                           $this->backend_params['password']);
+
+    }
+
   }
 
   function query($indice_name,$tinf,$tsup, $mean, $time_offset = 0) {
@@ -83,6 +95,45 @@ class backendWrapper {
     return $result;
   }
 
+
+  function sql_query($indice_name, $tinf, $tsup,$mean, $time_offset = 0) {
+
+    $result = array();
+
+    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
+    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
+
+    if ($mean != 0) {
+      $query = "SELECT time, mean(value) AS value FROM " . 
+                        $indice_name . 
+                        " WHERE time > '" . 
+                        $tinf . 
+                        "' AND time < '" . 
+                        $tsup . 
+                        "' GROUP BY time('$mean') ORDER ASC;";
+    }
+
+    else {
+    
+      $query = "SELECT time, value FROM " . 
+                        $indice_name . 
+                        " WHERE time > '" . 
+                        $tinf . 
+                        "' AND time < '" . 
+                        $tsup . 
+                        "' ORDER ASC;";
+
+    }
+    
+    $ires = $this->dbh->query($query);
+
+    foreach( $ires as $rec  ) {
+      $result[] = array( ( $rec->time + 3600 * $time_offset ) * 1000 , $rec->value);
+    }
+
+    return $result;
+
+  }
 
   function influx_query($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
 
