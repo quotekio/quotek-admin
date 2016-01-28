@@ -101,7 +101,7 @@ class backendWrapper {
 
     foreach( $ires as $rec  ) {
       $rec['timestamp'] += 3600 * $time_offset;
-      $result[] = $rec;
+      $result[] = (object) $rec;
     }
 
     return $result;
