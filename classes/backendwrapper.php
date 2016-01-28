@@ -37,12 +37,14 @@ class backendWrapper {
     else if ($this->backend->module_name == "postgresqlbe") {
 
       $connstr = 'pgsql:host=' .  $this->backend_params['host'];
-      $connstr = ';port=' .  $this->backend_params['port'];
+      $connstr .= ';port=' .  $this->backend_params['port'];
       $connstr .= ';dbname=' . $this->backend_params['database'];
 
       $this->dbh = new PDO($connstr,
                            $this->backend_params['username'],
                            $this->backend_params['password']);
+
+      $this->dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     }
 
@@ -128,11 +130,24 @@ class backendWrapper {
 
   function sql_query($indice_name, $tinf, $tsup,$mean, $time_offset = 0) {
 
+    if ( ! is_numeric($mean) ) {
+      $mean[strlen($mean)-1] = '\0';
+      $mean = intval($mean);
+    }
+
+    if (! is_numeric($tinf)) {
+      $tinf = strtotime ( $tinf);
+      $tsup = strtotime( $tsup);
+    }
+
+    $tinf += 3600 * $time_offset;
+    $tsup += 3600 * $time_offset;
+
     $result = array();
 
     if ($mean != 0) {
 
-      $query = "SELECT round(timestamp / $mean) as timestamp, avg(value) FROM $indice_name ";
+      $query = "SELECT round(timestamp / $mean) as timestamp, avg(value) as value FROM $indice_name ";
       $query .= "WHERE timestamp > $tinf AND timestamp < $tsup";
       $query .= " GROUP BY 1 ORDER BY 1 ASC;";
     }
@@ -149,7 +164,7 @@ class backendWrapper {
 
     foreach( $ires as $rec  ) {
 
-      $result[] = array( ( $rec['timestamp'] * $mean + 3600 * $time_offset ) * 1000 , $rec['value']);
+      $result[] = array(  (($rec['timestamp'] *  $mean ) + 3600 * $time_offset ) * 1000 , $rec['value']);
     }
 
     return $result;
