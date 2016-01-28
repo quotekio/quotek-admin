@@ -49,9 +49,17 @@ class backendWrapper {
   }
 
   function query($indice_name,$tinf,$tsup, $mean, $time_offset = 0) {
+
+    //influxdb query
     if ($this->backend->module_name == "influxdbbe") {
       return $this->influx_query($indice_name,$tinf,$tsup,$mean,$time_offset);
     }
+
+    //sql query
+    else {
+      return $this->sql_query($indice_name,$tinf,$tsup,$mean,$time_offset); 
+    }
+
   }
 
   function query_ohlc($indice_name,$tinf,$tsup,$mean, $time_offset=0) {
@@ -59,21 +67,43 @@ class backendWrapper {
     if ($this->backend->module_name == "influxdbbe") {
       return $this->influx_query_ohlc($indice_name,$tinf,$tsup,$mean,$time_offset);
     }
+    else {
+      return $this->sql_query_ohlc($indice_name,$tinf,$tsup,$mean,$time_offset);
+    }
+
 
   }
-
 
   function query_history($tinf, $tsup, $time_offset = 0) {
     if ($this->backend->module_name == "influxdbbe") {
       return $this->influx_query_history($tinf, $tsup, $time_offset);
     }
+    else {
+      return $this->sql_query_history($tinf,$tsup,$time_offset);
+    }
   }
-
 
   function insert($indice_name,$t,$v,$spread)  {
     $this->dbh->insert($indice_name, array('time' => $t, 'value' => $v , 'spread' => $spread) );
   }
 
+
+  function sql_query_history($tinf, $tsup, $time_offset = 0) {
+
+    $result = array();
+    
+    $query = "SELECT * from __history__ WHERE timestamp > $tinf AND timestamp < $tsup ORDER BY timestamp DESC;";
+    $q = $this->dbh->query($query);
+
+    $ires = $q->fetchAll();
+
+    foreach( $ires as $rec  ) {
+      $rec['timestamp'] += 3600 * $time_offset;
+      $result[] = $rec;
+    }
+
+    return $result;
+  }
 
 
   function influx_query_history($tinf, $tsup, $time_offset = 0) {
@@ -100,35 +130,26 @@ class backendWrapper {
 
     $result = array();
 
-    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
-    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
-
     if ($mean != 0) {
-      $query = "SELECT time, mean(value) AS value FROM " . 
-                        $indice_name . 
-                        " WHERE time > '" . 
-                        $tinf . 
-                        "' AND time < '" . 
-                        $tsup . 
-                        "' GROUP BY time('$mean') ORDER ASC;";
+
+      $query = "SELECT round(timestamp / $mean) as timestamp, avg(value) FROM $indice_name ";
+      $query .= "WHERE timestamp > $tinf AND timestamp < $tsup";
+      $query .= " GROUP BY 1 ORDER BY 1 ASC;";
     }
 
     else {
-    
-      $query = "SELECT time, value FROM " . 
-                        $indice_name . 
-                        " WHERE time > '" . 
-                        $tinf . 
-                        "' AND time < '" . 
-                        $tsup . 
-                        "' ORDER ASC;";
-
+      $query = "SELECT timestamp, value FROM $indice_name WHERE timestamp > $tinf AND timestamp < $tsup ORDER BY 1 ASC;";           
+      //we set back $mean to 1 for mathematical trick: timestamps rearangement !
+      $mean = 1;
     }
     
-    $ires = $this->dbh->query($query);
+    $q = $this->dbh->query($query);
+
+    $ires = $q->fetchAll();
 
     foreach( $ires as $rec  ) {
-      $result[] = array( ( $rec->time + 3600 * $time_offset ) * 1000 , $rec->value);
+
+      $result[] = array( ( $rec['timestamp'] * $mean + 3600 * $time_offset ) * 1000 , $rec['value']);
     }
 
     return $result;
@@ -175,6 +196,36 @@ class backendWrapper {
     return $result;
 
   }
+
+
+  function sql_query_ohlc($indice_name, $tinf, $tsup,$mean, $time_offset = 0) {
+
+    $result = array();
+
+    if ($mean != 0) {
+
+      $query = "SELECT round(timestamp / $mean) as timestamp, first(value) AS open,";
+      $query .= "max(value) AS high, min(value) AS low, last(value) AS close FROM $indice_name ";
+      $query .= "WHERE timestamp > $tinf AND timestamp < $tsup";
+      $query .= " GROUP BY 1 ORDER BY 1 ASC;";
+    }
+
+    $q = $this->dbh->query($query);
+    $ires = $q->fetchAll();
+
+    foreach( $ires as $rec  ) {
+
+      $result[] = array( ( $rec['timestamp'] * $mean + 3600 * $time_offset ) * 1000 , 
+                         $rec['open'], 
+                         $rec['close'], 
+                         $rec['low'], 
+                         $rec['high']);
+    }
+
+    return $result;
+
+  }
+
 
   function influx_query_ohlc($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
 
