@@ -46,6 +46,7 @@ $themes = listThemes();
   <head>
      <META http-equiv="Content-Type" Content="text/html; charset=UTF-8">
      <link rel="stylesheet" href="/css/bootstrap.css">
+     <link rel="stylesheet" href="/css/bootstrap_ex.css">
      <link rel="stylesheet" href="/css/quotek.css">
 
      <style type="text/css" media="screen">

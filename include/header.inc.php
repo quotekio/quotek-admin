@@ -22,6 +22,7 @@
 
     <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
     <LINK rel=stylesheet type="text/css" href="/css/bootstrap.css">
+    <LINK rel="stylesheet" href="/css/bootstrap_ex.css">
     <LINK rel=stylesheet type="text/css" href="/css/quotek.css">
 
     <script type="text/javascript" src="/js/jquery.js"></script>

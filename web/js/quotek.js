@@ -2219,6 +2219,9 @@ function adamUpdatePerfStats(scale) {
                      cache: false,
                      success: function() {
 
+                       var pcolor = $('#pcolor').css('background-color');
+                       var lcolor = $('#lcolor').css('background-color');
+
                        d_raw = $.parseJSON(rps.responseText);
 
                        perf_placeholder = $('#dashboard-graph-performance');
@@ -2253,7 +2256,7 @@ function adamUpdatePerfStats(scale) {
                                           fillColor: 'rgba(204, 0, 0, .6)',
                                           barWidth: bar_width,
                                        },
-                                       color: "#c00"
+                                       color: lcolor
                                    },
 
                               {
@@ -2267,7 +2270,7 @@ function adamUpdatePerfStats(scale) {
 
                                               barWidth: bar_width,
                                             },
-                                            color: "#699e00"
+                                            color: pcolor
                               },
                        ]; 
                          
@@ -2388,6 +2391,9 @@ function adamUpdateTradeStats() {
                async:true,
                success: function() {
 
+                           var pcolor = $('#pcolor').css('background-color');
+                           var lcolor = $('#lcolor').css('background-color');
+
                            var d_raw = $.parseJSON(rsr.responseText);
 
                            /* ###### TRADE RATIOS RENDER ###### */
@@ -2408,16 +2414,16 @@ function adamUpdateTradeStats() {
                                  },
                                };
 
-                           var trade_ratio_day_data = [{ label: "profit", data: d_raw.trade_ratios.day[0] , color: '#699e00' },
-                                              { label: "loss", data: d_raw.trade_ratios.day[1], color: '#c00'}
+                           var trade_ratio_day_data = [{ label: "profit", data: d_raw.trade_ratios.day[0] , color: pcolor },
+                                              { label: "loss", data: d_raw.trade_ratios.day[1], color: lcolor}
                                              ];
 
-                           var trade_ratio_week_data = [{ label: "profit", data: d_raw.trade_ratios.week[0], color: '#699e00' },
-                                              { label: "loss", data: d_raw.trade_ratios.week[1], color: '#c00', }
+                           var trade_ratio_week_data = [{ label: "profit", data: d_raw.trade_ratios.week[0], color: pcolor },
+                                              { label: "loss", data: d_raw.trade_ratios.week[1], color: lcolor, }
                                              ];
 
-                           var trade_ratio_month_data = [{ label: "profit", data: d_raw.trade_ratios.month[0], color: '#699e00'},
-                                               { label: "loss", data: d_raw.trade_ratios.month[1], color: '#c00'}
+                           var trade_ratio_month_data = [{ label: "profit", data: d_raw.trade_ratios.month[0], color: pcolor},
+                                               { label: "loss", data: d_raw.trade_ratios.month[1], color: lcolor}
                                               ];
 
                            if (d_raw.trade_ratios.day[0] == 0 && d_raw.trade_ratios.day[1] == 0 ) {
@@ -2441,27 +2447,27 @@ function adamUpdateTradeStats() {
                            $('#performance-trmph-label').html( d_raw.trade_ratios.month[0] + "/" + (d_raw.trade_ratios.month[0] + d_raw.trade_ratios.month[1]) );
 
                            if (  d_raw.trade_ratios.day[0] >= d_raw.trade_ratios.day[1] ) {
-                             $('#performance-trdph-label').css('color','#699e00');
+                             $('#performance-trdph-label').css('color',pcolor);
                            }
 
                            else if (  d_raw.trade_ratios.day[0] < d_raw.trade_ratios.day[1] ) {
-                             $('#performance-trdph-label').css('color','#c00000');
+                             $('#performance-trdph-label').css('color',lcolor);
                            }
 
                            if ( d_raw.trade_ratios.week[0] >= d_raw.trade_ratios.week[1] ) {
-                             $('#performance-trwph-label').css('color','#699e00');
+                             $('#performance-trwph-label').css('color',pcolor);
                            }
 
                            else if (  d_raw.trade_ratios.week[0] < d_raw.trade_ratios.week[1] ) {
-                             $('#performance-trwph-label').css('color','#c00000');
+                             $('#performance-trwph-label').css('color',lcolor);
                            }
 
                            if ( d_raw.trade_ratios.month[0] >= d_raw.trade_ratios.month[1] ) {
-                             $('#performance-trmph-label').css('color','#699e00');
+                             $('#performance-trmph-label').css('color',pcolor);
                            }
 
                            else if (  d_raw.trade_ratios.month[0] < d_raw.trade_ratios.month[1] ) {
-                             $('#performance-trmph-label').css('color','#c00000');
+                             $('#performance-trmph-label').css('color',lcolor);
                            }
 
 
@@ -2475,29 +2481,16 @@ function adamUpdateTradeStats() {
                            $('#pf-monthly').html( d_raw.trade_pf.month );
                            $('#mdd-monthly').html( d_raw.trade_mdd.month );
 
-                           if ( d_raw.trade_pf.day >= 2 ) $('#pf-daily').css('color','#699e00');
-                           else $('#pf-daily').css('color','#c00000');
+                           if ( d_raw.trade_pf.day >= 2 ) $('#pf-daily').css('color',pcolor);
+                           else $('#pf-daily').css('color',lcolor);
 
-                           if ( d_raw.trade_pf.week >= 2 ) $('#pf-weekly').css('color','#699e00');
-                           else $('#pf-weekly').css('color','#c00000');
+                           if ( d_raw.trade_pf.week >= 2 ) $('#pf-weekly').css('color',pcolor);
+                           else $('#pf-weekly').css('color',lcolor);
 
-                           if ( d_raw.trade_pf.month >= 2 ) $('#pf-monthly').css('color','#699e00');
-                           else $('#pf-monthly').css('color','#c00000');
+                           if ( d_raw.trade_pf.month >= 2 ) $('#pf-monthly').css('color',pcolor);
+                           else $('#pf-monthly').css('color',lcolor);
                            
-
-
-
-
-  
-
-
-
-
-
                            /* ################################## */
-
-
-
 
                }
 

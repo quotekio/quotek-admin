@@ -20,6 +20,7 @@
   <head>
      <META http-equiv="Content-Type" Content="text/html; charset=UTF-8">
      <link rel="stylesheet" href="/css/bootstrap.css">
+     <link rel="stylesheet" href="/css/bootstrap_ex.css">
      <script type="text/javascript" src="/js/jquery.js"></script>
      <script type="text/javascript" src="/js/apphandler.js"></script>
 
@@ -65,6 +66,8 @@
 
      </div>
    </div>
+
+     <div id="statusbar"></div>
 
      <div id="app-left">
      </div>

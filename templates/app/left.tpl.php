@@ -20,8 +20,17 @@
   <ul>
   
   <li>
+    <a target="_new" href="/app/editor" class="left-menu-link-top"><i class="icon-white icon-pencil"></i> <?= $lang_array['app']['newstrat'] ?></a>
+  </li>
+
+  <li>
     <a class="left-menu-link" onclick="appLoadDisp('dashboard',false);adamUpdateDBPNLGraph();appUpdateLeft($(this));">
       <img style="height:14px" src="/img/dashboard.png" >&nbsp;<?= $lang_array['app']['dashboard']?></a>
+  </li>
+
+  <li>
+    <a class="left-menu-link" onclick="appLoadDisp('adamstrats',true);appUpdateLeft($(this));">
+      <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
   </li>
 
 
@@ -61,11 +70,6 @@
     </div>
   </div>
 
-
-   <li>
-    <a class="left-menu-link" onclick="appLoadDisp('adamstrats',true);appUpdateLeft($(this));">
-      <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
-   </li>
 
   <!-- Not implemented yet -->
   <!--

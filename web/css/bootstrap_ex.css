@@ -1,0 +1,25 @@
+/* Bootstrap overridings */
+
+.btn-info, .label-info {
+  background-color:#23C6C8!important;
+}
+
+.btn-warning, .label-warning {
+  background-color:#F8AC59!important;
+}
+
+.btn-success, .label-success {
+  background-color:#1AB394;
+}
+
+.btn-danger, .label-important {
+  background-color:#ED5565;
+}
+
+.progress-warning .bar {
+  background:#F8AC59!important;
+}
+
+.progress-info .bar {
+  background:#23C6C8!important;
+}

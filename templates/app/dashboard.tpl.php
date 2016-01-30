@@ -56,12 +56,12 @@
                <h2 id="dashboard-algos-total">0</h2>
               </div>
               
-              <div class="span3 label-success">
+              <div id="pcolor" class="span3 label-success">
             
                 <div><?= $lang_array['app']['winning'] ?></div>  
                 <h2 id="dashboard-algos-winning">0</h2>
               </div>
-              <div class="span3 label-important">
+              <div id="lcolor" class="span3 label-important">
                 <div><?= $lang_array['app']['losing'] ?></div>
                 <h2 id="dashboard-algos-losing">0</h2>
               </div>
