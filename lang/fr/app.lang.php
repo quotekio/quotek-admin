@@ -395,6 +395,25 @@
   $lang_array['app']['editor_compile_success'] = 'Stratégie compilée avec succès';
   $lang_array['app']['editor_console_compile_output_title'] = 'Sortie de compilation';
 
+
+  $lang_array['app']['backtest_notice_title'] = 'A propos du backtester quotek';
+
+  $lang_array['app']['backtest_notice_expl'] =  
+                                                'Il y a quelques éléments que vous devez eviter dans vos algorithmes lorsque vous les backtestez.' .
+                                                '<h4>1. Appels d\'API/reqûetes sur serveurs distants</h4>' .
+                                                '<div>Il y a deux raisons principales pour lesquelles interroger des serveurs distants pendant vos backtests est une mauvaise idée, '.
+                                                'la première étant que ces serveurs peuvent mettre du temps à répondre, ce qui résultera en une perte significative de performances.'.
+                                                'La seconde raison et la plus penalisante, est que la réponse renvoyée par le serveur à un instant t peut être en inadequation totale avec le temps auquel se trouve le backtester.' .
+                                                '<br><br><b>Solution:</b> La meilleure façon de se débarasser de ce probleme est de simuler le comportement du serveur distant directement dans l\'algo de backtest,' .
+                                                'ou de stocker sa sortie attendue directement dans une variable.' .
+                                                '</div>' .
+                                                '<h4>2. Taches asynchrones lourdes</h4>' .
+                                                '<div>A moins que vous ne sachiez exactement ce que vous faites, ce genre de taches peut entrainer de serieux biais dans vos backtests.' .
+                                                'Lorsque la tache asynchrone aura fini d\'analyser les données pour le temps t, la boucle du backteser sera loin devant, au temps t + n .' .
+                                                '<br><br><b>Solution:</b> Pour résoudre ce problème, creez vos taches de façon synchrone, au moins pour le backtest. Cela aura pour conséquence de ralentir le ' .
+                                                'traitement mais vous obtiendrez en contrepartie des résultats bien plus probants. </div>';
+
+
   $lang_array['app']['bt_lday'] = 'Dernier jour';
   $lang_array['app']['bt_lweek'] = 'Derniere semaine';
   $lang_array['app']['bt_lmonth'] = 'Dernier mois';

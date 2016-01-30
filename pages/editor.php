@@ -98,6 +98,21 @@ $themes = listThemes();
 
     <div class="console-tab well" id="console-backtest" style="display:none">
  
+
+      <div class="row-fluid alert-danger" style="padding:5px;margin-bottom:10px">
+        <div class="span1">    
+          <a id="backtest_notice_btn" class="btn btn-danger">
+            <i class="icon-white icon-warning-sign"></i>
+          </a>
+        </div>
+
+
+        <div class="span11" style="padding-top:5px">
+          <b><?= $lang_array['app']['backtest_notice_title'] ?></b>
+        </div>
+
+        </div>
+
       <div class="row-fluid">
 
         <div class="span5">
@@ -223,6 +238,21 @@ $themes = listThemes();
     </div>
   </div>
 
+ <!-- Backtest Notice Modal -->
+ <div id="backtest_notice" class="modal hide fade">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+       <h3><?=  $lang_array['app']['backtest_notice_title'] ?></h3>
+    </div>
+    <div class="modal-body alert-danger">
+      <?= $lang_array['app']['backtest_notice_expl'] ?>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn">OK</a>
+    </div>
+
+ </div>
+
  <!-- Save Modal -->
  <div id="saveas" class="modal hide fade" role="dialog">
    <div class="modal-dialog">
@@ -269,7 +299,7 @@ $themes = listThemes();
 	              <img style="height:30px" src="/img/quotek-logo.png"> 
 	          </div>
 	          <div style="float:left;width:150px;margin-top:17px">  
-	              <b style="margin-top:1px;color:#FF9200;">{code* editor("1.0");}</b>
+	              <b style="margin-top:1px;color:#FF9200;">Strategy Editor 2.0</b>
 	          </div>
 
 	        </div>
@@ -590,6 +620,11 @@ $themes = listThemes();
  
             saveStratAs();
 
+          });
+
+
+          $('#backtest_notice_btn').click(function() {
+            $('#backtest_notice').modal();
           });
 
           $('#codesave').click(function() {

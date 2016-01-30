@@ -377,8 +377,28 @@
   $lang_array['app']['editor_compile_tooltip'] = 'Compile strategy';
   $lang_array['app']['editor_backtest_tooltip'] = 'Backtest strategy';
 
+
   $lang_array['app']['editor_compile_success'] = 'Compilation was successful';
   $lang_array['app']['editor_console_compile_output_title'] = 'Compiler Output';
+
+  
+  $lang_array['app']['backtest_notice_title'] = 'About Quotek\'s backtester';
+
+  $lang_array['app']['backtest_notice_expl'] =  'There are a few things that you\'ll want to avoid in your algos while you are backtesting:' .
+                                                '<h4>1. Remote API calls/server queries</h4>' .
+                                                '<div>There are two main reasons why integrating remote server queries in your backtests is a bad idea,'.
+                                                'the first being that the remote server can take time to answser, resulting in a severe performance tradeoff.' .
+                                                'The second and most annoying reason is that the answer provided by the the remote server at time t may not be correlated at all with the backtest\'s current time.' . 
+                                                '<br><br><b>Solution:</b> The best way to simulate a remote server\'s behaviour is to mock it, or to store its output by advance in a dedicated variable.' .
+                                                '</div>' .
+
+                                                '<h4>2. Heavy, asynchronous tasks</h4>' .
+                                                '<div>Unless you\'re totaly sure of what you\'re doing, this kind of things can lead to very serious bias' .
+                                                ' in your backtests. Once such a task finishes processing data for time t, the backtester will be way ahead, at t + n.' .
+                                                '<br><br><b>Solution:</b> To solve, this, make your tasks synchronous while you backtest.. If they are heavy tasks it will take longer, but you\'ll' .
+                                                'end up with much more accurate results.</div>';
+
+
 
   $lang_array['app']['bt_lday'] = 'Last day';
   $lang_array['app']['bt_lweek'] = 'Last Week';
