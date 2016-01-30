@@ -11,6 +11,7 @@ a:hover {
   position:absolute;
   top:0px;
   left:200px;
+  box-shadow: -10px 0px 10px -10px black;
 }
 
 .robotcontrol {
@@ -96,9 +97,16 @@ div.legend > table {
 }
 
 
+#app-left, #app-left-wizzards-accordion  {
+  background:#293540;
+}
+
+#app-left .accordion-inner, .left-menu-link:hover {
+  background:#212A33!important;
+}
+
 #app-left {
   display:none;
-  background:#111111;
   width:200px;
   font-weight:bold;
   font-size:12px;
@@ -113,17 +121,17 @@ div.legend > table {
 
 .left-menu-link {
    display:block;
-   border-bottom: 2px solid #111;
    padding:16px;
    padding-right:0px;
    color:white;
    text-decoration:none;
+   opacity:0.7;
 }
 
 .left-menu-link:hover {
   color:white;
   text-decoration: none;
-  border-bottom: 2px solid #FF9200;
+  opacity:1.0;  
 }
 
 .left-menu-link:not(:hover) {
@@ -134,7 +142,6 @@ div.legend > table {
 
 .left-menu-link-top {
    display:block;
-   border-bottom: 2px solid #111;
    padding:16px;
    margin-top:15px;
    padding-right:0px;
@@ -142,8 +149,9 @@ div.legend > table {
    text-decoration:none;
    background:#F8AC59;
    opacity:0.9!important;
-   width:175px!important;
+   width:173px!important;
    margin-left:5px;
+   border-radius:3px;
 }
 
 .left-menu-link-top:hover {
@@ -157,6 +165,9 @@ div.legend > table {
   text-decoration: none;
 }
 
+.left-menu-link i, .left-menu-link-top i, .left-menu-link img {
+  margin-right:8px;
+}
 
 
 
@@ -166,7 +177,6 @@ div.legend > table {
 #app-left-wizzards-accordion {
   padding:0px;
   margin-bottom:0px;
-  background:#111;
 }
 
 #app-left-wizzards-accordion:hover{
@@ -551,7 +561,7 @@ padding:10px;
 
   padding:17px;
   overflow:hidden;
-  background-image: url('/img/leftbg.png');
+  /* background-image: url('/img/leftbg.png'); */
   height:72px;
 
 }

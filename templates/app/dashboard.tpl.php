@@ -51,23 +51,23 @@
 
             <div class="row-fluid">
 
-              <div class="span3 label-warning">
-               <div><?= $lang_array['app']['total'] ?></div>
+              <div class="span3 label-warning" style="border-radius:3px">
+               <div style="font-weight:normal"><?= $lang_array['app']['total'] ?></div>
                <h2 id="dashboard-algos-total">0</h2>
               </div>
               
-              <div id="pcolor" class="span3 label-success">
+              <div id="pcolor" class="span3 label-success" style="border-radius:3px">
             
-                <div><?= $lang_array['app']['winning'] ?></div>  
+                <div style="font-weight:normal"><?= $lang_array['app']['winning'] ?></div>  
                 <h2 id="dashboard-algos-winning">0</h2>
               </div>
-              <div id="lcolor" class="span3 label-important">
-                <div><?= $lang_array['app']['losing'] ?></div>
+              <div id="lcolor" class="span3 label-important" style="border-radius:3px">
+                <div style="font-weight:normal"><?= $lang_array['app']['losing'] ?></div>
                 <h2 id="dashboard-algos-losing">0</h2>
               </div>
 
-              <div class="span3 label-info">
-                <div><?= $lang_array['app']['neutral'] ?></div>
+              <div class="span3 label-info" style="border-radius:3px">
+                <div style="font-weight:normal"><?= $lang_array['app']['neutral'] ?></div>
                 <h2 id="dashboard-algos-neutral">0</h2>
               </div>
         

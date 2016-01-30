@@ -9,7 +9,7 @@
     <div style="float:left;width:110px;margin-left:10px">
 
       <span style="color:#F4F4F4;font-size:15px"><?= $_SESSION['uinfos']['username'] ?></span><br>
-      <a href="/app/signout"><span style="color:#FF9200;font-size:10px">Logout</span></a>
+      <a class="btn btn-mini btn-danger" href="/app/signout">Logout</a>
 
     </div>
 
@@ -44,7 +44,7 @@
 
         </div>
         <div id="collapseOne" class="accordion-body collapse">
-          <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
+          <div class="accordion-inner" style="color:white;padding:0px;border:0px">
       
            <li>
             <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker',true);appUpdateLeft($('#acclink-cfg'));">
@@ -89,7 +89,7 @@
         
         </div>
         <div id="collapseTwo" class="accordion-body collapse">
-          <div class="accordion-inner" style="color:white;padding:0px;background:#171717;border:0px">
+          <div class="accordion-inner" style="color:white;padding:0px;border:0px">
       
 
               <?php
@@ -104,7 +104,7 @@
 
   </ul>
 
-
+  <!-- Needs reimplementation in statusbar !
   <div style="padding-left:16px;padding-right:20px;color:#6B787F">
     <?= $lang_array['app']['adam_mode_']?><br>
     <h3 id="app-status-label" style="margin-top:3px;padding-top:3px;color:#6B787F">--</h3>
@@ -120,4 +120,4 @@
     <?= $lang_array['app']['nbpos']?><br>
     <h3 id="app-corestats-nbpos" style="margin-top:3px;padding-top:3px;color:inherit">--</h3>
   </div>
-
+  -->

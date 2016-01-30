@@ -1915,9 +1915,9 @@ function appLoadDisp(disp,need_newbtn) {
 }
 
 function appUpdateLeft(element) {
-  $('.left-menu-link').css('border-bottom', '2px solid #111');
+  //$('.left-menu-link').css('border-bottom', '2px solid #111');
   //alert(element.html());
-  element.css('border-bottom','2px solid #FF9200');
+  //element.css('border-bottom','2px solid #FF9200');
 }
 
 

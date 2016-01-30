@@ -28,7 +28,7 @@ function checkForScrollbar(prev_sbstate) {
 
 function endLoad() {
 
-  $('body').css('background','#111111');
+  $('body').css('background', $('#app-left').css('background-color'));
 
   //periodically checks if scrollbar is here or not;
   var prev_sbstate = false;
