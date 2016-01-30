@@ -57,7 +57,7 @@ if (count($positions) > 0) {
     <td class="s_hide"><?=$pos->open ?></td>
     <td class="s_hide"><?=$pos->stop ?></td>
     <td class="s_hide"><?=$pos->limit ?></td>
-    <td style="font-weight:bold;color:<?= ($pos->pnl > 0) ? '#699e00' : '#c00' ?>" ><?= sprintf("%.2f", $pos->pnl); ?></td>
+    <td style="font-weight:bold;color:<?= ($pos->pnl > 0) ? $PCOLOR : $LCOLOR ?>" ><?= sprintf("%.2f", $pos->pnl); ?></td>
     <td><button class="btn btn-danger" onclick="adamClosePos('<?= $pos->dealid ?>')"><?= $lang_array['app']['close'] ?></button></td>
 
   </tr>

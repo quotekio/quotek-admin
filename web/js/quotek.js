@@ -2220,7 +2220,10 @@ function adamUpdatePerfStats(scale) {
                      success: function() {
 
                        var pcolor = $('#pcolor').css('background-color');
+                       var pcolor_alpha = pcolor.replace(/\)/g, ',0.6)').replace(/rgb/g,'rgba');
+
                        var lcolor = $('#lcolor').css('background-color');
+                       var lcolor_alpha = lcolor.replace(/\)/g, ',0.6)').replace(/rgb/g,'rgba');
 
                        d_raw = $.parseJSON(rps.responseText);
 
@@ -2253,7 +2256,7 @@ function adamUpdatePerfStats(scale) {
                                        bars: {
                                           show: true,
                                           fill: true,
-                                          fillColor: 'rgba(204, 0, 0, .6)',
+                                          fillColor: lcolor_alpha,
                                           barWidth: bar_width,
                                        },
                                        color: lcolor
@@ -2266,7 +2269,7 @@ function adamUpdatePerfStats(scale) {
                                           bars: {
                                               show:true,
                                               fill: true,
-                                              fillColor: 'rgba(105, 158, 0, .6)',
+                                              fillColor: pcolor_alpha,
 
                                               barWidth: bar_width,
                                             },

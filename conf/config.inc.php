@@ -80,6 +80,11 @@ EOT;
     die();
 }
 
+//#### GRAPHIC SETTINGS ####
+$PCOLOR = '#1AB394';
+$LCOLOR = '#ED5565';
+
+
 //loads composer autoload
 require __DIR__ . '/../vendor/autoload.php';
 
