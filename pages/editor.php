@@ -68,7 +68,7 @@ $themes = listThemes();
      <script type="text/javascript" src="/js/flot/jquery.flot.pie.min.js"></script>
 
      <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
-     <title>Quotek Code Editor</title>
+     <title>Quotek Strategy Editor</title>
   </head>
   <body>
 
@@ -295,14 +295,8 @@ $themes = listThemes();
 	  <div class="row-fluid">
 
     
-	        <div class="span4" style="margin-top:0px;overflow:hidden!important">
-	          <div style="float:left;width:200px;margin-top:5px">  
-	              <img style="height:30px" src="/img/quotek-logo.png"> 
-	          </div>
-	          <div style="float:left;width:150px;margin-top:17px">  
-	              <b style="margin-top:1px;color:#FF9200;">Strategy Editor 2.0</b>
-	          </div>
-
+	        <div class="span4" style="margin-top:10px;font-weight:bold;color:#FF993A">
+	          Strategy Editor 2.0
 	        </div>
 
            <div class="span4" style="margin-top:4px;text-align:center">
@@ -641,6 +635,15 @@ $themes = listThemes();
           });
 
 
+          $('#compile').click(function() {
+            compile();
+          });
+
+          $('#backtest').click(function() {
+            showConsole('backtest'); 
+          });
+
+
           onkeydown = function(e){
             if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
                 e.preventDefault();
@@ -649,12 +652,13 @@ $themes = listThemes();
 
             //compile + backtest;
             if ( e.ctrlKey && e.keyCode == 'B'.charCodeAt(0)  ) {
-
+              
               if (e.shiftKey) {
                 showConsole('backtest');
               }
 
               else {
+                e.preventDefault();
                 compile();
               }
 

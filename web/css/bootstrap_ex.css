@@ -4,17 +4,37 @@
   background-color:#23C6C8!important;
 }
 
+.btn-info:hover {
+  background-color:#20B6B8!important;
+}
+
+
 .btn-warning, .label-warning {
   background-color:#F8AC59!important;
 }
+
+.btn-warning:hover {
+  background-color: #EDA455!important;
+}
+
 
 .btn-success, .label-success {
   background-color:#1AB394;
 }
 
+.btn-success:hover {
+  background-color:#179C81;
+}
+
+
 .btn-danger, .label-important {
   background-color:#ED5565;
 }
+
+.btn-danger:hover {
+  background-color:#D64D5B;
+}
+
 
 .progress-warning .bar {
   background:#F8AC59!important;
