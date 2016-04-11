@@ -684,9 +684,6 @@ function adamClosePos(dealid) {
         cache:          false,
         async:          false
         });
-
-  //updates pos list right after having sent order
-  adamUpdatePosList();
   
 }
 
@@ -1146,6 +1143,48 @@ function adamUpdateDBPNLGraph() {
 }
 
 
+function adamUpdatePosList_NoFetch(pdata) {
+
+  //we actually have a poslist.
+  if (pdata.length > 0) {
+    $('.dashboard-poslist-container').show();
+    
+    //we erase all pos lines except table header
+    $('#postable','tr').each(function(index,i) {
+      if (i.hasClass('posentry') ) {
+        console.log('removing..');
+        i.remove();
+      }
+    });
+
+    $.each(pdata, function(index,i) {
+     
+      pline = "";
+      pline += "<tr class='posentry'>";
+      pline += "<td>" + i.indice + "</td>";
+      pline += "<td>" + i.epic + "</td>";
+      pline += "<td>" + i.size + "</td>";
+      pline += "<td>" + i.open + "</td>";
+      pline += "<td>" + i.stop + "</td>";
+      pline += "<td>" + i.limit + "</td>";
+      pline += "<td class='postable_pnl'>" + i.pnl + "</td>" ;
+      pline += "<td>" + "</td>";
+      pline += "</tr>";
+
+      $('#postable').append(pline);
+
+    });
+
+  }
+
+  //we have nothing.
+  else {
+    $('.dashboard-poslist-container').hide(); 
+  }
+
+}
+
+
 function adamUpdatePosList() {
 
   var pl = $.ajax({
@@ -1340,6 +1379,10 @@ function adamParseWSBcast(data) {
 
   else if (dt.algos != undefined) {
     adamUpdateRunningAlgos_NoFetch(dt.algos);
+  }
+
+  else if (dt.poslist != undefined) {
+    adamUpdatePosList_NoFetch(dt.poslist);
   }
 
 }

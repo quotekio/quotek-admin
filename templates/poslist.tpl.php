@@ -34,19 +34,7 @@ if (count($positions) > 0) {
 
 ?>
 
-<table class="table table-striped table-bordered" id="postable">
 
-  <tr>
-	  <th><?=  $lang_array['app']['name'] ?></th>
-	  <th class="s_hide">Id <?= $lang_array['app']['broker'] ?></th>
-	  <th class="s_hide"><?= $lang_array['app']['size'] ?></th>
-	  <th class="s_hide"><?= $lang_array['app']['open'] ?></th>
-	  <th class="s_hide"><?= $lang_array['app']['stop'] ?></th>
-	  <th class="s_hide"><?= $lang_array['app']['limit'] ?></th>
-	  <th>PNL (<?= $lang_array['app']['unrealized'] ?>)</th>
-	  <th><?= $lang_array['app']['actions'] ?></th>
-
-  </tr>
 
   <?php foreach($positions as $pos)  {?>
 

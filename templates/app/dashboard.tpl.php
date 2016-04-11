@@ -199,7 +199,24 @@
                 <h4><?= $lang_array['app']['takenpos'] ?></h4>
             </div>
 
-            <div class="poslist" style="overflow-y:scroll;height:155px;padding:10px"></div>
+            <div class="poslist" style="overflow-y:scroll;height:155px;padding:10px">
+
+              <table class="table table-striped table-bordered" id="postable">
+
+                <tr id="header">
+                  <th><?=  $lang_array['app']['name'] ?></th>
+                  <th>Id <?= $lang_array['app']['broker'] ?></th>
+                  <th><?= $lang_array['app']['size'] ?></th>
+                  <th><?= $lang_array['app']['open'] ?></th>
+                  <th><?= $lang_array['app']['stop'] ?></th>
+                  <th><?= $lang_array['app']['limit'] ?></th>
+                  <th>PNL (<?= $lang_array['app']['unrealized'] ?>)</th>
+                  <th><?= $lang_array['app']['actions'] ?></th>
+                </tr>
+
+               </table>
+
+            </div>
 
           </div>
 
@@ -259,7 +276,8 @@
 <script type="text/javascript">
 
   //setInterval('adamUpdateDBPNLGraph()',10000);
-  setInterval('adamUpdatePosList()',10000);
+  //setInterval('adamUpdatePosList()',10000);
+  
   setInterval('adamUpdateTradeStats()',20000);
   setInterval('adamUpdateHistory()',20000);
 
@@ -272,7 +290,7 @@
     adamUpdatePerfStats($('#perf-scale').attr('scale'));
     adamUpdateTradeStats();
     adamUpdateHistory();
-    
+
   });
 
 
