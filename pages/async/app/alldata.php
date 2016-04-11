@@ -40,34 +40,6 @@ $message = $lang_array['app']['adam_mode']["$state"];
 $cp_errors = $ac->getCompileErrors();
 $res['adamstatus'] = array('state' => $state, 'message' => $message, 'needs_restart' => $nr, 'compile' => $cp_errors );
 
-/* 
-==============
-ADAM CORESTATS
-==============
-*/
-
-if ($ac->AEPStartCLient()) {
-
-  $cs_str = $ac->AEPIssueCmd('corestats');
-  $cs = json_decode($cs_str);
-  $cs->unrealized_pnl = sprintf("%.2f", $cs->unrealized_pnl);
-
-  $res['adamcorestats'] = $cs;
-  
-}
-
-/*
-=============
-ADAM LASTLOGS
-=============
-*/
-
-if ($ac->AEPStartCLient()) {
-  $cs_str = $ac->AEPIssueCmd('lastlogs 100');
-  $cs = json_decode($cs_str);
-  $res['adamlastlogs'] = $cs;
-}
-
 
 /* 
 =================

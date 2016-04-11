@@ -263,8 +263,6 @@
   setInterval('adamUpdateTradeStats()',20000);
   setInterval('adamUpdateHistory()',20000);
 
-  setInterval('adamUpdateRunningAlgosStats()',10000);
-
   setInterval(function() {
     adamUpdatePerfStats($('#perf-scale').attr('scale'));
   },20000);
@@ -274,8 +272,7 @@
     adamUpdatePerfStats($('#perf-scale').attr('scale'));
     adamUpdateTradeStats();
     adamUpdateHistory();
-    adamUpdateRunningAlgosStats();
-
+    
   });
 
 

@@ -22,8 +22,15 @@
 
   $resp = array("status" => "OK","message" => "");
 
+  if ( $_REQUEST['action'] == 'wsinfo' ) {
 
-  if ( $_REQUEST['action'] == 'compile'  ) {
+    $cfg = getActiveCfg();
+    echo json_encode(array("address" => "ws://" . $_SERVER['SERVER_NAME'] . ":" . (  $cfg->aep_listen_port + 1   )) );
+
+  }
+
+
+  else if ( $_REQUEST['action'] == 'compile'  ) {
 
     $source = $_REQUEST['source'];
 

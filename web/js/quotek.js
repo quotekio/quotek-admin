@@ -667,6 +667,10 @@ function adamStartReal() {
   
   if ( st_json.status == "OK" ) adamUpdateStatus();
   else processError(st_json);
+
+  adamWSStart(0);
+
+
 }
 
 
@@ -862,10 +866,10 @@ function adamUpdateAll() {
         success:        function() {
           var alldata = $.parseJSON($.trim(alldata_q.responseText));
 
-          adamUpdateCorestats_NoFetch(alldata.adamcorestats);
-          adamUpdateLastLogs_NoFetch(alldata.adamlastlogs);
+          //adamUpdateCorestats_NoFetch(alldata.adamcorestats);
+          //adamUpdateLastLogs_NoFetch(alldata.adamlastlogs);
           adamUpdateStatus_NoFetch(alldata.adamstatus);
-          adamUpdateAllBacktests_NoFetch(alldata.backteststatuses);
+          //adamUpdateAllBacktests_NoFetch(alldata.backteststatuses);
 
         }
         });
@@ -932,7 +936,7 @@ function adamUpdateLastLogs_NoFetch(fdata) {
   $('#app-dashboard-lastlogs').html(ll_str);      
 }
 
-
+/*
 function adamUpdateLastLogs(nbe) {
 
   var ll = $.ajax({
@@ -955,6 +959,7 @@ function adamUpdateLastLogs(nbe) {
         });
 
 }
+*/
 
 
 function adamUpdateStatus_NoFetch(fdata) {
@@ -1289,6 +1294,56 @@ function adamCheckBTStatus(backtest_id) {
         });
 
 }
+
+
+function adamWSStart(nbret) {
+
+  var wsr = $.ajax({
+        url:            '/async/app/adamctl',
+        type:           'GET',
+        data:           {action: 'wsinfo'},
+        cache:          false,
+        async:          false
+  });
+
+  wsrp = $.parseJSON(wsr.responseText);
+  
+  WS = new WebSocket(wsrp.address);
+  WS.onerror = function() {
+
+    console.log('websocket unavailable, retrying in 3s');
+
+    setTimeout(function(){
+      nbret++;
+      adamWSStart(nbret);
+    }, 3000);
+  }
+
+  WS.onmessage = function (event) {
+    //console.log(event.data);
+    adamParseWSBcast(event.data);
+
+  }
+}
+
+function adamParseWSBcast(data) {
+
+  var dt = $.parseJSON(data);
+  
+  if ( dt.lastlogs !== undefined ) {
+    adamUpdateLastLogs_NoFetch(dt.lastlogs);
+  }
+
+  else if (dt.corestats != undefined ) {
+    adamUpdateCorestats_NoFetch(dt.corestats);
+  }
+
+  else if (dt.algos != undefined) {
+    adamUpdateRunningAlgos_NoFetch(dt.algos);
+  }
+
+}
+
 
 
 function padStr(i) {
@@ -2322,6 +2377,54 @@ function adamUpdatePerfStats(scale) {
 
 
 }
+
+
+function adamUpdateRunningAlgos_NoFetch(ralgos) {
+
+  total = ralgos.length;
+  neutral  = 0;
+  pos = 0;
+  neg = 0;
+
+  spclass = "";
+  $('.algo-line').remove();
+
+  $.each(ralgos,function(index,value) {
+
+    if (value.pnl > 0) { 
+      pos++;
+      spclass = "label-success";
+    }
+    else if (value.pnl < 0) {
+      neg++;
+      spclass="label-important";
+    }
+    else {
+      neutral++;
+      spclass = "label-info";
+     }
+
+     vsplit = value.identifier.split('@');
+
+     $('#dashboard-algos-list').append('<tr class="algo-line"><td>' + 
+                          vsplit[0] + 
+                          '</td><td>' + 
+                          vsplit[1] + 
+                          '</td><td><span class="label '  + spclass + '">' + 
+                          value.pnl + 
+                          '</span></td></tr>'  );
+
+  
+
+     });
+
+  $('#dashboard-algos-total').html(total);
+  $('#dashboard-algos-winning').html(pos);
+  $('#dashboard-algos-losing').html(neg);
+  $('#dashboard-algos-neutral').html(neutral);
+
+}
+
 
 function adamUpdateRunningAlgosStats() {
 
