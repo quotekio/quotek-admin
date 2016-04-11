@@ -1150,9 +1150,9 @@ function adamUpdatePosList_NoFetch(pdata) {
     $('.dashboard-poslist-container').show();
     
     //we erase all pos lines except table header
-    $('#postable','tr').each(function(index,i) {
-      if (i.hasClass('posentry') ) {
-        console.log('removing..');
+    $('.dashboard-poslist-container tr').each(function(index,i) {
+
+      if ($(this).hasClass('posentry') ) {
         i.remove();
       }
     });
@@ -1167,11 +1167,23 @@ function adamUpdatePosList_NoFetch(pdata) {
       pline += "<td>" + i.open + "</td>";
       pline += "<td>" + i.stop + "</td>";
       pline += "<td>" + i.limit + "</td>";
-      pline += "<td class='postable_pnl'>" + i.pnl + "</td>" ;
-      pline += "<td>" + "</td>";
+      pline += "<td class='postable_pnl' style='font-weight:bold'>" + i.pnl + "</td>" ;
+      pline += "<td><button class='pclose btn btn-danger' id='" + i.dealid + "'>X</button></td>";
       pline += "</tr>";
 
       $('#postable').append(pline);
+
+      $(".pclose[id='" + i.dealid  +  "']").click(function() { adamClosePos(i.dealid) }); 
+
+      $(".postable_pnl").each(function(index,i) {
+        if (  parseFloat( $(this).html() ) > 0 ) {
+          $(this).css('color', '#1AB394');
+        }
+
+        else {
+          $(this).css('color', '#ED5565');
+        }
+      });
 
     });
 
