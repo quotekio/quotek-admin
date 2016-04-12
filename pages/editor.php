@@ -404,6 +404,34 @@ $themes = listThemes();
         });
 
 
+        function qbacktest_WSUpdate(data) {
+
+          pdata = $.parseJSON(data);
+          $('#editor-bt-progress').css('width', pdata.btsnap.progress + '%');
+
+        }
+
+        function qbacktest_WSStart(nbret, addr) {
+
+          WS = new WebSocket(addr);
+          WS.onerror = function() {
+
+            console.log('websocket unavailable, retrying in .5s');
+
+            setTimeout(function(){
+              nbret++;
+              qbacktest_WSStart(nbret, addr);
+            }, 500);
+          }
+
+          WS.onmessage = function (event) {
+            console.log(event.data);
+            qbacktest_WSUpdate(event.data);
+
+          }
+
+        }
+
         function qbacktest() {
 
           from = $('#editor-bt-period').val();
@@ -425,7 +453,7 @@ $themes = listThemes();
           success: function() {
 
             jqbtr = $.parseJSON(qbtr.responseText);
-            alert(jqbtr.message);
+            qbacktest_WSStart(0, jqbtr.message);
 
           }
 

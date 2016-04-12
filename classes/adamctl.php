@@ -71,7 +71,7 @@ class adamctl {
     global $ADAM_AEP_PORT;
     global $EXEC_QUEUE_FILE;
 
-    $poffset = $this->findPort();
+    $poffset = $this->findPorts();
     $port = $ADAM_AEP_PORT + $poffset;
 
     $tmp_cpath = "${ADAM_TMP}/cenv/";
@@ -80,12 +80,12 @@ class adamctl {
     //exports config
     exportCfg($cfgid ,null,"${tmp_cpath}/temp.cfg",false);
 
-    $cmd = "sudo ${ADAM_PATH}/bin/adam -c ${tmp_cpath}/temp.cfg --backtest --backtest-from ${from} --backtest-to ${to} -p ${port} -x ${tmp_cpath} -s temp.qs &";
+    $cmd = "sudo ${ADAM_PATH}/bin/adam -c ${tmp_cpath}/temp.cfg --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -x ${tmp_cpath} -s temp.qs &";
     
    
     $ec = new executor($EXEC_QUEUE_FILE);
     $ec->enqueue($cmd);
-    return $poffset;
+    return  "ws://" . $_SERVER['SERVER_NAME'] . ":" . ($port + 1) ;
 
   }
 
@@ -179,15 +179,16 @@ class adamctl {
   }
 
 
-  //This function finds an available port for backtesting
-  function findPort() {
+  //This function finds 2 available ports (AEP + AEP/WS) for backtesting
+  function findPorts() {
 
     global $ADAM_AEP_ADDR;
     global $ADAM_AEP_PORT;
 
-    for ($offset=1;$offset< 1000;$offset++) {
+    for ($offset=1;$offset< 1000;$offset=$offset + 2) {
       $this->sock = @fsockopen($ADAM_AEP_ADDR,$ADAM_AEP_PORT + $offset,$errno,$errstr,1);
-      if (! $this->sock) return $offset;
+      $this->sock2 = @fsockopen($ADAM_AEP_ADDR,$ADAM_AEP_PORT + $offset +1 ,$errno,$errstr,1);
+      if (! $this->sock && ! $this->sock2 ) return $offset;
     }
   }
 
