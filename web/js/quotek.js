@@ -668,8 +668,7 @@ function adamStartReal() {
   if ( st_json.status == "OK" ) adamUpdateStatus();
   else processError(st_json);
 
-  adamWSStart(0);
-
+  setTimeout(function() {  adamWSStart(0);  }, 2000);
 
 }
 
