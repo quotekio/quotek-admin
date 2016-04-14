@@ -172,7 +172,7 @@ $themes = listThemes();
 
       <div class="span6" style="text-align:center">
         <div id="editor-bt-winloss" style="width:150px;height:150px;margin-left:auto;margin-right:auto;"></div>
-        <div style="color:#cccccc;font-size:30px;font-weight:bold;position:absolute;margin-top:-85px;margin-left:105px">0/0</div>
+        <div id="editor-bt-winloss-label" style="color:#cccccc;font-size:30px;font-weight:bold;position:absolute;margin-top:-85px;margin-left:105px">0/0</div>
       </div>
 
       <div class="span6">
@@ -409,6 +409,41 @@ $themes = listThemes();
           pdata = $.parseJSON(data);
           $('#editor-bt-progress').css('width', pdata.btsnap.progress + '%');
 
+          if ( pdata.btsnap.progress == 100) {
+
+            $('#editor-bt-launchbtn').click(function() { qbacktest() });
+            $('#editor-bt-launchbtn').removeClass('disabled');
+            $('#editor-bt-launchbtn').addClass('btn-info');
+
+          }
+          
+          tstats = pdata.btsnap.tradestats;
+
+          if ( tstats.winning + tstats.losing == 0  ) {
+            $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc' }], bt_wloptions);            
+            $('#editor-bt-winloss-label').html('0/0');
+            $('#editor-bt-winloss-label').css('color','#cccccc');
+          }
+
+          else {
+
+            wlcolor = '';
+            if (  tstats.winning > tstats.losing ) {
+              wlcolor = '#1AB394';
+            }
+            else wlcolor = '#ED5565';
+
+            $.plot($('#editor-bt-winloss'), [
+              { label: "winning", data: ( tstats.winning / (tstats.winning + tstats.losing) ) , color: '#1AB394' },
+              { label: "losing", data: ( tstats.losing / (tstats.winning + tstats.losing) ) , color: '#ED5565' },
+
+              ], bt_wloptions);
+            $('#editor-bt-winloss-label').html( tstats.winning + '/' + ( parseInt(tstats.winning) + parseInt(tstats.losing) ) );
+            $('#editor-bt-winloss-label').css('color',wlcolor);
+            
+          }
+
+
         }
 
         function qbacktest_WSStart(nbret, addr) {
@@ -433,6 +468,11 @@ $themes = listThemes();
         }
 
         function qbacktest() {
+
+          $('#editor-bt-launchbtn').off('click');
+          $('#editor-bt-launchbtn').removeClass('btn-info');
+          $('#editor-bt-launchbtn').addClass('disabled');
+          $('#editor-bt-progress').css('width', '0%');
 
           from = $('#editor-bt-period').val();
           to = -1,
