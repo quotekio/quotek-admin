@@ -172,12 +172,17 @@ $themes = listThemes();
 
       <div class="span6" style="text-align:center">
         <div id="editor-bt-winloss" style="width:150px;height:150px;margin-left:auto;margin-right:auto;"></div>
-        <div id="editor-bt-winloss-label" style="color:#cccccc;font-size:30px;font-weight:bold;position:absolute;margin-top:-85px;margin-left:105px">0/0</div>
+        <div id="editor-bt-winloss-label" style="width:115px;text-align:center;color:#cccccc;font-size:30px;font-weight:bold;position:absolute;margin-top:-85px;margin-left:67px">0/0</div>
       </div>
 
       <div class="span6">
 
         <table class="table" style="font-size:20px">
+
+          <tr>
+            <td>Realized PNL</td>
+            <td id="editor-bt-rpnl">0</td>
+          </tr>
 
           <tr>
             <td>Max Drawdown</td>
@@ -418,8 +423,10 @@ $themes = listThemes();
           }
           
           tstats = pdata.btsnap.tradestats;
+          losing = parseInt(tstats.losing);
+          winning = parseInt(tstats.winning);
 
-          if ( tstats.winning + tstats.losing == 0  ) {
+          if ( winning + losing == 0  ) {
             $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc' }], bt_wloptions);            
             $('#editor-bt-winloss-label').html('0/0');
             $('#editor-bt-winloss-label').css('color','#cccccc');
@@ -428,22 +435,38 @@ $themes = listThemes();
           else {
 
             wlcolor = '';
-            if (  tstats.winning > tstats.losing ) {
+            if ( winning > losing ) {
               wlcolor = '#1AB394';
             }
             else wlcolor = '#ED5565';
 
             $.plot($('#editor-bt-winloss'), [
-              { label: "winning", data: ( tstats.winning / (tstats.winning + tstats.losing) ) , color: '#1AB394' },
-              { label: "losing", data: ( tstats.losing / (tstats.winning + tstats.losing) ) , color: '#ED5565' },
+              { label: "winning", data: ( winning / (winning + losing) ) , color: '#1AB394' },
+              { label: "losing", data: ( losing / (winning + losing) ) , color: '#ED5565' },
 
               ], bt_wloptions);
-            $('#editor-bt-winloss-label').html( tstats.winning + '/' + ( parseInt(tstats.winning) + parseInt(tstats.losing) ) );
-            $('#editor-bt-winloss-label').css('color',wlcolor);
+            $('#editor-bt-winloss-label').html( tstats.winning + '/' + ( winning + losing ) );
+            $('#editor-bt-winloss-label').css('color', wlcolor);
+
             
           }
 
+          $('#editor-bt-rpnl').html(pdata.btsnap.pnl);
 
+          if (pdata.btsnap.pnl > 0) $('#editor-bt-rpnl').css('color','#1AB394');
+          else if (pdata.btsnap.pnl < 0) $('#editor-bt-rpnl').css('color','#ED5565');
+          else $('#editor-bt-rpnl').css('color','#cccccc');
+
+          $('#editor-bt-mdd').html(tstats.max_drawdown);
+          if (tstats.max_drawdown == 0) $('#editor-bt-mdd').css('color','#cccccc');
+          else $('#editor-bt-mdd').css('color','#ED5565');
+          
+          $('#editor-bt-pf').html(tstats.profit_factor);
+          if (tstats.profit_factor >= 2 || tstats.profit_factor == "inf") $('#editor-bt-pf').css('color','#1AB394');
+          else if (tstats.profit_factor < 2 && tstats.profit_factor > 0 ) $('#editor-bt-pf').css('color','#ED5565');
+          else if (tstats.profit_factor == 0) $('#editor-bt-pf').css('color','#cccccc');
+
+          
         }
 
         function qbacktest_WSStart(nbret, addr) {
