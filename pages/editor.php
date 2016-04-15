@@ -66,6 +66,7 @@ $themes = listThemes();
      <script type="text/javascript" src="/js/flot/jquery.flot.min.js"></script>
      <script type="text/javascript" src="/js/flot/jquery.flot.time.min.js"></script>
      <script type="text/javascript" src="/js/flot/jquery.flot.pie.min.js"></script>
+     <script type="text/javascript" src="/js/flot/jquery.flot.symbol.min.js"></script>
 
      <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
      <title>Quotek Strategy Editor</title>
@@ -375,20 +376,25 @@ $themes = listThemes();
               },
         };
 
-        var bt_perf_options = {
-                               xaxis: {
-                                mode: "time",
-                              
-                               },   
-                               grid: {
-                                      show: true,
-                                      borderWidth: 0,
-                                },
-                                legend: {
-                                         show: false
+        var bt_perf_options = {  series: {
+                                           lines: {
+                                           show: true,
+                                           fill: true
+                                           }
                                 },
 
-        };
+                                xaxis: {
+                                      mode: "time",
+                              
+                                },   
+                                grid: {
+                                     show: true,
+                                     borderWidth: 0,
+                                },
+                                legend: {
+                                  show: false
+                                }
+                              };
 
 
 
@@ -413,6 +419,8 @@ $themes = listThemes();
 
           pdata = $.parseJSON(data);
           $('#editor-bt-progress').css('width', pdata.btsnap.progress + '%');
+
+          $.plot($('#editor-bt-perfgraph'), [{ label: "foo", data: pdata.btsnap.histgraph , color:'#1AB394'}], bt_perf_options);
 
           if ( pdata.btsnap.progress == 100) {
 
@@ -600,7 +608,7 @@ $themes = listThemes();
             //$('#editor-bt-perfgraph').width();
 
             $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
-            $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [0,1] , color: '#cccccc'}], bt_perf_options);
+            $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
 
             $('#editor-console-btn i').toggleClass('icon-chevron-left icon-chevron-right');
 
