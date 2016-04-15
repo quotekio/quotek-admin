@@ -83,6 +83,10 @@ $themes = listThemes();
 
   <div id="editor-console">
 
+    <div style="position:absolute;margin-left:350px;margin-top:7px">
+      <a style="" id="backtest_notice_btn"><?= $lang_array['app']['backtest_notice_title'] ?></a>
+    </div>
+
     <ul class="nav nav-tabs">
       <li class="console-tentry active" id="console-tentry-compile">
         <a onclick="toggleConsoleTabs('compile')" href="#"><?= $lang_array['app']['compiler'] ?> <span id="editor-compiler-nberrors" class="label">0</span></a>
@@ -100,21 +104,7 @@ $themes = listThemes();
 
     <div class="console-tab well" id="console-backtest" style="display:none;overflow:hidden">
  
-
-      <div class="row-fluid alert-danger" style="padding:5px;margin-bottom:10px">
-        <div class="span1">    
-          <a id="backtest_notice_btn" class="btn btn-danger">
-            <i class="icon-white icon-warning-sign"></i>
-          </a>
-        </div>
-
-
-        <div class="span11" style="padding-top:5px">
-          <b><?= $lang_array['app']['backtest_notice_title'] ?></b>
-        </div>
-
-        </div>
-
+      
       <div class="row-fluid">
 
         <div class="span5">
