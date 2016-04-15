@@ -301,8 +301,8 @@ $themes = listThemes();
 	  <div class="row-fluid">
 
     
-	        <div class="span4" style="margin-top:10px;font-weight:bold;color:#FF993A">
-	          Strategy Editor 2.0
+	        <div class="span4" style="margin-top:10px;font-weight:bold;color:white">
+	          QSE 2.0
 	        </div>
 
            <div class="span4" style="margin-top:4px;text-align:center">

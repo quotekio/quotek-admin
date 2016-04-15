@@ -67,7 +67,35 @@
      </div>
    </div>
 
-     <div id="statusbar"></div>
+     <div id="statusbar">
+
+       <div id="pnlcontainer" style="width:300px;float:left">
+         <div class="span8">
+           <h5>PNL(UNR)</h5>
+         </div>
+         <div class="span4">
+           0
+         </div>
+       </div>
+
+       <div id="pnlcontainer" style="width:300px;float:left">
+         <div class="span8">
+           <h5>| Positions</h5>
+         </div>
+         <div class="span4">
+           0
+         </div>
+       </div>
+
+          <div id="pnlcontainer" style="width:300px;float:right">
+         <div class="span8">
+           <h5>| Mode</h5>
+         </div>
+         <div class="span4">
+         </div>
+         </div>
+
+     </div>
 
      <div id="app-left">
      </div>
