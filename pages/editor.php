@@ -140,7 +140,8 @@ $themes = listThemes();
       </div>
 
       <hr>
-
+      
+      <label><b><?= $lang_array['app']['progress'] ?> <span id="editor-bt-progress-label"></span></b></label>
       <div class="progress progress-info">
         <div class="bar" style="width: 0.1%" id="editor-bt-progress"></div>
       </div>
