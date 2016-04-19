@@ -875,23 +875,27 @@ function adamUpdateAll() {
 
 function adamUpdateCorestats_NoFetch(fdata) {
   if (typeof(fdata.unrealized_pnl) != "undefined") {
-    $('#app-corestats-upnl').html(fdata.unrealized_pnl + " &euro;");
+    $('#status-pnl-lbl').html(fdata.unrealized_pnl + " &euro;");
   }
 
-  prev_nbpos = parseInt($('#app-corestats-nbpos').html());
+
+  prev_nbpos = parseInt($('#status-nbpos-lbl').html());
 
   //Plays sound if needed.
   if (  prev_nbpos > fdata.nbpos ) document.getElementById('audio_notif_1').play();
   else if ( prev_nbpos < fdata.nbpos ) document.getElementById('audio_notif_2').play();
 
-  $('#app-corestats-nbpos').html(fdata.nbpos);
+  $('#status-nbpos-lbl').html(fdata.nbpos);
+  
+  $('#status-pnl-lbl').removeClass('label-important');
+  $('#status-pnl-lbl').removeClass('label-success');
 
   if (fdata.unrealized_pnl != "--") {
     if (parseFloat(fdata.unrealized_pnl) < 0 ) {
-      $('#pnl_leftpanel').css('color','#FF0000');
+      $('#status-pnl-lbl').addClass('label-important'); 
     }
     else {
-      $('#pnl_leftpanel').css('color','#779148'); 
+      $('#status-pnl-lbl').addClass('label-success');
     }
   }
 }
@@ -983,7 +987,7 @@ function adamUpdateStatus_NoFetch(fdata) {
     $('#app-stopadam').click(function() { adamStop(); } ); 
   }
 
-  $('#app-status-label').html(fdata.message);
+  $('#status-mode-lbl').html(fdata.message);
 
   //service needs restart
   if (fdata.needs_restart) {
@@ -1049,7 +1053,7 @@ function adamUpdateStatus() {
              $('#app-stopadam').click(function() { adamStop(); } ); 
            }
 
-           $('#app-status-label').html(res.message);
+           $('#status-mode-lbl').html(res.message);
 
            //service needs restart
            if (res.needs_restart) {

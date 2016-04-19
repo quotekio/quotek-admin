@@ -70,30 +70,16 @@
      <div id="statusbar" style="display:none!important">
 
        <div id="pnlcontainer" style="width:300px;float:left">
-         <div class="span8">
-           <h5>PNL(UNR)</h5>
-         </div>
-         <div class="span4">
-           0
-         </div>
+           <h4>PNL(UNR) <span id="status-pnl-lbl" class="label">0</span></h4>  
        </div>
 
        <div id="pnlcontainer" style="width:300px;float:left">
-         <div class="span8">
-           <h5>| Positions</h5>
-         </div>
-         <div class="span4">
-           0
-         </div>
+           <h4>| Positions <span id="status-nbpos-lbl" class="label label-info">0</span></h4>
        </div>
 
-          <div id="pnlcontainer" style="width:300px;float:right">
-         <div class="span8">
-           <h5>| Mode</h5>
-         </div>
-         <div class="span4">
-         </div>
-         </div>
+        <div id="pnlcontainer" style="width:300px;float:right;text-align:right;margin-right:15px">
+           <h4>| Mode <span id="status-mode-lbl" class="label label-info"></span></h4>
+        </div>
 
      </div>
 

@@ -588,10 +588,18 @@ padding:10px;
 #statusbar {
   position:fixed;
   bottom:0px;
-  height:30px;
   background:#cccccc;
   width:100%;
   opacity:1.0!important;
   z-index:10;
   display:none;
+  font-size:12px;
+  padding:3px;
+}
+
+#statusbar h4 {
+  margin:0px;
+  padding:0px;
+  font-size:12px;
+  font-weight:bold;
 }
