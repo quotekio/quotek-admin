@@ -63,6 +63,9 @@ function endLoad() {
   $('#app-topbar-container').show();
   
   appLoadDisp('dashboard');
+
+  //Starts Websocket Client.
+  adamWSStart(0);
   
 }
 
