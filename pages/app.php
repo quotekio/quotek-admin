@@ -67,7 +67,7 @@
      </div>
    </div>
 
-     <div id="statusbar">
+     <div id="statusbar" style="display:none!important">
 
        <div id="pnlcontainer" style="width:300px;float:left">
          <div class="span8">

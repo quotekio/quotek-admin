@@ -287,6 +287,9 @@
 
   $('#dashboard').bind('afterShow',function()  {
 
+    //Starts Websocket Client.
+    adamWSStart(0);
+
     adamUpdatePerfStats($('#perf-scale').attr('scale'));
     adamUpdateTradeStats();
     adamUpdateHistory();

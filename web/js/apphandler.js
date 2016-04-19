@@ -50,6 +50,7 @@ function endLoad() {
   $('#app-mainview').fadeIn(1000);
 
   $('.robotcontrol').show();
+  $('#statusbar').show();
 
   var dispwidth = $(window).innerWidth() - $('#app-left').width();
   
@@ -61,12 +62,9 @@ function endLoad() {
   setInterval('adamUpdateAll()',3000);
   
   $('#app-topbar-container').show();
-  
+
   appLoadDisp('dashboard');
 
-  //Starts Websocket Client.
-  adamWSStart(0);
-  
 }
 
 /* loading of app js + css */
