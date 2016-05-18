@@ -3,6 +3,10 @@
 $period=60;
 $exec = function() {
 
+  global $ADAM_TMP;
+  global $AR_MAXTRIES;
+  global $AR_DATA_EXPIRES;
+
   //checks notification Options
   $cfg = getActiveCfg();
   $actl = new adamctl();
