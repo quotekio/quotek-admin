@@ -1,14 +1,14 @@
 <?php
-  $SITE_ROOT = '/usr/local/adam/admin/web';
-  $MODULES_PATH='/usr/local/adam/admin/vhmodules';
+  $SITE_ROOT = '/usr/local/qate/admin/web';
+  $MODULES_PATH='/usr/local/qate/admin/vhmodules';
   $MAIL_FROM = "no-reply@chiliconfig.com";
   $CONTACT_EMAIL = "clement@digi-nation.com";
 
-  $ADAM_PATH = "/usr/local/adam/";
-  $ADAM_TMP = "/tmp/adam";
+  $QATE_PATH = "/usr/local/qate/";
+  $QATE_TMP = "/tmp/qate";
   
-  $ADAM_PIDFILE = "$ADAM_TMP/adam.pid";
-  $EXEC_QUEUE_FILE = "${ADAM_TMP}/run.queue";
+  $QATE_PIDFILE = "$QATE_TMP/qate.pid";
+  $EXEC_QUEUE_FILE = "${QATE_TMP}/run.queue";
 
   //autoreboot options
   $AR_MAXTRIES = 5;
@@ -17,10 +17,10 @@
   $GIT_USER = 'git';
   $GIT_LOCATION='/quotek';
 
-  $ADAM_BT_EXPORTS = "/usr/local/adam/admin/data/dumps";
+  $QATE_BT_EXPORTS = "/usr/local/qate/admin/data/dumps";
 
-  $ADAM_AEP_ADDR = "127.0.0.1";
-  $ADAM_AEP_PORT = 9999;
+  $QATE_AEP_ADDR = "127.0.0.1";
+  $QATE_AEP_PORT = 9999;
   
   $VH_VERSION = "3.0 alpha1";
   $API_VERSION= "1.0.0";
@@ -62,13 +62,13 @@ class newstrat: public strategy {
 
 EOT;
 
-  $INCLUDE_PATHS = array ('/usr/local/adam/admin',
-			  '/usr/local/adam/admin/includes',
-			  '/usr/local/adam/admin/classes',
-			  '/usr/local/adam/admin/lib',
-			  '/usr/local/adam/admin/lib/influx',
-			  '/usr/local/adam/admin/templates',
-			  '/usr/local/adam/admin/lang'
+  $INCLUDE_PATHS = array ('/usr/local/qate/admin',
+			  '/usr/local/qate/admin/includes',
+			  '/usr/local/qate/admin/classes',
+			  '/usr/local/qate/admin/lib',
+			  '/usr/local/qate/admin/lib/influx',
+			  '/usr/local/qate/admin/templates',
+			  '/usr/local/qate/admin/lang'
  			 );
 
   foreach($INCLUDE_PATHS as $incpath) {

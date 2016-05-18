@@ -3,7 +3,7 @@
 require_once "corecfg.php";
 require_once "executor.php";
 
-class adamctl {
+class qatectl {
 
   function __construct() {
     $this->supid = 'none';
@@ -18,9 +18,9 @@ class adamctl {
   }
 
   function AEPStartCLient($port_offset=0) {
-    global $ADAM_AEP_ADDR;
-    global $ADAM_AEP_PORT;
-    $this->sock = @fsockopen($ADAM_AEP_ADDR,$ADAM_AEP_PORT+$port_offset,$errno,$errstr,3);
+    global $QATE_AEP_ADDR;
+    global $QATE_AEP_PORT;
+    $this->sock = @fsockopen($QATE_AEP_ADDR,$QATE_AEP_PORT+$port_offset,$errno,$errstr,3);
 
     if ( $this->sock) {
         stream_set_blocking($this->sock, true);
@@ -47,16 +47,16 @@ class adamctl {
 
   function compile($data) {
     
-    global $ADAM_PATH;
-    global $ADAM_TMP;
+    global $QATE_PATH;
+    global $QATE_TMP;
     $outp = array();
 
     $result = 0;
 
-    $tmp_cpath = "${ADAM_TMP}/cenv/";
+    $tmp_cpath = "${QATE_TMP}/cenv/";
     file_put_contents("${tmp_cpath}/temp.qs", $data);
 
-    $cmd = "sudo ${ADAM_PATH}/bin/adam --compile -x ${tmp_cpath} -s temp.qs";
+    $cmd = "sudo ${QATE_PATH}/bin/qate --compile -x ${tmp_cpath} -s temp.qs";
 
     exec($cmd,$outp,$result);
     return $result;
@@ -66,21 +66,21 @@ class adamctl {
   //quick backtest for non-saved strats, without saving.
   function qbacktest($data, $cfgid, $from, $to) {
 
-    global $ADAM_PATH;
-    global $ADAM_TMP;
-    global $ADAM_AEP_PORT;
+    global $QATE_PATH;
+    global $QATE_TMP;
+    global $QATE_AEP_PORT;
     global $EXEC_QUEUE_FILE;
 
     $poffset = $this->findPorts();
-    $port = $ADAM_AEP_PORT + $poffset;
+    $port = $QATE_AEP_PORT + $poffset;
 
-    $tmp_cpath = "${ADAM_TMP}/cenv/";
+    $tmp_cpath = "${QATE_TMP}/cenv/";
     file_put_contents("${tmp_cpath}/temp.qs", $data);
 
     //exports config
     exportCfg($cfgid ,null,"${tmp_cpath}/temp.cfg",false);
 
-    $cmd = "sudo ${ADAM_PATH}/bin/adam -c ${tmp_cpath}/temp.cfg --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -x ${tmp_cpath} -s temp.qs &";
+    $cmd = "sudo ${QATE_PATH}/bin/qate -c ${tmp_cpath}/temp.cfg --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -x ${tmp_cpath} -s temp.qs &";
     
    
     $ec = new executor($EXEC_QUEUE_FILE);
@@ -90,16 +90,16 @@ class adamctl {
   }
 
   function startReal() {
-    global $ADAM_PATH;
-    global $ADAM_TMP;
+    global $QATE_PATH;
+    global $QATE_TMP;
     $outp = array();
 
     //$pidtries = 10;
 
-    $cmd = "sudo /etc/init.d/adam start";
+    $cmd = "sudo /etc/init.d/qate start";
 
-    if (file_exists("$ADAM_TMP/needs_restart")) {
-      unlink("$ADAM_TMP/needs_restart");
+    if (file_exists("$QATE_TMP/needs_restart")) {
+      unlink("$QATE_TMP/needs_restart");
     }
 
     if ($this->checkStatus($this->supid) == 'off') {
@@ -124,17 +124,17 @@ class adamctl {
   }
 
   function stop() {
-    global $ADAM_PIDFILE;
-    exec("sudo /etc/init.d/adam stop");
+    global $QATE_PIDFILE;
+    exec("sudo /etc/init.d/qate stop");
     $this->mode = 'off';
   }
 
 /*//POTENTIALLY DEPRECATED ! 
-  //(but might still be useful if we launch adam foreground, inside  a screen)
+  //(but might still be useful if we launch qate foreground, inside  a screen)
   function setPID($pid,$pidfile=null) {
-    global $ADAM_PIDFILE;
+    global $QATE_PIDFILE;
     if ($pidfile == null) {
-      $pidfile = $ADAM_PIDFILE; 
+      $pidfile = $QATE_PIDFILE; 
     }
 
     $fh = fopen($pidfile,"w");
@@ -146,8 +146,8 @@ class adamctl {
   }
 
   function findRealPID()  {
-    global $ADAM_PATH;
-    exec("ps aux|grep $ADAM_PATH|egrep -v '(sudo|gdb|screen|grep|php)'|awk '{print $2}'",$outp);
+    global $QATE_PATH;
+    exec("ps aux|grep $QATE_PATH|egrep -v '(sudo|gdb|screen|grep|php)'|awk '{print $2}'",$outp);
     if (count($outp) > 0) return $outp[0];
     else return "";
 
@@ -155,8 +155,8 @@ class adamctl {
   */
 
   function getPID($pid_f=null) {
-    global $ADAM_PIDFILE;
-    if ($pid_f == null ) $pidfile = $ADAM_PIDFILE;
+    global $QATE_PIDFILE;
+    if ($pid_f == null ) $pidfile = $QATE_PIDFILE;
     else $pidfile = $pid_f;
     
     $pid = @file_get_contents($pidfile);
@@ -182,21 +182,21 @@ class adamctl {
   //This function finds 2 available ports (AEP + AEP/WS) for backtesting
   function findPorts() {
 
-    global $ADAM_AEP_ADDR;
-    global $ADAM_AEP_PORT;
+    global $QATE_AEP_ADDR;
+    global $QATE_AEP_PORT;
 
     for ($offset=1;$offset< 1000;$offset=$offset + 2) {
-      $this->sock = @fsockopen($ADAM_AEP_ADDR,$ADAM_AEP_PORT + $offset,$errno,$errstr,1);
-      $this->sock2 = @fsockopen($ADAM_AEP_ADDR,$ADAM_AEP_PORT + $offset +1 ,$errno,$errstr,1);
+      $this->sock = @fsockopen($QATE_AEP_ADDR,$QATE_AEP_PORT + $offset,$errno,$errstr,1);
+      $this->sock2 = @fsockopen($QATE_AEP_ADDR,$QATE_AEP_PORT + $offset +1 ,$errno,$errstr,1);
       if (! $this->sock && ! $this->sock2 ) return $offset;
     }
   }
 
   function getCompileErrors() {
 
-    global $ADAM_TMP;
+    global $QATE_TMP;
 
-    $cp_errors = file_get_contents("$ADAM_TMP/compiler.errors.log");
+    $cp_errors = file_get_contents("$QATE_TMP/compiler.errors.log");
     $cp_errors = trim( str_replace("\n","<br>", $cp_errors) );
     if ($cp_errors === false) $cp_errors = "";
     return $cp_errors;

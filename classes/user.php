@@ -1,6 +1,6 @@
 <?php
 
-require_once('adamobject.php');
+require_once('qateobject.php');
 require_once('include/functions.inc.php');
 
 
@@ -35,7 +35,7 @@ function getUserList() {
 
 
 /* New class for user management , replaces vhuser. */
-class user extends adamobject {
+class user extends qateobject {
 
   function startSession() {
     if (!isset($_SESSION)) session_start();

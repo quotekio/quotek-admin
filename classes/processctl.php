@@ -4,10 +4,10 @@ class processctl {
 
   function __construct($pname) {
   	global $SITE_ROOT;
-  	global $ADAM_TMP;
+  	global $QATE_TMP;
     $this->pname = $pname;
     $this->process_path  = $SITE_ROOT . "/../processes/";
-    $this->pidfile = $ADAM_TMP . "/" . $pname . ".pid";
+    $this->pidfile = $QATE_TMP . "/" . $pname . ".pid";
     $this->mode = "off";
     $this->pid = $this->getPID();
     if ($this->pid != "none") {

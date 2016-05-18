@@ -7,11 +7,11 @@
 
   require_once("lang/$lang/app.lang.php");
   require_once("classes/user.php");
-  require_once("classes/adamctl.php");
+  require_once("classes/qatectl.php");
   require_once("classes/corecfg.php");
   //require_once("lang/$lang/success.lang.php");
 
-  $ac = new adamctl();
+  $ac = new qatectl();
 
   if (!verifyAuth()) die('You are not logged');
 
@@ -107,10 +107,10 @@
   else if ( $_REQUEST['action'] == 'getStatus') {
 
     $state = $ac->checkStatus($ac->supid);
-    $nr = file_exists('/tmp/adam/needs_restart') ;
+    $nr = file_exists('/tmp/qate/needs_restart') ;
     $compile_errors = $ac->getCompileErrors();
 
-    $message = $lang_array['app']['adam_mode']["$state"];
+    $message = $lang_array['app']['qate_mode']["$state"];
 
     $res = array('state' => $state, 
                 'message' => $message, 

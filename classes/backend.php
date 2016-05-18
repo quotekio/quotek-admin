@@ -1,8 +1,8 @@
 <?php
 
-require_once('adamobject.php');
+require_once('qateobject.php');
 
-class backend extends adamobject {
+class backend extends qateobject {
 	
   function __construct() {
         

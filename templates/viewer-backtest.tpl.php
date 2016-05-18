@@ -79,21 +79,21 @@
                     };
 
       
-      function adamRedreshBacktestInfos() {
+      function qateRedreshBacktestInfos() {
 
-         adamUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
-         adamUpdateBacktestProgress(<?= $bt->id ?>);
-         adamUpdateBacktestLogs(<?= $bt->id ?>);
+         qateUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
+         qateUpdateBacktestProgress(<?= $bt->id ?>);
+         qateUpdateBacktestLogs(<?= $bt->id ?>);
 
          if ( $('#modal_win').is(':visible') ) {
-           setTimeout('adamRedreshBacktestInfos()',2000);
+           setTimeout('qateRedreshBacktestInfos()',2000);
          }
          else return false;
       }
         
-      adamUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
-      adamUpdateBacktestProgress(<?= $bt->id ?>);
-      adamUpdateBacktestLogs(<?= $bt->id ?>);
-      setTimeout('adamRedreshBacktestInfos()', 2000);
+      qateUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
+      qateUpdateBacktestProgress(<?= $bt->id ?>);
+      qateUpdateBacktestLogs(<?= $bt->id ?>);
+      setTimeout('qateRedreshBacktestInfos()', 2000);
       </script>
       

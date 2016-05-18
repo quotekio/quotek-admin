@@ -1,0 +1,29 @@
+#!/bin/bash
+
+BIN=/usr/bin/php
+QATE_USER=www-data
+QATE_PID="/tmp/qate/asyncexec.pid"
+QATE_CHROOT="/tmp/qate/chroot"
+
+case $1 in
+
+  start)
+    start-stop-daemon --chuid $QATE_USER --start --quiet --background --oknodo --make-pidfile --pidfile $QATE_PID --exec $BIN -- /usr/local/qate/admin/jobs/asyncexec.php
+  ;;
+
+  startfg)
+    start-stop-daemon --chuid $QATE_USER --start --quiet --oknodo --make-pidfile --pidfile $QATE_PID --exec $BIN -- /usr/local/qate/admin/jobs/asyncexec.php
+  ;;
+
+  stop)
+    kill `cat /tmp/qate/asyncexec.pid`
+  ;;
+
+  restart)
+    $0 stop
+    $0 start
+  
+esac
+
+
+

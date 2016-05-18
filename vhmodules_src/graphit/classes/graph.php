@@ -1,9 +1,9 @@
 <?php
 
-require_once("adamobject.php");
+require_once("qateobject.php");
 
 
-class graph_component extends adamobject {
+class graph_component extends qateobject {
   
   function __construct() {
 
@@ -12,7 +12,7 @@ class graph_component extends adamobject {
 }
 
 
-class graph extends adamobject  {
+class graph extends qateobject  {
 
   function __construct() {
 
@@ -20,7 +20,7 @@ class graph extends adamobject  {
 
   function loadComponents() {
     $this->components = getGraphComponents($this->id);
-    //file_put_contents("/tmp/adam/comps.txt", $this->components);
+    //file_put_contents("/tmp/qate/comps.txt", $this->components);
   }
 
   function setComponents($tmpcomp) {

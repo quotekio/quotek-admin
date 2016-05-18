@@ -23,9 +23,9 @@
       $tdclass = ($ccfg->active ==1 ) ? 'activated' : '';
 
       $actbtnclass = ($ccfg->active == 1) ? "disabled" : "btn-success";
-      $actbtnclick = ($ccfg->active == 1) ? "" :  "adamActivateCoreCfg(" . $ccfg->id . ");" ; 
+      $actbtnclick = ($ccfg->active == 1) ? "" :  "qateActivateCoreCfg(" . $ccfg->id . ");" ; 
       $delbtnclass = ($ccfg->active == 1) ? "disabled" : "btn-danger";
-      $deltbtnclick = ($ccfg->active == 1) ? "" :  "adamDelCoreCfg(" . $ccfg->id . ");" ;
+      $deltbtnclick = ($ccfg->active == 1) ? "" :  "qateDelCoreCfg(" . $ccfg->id . ");" ;
 
     ?>
   
@@ -44,7 +44,7 @@
                  title="<?= $lang_array['app']['corecfg_actions_edit'] ?>">
                 <i class="icon-white icon-edit"></i>
               </a>
-              <a onclick="$(this).tooltip('hide');adamCloneCoreCfg(<?= $ccfg->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_clone'] ?>">
+              <a onclick="$(this).tooltip('hide');qateCloneCoreCfg(<?= $ccfg->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_clone'] ?>">
                 <i class="icon-white icon-leaf"></i>
               </a>
               <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-corecfg" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_delete'] ?>">
@@ -65,13 +65,13 @@
                                 
                                 var ccid = $(this).parent().parent().parent().attr('id').replace(/corecfg-line-/g,"");
                                 $(this).click(function() {
-                                   adamShowCorecfgEditor();
-                                   $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_edit_title']  ?>");
+                                   qateShowCorecfgEditor();
+                                   $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
                                    $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-                                   adamGetCoreCfgDataToEdit(ccid);
+                                   qateGetCoreCfgDataToEdit(ccid);
                                    $('#editor-action').off();
                                    $('#editor-action').click(function() {
-                                       adamSaveCoreCfg(parseInt(ccid));
+                                       qateSaveCoreCfg(parseInt(ccid));
                                    });
                                });
                             });

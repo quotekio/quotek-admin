@@ -34,9 +34,9 @@
                     $result['date'] = date('d-m-Y H:i:s',$result['date']);
                   ?>
                     <tr id="result-line-<?= $result['tstamp'] ?>">
-                      <td style="cursor:pointer" onclick="adamLoadBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>) "><?= $lang_array['app']['btof'] . " " . $result['date'] ?></td>
+                      <td style="cursor:pointer" onclick="qateLoadBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>) "><?= $lang_array['app']['btof'] . " " . $result['date'] ?></td>
                       <td style="text-align:right;padding-right:15px">
-                        <a onclick="adamDeleteBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>)" class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['backtest_result_delete'] ?>">
+                        <a onclick="qateDeleteBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>)" class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['backtest_result_delete'] ?>">
                           <i class="icon-white icon-remove-sign" ></i>
                         </a>
                       </td>
@@ -56,16 +56,16 @@
 
                   <ul class="nav nav-tabs">
                      <li class="active">
-                        <a onclick="adamResultNav($(this));" class="result-navlink" id ="main"><?= $lang_array['app']['main'] ?></a>
+                        <a onclick="qateResultNav($(this));" class="result-navlink" id ="main"><?= $lang_array['app']['main'] ?></a>
                       </li>
                      <li>
-                        <a onclick="adamResultNav($(this));" class="result-navlink" id="positions"><?= $lang_array['app']['pos'] ?></a>
+                        <a onclick="qateResultNav($(this));" class="result-navlink" id="positions"><?= $lang_array['app']['pos'] ?></a>
                       </li> 
                      <li>
-                        <a onclick="adamResultNav($(this));" class="result-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
+                        <a onclick="qateResultNav($(this));" class="result-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
                       </li>
                       <li>
-                        <a onclick="adamResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
+                        <a onclick="qateResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
                       </li>
                   </ul>
 
@@ -170,26 +170,26 @@
 
       <script type="text/javascript">
         <?php if (count($results) > 0 ) { ?>
-          adamLoadBTResult(<?= $bt->id ?>, <?= $results[0]['tstamp'] ?> );
+          qateLoadBTResult(<?= $bt->id ?>, <?= $results[0]['tstamp'] ?> );
         <?php } ?>
         
         /*
         $('#viewer-backtest-resultslist').change(function() {
                                                 
-          adamLoadBTResult(<?= $bt->id  ?>, $('#viewer-backtest-resultslist').val()[0] );
+          qateLoadBTResult(<?= $bt->id  ?>, $('#viewer-backtest-resultslist').val()[0] );
 
         });
         */
 
        $('#result_values_selector').change(function() {
-         adamChangeBTResultValues();
+         qateChangeBTResultValues();
        });
 
        $('#result_values_selector option:eq(0)').prop('selected', true);
-       adamChangeBTResultValues();
+       qateChangeBTResultValues();
 
        
-     function adamResultNav(obj) {
+     function qateResultNav(obj) {
        $('.result-frame').hide();
        $('#result-frame-' +  obj.attr('id') ).show();
        $('.result-navlink').parent().removeClass('active');

@@ -24,12 +24,12 @@
   </li>
 
   <li>
-    <a class="left-menu-link" onclick="appLoadDisp('dashboard',false);adamUpdateDBPNLGraph();appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('dashboard',false);qateUpdateDBPNLGraph();appUpdateLeft($(this));">
       <img style="height:14px" src="/img/dashboard.png" >&nbsp;<?= $lang_array['app']['dashboard']?></a>
   </li>
 
   <li>
-    <a class="left-menu-link" onclick="appLoadDisp('adamstrats',true);appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('qatestrats',true);appUpdateLeft($(this));">
       <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
   </li>
 
@@ -38,8 +38,8 @@
       <div class="accordion-group" style="border:0px">
         <div class="accordion-heading">
 
-          <a id="acclink-cfg" class="left-menu-link" onclick="appLoadDisp('adamcfg-core',true);appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
-            <i class="icon-wrench icon-white"></i> <?= $lang_array['app']['adamcfg']; ?>
+          <a id="acclink-cfg" class="left-menu-link" onclick="appLoadDisp('qatecfg-core',true);appUpdateLeft($(this));" class="accordion-toggle" data-toggle="collapse" data-parent="#app-left-wizzards-accordion" href="#collapseOne" style="padding:16px">
+            <i class="icon-wrench icon-white"></i> <?= $lang_array['app']['qatecfg']; ?>
           </a>
 
         </div>
@@ -47,19 +47,19 @@
           <div class="accordion-inner" style="color:white;padding:0px;border:0px">
       
            <li>
-            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-broker',true);appUpdateLeft($('#acclink-cfg'));">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('qatecfg-broker',true);appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-briefcase icon-white"></i> 
               <?=  $lang_array['app']['broker']  ?> </a>
            </li>            
 
            <li>
-            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-values',true);appUpdateLeft($('#acclink-cfg'));">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('qatecfg-values',true);appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-book icon-white"></i> 
               <?=  $lang_array['app']['values']  ?> </a>
            </li>
 
            <li>
-            <a class="left-menu-link" href="Javascript:appLoadDisp('adamcfg-users',true);appUpdateLeft($('#acclink-cfg'));">
+            <a class="left-menu-link" href="Javascript:appLoadDisp('qatecfg-users',true);appUpdateLeft($('#acclink-cfg'));">
               <i class="icon-user icon-white"></i> 
               <?=  $lang_array['app']['users']  ?> </a>
            </li>            
@@ -74,7 +74,7 @@
   <!-- Not implemented yet -->
   <!--
   <li>
-    <a class="left-menu-link" onclick="appLoadDisp('adambacktest',true);appUpdateLeft($(this));">
+    <a class="left-menu-link" onclick="appLoadDisp('qatebacktest',true);appUpdateLeft($(this));">
       <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
   </li> -->
 
@@ -106,7 +106,7 @@
 
   <!-- Needs reimplementation in statusbar !
   <div style="padding-left:16px;padding-right:20px;color:#6B787F">
-    <?= $lang_array['app']['adam_mode_']?><br>
+    <?= $lang_array['app']['qate_mode_']?><br>
     <h3 id="app-status-label" style="margin-top:3px;padding-top:3px;color:#6B787F">--</h3>
   </div>
   

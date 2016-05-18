@@ -24,5 +24,5 @@
      <script type="text/javascript">
 
      $('#btn-git-createb').click(function() {
-       adamCreateGitBranch();
+       qateCreateGitBranch();
      });

@@ -12,7 +12,7 @@ fi
 
 HAS_PREV_INST=0
 
-echo "* VISIBLE HAND INSTALLER *"
+echo "* QWC INSTALLER *"
 
 if [ "$INSTALL_DIR" == "" ];then
   echo "Install Directory:"
@@ -21,7 +21,7 @@ fi
 
 if [ -d $INSTALL_DIR ]
 then
-  echo "A Previous version of Visible Hand has been found. Do you want to back it up?"
+  echo "A Previous version of QWC has been found. Do you want to back it up?"
   
   if [ $FY == 0 ]; then 
     read BACKUP_ANS

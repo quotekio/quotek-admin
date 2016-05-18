@@ -1,8 +1,8 @@
 <?php
-require_once('adamobject.php');
+require_once('qateobject.php');
 require_once('lib/rss.php');
 
-class flashnews_keyword extends adamObject {
+class flashnews_keyword extends qateObject {
 
   function __construct() {
 
@@ -11,7 +11,7 @@ class flashnews_keyword extends adamObject {
 };
 
 
-class flashnews_news extends adamObject {
+class flashnews_news extends qateObject {
 
   function __construct() {
 
@@ -53,7 +53,7 @@ class flashnews_news extends adamObject {
 
 };
 
-class flashnews_datasource extends adamobject  {
+class flashnews_datasource extends qateobject  {
 
   function __construct() {
         

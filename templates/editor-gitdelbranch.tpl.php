@@ -41,5 +41,5 @@
      <script type="text/javascript">
 
      $('#btn-git-deleteb').click(function() {
-       adamDeleteGitBranch();
+       qateDeleteGitBranch();
      });

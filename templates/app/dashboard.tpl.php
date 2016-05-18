@@ -24,7 +24,7 @@
                 <h4><?= $lang_array['app']['performance'] ?></h4>
               </div>
               <div class="span10" style="margin-top:8px;text-align:right">
-                <a id="perf-scale" class="btn btn-warning" onclick="adamChangePerformanceScale()" scale="day"><?= $lang_array['app']['day'] ?></a>
+                <a id="perf-scale" class="btn btn-warning" onclick="qateChangePerformanceScale()" scale="day"><?= $lang_array['app']['day'] ?></a>
              </div>
           </div>
 
@@ -234,10 +234,10 @@
 
               <ul class="nav nav-tabs">
                  <li class="active">
-                    <a class="logs-navlink" onclick="adamLogNav($(this));" id ="lastlogs"><?= $lang_array['app']['lastlog'] ?></a>
+                    <a class="logs-navlink" onclick="qateLogNav($(this));" id ="lastlogs"><?= $lang_array['app']['lastlog'] ?></a>
                   </li>
                  <li>
-                    <a class="logs-navlink" onclick="adamLogNav($(this));" id="compiler"><?= $lang_array['app']['compiler'] ?> <span id="app-dashboard-compiler-nberrors" class="label label-success">0</span></a>
+                    <a class="logs-navlink" onclick="qateLogNav($(this));" id="compiler"><?= $lang_array['app']['compiler'] ?> <span id="app-dashboard-compiler-nberrors" class="label label-success">0</span></a>
                   </li> 
 
               </ul>         
@@ -275,29 +275,29 @@
 
 <script type="text/javascript">
 
-  //setInterval('adamUpdateDBPNLGraph()',10000);
-  //setInterval('adamUpdatePosList()',10000);
+  //setInterval('qateUpdateDBPNLGraph()',10000);
+  //setInterval('qateUpdatePosList()',10000);
   
-  setInterval('adamUpdateTradeStats()',20000);
-  setInterval('adamUpdateHistory()',20000);
+  setInterval('qateUpdateTradeStats()',20000);
+  setInterval('qateUpdateHistory()',20000);
 
   setInterval(function() {
-    adamUpdatePerfStats($('#perf-scale').attr('scale'));
+    qateUpdatePerfStats($('#perf-scale').attr('scale'));
   },20000);
 
   $('#dashboard').bind('afterShow',function()  {
 
     //Starts Websocket Client.
-    adamWSStart(0);
+    qateWSStart(0);
 
-    adamUpdatePerfStats($('#perf-scale').attr('scale'));
-    adamUpdateTradeStats();
-    adamUpdateHistory();
+    qateUpdatePerfStats($('#perf-scale').attr('scale'));
+    qateUpdateTradeStats();
+    qateUpdateHistory();
 
   });
 
 
-  function adamLogNav(obj) {
+  function qateLogNav(obj) {
 
     $('.lognav').hide();
     $('#app-dashboard-' +  obj.attr('id') ).show();
@@ -307,7 +307,7 @@
     
   }
 
-  function adamChangePerformanceScale() {
+  function qateChangePerformanceScale() {
 
     elt = $('#perf-scale');
 
@@ -326,7 +326,7 @@
       elt.html('<?= $lang_array['app']['day'] ?>');
     }
 
-    adamUpdatePerfStats(elt.attr('scale'));
+    qateUpdatePerfStats(elt.attr('scale'));
 
   }
 

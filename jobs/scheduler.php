@@ -6,7 +6,7 @@
   include ( $JOBS_DIR . "/../conf/config.inc.php");
 
   include ("corecfg.php");
-  include ("adamctl.php");
+  include ("qatectl.php");
   include ("user.php");
   include ("brokercfg.php");
 

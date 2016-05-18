@@ -14,7 +14,7 @@
           
           <div style="padding:5px;padding-left:0px">
             <b>powered-by:</b><br>
-            <img style="height:28px" src="/img/adam-logo.png"/>&nbsp;&nbsp;
+            <img style="height:28px" src="/img/qate-logo.png"/>&nbsp;&nbsp;
             <img style="height:25px" src="/img/influxdb-logo.png"/>
           </div>
 
@@ -24,7 +24,7 @@
                 <td><b>Version:&nbsp;&nbsp;</b></td><td><?= $VH_VERSION ?></td>
               </tr>
               <tr>
-                <td><b>Adam Version:&nbsp;&nbsp;</b></td><td id="about_adamversion">--</td>
+                <td><b>Qate Version:&nbsp;&nbsp;</b></td><td id="about_qateversion">--</td>
               </tr>
               <tr>
                 <td><b>Modules:&nbsp;&nbsp;</b></td><td> <?php
@@ -43,5 +43,5 @@
      </div>
 
      <script type="text/javascript">
-       adamGetVersion();
+       qateGetVersion();
      </script>

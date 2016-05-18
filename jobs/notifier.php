@@ -26,11 +26,11 @@ $exec = function() {
 
   //checks notification Options
   $cfg = getActiveCfg();
-  $actl = new adamctl();
+  $actl = new qatectl();
 
   if ( $cfg->notify_shutdown == 1 && $actl->mode == 'off' ) {
     // Sends a shutdown notification
-    echo "ADAM DOWN\n";
+    echo "QATE DOWN\n";
  
     $shutdown_email['body'] = str_replace("{{DATE}}" , date("H:i:s"), $shutdown_email['body']);
 

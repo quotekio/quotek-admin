@@ -94,11 +94,11 @@ function updateQPosView()  {
 function QPOpen(way, name) {
 
   var ssl = $('#QPSSL').val();
-  adamSendOrder( 'openpos:' + name + ":" + way + ":" + ssl );
+  qateSendOrder( 'openpos:' + name + ":" + way + ":" + ssl );
   $('#QPView').hide();
 
   //updates pos list right after having sent order
-  adamUpdatePosList();
+  qateUpdatePosList();
   
 }
 

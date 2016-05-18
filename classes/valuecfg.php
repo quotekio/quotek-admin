@@ -1,8 +1,8 @@
 <?php
 
-require_once('adamobject.php');
+require_once('qateobject.php');
 
-class valuecfg extends adamobject {
+class valuecfg extends qateobject {
 	
   function __construct() {
         

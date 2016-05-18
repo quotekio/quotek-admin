@@ -1,8 +1,8 @@
 <?php
 
-require_once('adamobject.php');
+require_once('qateobject.php');
 
-class corecfg  extends adamobject {
+class corecfg  extends qateobject {
 
 	function __construct() {
 
@@ -179,7 +179,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
   require_once('valuecfg.php');
 
-  global $ADAM_PATH;
+  global $QATE_PATH;
   global $GIT_LOCATION;
   global $DEMO_MODE;
   global $DEMO_BROKER_PARAMS;
@@ -196,7 +196,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
   $fh = null;
   if ($dest == null) {
-      $fh = fopen($ADAM_PATH . "/etc/adam.conf","w");
+      $fh = fopen($QATE_PATH . "/etc/qate.conf","w");
   }
   else {
       $fh = fopen($dest,"w");
@@ -278,7 +278,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
 
   
   if ($nr) {
-    $fh2 = fopen("/tmp/adam/needs_restart","w");
+    $fh2 = fopen("/tmp/qate/needs_restart","w");
     fwrite($fh2,"1");
     fclose($fh2);
   }

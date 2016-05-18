@@ -16,7 +16,7 @@ $perf_data['trade_pf'] = array( 'day' => 0, 'week' => 0, 'month' => 0 );
 $perf_data['trade_mdd'] = array( 'day' => 0, 'week' => 0, 'month' => 0 );
 
 
-//fetches historical data from adam backend
+//fetches historical data from qate backend
 $b = new backendwrapper();
 
 $hist_month_data = $b->query_history($cur_month,time(0)); 

@@ -24,9 +24,9 @@
       	<td>
 
           <div class="btn-group">
-            <a class="btn btn-inverse btn-adambroker-edit" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
-            <a onclick="$(this).tooltip('hide');adamCloneBrokerCfg(<?= $b->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
-            <a class="btn btn-danger" id="btn-del-brokercfg" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_delete'] ?>" onclick="adamDelBrokerCfg(<?= $b->id ?>)"><i class="icon-white icon-remove-sign"></i></a>
+            <a class="btn btn-inverse btn-qatebroker-edit" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
+            <a onclick="$(this).tooltip('hide');qateCloneBrokerCfg(<?= $b->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
+            <a class="btn btn-danger" id="btn-del-brokercfg" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_delete'] ?>" onclick="qateDelBrokerCfg(<?= $b->id ?>)"><i class="icon-white icon-remove-sign"></i></a>
           </div>
 
           <?php
@@ -66,7 +66,7 @@
 
        //had play, switch to stop
        if ($('i',gwbtn).hasClass('icon-play')) {
-         adamStartGW(bid);
+         qateStartGW(bid);
          $('i',gwbtn).addClass('icon-stop');
          $('i',gwbtn).removeClass('icon-play');
 
@@ -76,7 +76,7 @@
        }
        //had stop, switch to play
        else {
-         adamStopGW(bid);
+         qateStopGW(bid);
          $('i',gwbtn).removeClass('icon-stop');
          $('i',gwbtn).addClass('icon-play');
 
@@ -88,18 +88,18 @@
      }
 
 
-    $('.btn-adambroker-edit').each(function() {
+    $('.btn-qatebroker-edit').each(function() {
 
        var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/brokercfg-line-/g,""));
        $(this).off();
        $(this).click(function() {
-          adamShowBrokercfgEditor();
-          $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_edit_title']  ?>");
+          qateShowBrokercfgEditor();
+          $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
           $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-          adamGetBrokerCfgDataToEdit(bid);
+          qateGetBrokerCfgDataToEdit(bid);
           $('#editor-action').off();
           $('#editor-action').click(function() {
-            adamSaveBrokerCfg(bid);
+            qateSaveBrokerCfg(bid);
           });
 
        });

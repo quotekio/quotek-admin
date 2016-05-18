@@ -32,9 +32,9 @@
       	<td>
 
           <div class="btn-group">
-            <a class="btn btn-inverse btn-adamvalue-edit" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
-            <a onclick="$(this).tooltip('hide');adamCloneValue(<?= $v->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
-            <a class="btn btn-danger btn-adamvalue-delete" id="btn-del-value" onclick="adamDelValue(<?= $v->id ?>);" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_delete'] ?>"><i class="icon-white icon-remove-sign"></i></a>
+            <a class="btn btn-inverse btn-qatevalue-edit" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
+            <a onclick="$(this).tooltip('hide');qateCloneValue(<?= $v->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
+            <a class="btn btn-danger btn-qatevalue-delete" id="btn-del-value" onclick="qateDelValue(<?= $v->id ?>);" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_delete'] ?>"><i class="icon-white icon-remove-sign"></i></a>
           </div>
 
       	</td>
@@ -47,19 +47,19 @@
 
   <script type="text/javascript">
 
-   $('.btn-adamvalue-edit').each(function() {
+   $('.btn-qatevalue-edit').each(function() {
 
      var vid = $(this).parent().parent().parent().attr('id').replace(/value-line-/g,""); 
 
      $(this).click(function() {
 
-         adamShowValueEditor();
-         $('#editor-title').html("<?= $lang_array['app']['adamvalue_editor_edit_title'] ?>"); 
+         qateShowValueEditor();
+         $('#editor-title').html("<?= $lang_array['app']['qatevalue_editor_edit_title'] ?>"); 
          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-         adamGetValueDataToEdit(vid);
+         qateGetValueDataToEdit(vid);
          $('#editor-action').off('click');
          $('#editor-action').click(function() {
-             adamSaveValue(parseInt(vid));
+             qateSaveValue(parseInt(vid));
          });
      });
   });

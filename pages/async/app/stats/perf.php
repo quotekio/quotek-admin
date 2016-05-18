@@ -6,7 +6,7 @@
 
   if (! isset($_REQUEST['scale']) ) die('Invalid Scale!');
 
-  //fetches historical data from adam backend
+  //fetches historical data from qate backend
   $b = new backendwrapper();
 
   $offset = 0;

@@ -29,5 +29,5 @@
      <script type="text/javascript">
 
      $('#btn-git-createc').click(function() {
-       adamCreateGitCommit();
+       qateCreateGitCommit();
      });

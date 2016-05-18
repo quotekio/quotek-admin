@@ -14,26 +14,26 @@
 
   $lang_array['app']['dashboard'] = 'Tableau de bord';
   $lang_array['app']['dashboard_subtitle'] = 'Vue générale';
-  $lang_array['app']['adam_mode_'] = 'Status';
+  $lang_array['app']['qate_mode_'] = 'Status';
 
-  $lang_array['app']['adam_mode']['off'] = 'Eteint';
-  $lang_array['app']['adam_mode']['demo'] = 'Démo';
-  $lang_array['app']['adam_mode']['live'] = 'Réel';
-  $lang_array['app']['adam_mode']['Live'] = 'Réel';
+  $lang_array['app']['qate_mode']['off'] = 'Eteint';
+  $lang_array['app']['qate_mode']['demo'] = 'Démo';
+  $lang_array['app']['qate_mode']['live'] = 'Réel';
+  $lang_array['app']['qate_mode']['Live'] = 'Réel';
   
   $lang_array['app']['langsel'] = 'Changer la langue';
 
-  $lang_array['app']['adam_mode']['running'] = 'En cours';
-  $lang_array['app']['adam_mode']['preparing'] = 'Préparation';
-  $lang_array['app']['adam_mode']['real'] = 'Réel';
-  $lang_array['app']['adam_mode']['bt'] = 'Backtest';
-  $lang_array['app']['adam_mode']['genetics'] = 'Génétique';
+  $lang_array['app']['qate_mode']['running'] = 'En cours';
+  $lang_array['app']['qate_mode']['preparing'] = 'Préparation';
+  $lang_array['app']['qate_mode']['real'] = 'Réel';
+  $lang_array['app']['qate_mode']['bt'] = 'Backtest';
+  $lang_array['app']['qate_mode']['genetics'] = 'Génétique';
   $lang_array['app']['modules'] = 'Modules';
   $lang_array['app']['main'] = 'Principal';
-  $lang_array['app']['adam_start'] = 'Démarrer le robot Adam';
-  $lang_array['app']['adam_debug'] = 'Démarrer le robot Adam en mode debug';
-  $lang_array['app']['adam_stop'] = 'Stopper le robot Adam';
-  $lang_array['app']['adam_restart'] = 'Redémarrer le robot Adam';
+  $lang_array['app']['qate_start'] = 'Démarrer le robot Qate';
+  $lang_array['app']['qate_debug'] = 'Démarrer le robot Qate en mode debug';
+  $lang_array['app']['qate_stop'] = 'Stopper le robot Qate';
+  $lang_array['app']['qate_restart'] = 'Redémarrer le robot Qate';
   
   $lang_array['app']['logs'] = 'Journaux';  
   $lang_array['app']['asset'] = 'Actif';
@@ -86,7 +86,7 @@
   $lang_array['app']['lastlog'] = 'Dernières entrées du journal';
   $lang_array['app']['compiler'] = "Compilateur";
 
-  $lang_array['app']['adamcfg'] = 'Configuration';
+  $lang_array['app']['qatecfg'] = 'Configuration';
   $lang_array['app']['broker'] = 'Courtiers';
   $lang_array['app']['indices'] = 'Indices';
   $lang_array['app']['values'] = 'Actifs';
@@ -125,30 +125,30 @@
   $lang_array['app']['results']  = 'Résultats';
   $lang_array['app']['btof'] = 'Backtest du';
 
-  $lang_array['app']['adamvalues'] = 'Actifs';
-  $lang_array['app']['adamvalues_subtitle'] = 'Gerez les actifs que vous souhaitez trader';
-  $lang_array['app']['adamvalues_expl'] = 'Ce menu vous permet de configurer les differents actifs 
+  $lang_array['app']['qatevalues'] = 'Actifs';
+  $lang_array['app']['qatevalues_subtitle'] = 'Gerez les actifs que vous souhaitez trader';
+  $lang_array['app']['qatevalues_expl'] = 'Ce menu vous permet de configurer les differents actifs 
   que vous souhaitez échanger sur les marchés par l\' intermédiaire de votre courtier.';
   
   $lang_array['app']['value_start_hour'] = 'Ouverture';
   $lang_array['app']['value_end_hour'] = 'Fermeture';
 
-  $lang_array['app']['adamstrats'] = 'Stratégies';
+  $lang_array['app']['qatestrats'] = 'Stratégies';
   $lang_array['app']['save_strat'] = 'Sauvegarder les modifications de la strategie';
-  $lang_array['app']['adamstrats_subtitle'] = 'Gerez vos stragies et creez en de nouvelles';
-  $lang_array['app']['adamstrats_expl'] = 'Ce menu vous permet de manager vos stratégies de trading Adam et d\'en programmer de nouvelles.';
-  $lang_array['app']['adamcfg_editor_create_title'] = "Nouvelle Configuration <small>Creer une nouvelle configuration</small>";
-  $lang_array['app']['adamcfg_editor_edit_title'] = "Editer la Configuration <small>modifier la configuration</small>";
-  $lang_array['app']['adamcfg_editor_strats_title'] = "Nouvelle Strategie <small>Creez une nouvelle strategie d'investissement</small>"; 
-  $lang_array['app']['adamvalue_editor_create_title'] = "Creer une nouvelle valeur";
+  $lang_array['app']['qatestrats_subtitle'] = 'Gerez vos stragies et creez en de nouvelles';
+  $lang_array['app']['qatestrats_expl'] = 'Ce menu vous permet de manager vos stratégies de trading Qate et d\'en programmer de nouvelles.';
+  $lang_array['app']['qatecfg_editor_create_title'] = "Nouvelle Configuration <small>Creer une nouvelle configuration</small>";
+  $lang_array['app']['qatecfg_editor_edit_title'] = "Editer la Configuration <small>modifier la configuration</small>";
+  $lang_array['app']['qatecfg_editor_strats_title'] = "Nouvelle Strategie <small>Creez une nouvelle strategie d'investissement</small>"; 
+  $lang_array['app']['qatevalue_editor_create_title'] = "Creer une nouvelle valeur";
   $lang_array['app']['backtest_resviewer_title'] = 'Résultats du backtest';
-  $lang_array['app']['adamvalue_editor_edit_title'] = "Editer la valeur";
+  $lang_array['app']['qatevalue_editor_edit_title'] = "Editer la valeur";
 
   $lang_array['app']['newstrat'] = 'Nouvelle Stratégie';
   $lang_array['app']['corecfg_general_title'] = 'Général';
   $lang_array['app']['corecfg_mm_title'] = 'Money Management';
-  $lang_array['app']['adamcfg_subtitle'] = 'Gerez vos configurations Adam';
-  $lang_array['app']['adamcfg_expl'] = 'Cet écran vous permet de manager les différentes configurations Adam et d\'en créer de nouvelles.' ;
+  $lang_array['app']['qatecfg_subtitle'] = 'Gerez vos configurations Qate';
+  $lang_array['app']['qatecfg_expl'] = 'Cet écran vous permet de manager les différentes configurations Qate et d\'en créer de nouvelles.' ;
   $lang_array['app']['actions'] = 'Actions';
   $lang_array['app']['strats'] = 'Strategies';
   $lang_array['app']['comment'] = 'Commentaire';
@@ -206,14 +206,14 @@
 
   $lang_array['app']['newbacktest'] = 'Nouveau Backtest';
   
-  $lang_array['app']['adambacktest_title'] = 'Backtests';
-  $lang_array['app']['adambacktest_subtitle'] = 'Créez et lancez des backtests.';
+  $lang_array['app']['qatebacktest_title'] = 'Backtests';
+  $lang_array['app']['qatebacktest_subtitle'] = 'Créez et lancez des backtests.';
 
-  $lang_array['app']['adambacktest_expl'] = 'Ce menu vous permet de lancer des Backtests pour tester la validité
+  $lang_array['app']['qatebacktest_expl'] = 'Ce menu vous permet de lancer des Backtests pour tester la validité
   de vos stratégies sur une certaine periode de temps.';
 
-  $lang_array['app']['adambacktest_editor_create_title'] = 'Creer un nouveau backtest';
-  $lang_array['app']['adambacktest_editor_edit_title'] = 'Editer le backtest';
+  $lang_array['app']['qatebacktest_editor_create_title'] = 'Creer un nouveau backtest';
+  $lang_array['app']['qatebacktest_editor_edit_title'] = 'Editer le backtest';
 
   $lang_array['app']['backtest_period_title'] = 'Periode';
   $lang_array['app']['backtest_general_title'] = 'Général';
@@ -239,7 +239,7 @@
 
   $lang_array['app']['cfg_broker_title'] = 'Configuration Courtier';
   $lang_array['app']['cfg_broker_subtitle'] = 'gerez vos configurations de courtier';
-  $lang_array['app']['cfg_broker_expl'] = 'Ce menu vous permet de gérer vos comptes chez les différents Brokers Compatibles avec Adam.';
+  $lang_array['app']['cfg_broker_expl'] = 'Ce menu vous permet de gérer vos comptes chez les différents Brokers Compatibles avec Qate.';
   $lang_array['app']['creds'] = 'Identifiants';
   $lang_array['app']['brokermodule'] = 'Module Courtier';
   $lang_array['app']['brokermode'] = 'Mode Module Courtier';
@@ -251,13 +251,13 @@
   $lang_array['app']['password'] = 'Mot de Passe de compte';
   $lang_array['app']['apikey'] = 'Clé d\'API';
 
-  $lang_array['app']['adambroker_editor_create_title'] = 'Nouvelle Configuration Courtier';
-  $lang_array['app']['adambroker_editor_edit_title'] = 'Editer la Configuration Courtier';
+  $lang_array['app']['qatebroker_editor_create_title'] = 'Nouvelle Configuration Courtier';
+  $lang_array['app']['qatebroker_editor_edit_title'] = 'Editer la Configuration Courtier';
 
   $lang_array['app']['selectall'] = 'Selectionner Tout';
   $lang_array['app']['deselectall'] = 'Enlever Tout';  
 
-  $lang_array['app']['notify_restart'] = 'Adam doit etre redemarré pour prendre en compte la nouvelle configuration. <a href="#"> Clickez içi pour redemarrer</a>';
+  $lang_array['app']['notify_restart'] = 'Qate doit etre redemarré pour prendre en compte la nouvelle configuration. <a href="#"> Clickez içi pour redemarrer</a>';
 
   $lang_array['app']['corecfg_extra_title'] = 'Paramètres additionels';
 
@@ -318,19 +318,19 @@
   $lang_array['hint']['config_maxpos']  = 'Définit le nombre max de positions concurrentes qui peuvent etre prises.';
   $lang_array['hint']['config_maxpos_pv'] = 'Définit le nombre max de positions concurrentes qui peuvent etre prise, par valeurs.';
   $lang_array['hint']['config_maxrisk'] = 'Définit le risque maximal, en pourcentage du capital, qui peut etre pris pour chaque trade. Si un ordre d\'ouverture dépasse ce risque (trop de volume ou stop-loss trop large), le money manager refusera l\'ordre.';
-  $lang_array['hint']['config_maxloss'] = 'Définit le seuil de pertes en pourcentage du capital, au dela duquel Adam se coupe d\'urgence, pour redonner la main à un opérateur humain afin qu\'il évalue la situation.';
+  $lang_array['hint']['config_maxloss'] = 'Définit le seuil de pertes en pourcentage du capital, au dela duquel Qate se coupe d\'urgence, pour redonner la main à un opérateur humain afin qu\'il évalue la situation.';
   $lang_array['hint']['config_reverse'] = 'Lorsque cette option est activée, le money manager empeche l\'ouverture de positions inverses à celles en cours.';
   $lang_array['hint']['config_force_reverse'] = 'Si cette option est active, le money manager forcera le debouclage de positions inverses pour toute nouvelle ouverture de position sur le même actif. Cette option s\'averre pratique pour jouer sur des marches à forte volatilité, et est mutuellement exclusive avec "Désactiver le hedging".';
-  $lang_array['hint']['config_backend'] = 'Choissez le type de backend à utiliser avec Adam.';
-  $lang_array['hint']['config_backend_host'] = 'Définit l\'hote sur lequel Adam doit se connecter pour s\'interfacer au backend.';
+  $lang_array['hint']['config_backend'] = 'Choissez le type de backend à utiliser avec Qate.';
+  $lang_array['hint']['config_backend_host'] = 'Définit l\'hote sur lequel Qate doit se connecter pour s\'interfacer au backend.';
   $lang_array['hint']['config_backend_port'] = 'Définit le port TCP/UDP sur lequel le service backend est en écoute.';
   $lang_array['hint']['config_backend_user'] = 'Définit l\'utilisateur requis pour acceder au backend.';
   $lang_array['hint']['config_backend_password'] = 'Définit le mot de passe requis pour acceder au backend';
   $lang_array['hint']['config_backend_db'] = 'Définit quelle base de donnée sera utilisée pour stocker et prendre les données sur le backend.';
-  $lang_array['hint']['config_extra'] = 'Vous pouvez ajouter à cette configuration Adam du texte libre pour inclure des options pas/non-encore supportées par l\'interface Quotek.';
+  $lang_array['hint']['config_extra'] = 'Vous pouvez ajouter à cette configuration Qate du texte libre pour inclure des options pas/non-encore supportées par l\'interface Quotek.';
 
   $lang_array['hint']['broker_name'] = 'Donnez un nom à cette configuration courtier pour l\'identifier.';
-  $lang_array['hint']['broker_module'] = 'Choissiez le module courtier qui doit être utilisé par Adam.';
+  $lang_array['hint']['broker_module'] = 'Choissiez le module courtier qui doit être utilisé par Qate.';
   $lang_array['hint']['broker_id'] = 'Entrez l\'identifiant de votre compte courtier.';
   $lang_array['hint']['broker_password'] = 'Indiquez le Mot de passe du compte courtier.';
   $lang_array['hint']['broker_key'] = 'Indiquez la clé API, si nécéssaire.';

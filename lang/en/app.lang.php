@@ -12,26 +12,26 @@
 
   $lang_array['app']['dashboard'] = 'Dashboard';
   $lang_array['app']['dashboard_subtitle'] = 'Main View';
-  $lang_array['app']['adam_mode_'] = 'Status';
-  $lang_array['app']['adam_mode']['off'] = 'Stopped';
+  $lang_array['app']['qate_mode_'] = 'Status';
+  $lang_array['app']['qate_mode']['off'] = 'Stopped';
 
-  $lang_array['app']['adam_mode']['demo'] = 'Demo';
-  $lang_array['app']['adam_mode']['live'] = 'Live';
-  $lang_array['app']['adam_mode']['Live'] = 'Live';
+  $lang_array['app']['qate_mode']['demo'] = 'Demo';
+  $lang_array['app']['qate_mode']['live'] = 'Live';
+  $lang_array['app']['qate_mode']['Live'] = 'Live';
 
   $lang_array['app']['langsel'] = 'Change Language';
 
-  $lang_array['app']['adam_mode']['running'] = 'Runing';
-  $lang_array['app']['adam_mode']['preparing'] = 'Preparing';
-  $lang_array['app']['adam_mode']['real'] = 'Real';
-  $lang_array['app']['adam_mode']['bt'] = 'Backtest';
-  $lang_array['app']['adam_mode']['genetics'] = 'Genetics';
+  $lang_array['app']['qate_mode']['running'] = 'Runing';
+  $lang_array['app']['qate_mode']['preparing'] = 'Preparing';
+  $lang_array['app']['qate_mode']['real'] = 'Real';
+  $lang_array['app']['qate_mode']['bt'] = 'Backtest';
+  $lang_array['app']['qate_mode']['genetics'] = 'Genetics';
   $lang_array['app']['modules'] = 'Modules';
   $lang_array['app']['main'] = 'Main';
-  $lang_array['app']['adam_start'] = 'Start adam bot';
-  $lang_array['app']['adam_debug'] = 'Start adam bot in debug mode';
-  $lang_array['app']['adam_stop'] = 'Stop adam bot';
-  $lang_array['app']['adam_restart'] = 'Restart adam bot';
+  $lang_array['app']['qate_start'] = 'Start qate bot';
+  $lang_array['app']['qate_debug'] = 'Start qate bot in debug mode';
+  $lang_array['app']['qate_stop'] = 'Stop qate bot';
+  $lang_array['app']['qate_restart'] = 'Restart qate bot';
   
   $lang_array['app']['logs'] = 'Logs'; 
   $lang_array['app']['asset'] = 'Asset'; 
@@ -84,7 +84,7 @@
   $lang_array['app']['lastlog'] = 'Last Log Entries';
   $lang_array['app']['compiler'] = 'Compiler';
 
-  $lang_array['app']['adamcfg'] = 'Configuration';
+  $lang_array['app']['qatecfg'] = 'Configuration';
   $lang_array['app']['broker'] = 'Brokers';
   $lang_array['app']['indices'] = 'Assets';
   $lang_array['app']['values'] = 'Assets';
@@ -124,31 +124,31 @@
   $lang_array['app']['results']  = 'Résults';
   $lang_array['app']['btof'] = 'Backtest of';
 
-  $lang_array['app']['adamvalues'] = 'Assets';
-  $lang_array['app']['adamvalues_subtitle'] = 'Manage the assets that you want to trade.';
-  $lang_array['app']['adamvalues_expl']  = 'This section allows to configure multiple assets that you whish to trade on the markets.';
+  $lang_array['app']['qatevalues'] = 'Assets';
+  $lang_array['app']['qatevalues_subtitle'] = 'Manage the assets that you want to trade.';
+  $lang_array['app']['qatevalues_expl']  = 'This section allows to configure multiple assets that you whish to trade on the markets.';
   
   $lang_array['app']['value_start_hour'] = 'Opening';
   $lang_array['app']['value_end_hour'] = 'Closing';
 
-  $lang_array['app']['adamstrats'] = 'Strategies';
+  $lang_array['app']['qatestrats'] = 'Strategies';
   $lang_array['app']['save_strat'] = 'Save the strategy modifications';
-  $lang_array['app']['adamstrats_subtitle'] = 'Manage your existing strategies and create some new ones.';
-  $lang_array['app']['adamstrats_expl'] = 'This section allows to manage your trading strategies and also to code some new ones.';
-  $lang_array['app']['adamcfg_editor_create_title'] = "New Configuration <small>Create a new Configuration</small>";
-  $lang_array['app']['adamcfg_editor_edit_title'] = "Edit Configuration <small>modify this configuration</small>";
-  $lang_array['app']['adamcfg_editor_strats_title'] = "New Strategy <small>Create a new automated trading strategy</small>"; 
+  $lang_array['app']['qatestrats_subtitle'] = 'Manage your existing strategies and create some new ones.';
+  $lang_array['app']['qatestrats_expl'] = 'This section allows to manage your trading strategies and also to code some new ones.';
+  $lang_array['app']['qatecfg_editor_create_title'] = "New Configuration <small>Create a new Configuration</small>";
+  $lang_array['app']['qatecfg_editor_edit_title'] = "Edit Configuration <small>modify this configuration</small>";
+  $lang_array['app']['qatecfg_editor_strats_title'] = "New Strategy <small>Create a new automated trading strategy</small>"; 
   
-  $lang_array['app']['adamvalue_editor_create_title'] = "Create new Asset";
+  $lang_array['app']['qatevalue_editor_create_title'] = "Create new Asset";
   $lang_array['app']['backtest_resviewer_title'] = 'Backtest Results';
-  $lang_array['app']['adamvalue_editor_edit_title'] = "Edit Asset";
+  $lang_array['app']['qatevalue_editor_edit_title'] = "Edit Asset";
 
   $lang_array['app']['newstrat'] = 'New Strategy';
   $lang_array['app']['corecfg_general_title'] = 'General';
   $lang_array['app']['corecfg_mm_title'] = 'Money Management';
-  $lang_array['app']['adamcfg_subtitle'] = 'Manage your adam configurations';
+  $lang_array['app']['qatecfg_subtitle'] = 'Manage your qate configurations';
 
-  $lang_array['app']['adamcfg_expl'] = 'This section allows to manage your configurations and to create some new ones.' ;
+  $lang_array['app']['qatecfg_expl'] = 'This section allows to manage your configurations and to create some new ones.' ;
   
   $lang_array['app']['actions'] = 'Actions';
   $lang_array['app']['strats'] = 'Strategies';
@@ -190,13 +190,13 @@
 
   $lang_array['app']['newbacktest'] = 'New Backtest';
   
-  $lang_array['app']['adambacktest_title'] = 'Backtests';
-  $lang_array['app']['adambacktest_subtitle'] = 'Create and Launch backtests.';
+  $lang_array['app']['qatebacktest_title'] = 'Backtests';
+  $lang_array['app']['qatebacktest_subtitle'] = 'Create and Launch backtests.';
 
-  $lang_array['app']['adambacktest_expl'] = 'This section allows to launch backtest in order to assess the efficiency of your strategies before putting them in production.';
+  $lang_array['app']['qatebacktest_expl'] = 'This section allows to launch backtest in order to assess the efficiency of your strategies before putting them in production.';
 
-  $lang_array['app']['adambacktest_editor_create_title'] = 'Create new backtest';
-  $lang_array['app']['adambacktest_editor_edit_title'] = 'Edit Backtest';
+  $lang_array['app']['qatebacktest_editor_create_title'] = 'Create new backtest';
+  $lang_array['app']['qatebacktest_editor_edit_title'] = 'Edit Backtest';
 
   $lang_array['app']['backtest_period_title'] = 'Period';
   $lang_array['app']['backtest_general_title'] = 'General';
@@ -235,8 +235,8 @@
   $lang_array['app']['password'] = 'Password';
   $lang_array['app']['apikey'] = 'API Key';
 
-  $lang_array['app']['adambroker_editor_create_title'] = 'New Broker Configuration';
-  $lang_array['app']['adambroker_editor_edit_title'] = 'Edit Broker Configuration';
+  $lang_array['app']['qatebroker_editor_create_title'] = 'New Broker Configuration';
+  $lang_array['app']['qatebroker_editor_edit_title'] = 'Edit Broker Configuration';
 
   $lang_array['app']['selectall'] = 'Select All';
   $lang_array['app']['deselectall'] = 'Remove All';  

@@ -33,7 +33,7 @@
 
   else if ( $_REQUEST['action'] == 'getStatus') {
     $state = $gw->checkStatus();
-    //$message = $lang_array['app']['adam_mode']["$state"];
+    //$message = $lang_array['app']['qate_mode']["$state"];
     $res = array('state' => $state);
     echo json_encode($res);
   } 

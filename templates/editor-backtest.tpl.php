@@ -34,13 +34,13 @@ foreach($strats_gen as $strat) {
        
          <ul class="nav nav-tabs">
              <li class="active">
-                <a onclick="adamBacktestEditorNav($(this));" class="backtest-editor-navlink" id ="general"><?= $lang_array['app']['backtest_general_title'] ?></a>
+                <a onclick="qateBacktestEditorNav($(this));" class="backtest-editor-navlink" id ="general"><?= $lang_array['app']['backtest_general_title'] ?></a>
               </li>
              <li>
-                <a onclick="adamBacktestEditorNav($(this));" class="backtest-editor-navlink" id="period"><?= $lang_array['app']['backtest_period_title'] ?></a>
+                <a onclick="qateBacktestEditorNav($(this));" class="backtest-editor-navlink" id="period"><?= $lang_array['app']['backtest_period_title'] ?></a>
               </li> 
              <li>
-                <a onclick="adamBacktestEditorNav($(this));" class="backtest-editor-navlink" id="genetics" style="display:none"><?= $lang_array['app']['backtest_genetics_title'] ?></a>
+                <a onclick="qateBacktestEditorNav($(this));" class="backtest-editor-navlink" id="genetics" style="display:none"><?= $lang_array['app']['backtest_genetics_title'] ?></a>
               </li>
              
           </ul>
@@ -63,7 +63,7 @@ foreach($strats_gen as $strat) {
            <span class="help-block">Indiquez le type de simulation que vous voulez creer.</span>
           
 
-           <label><b><?= $lang_array['app']['adamcfg'] ?></b></label>
+           <label><b><?= $lang_array['app']['qatecfg'] ?></b></label>
            <select id="input-backtest-config_id" style="height:27px;width:150px;padding-top:1px">
             
             <?php
@@ -74,7 +74,7 @@ foreach($strats_gen as $strat) {
 
 
            </select>
-           <span class="help-block">Indiquez la configuration Adam que vous souhaitez appliquer pour cette simulation</span>
+           <span class="help-block">Indiquez la configuration Qate que vous souhaitez appliquer pour cette simulation</span>
 
            <label><b><?= $lang_array['app']['strat'] ?></b></label>
            <select id="input-backtest-strategy_id" style="height:27px;width:150px;padding-top:1px">
@@ -141,10 +141,10 @@ foreach($strats_gen as $strat) {
      <script type="text/javascript">
 
          $('#input-backtest-type').change(function() {
-           adamChangeBacktestEditorView();
+           qateChangeBacktestEditorView();
          });
         
-         function adamBacktestEditorNav(obj) {
+         function qateBacktestEditorNav(obj) {
             $('.backtest-editor-frame').hide();
             $('#backtest-editor-' +  obj.attr('id') ).show();
 

@@ -1,13 +1,13 @@
-<div class="app-display" id="adamcfg-core">
+<div class="app-display" id="qatecfg-core">
 
   <div class="title">
-    <h3><?= $lang_array['app']['adamcfg'] ?> <small><?= $lang_array['app']['adamcfg_subtitle'] ?></small></h3>
+    <h3><?= $lang_array['app']['qatecfg'] ?> <small><?= $lang_array['app']['qatecfg_subtitle'] ?></small></h3>
 
   </div>
 
   <div class="row-fluid">
     <div class="span8">
-       <p><?=  $lang_array['app']['adamcfg_expl'] ?></p>
+       <p><?=  $lang_array['app']['qatecfg_expl'] ?></p>
     </div>
 
    </div>
@@ -17,10 +17,10 @@
 
 <script type="text/javascript">
 
-  adamRefreshTable('corecfg-table');
+  qateRefreshTable('corecfg-table');
 
 
-  function adamCorecfgEditorNav(obj) {
+  function qateCorecfgEditorNav(obj) {
      $('.corecfg-editor-frame').hide();
      $('#corecfg-editor-' +  obj.attr('id') ).show();
 
@@ -29,18 +29,18 @@
 
   }
 
-  $('#adamcfg-core').bind('afterShow',function()  {
+  $('#qatecfg-core').bind('afterShow',function()  {
 
     $('.newbtn').removeAttr('href');
     $('.newbtn').removeAttr('target');
     
     $('.newbtn').click(function() {
-                                   adamShowCorecfgEditor();
-                                   $('#editor-title').html("<?= $lang_array['app']['adamcfg_editor_create_title']  ?>");
+                                   qateShowCorecfgEditor();
+                                   $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_create_title']  ?>");
                                    $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
                                    $('#editor-action').off();
                                    $('#editor-action').click(function() {
-                                      adamSaveCoreCfg();
+                                      qateSaveCoreCfg();
                                    });
                                  });
     

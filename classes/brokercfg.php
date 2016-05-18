@@ -1,8 +1,8 @@
 <?php
 
-require_once('adamobject.php');
+require_once('qateobject.php');
 
-class brokercfg extends adamobject {
+class brokercfg extends qateobject {
 
   function __construct() {
         

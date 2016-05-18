@@ -23,22 +23,22 @@ $backends = getBackends();
          </div>
           <ul class="nav nav-tabs">
              <li class="active">
-                <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id ="general"><?= $lang_array['app']['corecfg_general_title'] ?></a>
+                <a onclick="qateCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id ="general"><?= $lang_array['app']['corecfg_general_title'] ?></a>
               </li>
              <li>
-                <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
+                <a onclick="qateCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
               </li> 
              <li>
-                <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="mm"><?= $lang_array['app']['corecfg_mm_title'] ?></a>
+                <a onclick="qateCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="mm"><?= $lang_array['app']['corecfg_mm_title'] ?></a>
               </li>
               <li>
-                 <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="backend"><?= $lang_array['app']['corecfg_backend_title'] ?></a>
+                 <a onclick="qateCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="backend"><?= $lang_array['app']['corecfg_backend_title'] ?></a>
                </li>
               <li>
-                <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="notify"><?= $lang_array['app']['notify'] ?></a>
+                <a onclick="qateCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="notify"><?= $lang_array['app']['notify'] ?></a>
               </li>
              <li>
-                <a onclick="adamCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="extra"><?= $lang_array['app']['corecfg_extra_title'] ?></a>
+                <a onclick="qateCorecfgEditorNav($(this));" class="corecfg-editor-navlink" id="extra"><?= $lang_array['app']['corecfg_extra_title'] ?></a>
               </li>
 
           </ul>
@@ -187,7 +187,7 @@ $backends = getBackends();
           <span class="help-block"><?= $lang_array['hint']['config_backend_password'] ?></span>
 
           <label><b><?= $lang_array['app']['cfg_backend_db'] ?></b></label>
-          <input id="input-corecfg-backend_db" style="height:27px;width:150px" type="text" value="adam">
+          <input id="input-corecfg-backend_db" style="height:27px;width:150px" type="text" value="qate">
           <span class="help-block"><?= $lang_array['hint']['config_backend_db'] ?></span>
           
           </div>

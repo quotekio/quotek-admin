@@ -14,11 +14,11 @@
          </div>
           <ul class="nav nav-tabs">
              <li class="active">
-                <a onclick="adamUsercfgEditorNav($(this));" class="usercfg-editor-navlink" id ="general"><?= $lang_array['app']['general'] ?></a>
+                <a onclick="qateUsercfgEditorNav($(this));" class="usercfg-editor-navlink" id ="general"><?= $lang_array['app']['general'] ?></a>
               </li>
              
              <li>
-                <a onclick="adamUsercfgEditorNav($(this));" class="usercfg-editor-navlink" id="permissions"><?= $lang_array['app']['permissions'] ?></a>
+                <a onclick="qateUsercfgEditorNav($(this));" class="usercfg-editor-navlink" id="permissions"><?= $lang_array['app']['permissions'] ?></a>
               </li>
           </ul>
 

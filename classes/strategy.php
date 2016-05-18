@@ -1,14 +1,14 @@
 <?php
 
 /* New class handling strategies through GIT */
-require_once('adamobject.php');
+require_once('qateobject.php');
 require_once('corecfg.php');
 require_once('include/functions.inc.php');
 
 use Gitonomy\Git\Repository;
 $repository = new Repository($GIT_LOCATION);
 
-class strategy extends adamobject {
+class strategy extends qateobject {
 
   function __construct($name='', $type='', $author='', $created=0, $updated=0) {
     $this->name = $name;

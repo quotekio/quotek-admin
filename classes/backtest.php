@@ -1,10 +1,10 @@
 <?php
 
-@require_once ('classes/adamobject.php');
-@require_once('classes/adamctl.php');
+@require_once ('classes/qateobject.php');
+@require_once('classes/qatectl.php');
 @require_once('include/functions.inc.php');
 
-class backtestctl extends adamctl {
+class backtestctl extends qatectl {
 
   function __construct() {
     $this->supid = 'none';
@@ -13,9 +13,9 @@ class backtestctl extends adamctl {
 
   function setBacktestID($backtest_id) {
 
-    global $ADAM_TMP;
+    global $QATE_TMP;
     $this->backtest_id = $backtest_id;
-    $this->supid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
+    $this->supid = $this->getPID("$QATE_TMP/backtests/" . $this->backtest_id . "/qate.pid");
    
     if ($this->supid != "none") {
       $this->mode = $this->checkStatus($this->supid);
@@ -28,12 +28,12 @@ class backtestctl extends adamctl {
   }
 
   function startBT() {
-    global $ADAM_PATH;
-    global $ADAM_TMP;
-    global $ADAM_BT_EXPORTS;
+    global $QATE_PATH;
+    global $QATE_TMP;
+    global $QATE_BT_EXPORTS;
 
     $outp = array();
-    $cmd = "sudo $ADAM_PATH/bin/adam ";
+    $cmd = "sudo $QATE_PATH/bin/qate ";
 
     foreach($this->bt_args as $bt_arg) {
       $cmd .= "$bt_arg ";
@@ -42,16 +42,16 @@ class backtestctl extends adamctl {
     if ($this->checkStatus($this->supid) == 'off') {
       exec(sprintf("%s >/dev/null 2>&1 & " . 'echo $!' , $cmd),$outp);
       $this->supid = $outp[0];
-      $this->setPID($this->supid,"$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
+      $this->setPID($this->supid,"$QATE_TMP/backtests/" . $this->backtest_id . "/qate.pid");
     }
     else echo "ALREADY RUNNING!";
   }
 
   function stopBT() {
 
-    global $ADAM_TMP;
+    global $QATE_TMP;
     if ($this->supid =='none') {
-      $this->supid = $this->getPID("$ADAM_TMP/backtests/" . $this->backtest_id . "/adam.pid");
+      $this->supid = $this->getPID("$QATE_TMP/backtests/" . $this->backtest_id . "/qate.pid");
     }
     exec("sudo kill " . $this->supid );
     $this->mode = 'off';
@@ -60,17 +60,17 @@ class backtestctl extends adamctl {
 }
 
 
-class backtest extends adamobject {
+class backtest extends qateobject {
 
   function __construct() {
         
   }
 
   function delete() {
-    global $ADAM_TMP;
+    global $QATE_TMP;
     if (is_numeric($this->id)) {
-      if (is_dir($ADAM_TMP . "/backtests/" . $this->id) ) {
-        @rmdir_recurse($ADAM_TMP . "/backtests/" . $this->id);
+      if (is_dir($QATE_TMP . "/backtests/" . $this->id) ) {
+        @rmdir_recurse($QATE_TMP . "/backtests/" . $this->id);
       }
       parent::delete();
     }
@@ -95,17 +95,17 @@ class backtest extends adamobject {
   }
 
   function createTree() {
-    global $ADAM_TMP;
-    @mkdir("$ADAM_TMP/backtests");
-    @mkdir("$ADAM_TMP/backtests/" .  $this->id );
-    @mkdir("$ADAM_TMP/backtests/" . $this->id . "/results");
+    global $QATE_TMP;
+    @mkdir("$QATE_TMP/backtests");
+    @mkdir("$QATE_TMP/backtests/" .  $this->id );
+    @mkdir("$QATE_TMP/backtests/" . $this->id . "/results");
   }
 
   function getResult($result) {
 
     $res_string = "";
-    global $ADAM_TMP;
-    $results_dir = "$ADAM_TMP/backtests/" . $this->id . "/results";
+    global $QATE_TMP;
+    $results_dir = "$QATE_TMP/backtests/" . $this->id . "/results";
     $fh = @fopen($results_dir . "/" . $result,"r");
     if ($fh) {
        while($line = fgets($fh) ) {
@@ -117,8 +117,8 @@ class backtest extends adamobject {
 
   function deleteResult($result) {
 
-    global $ADAM_TMP;
-    $results_dir = "$ADAM_TMP/backtests/" . $this->id . "/results";
+    global $QATE_TMP;
+    $results_dir = "$QATE_TMP/backtests/" . $this->id . "/results";
     if (is_file("$results_dir/$result") ) {
       unlink("$results_dir/$result");   
     }
@@ -132,10 +132,10 @@ class backtest extends adamobject {
 
   function getResultsList() {
 
-    global $ADAM_TMP;
+    global $QATE_TMP;
     $results = array();
 
-    $results_dir = "$ADAM_TMP/backtests/" . $this->id . "/results";
+    $results_dir = "$QATE_TMP/backtests/" . $this->id . "/results";
     $rdir_handler = @opendir($results_dir);
 
     if ($rdir_handler) {
@@ -151,8 +151,8 @@ class backtest extends adamobject {
 
 
   function appendGeneticsParams() {
-    global $ADAM_TMP;
-    $cfgpath = "$ADAM_TMP/backtests/" . $this->id . "/adam.conf";
+    global $QATE_TMP;
+    $cfgpath = "$QATE_TMP/backtests/" . $this->id . "/qate.conf";
 
     $fh = fopen($cfgpath,'a');
     fwrite($fh,"genetics_population = " . $this->genetics_population . "\n" );

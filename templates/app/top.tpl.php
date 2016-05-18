@@ -6,10 +6,10 @@
 
      <div style="float:left;width:166px">
 
-       <a href="#" onclick="adamShowAbout()"><img style="height:30px;margin-top:4px;" src="/img/quotek-logo.png"></a>
+       <a href="#" onclick="qateShowAbout()"><img style="height:30px;margin-top:4px;" src="/img/quotek-logo.png"></a>
      </div>
 
-      <div style="float:left;margin-left:20px;width:300px;height:40px;margin-top:-5px" id="adam-top-modules">
+      <div style="float:left;margin-left:20px;width:300px;height:40px;margin-top:-5px" id="qate-top-modules">
         <?php  loadVHViews($vhms,'top') ?>
       </div>
       
@@ -29,11 +29,11 @@
     </div>
   </div>
 
-  <div id="adam-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
+  <div id="qate-top-notifier" class="alert alert-info" style="margin-bottom:0px;display:none">
   <div id="notify-restart">
      <?= $lang_array['app']['notify_restart'] ?>
      <script type="text/javascript">
-       $('#notify-restart a').click(function() {  adamRestart(); });
+       $('#notify-restart a').click(function() {  qateRestart(); });
      </script>
   </div>
   </div>
@@ -54,16 +54,16 @@
 
   <div class="btn-group">
     
-    <a class="btn disabled" id="app-stopadam" rel="tooltip" title="<?= $lang_array['app']['adam_stop'] ?>">
+    <a class="btn disabled" id="app-stopqate" rel="tooltip" title="<?= $lang_array['app']['qate_stop'] ?>">
       <i class="icon-white icon-stop"></i>
     </a>
     <a class="btn disabled" 
-             id="app-startadam" 
+             id="app-startqate" 
              rel="tooltip" 
-             title="<?= $lang_array['app']['adam_start'] ?>">
+             title="<?= $lang_array['app']['qate_start'] ?>">
              <i class="icon-white icon-play"></i>
     </a>
-    <a class="btn btn-warning" id="app-restartadam" onclick="adamRestart();" rel="tooltip" title="<?= $lang_array['app']['adam_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
+    <a class="btn btn-warning" id="app-restartqate" onclick="qateRestart();" rel="tooltip" title="<?= $lang_array['app']['qate_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
     
   </div> 
 
@@ -79,9 +79,9 @@
 
   $(document).ready(function() {
 
-    $('#app-stopadam').tooltip({placement:'bottom',container: 'body'});
-    $('#app-startadam').tooltip({placement:'bottom',container: 'body'});
-    $('#app-restartadam').tooltip({placement:'bottom',container: 'body'});
+    $('#app-stopqate').tooltip({placement:'bottom',container: 'body'});
+    $('#app-startqate').tooltip({placement:'bottom',container: 'body'});
+    $('#app-restartqate').tooltip({placement:'bottom',container: 'body'});
 
     $('#app-langsel').tooltip({placement:'bottom', container:'body'});
     

@@ -71,7 +71,7 @@ else if ($action == 'export') {
       $data[] = array("value" =>  $ev->linked_value , "time" => intval($ev->start) );
     }
   }
-  file_put_contents("/tmp/adam/edta.events.json", json_encode($data));
+  file_put_contents("/tmp/qate/edta.events.json", json_encode($data));
 
 }
 

@@ -1,8 +1,8 @@
 <?php
 
-if (!isset($ADAMOBJ_DEF) ) {
+if (!isset($QATEOBJ_DEF) ) {
 
-class adamobject {
+class qateobject {
 	
     function validateName(){
 
@@ -107,7 +107,7 @@ class adamobject {
     }
  
 }
-    $ADAMOBJ_DEF = 1;
+    $QATEOBJ_DEF = 1;
 }
 
 ?>

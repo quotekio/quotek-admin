@@ -26,7 +26,7 @@
 
     /* Generate Backtest Arguments */
     $bt_args = array();
-    $bt_args[] = "-p " . ($ADAM_AEP_PORT + $btest->id );  
+    $bt_args[] = "-p " . ($QATE_AEP_PORT + $btest->id );  
     if ($btest->type == 'normal') {
         $bt_args[] = '--backtest';
     }
@@ -36,17 +36,17 @@
 
     $bt_args[] = '--backtest-from ' . $btest->start;
     $bt_args[] = '--backtest-to ' . $btest->end;
-    $bt_args[] = '--backtest-result ' .  $ADAM_TMP . "/backtests/" .  $btest->id . "/results/" . time() ;
-    $bt_args[] = "$ADAM_TMP/backtests/" . $btest->id . "/adam.conf";
+    $bt_args[] = '--backtest-result ' .  $QATE_TMP . "/backtests/" .  $btest->id . "/results/" . time() ;
+    $bt_args[] = "$QATE_TMP/backtests/" . $btest->id . "/qate.conf";
     /* */
   }
   
   
   if ( $_REQUEST['action'] == 'start') {
 
-    if (!is_dir("$ADAM_TMP/backtests/" . $btest->id) ) $btest->createTree();
+    if (!is_dir("$QATE_TMP/backtests/" . $btest->id) ) $btest->createTree();
 
-    exportCfg($btest->config_id,$btest->strategy_id,"$ADAM_TMP/backtests/" . $btest->id . "/adam.conf", false);
+    exportCfg($btest->config_id,$btest->strategy_id,"$QATE_TMP/backtests/" . $btest->id . "/qate.conf", false);
 
     if ($btest->type == 'genetics') {
       $btest->appendGeneticsParams();
@@ -69,7 +69,7 @@
   else if ( $_REQUEST['action'] == 'getStatus') {
 
     $state = $bctl->checkStatus($bctl->supid);
-    $message = $lang_array['app']['adam_mode']["$state"];
+    $message = $lang_array['app']['qate_mode']["$state"];
     $res = array('state' => $state, 'message' => $message);
     echo json_encode($res);
   } 

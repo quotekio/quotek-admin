@@ -18,7 +18,7 @@
                     '/async/app/graphdata' => 'async/app/graphdata.php',
             		'/async/app/getapp' => 'async/app/getapp.php',
             		'/async/app/config/delete' => 'async/app/delconfig.php',
-                    '/async/app/adamctl' => 'async/app/adamctl.php',
+                    '/async/app/qatectl' => 'async/app/qatectl.php',
                     '/async/app/gwctl' => 'async/app/gwctl.php',
                     '/async/app/backtestctl' => 'async/app/backtestctl.php',
                     '/async/app/grapher' => 'async/app/grapher.php',

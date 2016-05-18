@@ -3,7 +3,7 @@
   $ulist = getUserList();
   
 ?>
-<div class="app-display" id="adamcfg-users">
+<div class="app-display" id="qatecfg-users">
 
   <div class="title">
     <h3><?= $lang_array['app']['cfg_users_title'] ?> <small><?= $lang_array['app']['cfg_users_subtitle'] ?></small></h3>
@@ -23,9 +23,9 @@
 
 <script type="text/javascript">
 
-  adamRefreshTable('usercfg-table');
+  qateRefreshTable('usercfg-table');
 
-  function adamUsercfgEditorNav(obj) {
+  function qateUsercfgEditorNav(obj) {
      $('.usercfg-editor-frame').hide();
      $('#usercfg-editor-' +  obj.attr('id') ).show();
 
@@ -34,17 +34,17 @@
 
   }
 
-  $('#adamcfg-users').bind('afterShow',function()  {
+  $('#qatecfg-users').bind('afterShow',function()  {
 
     $('.newbtn').removeAttr('href');
     $('.newbtn').removeAttr('target');
     $('.newbtn').click(function() {
-                                   adamShowUserEditor();
+                                   qateShowUserEditor();
                                    $('#editor-title').html("<?= $lang_array['app']['usercfg_editor_create_title']  ?>");
                                    $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
                                    $('#editor-action').off();
                                    $('#editor-action').click(function() {
-                                      adamSaveUser();
+                                      qateSaveUser();
                                    });
                                  });
 

@@ -503,7 +503,7 @@ $themes = listThemes();
           source = editor.getValue();
 
           var qbtr = $.ajax({
-          url: '/async/app/adamctl',
+          url: '/async/app/qatectl',
           type: 'GET',
           data: { 'action': 'qbacktest',
                   'source': source,
@@ -550,7 +550,7 @@ $themes = listThemes();
             source = editor.getValue();
 
             var rq = $.ajax({
-              url: '/async/app/adamctl',
+              url: '/async/app/qatectl',
               type: 'GET',
               data: {'action': 'compile', 'source': source},
               cache: false,
@@ -689,7 +689,7 @@ $themes = listThemes();
               strat.name = name;
               strat.type = type;
               strat.content = editor.getValue() ;
-              var r = adamObject('add','strategy',strat,-1);
+              var r = qateObject('add','strategy',strat,-1);
 
               if (r.status == 'OK') {
                 

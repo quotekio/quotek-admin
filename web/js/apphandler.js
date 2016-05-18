@@ -58,8 +58,8 @@ function endLoad() {
   
   clearInterval(tcontrol);
 
-  adamUpdateAll();
-  setInterval('adamUpdateAll()',3000);
+  qateUpdateAll();
+  setInterval('qateUpdateAll()',3000);
   
   $('#app-topbar-container').show();
 

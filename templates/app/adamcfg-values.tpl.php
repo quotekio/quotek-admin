@@ -1,13 +1,13 @@
-<div class="app-display" id="adamcfg-values">
+<div class="app-display" id="qatecfg-values">
 
 
   <div class="title">
-    <h3><?= $lang_array['app']['adamvalues'] ?> <small><?= $lang_array['app']['adamvalues_subtitle'] ?></small></h3>
+    <h3><?= $lang_array['app']['qatevalues'] ?> <small><?= $lang_array['app']['qatevalues_subtitle'] ?></small></h3>
   </div>
 
   <div class="row-fluid">
     <div class="span8">
-       <p><?=  $lang_array['app']['adamvalues_expl'] ?></p>
+       <p><?=  $lang_array['app']['qatevalues_expl'] ?></p>
     </div>
 
    </div>
@@ -20,20 +20,20 @@
 
 <script type="text/javascript">
 
-  adamRefreshTable('values-table');
+  qateRefreshTable('values-table');
   
 
-  $('#adamcfg-values').bind('afterShow',function() {
+  $('#qatecfg-values').bind('afterShow',function() {
 
       $('.newbtn').removeAttr('href');
       $('.newbtn').removeAttr('target');
       $('.newbtn').click(function() {
-                                 adamShowValueEditor();
-                                 $('#editor-title').html("<?= $lang_array['app']['adamvalue_editor_create_title']  ?>");
+                                 qateShowValueEditor();
+                                 $('#editor-title').html("<?= $lang_array['app']['qatevalue_editor_create_title']  ?>");
                                  $('#editor-action').html("<?= $lang_array['app']['create'] ?>");
 
                                  $('#editor-action').off();
-                                 $('#editor-action').click(function() {  adamSaveValue();  });
+                                 $('#editor-action').click(function() {  qateSaveValue();  });
 
                                });
 

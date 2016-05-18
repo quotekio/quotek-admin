@@ -24,13 +24,13 @@
 
      loadVHViews($vhms,'app');
     
-     include ('templates/app/adamcfg-core.tpl.php');
-     include ('templates/app/adamcfg-broker.tpl.php');
-     include ('templates/app/adamcfg-values.tpl.php');
-     include ('templates/app/adamcfg-users.tpl.php');
+     include ('templates/app/qatecfg-core.tpl.php');
+     include ('templates/app/qatecfg-broker.tpl.php');
+     include ('templates/app/qatecfg-values.tpl.php');
+     include ('templates/app/qatecfg-users.tpl.php');
      
-     include ('templates/app/adamstrats.tpl.php'); 
-     include ('templates/app/adambacktest.tpl.php'); 
+     include ('templates/app/qatestrats.tpl.php'); 
+     include ('templates/app/qatebacktest.tpl.php'); 
      include('templates/app/dashboard.tpl.php');
      
      /* APP EXT 

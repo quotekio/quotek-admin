@@ -7,12 +7,12 @@
   if ($_REQUEST['action'] == 'get') {
 
     $dumps = array();
-    $dumpsdir = opendir($ADAM_TMP . "/dbg");
+    $dumpsdir = opendir($QATE_TMP . "/dbg");
 
     while( $dumpfile = readdir($dumpsdir) ) {
        if ($dumpfile != '.' && $dumpfile != ".." ) {
 
-         $dump = file_get_contents( $ADAM_TMP . "/dbg/" . $dumpfile);
+         $dump = file_get_contents( $QATE_TMP . "/dbg/" . $dumpfile);
          $dumps[] =  array(str_replace(".dump","",$dumpfile), $dump); 
        }
     }
@@ -23,7 +23,7 @@
   else if ($_REQUEST['action'] == 'del') {
 
     $todelete = $_REQUEST['dump'];
-    unlink( $ADAM_TMP . "/dbg/" . $todelete . ".dump"); 
+    unlink( $QATE_TMP . "/dbg/" . $todelete . ".dump"); 
 
   }
 

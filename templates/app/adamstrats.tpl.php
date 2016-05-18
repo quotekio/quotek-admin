@@ -1,13 +1,13 @@
 
-<div class="app-display" id="adamstrats">
+<div class="app-display" id="qatestrats">
 
   <div class="title">
-    <h3><?= $lang_array['app']['adamstrats'] ?> <small><?= $lang_array['app']['adamstrats_subtitle'] ?></small></h3>
+    <h3><?= $lang_array['app']['qatestrats'] ?> <small><?= $lang_array['app']['qatestrats_subtitle'] ?></small></h3>
   </div>
 
   <div class="row-fluid">
     <div class="span8">
-       <p><?= $lang_array['app']['adamstrats_expl'] ?></p>
+       <p><?= $lang_array['app']['qatestrats_expl'] ?></p>
     </div>
 
    </div>
@@ -57,16 +57,16 @@
 
 <script type="text/javascript">
 
-  adamRefreshTable('strategies-table');
+  qateRefreshTable('strategies-table');
 
-  $('#btn-git-newbranch').click(function(){ adamShowBranchEditor(); });
-  $('#btn-git-delbranch').click(function(){ adamShowDelBranchEditor(); });
+  $('#btn-git-newbranch').click(function(){ qateShowBranchEditor(); });
+  $('#btn-git-delbranch').click(function(){ qateShowDelBranchEditor(); });
 
-  $('#adamstrats').bind('afterShow',function() {
+  $('#qatestrats').bind('afterShow',function() {
 
-      adamUpdateGitBranches();
+      qateUpdateGitBranches();
 
-      var cpclock = setInterval('adamCheckPendingGitCommit();',5000);
+      var cpclock = setInterval('qateCheckPendingGitCommit();',5000);
 
       $('.newbtn').attr('href', "/app/editor");
       $('.newbtn').attr('target', "_blank");

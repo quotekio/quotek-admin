@@ -1,8 +1,8 @@
 <?php
 
-  require_once("adamobject.php");
+  require_once("qateobject.php");
 
-  class calendar_event extends adamobject  {
+  class calendar_event extends qateobject  {
 
     function __construct() {
           

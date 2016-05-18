@@ -34,10 +34,10 @@
                  title="<?= $lang_array['app']['usercfg_actions_edit'] ?>">
                 <i class="icon-white icon-edit"></i>
               </a>
-              <a onclick="$(this).tooltip('hide');adamCloneUser(<?= $user->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['usercfg_actions_clone'] ?>">
+              <a onclick="$(this).tooltip('hide');qateCloneUser(<?= $user->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['usercfg_actions_clone'] ?>">
                 <i class="icon-white icon-leaf"></i>
               </a>
-              <a onclick="adamDelUser(<?= $user->id ?>)" class="btn btn-danger" id="btn-del-usercfg" rel="tooltip" title="<?= $lang_array['app']['usercfg_actions_delete'] ?>">
+              <a onclick="qateDelUser(<?= $user->id ?>)" class="btn btn-danger" id="btn-del-usercfg" rel="tooltip" title="<?= $lang_array['app']['usercfg_actions_delete'] ?>">
                 <i class="icon-white icon-remove-sign" ></i>
               </a>
             </div>
@@ -55,13 +55,13 @@
                                 
                                 var uuid = $(this).parent().parent().parent().attr('id').replace(/user-line-/g,"");
                                 $(this).click(function() {
-                                   adamShowUserEditor();
+                                   qateShowUserEditor();
                                    $('#editor-title').html("<?= $lang_array['app']['usercfg_editor_edit_title']  ?>");
                                    $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-                                   adamGetUserDataToEdit(uuid);
+                                   qateGetUserDataToEdit(uuid);
                                    $('#editor-action').off();
                                    $('#editor-action').click(function() {
-                                       adamSaveUser(parseInt(uuid));
+                                       qateSaveUser(parseInt(uuid));
                                    });
                                });
                             });

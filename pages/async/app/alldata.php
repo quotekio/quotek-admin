@@ -1,7 +1,7 @@
 <?php
 
 @require_once('include/functions.inc.php');
-@require_once('classes/adamctl.php');
+@require_once('classes/qatectl.php');
 @require_once('classes/corecfg.php');
 @require_once('classes/brokercfg.php');
 @require_once('classes/backtest.php');
@@ -10,20 +10,20 @@ $lang = 'en';
 selectLanguage();
 @require_once("lang/$lang/app.lang.php");
 
-$res = array ('adamstatus' => array(),
-	          'adamcorestats' => array(),
-	          'adamlastlogs' => array(),
+$res = array ('qatestatus' => array(),
+	          'qatecorestats' => array(),
+	          'qatelastlogs' => array(),
 	          'backteststatuses' => array() );
 
 if (!verifyAuth()) die('You are not logged');
 
 /* 
 ===========
-ADAM STATUS
+QATE STATUS
 ===========
 */
 
-$ac = new adamctl();
+$ac = new qatectl();
 $state = $ac->checkStatus($ac->supid);
 
 if ($state == 'on') {
@@ -35,10 +35,10 @@ if ($state == 'on') {
 }
 
 
-$nr = file_exists('/tmp/adam/needs_restart') ;
-$message = $lang_array['app']['adam_mode']["$state"];
+$nr = file_exists('/tmp/qate/needs_restart') ;
+$message = $lang_array['app']['qate_mode']["$state"];
 $cp_errors = $ac->getCompileErrors();
-$res['adamstatus'] = array('state' => $state, 'message' => $message, 'needs_restart' => $nr, 'compile' => $cp_errors );
+$res['qatestatus'] = array('state' => $state, 'message' => $message, 'needs_restart' => $nr, 'compile' => $cp_errors );
 
 
 /* 

@@ -1,5 +1,5 @@
 
-function adamDebug(data) {
+function qateDebug(data) {
   $('#debug').show();
   $('#debug').html(  $('#debug').html() + data + '<br>');
 }
@@ -14,7 +14,7 @@ function tzOffset() {
   return d.getTimezoneOffset() * -1 / 60;
 }
 
-function adamRefreshTable(tname) {
+function qateRefreshTable(tname) {
 
      $('.tooltip').not(this).hide();
      
@@ -35,7 +35,7 @@ function adamRefreshTable(tname) {
 
 
 
-function adamSaveBrokerCfg(id) {
+function qateSaveBrokerCfg(id) {
 
   var brokercfg = {'name' : null,
                    'broker_id': null,
@@ -59,28 +59,28 @@ function adamSaveBrokerCfg(id) {
   brokercfg.broker_mode = $('#input-brokercfg-broker_mode').val();
   brokercfg.broker_account_mode = $('#input-brokercfg-broker_account_mode').val();
 
-  var r = adamObject('add','brokercfg',brokercfg,-1);
+  var r = qateObject('add','brokercfg',brokercfg,-1);
   if (r.status == 'OK') {
-    adamRefreshTable('brokercfg-table');
+    qateRefreshTable('brokercfg-table');
     modalDest();
   }
   else processError(r);
 
 }
 
-function adamCloneBrokerCfg(bid) {
+function qateCloneBrokerCfg(bid) {
 
-   var r = adamObject('dup','brokercfg',{},bid);
+   var r = qateObject('dup','brokercfg',{},bid);
    if (r.status == 'OK') {
-       adamRefreshTable('brokercfg-table');
+       qateRefreshTable('brokercfg-table');
    }
    else processError(r);
 }
 
 
 
-function adamGetBrokerCfgDataToEdit(bid) {
-  var r = adamObject('get','brokercfg',{},bid);
+function qateGetBrokerCfgDataToEdit(bid) {
+  var r = qateObject('get','brokercfg',{},bid);
   if (r.status == 'OK') {
     brokercfg = r.message;
     $('#input-brokercfg-name').val(brokercfg.name);
@@ -94,9 +94,9 @@ function adamGetBrokerCfgDataToEdit(bid) {
   else processError(r);
 }
 
-function adamDelBrokerCfg(bid) {
+function qateDelBrokerCfg(bid) {
 
-   var r = adamObject('del','brokercfg',{},bid);
+   var r = qateObject('del','brokercfg',{},bid);
    if (r.status == 'OK') {
      var line = $('#brokercfg-line-' + bid);
      $('#btn-del-brokercfg',line).tooltip('hide');
@@ -106,7 +106,7 @@ function adamDelBrokerCfg(bid) {
    else processError(r);
 }
 
-function adamDeleteBTResult(btid,tstamp) {
+function qateDeleteBTResult(btid,tstamp) {
 
   var dbtr = $.ajax({
                       url: "/async/app/backtestctl?action=deleteResult&id=" + btid + "&result=" + tstamp,
@@ -122,7 +122,7 @@ function adamDeleteBTResult(btid,tstamp) {
 }
 
 
-function adamStartGW(bid) {
+function qateStartGW(bid) {
 
   var r = $.ajax({url:'/async/app/gwctl',
                  type:'POST',
@@ -134,7 +134,7 @@ function adamStartGW(bid) {
 
 }
 
-function adamStopGW(bid) {
+function qateStopGW(bid) {
 
   var r = $.ajax({url:'/async/app/gwctl',
                  type:'POST',
@@ -146,7 +146,7 @@ function adamStopGW(bid) {
 }
 
 
-function adamSaveCoreCfg(ccid) {
+function qateSaveCoreCfg(ccid) {
 
   ccid = (typeof ccid == 'undefined' ) ? -1 : ccid;
 
@@ -223,10 +223,10 @@ function adamSaveCoreCfg(ccid) {
   corecfg.notify_report = ( $('#input-corecfg-notify_report').is(':checked') ) ? 1 : 0 ;
   corecfg.notify_report_every = $('#input-corecfg-notify_report_every').val();
 
-  r = adamObject('add','corecfg',corecfg,-1);
+  r = qateObject('add','corecfg',corecfg,-1);
   if (r.status == "OK") {
-    //adamDebug(JSON.stringify(corecfg));
-    adamRefreshTable('corecfg-table');
+    //qateDebug(JSON.stringify(corecfg));
+    qateRefreshTable('corecfg-table');
     modalDest();
   }
   else processError(r);
@@ -234,19 +234,19 @@ function adamSaveCoreCfg(ccid) {
 }
 
 
-function adamCloneCoreCfg(cid) {
+function qateCloneCoreCfg(cid) {
   
-  var r = adamObject('dup','corecfg',{},cid);
+  var r = qateObject('dup','corecfg',{},cid);
    if (r.status == 'OK') {
-       adamRefreshTable('corecfg-table');
+       qateRefreshTable('corecfg-table');
    }
    else processError();
 }
 
 
-function adamDelCoreCfg(cid) {
+function qateDelCoreCfg(cid) {
 
-    var r = adamObject('del','corecfg',{},cid);
+    var r = qateObject('del','corecfg',{},cid);
     if (r.status == 'OK') {
         var line = $('#corecfg-line-' + cid);
         $('#btn-del-corecfg',line).tooltip('hide');
@@ -256,9 +256,9 @@ function adamDelCoreCfg(cid) {
     else processError(r);
 }
 
-function adamActivateCoreCfg(cid) {
+function qateActivateCoreCfg(cid) {
 
-   var r = adamObject('activate','corecfg',{},cid);
+   var r = qateObject('activate','corecfg',{},cid);
 
    if (r.status == 'OK') {
 
@@ -272,11 +272,11 @@ function adamActivateCoreCfg(cid) {
 
                var cid2 = line2.attr('id').replace(/corecfg-line-/g,"");
 
-               $('#btn-activate-corecfg',line2).click(function(){ adamActivateCoreCfg(cid2); } );
+               $('#btn-activate-corecfg',line2).click(function(){ qateActivateCoreCfg(cid2); } );
                $('#btn-activate-corecfg',line2).addClass('btn-success');
                $('#btn-activate-corecfg',line2).removeClass('disabled');
 
-               $('#btn-del-corecfg',line2).click(function(){ adamDelCoreCfg(cid2); } );
+               $('#btn-del-corecfg',line2).click(function(){ qateDelCoreCfg(cid2); } );
                $('#btn-del-corecfg',line2).addClass('btn-danger');
                $('#btn-del-corecfg',line2).removeClass('disabled');
 
@@ -300,7 +300,7 @@ function adamActivateCoreCfg(cid) {
 
 
 
-function adamSaveValue(id) {
+function qateSaveValue(id) {
 
   id = (typeof id == 'undefined') ? -1 : id;
 
@@ -324,10 +324,10 @@ function adamSaveValue(id) {
     value.id = id;
   }
 
-  var r = adamObject('add','valuecfg',value,-1);
+  var r = qateObject('add','valuecfg',value,-1);
 
   if (r.status == 'OK') {
-        adamRefreshTable('values-table');
+        qateRefreshTable('values-table');
         modalDest();
   }
 
@@ -335,19 +335,19 @@ function adamSaveValue(id) {
 
 }
 
-function adamCloneValue(vid) {
+function qateCloneValue(vid) {
 
-   var r = adamObject('dup','valuecfg',{},vid);
+   var r = qateObject('dup','valuecfg',{},vid);
    if (r.status == 'OK') {
-       adamRefreshTable('values-table');
+       qateRefreshTable('values-table');
    }
    else processError(r);
 }
 
 
-function adamGetValueDataToEdit(vid) {
+function qateGetValueDataToEdit(vid) {
 
-  var r = adamObject('get','valuecfg',{},vid);
+  var r = qateObject('get','valuecfg',{},vid);
 
   if (r.status == 'OK') {
 
@@ -365,8 +365,8 @@ function adamGetValueDataToEdit(vid) {
 }
 
 
-function adamDelValue(vid) {
-    var r = adamObject('del','valuecfg',{'null': ' null'},vid);
+function qateDelValue(vid) {
+    var r = qateObject('del','valuecfg',{'null': ' null'},vid);
     if (r.status == 'OK') {
         var line = $('#value-line-' + vid);
         $('#btn-del-value',line).tooltip('hide');
@@ -377,20 +377,20 @@ function adamDelValue(vid) {
 }
 
 
-function adamCloneStrat(sid) {
+function qateCloneStrat(sid) {
 
-   var r = adamObject('dup','strategy',{},sid);
+   var r = qateObject('dup','strategy',{},sid);
    if (r.status == 'OK') {
-       adamRefreshTable('strategies-table');
+       qateRefreshTable('strategies-table');
    }
    else processError(r);
 
 }
 
 
-function adamGetCoreCfgDataToEdit(ccid) {
+function qateGetCoreCfgDataToEdit(ccid) {
 
-  var r0 = adamObject('get','corecfg',{},ccid);
+  var r0 = qateObject('get','corecfg',{},ccid);
   
   if (r0.status == 'OK') {
 
@@ -435,7 +435,7 @@ function adamGetCoreCfgDataToEdit(ccid) {
     return;
   }
 
-  var r1 = adamObject('get','vmap',{},ccid);
+  var r1 = qateObject('get','vmap',{},ccid);
 
   if (r1.status == "OK") {
 
@@ -458,8 +458,8 @@ function adamGetCoreCfgDataToEdit(ccid) {
 }
 
 
-function adamDelStrat(sid) {
-    var r = adamObject('del','strategy',{'null': ' null'},sid);
+function qateDelStrat(sid) {
+    var r = qateObject('del','strategy',{'null': ' null'},sid);
     if (r.status == 'OK') {
         var line = $('#strategy-line-' + sid);
         $('#btn-del-strat',line).tooltip('hide');
@@ -469,14 +469,14 @@ function adamDelStrat(sid) {
     else processError(r);
 }
 
-function adamToggleStrat(btn) {
+function qateToggleStrat(btn) {
 
   line = btn.parent().parent().parent();
   status_lbl = $('.label',line);
   sid = line.attr('id').replace(/strategy-line-/g,"");
 
   if ( btn.hasClass("btn-success") ) {
-    r = adamObject('activate','strategy',{},sid);
+    r = qateObject('activate','strategy',{},sid);
     if (r.status == 'OK') {
 
       btn.removeClass('btn-success');
@@ -498,7 +498,7 @@ function adamToggleStrat(btn) {
 
   else {
 
-    r = adamObject('disable','strategy',{},sid);
+    r = qateObject('disable','strategy',{},sid);
     if (r.status == 'OK') {
 
       btn.addClass('btn-success');
@@ -508,7 +508,7 @@ function adamToggleStrat(btn) {
       status_lbl.removeClass('label-success');
       status_lbl.html( status_lbl.attr('text-disabled') );
 
-      $('#btn-del-strat',line).click(function(){ adamDelStrat(sid); } );
+      $('#btn-del-strat',line).click(function(){ qateDelStrat(sid); } );
       $('#btn-del-strat',line).addClass('btn-danger');
       $('#btn-del-strat',line).removeClass('disabled');
 
@@ -519,9 +519,9 @@ function adamToggleStrat(btn) {
 } 
 
 
-function adamGetBacktestDataToEdit(bid) {
+function qateGetBacktestDataToEdit(bid) {
 
-  var r = adamObject('get','backtest',{},bid);
+  var r = qateObject('get','backtest',{},bid);
 
   if (r.status == 'OK') {
 
@@ -543,7 +543,7 @@ function adamGetBacktestDataToEdit(bid) {
 }
 
 
-function adamSaveBacktest(id) {
+function qateSaveBacktest(id) {
 
   id = ( typeof id == 'undefined') ? -1 : id;
 
@@ -574,29 +574,29 @@ function adamSaveBacktest(id) {
      backtest.id= id;
   }
 
-  var r = adamObject('add','backtest',backtest,-1);
+  var r = qateObject('add','backtest',backtest,-1);
 
   if (r.status == 'OK') {
     modalDest();
-    adamRefreshTable('backtests-table');
+    qateRefreshTable('backtests-table');
   }
   else processError(r);
   
 }
 
-function adamCloneBacktest(vid) {
+function qateCloneBacktest(vid) {
 
-   var r = adamObject('dup','backtest',{},vid);
+   var r = qateObject('dup','backtest',{},vid);
    if (r.status == 'OK') {
-       adamRefreshTable('backtests-table');
+       qateRefreshTable('backtests-table');
    }
    else processError(r);
 }
 
 
-function adamDelBacktest(id) {
+function qateDelBacktest(id) {
 
-   var r = adamObject('del','backtest',{},id);
+   var r = qateObject('del','backtest',{},id);
    if (r.status == 'OK') {
      var line = $('#backtest-line-' + id);
      $('#btn-del-backtest',line).tooltip('hide');
@@ -606,7 +606,7 @@ function adamDelBacktest(id) {
    else processError(r);
 }
 
-function adamObject(action,objtype,params,id) {
+function qateObject(action,objtype,params,id) {
 
    var objurl = '/async/app/object?type=' + objtype + '&action=' + action;
    if (id != -1) {
@@ -624,9 +624,9 @@ function adamObject(action,objtype,params,id) {
 
 }
 
-function adamRestart() {
+function qateRestart() {
   var st = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {action: 'restart'},
         cache:          false,
@@ -635,15 +635,15 @@ function adamRestart() {
 
   var st_json = $.parseJSON(st.responseText);
   
-  if ( st_json.status == "OK" ) adamUpdateStatus();
+  if ( st_json.status == "OK" ) qateUpdateStatus();
   else processError(st_json);
 
 }
 
-function adamStop() {
+function qateStop() {
 
   var st = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {action: 'stop'},
         cache:          false,
@@ -652,16 +652,16 @@ function adamStop() {
 
   var st_json = $.parseJSON(st.responseText);
 
-  if ( st_json.status == "OK" ) adamUpdateStatus();
+  if ( st_json.status == "OK" ) qateUpdateStatus();
   else processError(st_json);
 
 }
 
 
-function adamStartReal() {
+function qateStartReal() {
 
   var st = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {action: 'startReal'},
         cache:          false,
@@ -670,18 +670,18 @@ function adamStartReal() {
 
   var st_json = $.parseJSON(st.responseText);
   
-  if ( st_json.status == "OK" ) adamUpdateStatus();
+  if ( st_json.status == "OK" ) qateUpdateStatus();
   else processError(st_json);
 
-  setTimeout(function() {  adamWSStart(0);  }, 2000);
+  setTimeout(function() {  qateWSStart(0);  }, 2000);
 
 }
 
 
-function adamClosePos(dealid) {
+function qateClosePos(dealid) {
 
   var st = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {'action': 'closepos',
                          'dealid': dealid },
@@ -692,12 +692,12 @@ function adamClosePos(dealid) {
 }
 
 
-function adamSendOrder(order) {
+function qateSendOrder(order) {
 
-  var order =  (typeof order == 'undefined') ? $('#adam-cmdprompt').val() : order;
+  var order =  (typeof order == 'undefined') ? $('#qate-cmdprompt').val() : order;
 
   var st = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {'action': 'order',
                          'order': order },
@@ -708,21 +708,21 @@ function adamSendOrder(order) {
 }
 
 
-function adamToggleBacktest(bid) {
+function qateToggleBacktest(bid) {
 
   var line = $('#backtest-line-' + bid);
   if (  $('#btn-toggle-backtest',line).hasClass('btn-success')) {
-    adamStartBacktest(bid);
+    qateStartBacktest(bid);
   }
 
   else {
-    adamStopBacktest(bid);
+    qateStopBacktest(bid);
   }
 
 }
 
 
-function adamStartBacktest(id) {
+function qateStartBacktest(id) {
 
  var st = $.ajax({
         url:            '/async/app/backtestctl',
@@ -732,10 +732,10 @@ function adamStartBacktest(id) {
         async:          false
         });
 
- adamShowBacktestViewer(id);
+ qateShowBacktestViewer(id);
 }
 
-function adamStopBacktest(id) {
+function qateStopBacktest(id) {
 
   var st = $.ajax({
         url:            '/async/app/backtestctl',
@@ -749,7 +749,7 @@ function adamStopBacktest(id) {
 
 
 
-function adamGraphBTTimeline(positions,from,to) {
+function qateGraphBTTimeline(positions,from,to) {
 
   var data = [];
   
@@ -806,7 +806,7 @@ function adamGraphBTTimeline(positions,from,to) {
 }
 
 
-function adamLoadBTResult(id,result) {
+function qateLoadBTResult(id,result) {
 
   var br = $.ajax({
         url:            '/async/app/backtestctl',
@@ -851,13 +851,13 @@ function adamLoadBTResult(id,result) {
      $('#result_logs_container').append(item + "<br>"); 
   });
 
-  adamGraphBTTimeline(result.positions,result.from,result.to);
+  qateGraphBTTimeline(result.positions,result.from,result.to);
 
 }
 
 
 
-function adamUpdateAll() {
+function qateUpdateAll() {
 
   var alldata_q = $.ajax({
         url:            '/async/app/alldata',
@@ -867,10 +867,10 @@ function adamUpdateAll() {
         success:        function() {
           var alldata = $.parseJSON($.trim(alldata_q.responseText));
 
-          //adamUpdateCorestats_NoFetch(alldata.adamcorestats);
-          //adamUpdateLastLogs_NoFetch(alldata.adamlastlogs);
-          adamUpdateStatus_NoFetch(alldata.adamstatus);
-          //adamUpdateAllBacktests_NoFetch(alldata.backteststatuses);
+          //qateUpdateCorestats_NoFetch(alldata.qatecorestats);
+          //qateUpdateLastLogs_NoFetch(alldata.qatelastlogs);
+          qateUpdateStatus_NoFetch(alldata.qatestatus);
+          //qateUpdateAllBacktests_NoFetch(alldata.backteststatuses);
 
         }
         });
@@ -878,7 +878,7 @@ function adamUpdateAll() {
 }
 
 
-function adamUpdateCorestats_NoFetch(fdata) {
+function qateUpdateCorestats_NoFetch(fdata) {
   if (typeof(fdata.unrealized_pnl) != "undefined") {
     $('#status-pnl-lbl').html(fdata.unrealized_pnl + " &euro;");
   }
@@ -905,10 +905,10 @@ function adamUpdateCorestats_NoFetch(fdata) {
   }
 }
 
-function adamUpdateCorestats() {
+function qateUpdateCorestats() {
 
   var cs = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {action: 'getCorestats'},
         cache:          false,
@@ -930,7 +930,7 @@ function adamUpdateCorestats() {
 }
 
 
-function adamUpdateLastLogs_NoFetch(fdata) {
+function qateUpdateLastLogs_NoFetch(fdata) {
 
   $('#app-dashboard-lastlogs').html('');
   var ll_str = "";
@@ -942,10 +942,10 @@ function adamUpdateLastLogs_NoFetch(fdata) {
 }
 
 /*
-function adamUpdateLastLogs(nbe) {
+function qateUpdateLastLogs(nbe) {
 
   var ll = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {action: 'getLastLogs',nb_entries: nbe},
         cache:          false,
@@ -967,39 +967,39 @@ function adamUpdateLastLogs(nbe) {
 */
 
 
-function adamUpdateStatus_NoFetch(fdata) {
+function qateUpdateStatus_NoFetch(fdata) {
 
-  $('#app-stopadam').off('click');
-  $('#app-startadam').off('click');
+  $('#app-stopqate').off('click');
+  $('#app-startqate').off('click');
  
-  $('#app-stopadam').addClass('disabled');
-  $('#app-stopadam').removeClass('btn-danger');
-  $('#app-startadam').addClass('disabled');
-  $('#app-startadam').removeClass('btn-success');
+  $('#app-stopqate').addClass('disabled');
+  $('#app-stopqate').removeClass('btn-danger');
+  $('#app-startqate').addClass('disabled');
+  $('#app-startqate').removeClass('btn-success');
   
   if (fdata.state == 'off') {
 
-    $('#app-startadam').addClass('btn-success');
-    $('#app-startadam').removeClass('disabled');
+    $('#app-startqate').addClass('btn-success');
+    $('#app-startqate').removeClass('disabled');
 
-    $('#app-startadam').click(function() { adamStartReal(); } );
+    $('#app-startqate').click(function() { qateStartReal(); } );
         
   }
 
   else {
-    $('#app-stopadam').addClass('btn-danger');
-    $('#app-stopadam').removeClass('disabled');
-    $('#app-stopadam').click(function() { adamStop(); } ); 
+    $('#app-stopqate').addClass('btn-danger');
+    $('#app-stopqate').removeClass('disabled');
+    $('#app-stopqate').click(function() { qateStop(); } ); 
   }
 
   $('#status-mode-lbl').html(fdata.message);
 
   //service needs restart
   if (fdata.needs_restart) {
-    $('#adam-top-notifier').show();
+    $('#qate-top-notifier').show();
   }
   else {
-    $('#adam-top-notifier').hide();
+    $('#qate-top-notifier').hide();
   }
 
   if ( fdata.compile != "" ) {
@@ -1024,10 +1024,10 @@ function adamUpdateStatus_NoFetch(fdata) {
 
 }
 
-function adamUpdateStatus() {
+function qateUpdateStatus() {
 
   var s = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'POST',
         data:           {action: 'getStatus'},
         cache:          false,
@@ -1035,37 +1035,37 @@ function adamUpdateStatus() {
         success: function() {
 
            var res  = $.parseJSON(s.responseText);
-           $('#app-stopadam').off('click');
-           $('#app-startadam').off('click');
+           $('#app-stopqate').off('click');
+           $('#app-startqate').off('click');
 
-           $('#app-stopadam').addClass('disabled');
-           $('#app-stopadam').removeClass('btn-danger');
-           $('#app-startadam').addClass('disabled');
-           $('#app-startadam').removeClass('btn-success');
+           $('#app-stopqate').addClass('disabled');
+           $('#app-stopqate').removeClass('btn-danger');
+           $('#app-startqate').addClass('disabled');
+           $('#app-startqate').removeClass('btn-success');
           
            if (res.state == 'off') {
 
-             $('#app-startadam').addClass('btn-success');
-             $('#app-startadam').removeClass('disabled');
+             $('#app-startqate').addClass('btn-success');
+             $('#app-startqate').removeClass('disabled');
              
-             $('#app-startadam').click(function() { adamStartReal(); } );
+             $('#app-startqate').click(function() { qateStartReal(); } );
            }
 
            else {
-             $('#app-stopadam').addClass('btn-danger');
-             $('#app-stopadam').removeClass('disabled');
+             $('#app-stopqate').addClass('btn-danger');
+             $('#app-stopqate').removeClass('disabled');
              
-             $('#app-stopadam').click(function() { adamStop(); } ); 
+             $('#app-stopqate').click(function() { qateStop(); } ); 
            }
 
            $('#status-mode-lbl').html(res.message);
 
            //service needs restart
            if (res.needs_restart) {
-              $('#adam-top-notifier').show();
+              $('#qate-top-notifier').show();
            }
            else {
-             $('#adam-top-notifier').hide();
+             $('#qate-top-notifier').hide();
            }
 
 
@@ -1094,23 +1094,23 @@ function adamUpdateStatus() {
 }
 
 
- function adamGetVersion() {
+ function qateGetVersion() {
 
    var s = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'GET',
         data:           {action: 'getVersion'},
         cache:          false,
         async:          true,
         success: function() {
            var r  = $.parseJSON(s.responseText);
-           $('#about_adamversion').html(r.version);
+           $('#about_qateversion').html(r.version);
         }});
 
  }
 
 
- function adamDrawGraph(gname,data) {
+ function qateDrawGraph(gname,data) {
 
     var options = {
             xaxis: {
@@ -1133,7 +1133,7 @@ function adamUpdateStatus() {
 }
 
 
-function adamUpdateDBPNLGraph() {
+function qateUpdateDBPNLGraph() {
 
   var gd = $.ajax({
         url:            '/async/app/graphdata',
@@ -1143,7 +1143,7 @@ function adamUpdateDBPNLGraph() {
         cache:          false,
         async:          true,
         success: function() {
-              adamDrawGraph('dashboard-graph-pnl',$.parseJSON(gd.responseText));  
+              qateDrawGraph('dashboard-graph-pnl',$.parseJSON(gd.responseText));  
         }
         });
  
@@ -1151,7 +1151,7 @@ function adamUpdateDBPNLGraph() {
 }
 
 
-function adamUpdatePosList_NoFetch(pdata) {
+function qateUpdatePosList_NoFetch(pdata) {
 
   //we actually have a poslist.
   if (pdata.length > 0) {
@@ -1181,7 +1181,7 @@ function adamUpdatePosList_NoFetch(pdata) {
 
       $('#postable').append(pline);
 
-      $(".pclose[id='" + i.dealid  +  "']").click(function() { adamClosePos(i.dealid) }); 
+      $(".pclose[id='" + i.dealid  +  "']").click(function() { qateClosePos(i.dealid) }); 
 
       $(".postable_pnl").each(function(index,i) {
         if (  parseFloat( $(this).html() ) > 0 ) {
@@ -1205,7 +1205,7 @@ function adamUpdatePosList_NoFetch(pdata) {
 }
 
 
-function adamUpdatePosList() {
+function qateUpdatePosList() {
 
   var pl = $.ajax({
        url: '/async/gettemplate',
@@ -1232,7 +1232,7 @@ function adamUpdatePosList() {
 
 
 
-function adamUpdateBacktestGraphs(backtest_id,pnldata,nbposdata) {
+function qateUpdateBacktestGraphs(backtest_id,pnldata,nbposdata) {
 
   var gd = $.ajax({
         url:            '/async/app/backtestctl',
@@ -1242,22 +1242,22 @@ function adamUpdateBacktestGraphs(backtest_id,pnldata,nbposdata) {
         async:          true,
         success: function() {
 
-              //adamDebug(gd.responseText);
+              //qateDebug(gd.responseText);
               var cstats = $.parseJSON(gd.responseText);
-              //adamDebug(cstats.pnl);
+              //qateDebug(cstats.pnl);
 
               pnldata.data.push([(new Date).getTime(),cstats.pnl]);
               nbposdata.data.push([(new Date).getTime(),cstats.nbpos]);
 
-              adamDrawGraph('backtest-graph-pnl',[pnldata]);
-              adamDrawGraph('backtest-graph-nbpos',[nbposdata]);
+              qateDrawGraph('backtest-graph-pnl',[pnldata]);
+              qateDrawGraph('backtest-graph-nbpos',[nbposdata]);
         }
         });
 
 }
 
 
-function adamUpdateBacktestNBPOSGraph(backtest_id) {
+function qateUpdateBacktestNBPOSGraph(backtest_id) {
 
  var gd = $.ajax({
         url:            '/async/app/graphdata',
@@ -1266,13 +1266,13 @@ function adamUpdateBacktestNBPOSGraph(backtest_id) {
         cache:          false,
         async:          true,
         success: function() {
-              adamDrawGraph('backtest-graph-nbpos',$.parseJSON(gd.responseText));
+              qateDrawGraph('backtest-graph-nbpos',$.parseJSON(gd.responseText));
         }
         });
 
 }
 
-function adamUpdateBacktestProgress(backtest_id) {
+function qateUpdateBacktestProgress(backtest_id) {
 
   var pd = $.ajax({
         url:            '/async/app/backtestctl',
@@ -1290,7 +1290,7 @@ function adamUpdateBacktestProgress(backtest_id) {
 }
 
 
-function adamUpdateBacktestLogs(backtest_id) {
+function qateUpdateBacktestLogs(backtest_id) {
 
   var ll = $.ajax({
         url:            '/async/app/backtestctl',
@@ -1314,7 +1314,7 @@ function adamUpdateBacktestLogs(backtest_id) {
 }
 
 
-function adamCheckBTStatus(backtest_id) {
+function qateCheckBTStatus(backtest_id) {
 
  var bts = $.ajax({
         url:            '/async/app/backtestctl',
@@ -1335,7 +1335,7 @@ function adamCheckBTStatus(backtest_id) {
 
               $('#',btline).off();
               $('#',btline).click(function() {
-                adamStartBacktest(backtest_id);
+                qateStartBacktest(backtest_id);
               });
             }
 
@@ -1345,7 +1345,7 @@ function adamCheckBTStatus(backtest_id) {
 
               $('#',btline).off();
               $('#',btline).click(function() {
-                adamStopBacktest(backtest_id);
+                qateStopBacktest(backtest_id);
               });
             
             }
@@ -1355,10 +1355,10 @@ function adamCheckBTStatus(backtest_id) {
 }
 
 
-function adamWSStart(nbret) {
+function qateWSStart(nbret) {
 
   var wsr = $.ajax({
-        url:            '/async/app/adamctl',
+        url:            '/async/app/qatectl',
         type:           'GET',
         data:           {action: 'wsinfo'},
         cache:          false,
@@ -1374,35 +1374,35 @@ function adamWSStart(nbret) {
 
     setTimeout(function(){
       nbret++;
-      adamWSStart(nbret);
+      qateWSStart(nbret);
     }, 3000);
   }
 
   WS.onmessage = function (event) {
     //console.log(event.data);
-    adamParseWSBcast(event.data);
+    qateParseWSBcast(event.data);
 
   }
 }
 
-function adamParseWSBcast(data) {
+function qateParseWSBcast(data) {
 
   var dt = $.parseJSON(data);
   
   if ( dt.lastlogs !== undefined ) {
-    adamUpdateLastLogs_NoFetch(dt.lastlogs);
+    qateUpdateLastLogs_NoFetch(dt.lastlogs);
   }
 
   else if (dt.corestats != undefined ) {
-    adamUpdateCorestats_NoFetch(dt.corestats);
+    qateUpdateCorestats_NoFetch(dt.corestats);
   }
 
   else if (dt.algos != undefined) {
-    adamUpdateRunningAlgos_NoFetch(dt.algos);
+    qateUpdateRunningAlgos_NoFetch(dt.algos);
   }
 
   else if (dt.poslist != undefined) {
-    adamUpdatePosList_NoFetch(dt.poslist);
+    qateUpdatePosList_NoFetch(dt.poslist);
   }
 
 }
@@ -1523,7 +1523,7 @@ function showLoginForm() {
 }
 
 
-function adamGetSelectContent(objs,type) {
+function qateGetSelectContent(objs,type) {
 
   var ret = "";
   var sc = $.ajax({
@@ -1541,25 +1541,25 @@ function adamGetSelectContent(objs,type) {
 }
 
 
-function adamChangeBacktestEditorView() {
+function qateChangeBacktestEditorView() {
   if ( $('#input-backtest-type').val() == 'normal' ) {
     $('#genetics').hide();
-    $('#input-backtest-strategy_id').html(adamGetSelectContent('strategies','normal') );
+    $('#input-backtest-strategy_id').html(qateGetSelectContent('strategies','normal') );
   }
 
   else {
     $('#genetics').show();
-    $('#input-backtest-strategy_id').html(adamGetSelectContent('strategies','genetics'));
+    $('#input-backtest-strategy_id').html(qateGetSelectContent('strategies','genetics'));
   }
 }
      
 /* This function makes a full check of all the listed backtests */
-function adamUpdateAllBacktests_NoFetch(bt_statuses) {
+function qateUpdateAllBacktests_NoFetch(bt_statuses) {
 
   for (i=0;i<bt_statuses.length;i++) {
     var bt_status = bt_statuses[i];
     var line = $('#backtest-line-'+ bt_status.id);
-    var resbtn = $('#btn-adambacktest-results',line);
+    var resbtn = $('#btn-qatebacktest-results',line);
 
     if (line.attr('hasresult') != bt_status.hasresult) {
       line.attr('hasresult',bt_status.hasresult);
@@ -1572,7 +1572,7 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
       else {
         resbtn.off('click');
         resbtn.click(function() {
-          adamShowBacktestResults($(this).attr('btid') );
+          qateShowBacktestResults($(this).attr('btid') );
         });
         resbtn.addClass('btn-info');
         resbtn.removeClass('disabled');
@@ -1581,7 +1581,7 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
 
     if (line.attr('state') != bt_status.state) {
       line.attr('state',bt_status.state);
-      var viewbtn = $('#btn-adambacktest-view',line);
+      var viewbtn = $('#btn-qatebacktest-view',line);
       var toglbtn = $('#btn-toggle-backtest',line);
       var statuslbl = $('#statuslbl',line);
       //running-state
@@ -1597,7 +1597,7 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
         viewbtn.off('click');
         viewbtn.click(
         function() {
-          adamShowBacktestViewer($(this).attr('btid'));
+          qateShowBacktestViewer($(this).attr('btid'));
         });
 
         toglbtn.removeClass('btn-success');
@@ -1637,7 +1637,7 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
         if (toglbtn.hasClass('disabled')) {
           toglbtn.removeClass('disabled');
           toglbtn.click( function() {
-            adamToggleBacktest($(this).attr('btid'));
+            qateToggleBacktest($(this).attr('btid'));
           });
         }
 
@@ -1651,7 +1651,7 @@ function adamUpdateAllBacktests_NoFetch(bt_statuses) {
 }
 
 /* This function makes a full check of all the listed backtests */
-function adamUpdateAllBacktests() {
+function qateUpdateAllBacktests() {
 
   var bt_statuses_raw = $.ajax({
         url:            '/async/app/backtestctl',
@@ -1668,29 +1668,29 @@ function adamUpdateAllBacktests() {
               var line = $('#backtest-line-'+ bt_status.id);
 
               if (bt_status.hasresult == false) {
-                $('#btn-adambacktest-results',line).off('click');
-                $('#btn-adambacktest-results',line).removeClass('btn-info');
-                $('#btn-adambacktest-results',line).addClass('disabled');
+                $('#btn-qatebacktest-results',line).off('click');
+                $('#btn-qatebacktest-results',line).removeClass('btn-info');
+                $('#btn-qatebacktest-results',line).addClass('disabled');
               }
               else {
-                $('#btn-adambacktest-results',line).off('click');
-                $('#btn-adambacktest-results',line).click(function() {
-                  adamShowBacktestResults(bt_status.id);
+                $('#btn-qatebacktest-results',line).off('click');
+                $('#btn-qatebacktest-results',line).click(function() {
+                  qateShowBacktestResults(bt_status.id);
                 });
-                $('#btn-adambacktest-results',line).addClass('btn-info');
-                $('#btn-adambacktest-results',line).removeClass('disabled');
+                $('#btn-qatebacktest-results',line).addClass('btn-info');
+                $('#btn-qatebacktest-results',line).removeClass('disabled');
               }
 
               //running-state
               if (bt_status.state == 'real') {
 
-                $('#btn-adambacktest-view',line).addClass('btn-info');
-                $('#btn-adambacktest-view',line).removeClass('disabled');
-                $('#btn-adambacktest-view',line).off('click');
-                $('#btn-adambacktest-view',line).click(
+                $('#btn-qatebacktest-view',line).addClass('btn-info');
+                $('#btn-qatebacktest-view',line).removeClass('disabled');
+                $('#btn-qatebacktest-view',line).off('click');
+                $('#btn-qatebacktest-view',line).click(
                 function() {
 
-                  adamShowBacktestViewer(bt_status.id);
+                  qateShowBacktestViewer(bt_status.id);
                 });
 
                 $('#btn-toggle-backtest',line).removeClass('btn-success');
@@ -1707,9 +1707,9 @@ function adamUpdateAllBacktests() {
 
               //Off
               else {
-                $('#btn-adambacktest-view',line).removeClass('btn-info');
-                $('#btn-adambacktest-view',line).addClass('disabled');
-                $('#btn-adambacktest-view',line).off('click');
+                $('#btn-qatebacktest-view',line).removeClass('btn-info');
+                $('#btn-qatebacktest-view',line).addClass('disabled');
+                $('#btn-qatebacktest-view',line).off('click');
                 
                 $('#btn-toggle-backtest',line).addClass('btn-success');
                 $('#btn-toggle-backtest',line).removeClass('btn-danger');
@@ -1724,7 +1724,7 @@ function adamUpdateAllBacktests() {
 
 
 
-function adamShowAbout() {
+function qateShowAbout() {
 
   var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1738,7 +1738,7 @@ function adamShowAbout() {
 
 }
 
-function adamShowBacktestEditor() {
+function qateShowBacktestEditor() {
 
     var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1752,7 +1752,7 @@ function adamShowBacktestEditor() {
 
 }
 
-function adamShowBacktestResults(backtest_id) {
+function qateShowBacktestResults(backtest_id) {
 
   var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1766,7 +1766,7 @@ function adamShowBacktestResults(backtest_id) {
 }
 
 
-function adamShowBacktestViewer(backtest_id) {
+function qateShowBacktestViewer(backtest_id) {
 
    var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1781,7 +1781,7 @@ function adamShowBacktestViewer(backtest_id) {
 }
 
 
-function adamShowStratEditor() {
+function qateShowStratEditor() {
 
     var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1795,7 +1795,7 @@ function adamShowStratEditor() {
 
 
 
-function adamShowBrokercfgEditor() {
+function qateShowBrokercfgEditor() {
 
     var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1808,7 +1808,7 @@ function adamShowBrokercfgEditor() {
 }
 
 
-function adamShowCorecfgEditor() {
+function qateShowCorecfgEditor() {
 
     var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1822,7 +1822,7 @@ function adamShowCorecfgEditor() {
 
 }
 
-function adamShowUserEditor() {
+function qateShowUserEditor() {
 
     var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -1836,7 +1836,7 @@ function adamShowUserEditor() {
 
 }
 
-function adamShowValueEditor() {
+function qateShowValueEditor() {
 
     var gt = $.ajax({
         url:            '/async/gettemplate',
@@ -2041,7 +2041,7 @@ function appUpdateLeft(element) {
 
 // function which updates display of backtest 
 // values when an asset is selected.
-function adamChangeBTResultValues() {
+function qateChangeBTResultValues() {
   var asstat = $.parseJSON( $('#result_values_selector').val()[0]  );
   $('#result_value_name').html(asstat.name);
   $('#result_value_highest').html(asstat.highest);
@@ -2052,7 +2052,7 @@ function adamChangeBTResultValues() {
 }
 
 
-function adamSaveUser(id) {
+function qateSaveUser(id) {
 
     id = ( typeof id == 'undefined' ) ? -1 : id;
     
@@ -2083,19 +2083,19 @@ function adamSaveUser(id) {
     user.username = $('#input-usercfg-username').val();
     user.password = $('#input-usercfg-password').val();
     user.rsa_key = $('#input-usercfg-rsakey').val();
-    var r = adamObject('add','user',user,-1);
+    var r = qateObject('add','user',user,-1);
 
     if (r.status == 'OK') {
-        adamRefreshTable('usercfg-table');
+        qateRefreshTable('usercfg-table');
         modalDest();
     }
     else processError(r);
     
 }
 
-function adamDelUser(uid) {
+function qateDelUser(uid) {
 
-   var r = adamObject('del','user',{},uid);
+   var r = qateObject('del','user',{},uid);
    if (r.status == 'OK') {
      var line = $('#user-line-' + uid);
      $('#btn-del-usercfg',line).tooltip('hide');
@@ -2105,9 +2105,9 @@ function adamDelUser(uid) {
    else processError(r);
 }
 
-function adamGetUserDataToEdit(uuid) {
+function qateGetUserDataToEdit(uuid) {
 
-   var r = adamObject('get','user',{},uuid)
+   var r = qateObject('get','user',{},uuid)
 
    if (r.status == 'OK') {
 
@@ -2136,7 +2136,7 @@ function adamGetUserDataToEdit(uuid) {
 }
 
 
-function adamShowBranchEditor() {
+function qateShowBranchEditor() {
 
   var be = $.ajax({
         url:            '/async/gettemplate',
@@ -2149,7 +2149,7 @@ function adamShowBranchEditor() {
   modalInst(400,'auto',be.responseText);
 }
 
-function adamShowDelBranchEditor() {
+function qateShowDelBranchEditor() {
 
   var db = $.ajax({
         url:            '/async/gettemplate',
@@ -2163,7 +2163,7 @@ function adamShowDelBranchEditor() {
   
 }
 
-function adamShowCommitEditor() {
+function qateShowCommitEditor() {
 
   var cr = $.ajax({
         url:            '/async/gettemplate',
@@ -2177,7 +2177,7 @@ function adamShowCommitEditor() {
 
 }
 
-function adamUpdateGitBranches() {
+function qateUpdateGitBranches() {
 
   var ggb = $.ajax({
                         url:            '/async/app/gitctl',
@@ -2193,7 +2193,7 @@ function adamUpdateGitBranches() {
                             if (i.active) {
                               $('#strat-git-branchselector').html(i.name);
                             }
-                            $('#strat-git-branchlist').append("<li><a onclick=\"adamCheckoutGitBranch('" + i.name +  "');\">" + i.name + "</a></li>");
+                            $('#strat-git-branchlist').append("<li><a onclick=\"qateCheckoutGitBranch('" + i.name +  "');\">" + i.name + "</a></li>");
                             
                           });
                           
@@ -2203,7 +2203,7 @@ function adamUpdateGitBranches() {
   
 }
 
-function adamCreateGitBranch() {
+function qateCreateGitBranch() {
 
   var new_branch = $('#input-git-newbranch').val();
   var gcb = $.ajax({
@@ -2213,13 +2213,13 @@ function adamCreateGitBranch() {
                         cache:          true,
                         async:          true,
                         success: function() {
-                          adamUpdateGitBranches();
+                          qateUpdateGitBranches();
                           modalDest();
                         }
   });
 }
 
-function adamCreateGitCommit() {
+function qateCreateGitCommit() {
 
   var commit_message = $('#input-git-commit-title').val() + "\n\n" + $('#input-git-commit-comment').val();
 
@@ -2230,7 +2230,7 @@ function adamCreateGitCommit() {
                         cache:          true,
                         async:          true,
                         success: function() {
-                          adamCheckPendingGitCommit();  
+                          qateCheckPendingGitCommit();  
                           modalDest();
                         }
   });
@@ -2240,7 +2240,7 @@ function adamCreateGitCommit() {
 
 
 
-function adamDeleteGitBranch() {
+function qateDeleteGitBranch() {
 
   var branch = $('#input-git-delbranch').val();
   var gcb = $.ajax({
@@ -2250,13 +2250,13 @@ function adamDeleteGitBranch() {
                         cache:          true,
                         async:          true,
                         success: function() {
-                          adamUpdateGitBranches();
+                          qateUpdateGitBranches();
                           modalDest();
                         }
   });
 }
 
-function adamCheckoutGitBranch(branch) {
+function qateCheckoutGitBranch(branch) {
 
   var gcb = $.ajax({
                         url:            '/async/app/gitctl',
@@ -2265,14 +2265,14 @@ function adamCheckoutGitBranch(branch) {
                         cache:          true,
                         async:          true,
                         success: function() {
-                          adamUpdateGitBranches();
-                          adamRefreshTable('strategies-table');
+                          qateUpdateGitBranches();
+                          qateRefreshTable('strategies-table');
                           modalDest();
                         }
   });
 }
 
-function adamCheckPendingGitCommit() {
+function qateCheckPendingGitCommit() {
 
   var cpr = $.ajax({
                         url:            '/async/app/gitctl',
@@ -2291,9 +2291,9 @@ function adamCheckPendingGitCommit() {
                           if (res.pending) {
                             $('#btn-git-commit').removeClass('disabled');
                             $('#btn-git-commit').addClass('btn-success');
-                            $('#btn-git-commit').click(function(){ adamShowCommitEditor(); });
+                            $('#btn-git-commit').click(function(){ qateShowCommitEditor(); });
 
-                            adamRefreshTable('strategies-table');
+                            qateRefreshTable('strategies-table');
 
                           }
 
@@ -2306,7 +2306,7 @@ function adamCheckPendingGitCommit() {
 }
 
 
-function adamUpdateHistory() {
+function qateUpdateHistory() {
 
     var uhr = $.ajax({
       url: '/async/app/histview',
@@ -2321,7 +2321,7 @@ function adamUpdateHistory() {
 }
 
 
-function adamUpdatePerfStats(scale) {
+function qateUpdatePerfStats(scale) {
 
   if (scale == 'day') bar_width = 3600 * 1000 ;
   else if (scale == 'month') bar_width = 86400 * 1000;
@@ -2442,7 +2442,7 @@ function adamUpdatePerfStats(scale) {
 }
 
 
-function adamUpdateRunningAlgos_NoFetch(ralgos) {
+function qateUpdateRunningAlgos_NoFetch(ralgos) {
 
   total = ralgos.length;
   neutral  = 0;
@@ -2489,9 +2489,9 @@ function adamUpdateRunningAlgos_NoFetch(ralgos) {
 }
 
 
-function adamUpdateRunningAlgosStats() {
+function qateUpdateRunningAlgosStats() {
 
-  var raq = $.ajax({ url: '/async/app/adamctl' ,
+  var raq = $.ajax({ url: '/async/app/qatectl' ,
                type: 'GET',
                data: { 'action': 'getAlgos' },
                cache: false,
@@ -2553,7 +2553,7 @@ function adamUpdateRunningAlgosStats() {
 
 }
 
-function adamUpdateTradeStats() {
+function qateUpdateTradeStats() {
 
      var rsr = $.ajax({ url: '/async/app/stats/trades' ,
                cache: false,

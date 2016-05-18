@@ -1,5 +1,5 @@
-Visiblehand 2.0 Install Guide
-=============================
+QWC Install Guide
+=================
 
 SYSTEM SETUP
 ------------
@@ -8,7 +8,12 @@ SYSTEM SETUP
 
 /etc/sudoers: add the following line to the file:
 
-www-data ALL=(ALL) NOPASSWD: /usr/bin/pkill, NOPASSWD: /usr/local/adam/bin/adam, NOPASSWD: /bin/kill, NOPASSWD: /bin/echo, NOPASSWD: /usr/bin/gdb, NOPASSWD: /usr/bin/screen
+www-data ALL=(ALL) NOPASSWD: /usr/bin/pkill, NOPASSWD: /usr/local/qate/bin/qate, NOPASSWD: /bin/kill, NOPASSWD: /bin/echo, NOPASSWD: /usr/bin/gdb, NOPASSWD: /usr/bin/screen, , NOPASSWD: /etc/init.d/qate
+
+CRON ENTRIES: 
+
+* * * * * php /usr/local/qate/admin/jobs/scheduler.php
+
 
 NGINX:
 
