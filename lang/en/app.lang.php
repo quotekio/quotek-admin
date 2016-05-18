@@ -423,4 +423,9 @@
   $lang_array['app']['notify_report_every'] = 'Reports Frequency (h)';
   $lang_array['app']['notify_report_every_hint'] = 'Tells when quotek must send its performance reports e.g: every 6h will send 4 reports a day at {0,6,12,18}h';
 
+  $lang_array['app']['autoreboot'] = 'Watchdog';
+  $lang_array['app']['autoreboot_enable'] = 'Enable Watchdog';
+  $lang_array['hint']['config_autoreboot'] = 'This feature ensures that the robot is properly running and tries to restart itself automatically (up to 5 times in 1 hour) in case of crash or control error.';
+
+
 ?>

@@ -53,6 +53,14 @@ $backends = getBackends();
            <input id="input-corecfg-mm_capital" style="height:27px;width:100px" type="text" value="2000">
            <span class="help-block"><?= $lang_array['hint']['config_capital'] ?></span>
 
+           <label><b><?= $lang_array['app']['broker'] ?></b></label>
+           <select id="input-corecfg-broker_id" style="height:27px;width:150px;padding-top:1px">
+            <?php foreach($brokers as $broker) { ?>
+               <option value="<?= $broker->id ?>"><?= $broker->name ?></option>
+           <?php } ?>
+           </select>
+           <span class="help-block"><?= $lang_array['hint']['config_broker'] ?></span>
+
            <label><b><?= $lang_array['app']['eval_ticks'] ?></b></label>
            <input id="input-corecfg-eval_ticks" style="height:27px;width:100px" type="text" value="1000000">
            <span class="help-block"><?= $lang_array['hint']['config_eval_ticks'] ?></span>
@@ -65,14 +73,13 @@ $backends = getBackends();
            <input id="input-corecfg-inmem_history" style="height:27px;width:100px" type="text" value="0">
            <span class="help-block"><?= $lang_array['hint']['config_inmem_history'] ?></span>
            
+           <label><b><?= $lang_array['app']['autoreboot'] ?></b></label>
+           <label class="checkbox">
+              <input id="input-corecfg-autoreboot" type="checkbox"><?=  $lang_array['app']['autoreboot_enable'] ?>
+           </label>
+           <span class="help-block"><?= $lang_array['hint']['config_autoreboot'] ?></span>
 
-           <label><b><?= $lang_array['app']['broker'] ?></b></label>
-           <select id="input-corecfg-broker_id" style="height:27px;width:150px;padding-top:1px">
-            <?php foreach($brokers as $broker) { ?>
-               <option value="<?= $broker->id ?>"><?= $broker->name ?></option>
-           <?php } ?>
-           </select>
-           <span class="help-block"><?= $lang_array['hint']['config_broker'] ?></span>
+           
 
           </form>
           </div>

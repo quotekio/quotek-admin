@@ -183,11 +183,13 @@ function adamSaveCoreCfg(ccid) {
 
   corecfg.name = $('#input-corecfg-name').val();
   corecfg.mm_capital = parseInt($('#input-corecfg-mm_capital').val());
+  corecfg.broker_id = parseInt($('#input-corecfg-broker_id').val());
   corecfg.eval_ticks = parseInt($('#input-corecfg-eval_ticks').val());
   corecfg.getval_ticks = parseInt($('#input-corecfg-getval_ticks').val());
   corecfg.inmem_history = parseInt($('#input-corecfg-inmem_history').val());
+  
+  corecfg.autoreboot = ( $('#input-corecfg-autoreboot').is(':checked')) ? 1 : 0 ;
 
-  corecfg.broker_id = parseInt($('#input-corecfg-broker_id').val());
   corecfg.mm_max_openpos = parseInt($('#input-corecfg-mm_max_openpos').val());
   corecfg.mm_max_openpos_per_epic = parseInt($('#input-corecfg-mm_max_openpos_per_epic').val());
   corecfg.mm_reverse_pos_lock =  ( $('#input-corecfg-mm_reverse_pos_lock').is(':checked')) ? 1 : 0 ;
@@ -421,7 +423,10 @@ function adamGetCoreCfgDataToEdit(ccid) {
     $('#input-corecfg-notify_report_every').val(ccfg.notify_report_every);
     $('#input-corecfg-notify_shutdown').get(0).checked = (ccfg.notify_shutdown == 1) ? true: false;
     $('#input-corecfg-notify_report').get(0).checked = ( ccfg.notify_report == 1 ) ? true : false ;
-    
+
+    $('#input-corecfg-autoreboot').get(0).checked = (ccfg.autoreboot == 1) ? true: false;
+
+
   }
 
   else {

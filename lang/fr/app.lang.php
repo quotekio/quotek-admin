@@ -437,4 +437,8 @@
   $lang_array['app']['notify_report_every'] = 'Frequence d\'envoi des rapports';
   $lang_array['app']['notify_report_every_hint'] = 'Indique à quelle fréquence en heures envoyer les rapports de performance. ex: pour une valeur de 6, quotek enverra 4 rapports par jour , à {0,6,12,18}h.';
 
+  $lang_array['app']['autoreboot'] = 'Redémarrage Automatique';
+  $lang_array['app']['autoreboot_enable'] = 'Activer le redémarrage automatique';
+  $lang_array['hint']['config_autoreboot'] = 'Cette option vous permet d\'activer une securité du robot: en cas de crash ou d\'erreur de manipulation, celui-ci peut tenter de se relancer automatiquement (5 essais par heure).';
+
 ?>

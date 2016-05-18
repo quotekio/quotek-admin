@@ -10,6 +10,10 @@
   $ADAM_PIDFILE = "$ADAM_TMP/adam.pid";
   $EXEC_QUEUE_FILE = "${ADAM_TMP}/run.queue";
 
+  //autoreboot options
+  $AR_MAXTRIES = 5;
+  $AR_DATA_EXPIRES = 3600;
+
   $GIT_USER = 'git';
   $GIT_LOCATION='/quotek';
 
