@@ -11,12 +11,13 @@
           <img src="/img/quotek-logo.png" style="width:400px;margin-top:40px;margin-bottom:40px"/>
          </div>
 
-          
+          <!-- powered by disabled for now
           <div style="padding:5px;padding-left:0px">
             <b>powered-by:</b><br>
             <img style="height:28px" src="/img/qate-logo.png"/>&nbsp;&nbsp;
             <img style="height:25px" src="/img/influxdb-logo.png"/>
           </div>
+          -->
 
           <div class="well" style="width:540px">
             <table style="font-size:12px">
