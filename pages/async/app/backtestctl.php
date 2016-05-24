@@ -20,27 +20,10 @@
     $btest = new backtest();
     $btest->id = $_REQUEST['id'];
     $btest->load();
+    
+    $bctl = new backtestctl($btest);
 
-    $bctl = new backtestctl();
-    $bctl->setBacktestID($btest->id);
-
-    /* Generate Backtest Arguments */
-    $bt_args = array();
-    $bt_args[] = "-p " . ($QATE_AEP_PORT + $btest->id );  
-    if ($btest->type == 'normal') {
-        $bt_args[] = '--backtest';
-    }
-    else if ($btest->type == 'genetics') {
-        $bt_args[] = '--genetics';
-    }
-
-    $bt_args[] = '--backtest-from ' . $btest->start;
-    $bt_args[] = '--backtest-to ' . $btest->end;
-    $bt_args[] = '--backtest-result ' .  $QATE_TMP . "/backtests/" .  $btest->id . "/results/" . time() ;
-    $bt_args[] = "$QATE_TMP/backtests/" . $btest->id . "/qate.conf";
-    /* */
   }
-  
   
   if ( $_REQUEST['action'] == 'start') {
 
@@ -52,7 +35,6 @@
       $btest->appendGeneticsParams();
     }
 
-    $bctl->setBTArgs($bt_args);
     $bctl->startBT();
   }
 
@@ -66,6 +48,11 @@
     $bctl->startBT();
   }
 
+  else if ($_REQUEST['action'] == 'getWebSocket') {
+    echo $bctl->getWebSocket();
+  }
+  
+
   else if ( $_REQUEST['action'] == 'getStatus') {
 
     $state = $bctl->checkStatus($bctl->supid);
@@ -74,37 +61,7 @@
     echo json_encode($res);
   } 
   
-  else if ($_REQUEST['action'] == 'getCorestats') {
-    
-    if ($bctl->AEPStartCLient($btest->id)) {
-      $cs_str = $bctl->AEPIssueCmd('corestats');
-      echo $cs_str;
-    }
-    else {
-      echo "{}";
-    }
-  }  
-
-  else if ($_REQUEST['action'] == 'getProgress') {
-    
-    if ($bctl->AEPStartCLient($btest->id)) {
-      $cs_str = $bctl->AEPIssueCmd('btprogress');
-      echo $cs_str;
-    }
-    else echo "{}";
-  }  
-
-  else if ($_REQUEST['action'] == 'getLastLogs') {
-
-    if (isset($_REQUEST['nb_entries']) && is_numeric($_REQUEST['nb_entries'])) {
-
-      if ($bctl->AEPStartCLient($btest->id)) {
-        echo $bctl->AEPIssueCmd('lastlogs ' . $_REQUEST['nb_entries']);
-      }
-      else echo "{}";  
-    }
-  }
-
+  
   else if ($_REQUEST['action'] == 'getResult') {
     if (!isset($_REQUEST['result'])) die ("No result to return");
     $response = array();
@@ -125,8 +82,7 @@
     $res = array();
     $btests = getBacktests();
     foreach($btests as $bt) {
-      $backctl = new backtestctl();
-      $backctl->setBacktestID($bt->id);
+      $backctl = new backtestctl($bt);
       
       if ($backctl->checkStatus($backctl->expid) == "real") {
         $state = "preparing";
@@ -135,18 +91,9 @@
       else $state = $backctl->checkStatus($backctl->supid);
 
       $res[] = array('id' => $bt->id , 'state' => $state, 'hasresult' => $bt->hasResult() );
-      //echo "SUPID:" . $backctl->supid; 
-
 
     }
     echo json_encode($res);
   }
 
-  /*
-  else if ($_REQUEST['action'] == 'getPosList') {
-    if ($ac->AEPStartCLient()) {
-      echo $ac->AEPIssueCmd('poslist');
-    }  
-  }
-  */
 ?>

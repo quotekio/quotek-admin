@@ -4,18 +4,19 @@
 @require_once('classes/qatectl.php');
 @require_once('include/functions.inc.php');
 
+@require_once('classes/executor.php');
+
 class backtestctl extends qatectl {
 
-  function __construct() {
-    $this->supid = 'none';
-    $this->mode = 'off';
-  }
-
-  function setBacktestID($backtest_id) {
-
+  function __construct($backtest) {
+ 
     global $QATE_TMP;
-    $this->backtest_id = $backtest_id;
-    $this->supid = $this->getPID("$QATE_TMP/backtests/" . $this->backtest_id . "/qate.pid");
+
+    $this->mode = 'off';
+    $this->backtest = $backtest;
+
+    $btid = $this->backtest->id;
+    $this->supid = $this->getPID("$QATE_TMP/backtests/$btid/qate.pid");
    
     if ($this->supid != "none") {
       $this->mode = $this->checkStatus($this->supid);
@@ -23,26 +24,41 @@ class backtestctl extends qatectl {
 
   }
 
-  function setBTArgs($bt_args) {
-    $this->bt_args = $bt_args;
-  }
-
   function startBT() {
+
     global $QATE_PATH;
     global $QATE_TMP;
-    global $QATE_BT_EXPORTS;
+    global $QATE_AEP_PORT;
+    global $EXEC_QUEUE_FILE;
 
     $outp = array();
-    $cmd = "sudo $QATE_PATH/bin/qate ";
 
-    foreach($this->bt_args as $bt_arg) {
-      $cmd .= "$bt_arg ";
-    }
-    
+    $btid = $this->backtest->id;
+    $from = $this->backtest->start;
+    $strat = $this->backtest->strategy_name;
+    $to = $this->backtest->end;
+
+    $poffset = $this->findPorts();
+    $port = $QATE_AEP_PORT + $poffset;
+    $cfg = "$QATE_TMP/backtests/$btid/qate.conf";
+
+    $cmd = "$QATE_PATH/bin/qate -c ${cfg} --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -s ${strat} &";
+
     if ($this->checkStatus($this->supid) == 'off') {
-      exec(sprintf("%s >/dev/null 2>&1 & " . 'echo $!' , $cmd),$outp);
-      $this->supid = $outp[0];
-      $this->setPID($this->supid,"$QATE_TMP/backtests/" . $this->backtest_id . "/qate.pid");
+      
+      $ec = new executor($EXEC_QUEUE_FILE);
+
+      //GRUUIIIK HACK: $(expr $! - 1) to retrieve PID !!
+      $ec->enqueue("sudo sh -c '$cmd 2>&1 >/dev/null & echo $(expr $! - 1) > $QATE_TMP/backtests/$btid/qate.pid'");
+
+      //writes ws port to be found back.
+      file_put_contents("$QATE_TMP/backtests/$btid/qate.aep.port",$port);
+
+      //puts commandline in file, for debug purpose.
+      file_put_contents("$QATE_TMP/backtests/$btid/qate.bt.cmd",$cmd);
+
+      echo  "ws://" . $_SERVER['SERVER_NAME'] . ":" . ($port + 1) ;
+
     }
     else echo "ALREADY RUNNING!";
   }
@@ -55,6 +71,18 @@ class backtestctl extends qatectl {
     }
     exec("sudo kill " . $this->supid );
     $this->mode = 'off';
+  }
+
+  //retrieves websocket when want to reconnect.
+  function getWebSocket() {
+
+    $btid = $this->backtest->id;
+    $port =  file_get_contents("$QATE_TMP/backtests/$btid/qate.aep.port");
+
+    if (! is_int($port)) return "none";
+
+    return  "ws://" . $_SERVER['SERVER_NAME'] . ":" . ($port + 1) ;
+
   }
 
 }
@@ -90,8 +118,6 @@ class backtest extends qateobject {
       $e_args[] = $bt_value->name;
     }
 
-    $e = new backtestctl();
-    $e->setBacktestID($this->id);
   }
 
   function createTree() {

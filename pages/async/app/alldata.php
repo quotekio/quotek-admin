@@ -51,9 +51,8 @@ $res['backteststatuses'] = array();
 
 $btests = getBacktests();
 foreach($btests as $bt) {
-  $backctl = new backtestctl();
-  $backctl->setBacktestID($bt->id);
-  
+  $backctl = new backtestctl($bt);
+ 
   $state = $backctl->checkStatus($backctl->supid);
   $res['backteststatuses'][] = array('id' => $bt->id , 'state' => $state, 'hasresult' => $bt->hasResult() );
 }

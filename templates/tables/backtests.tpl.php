@@ -34,27 +34,21 @@
     <?php
     foreach($backtests as $bt) {
 
-      $strat = new strategy();
-      $strat->id = $bt->strategy_id;
-      $strat->load();
-
-
     ?>
   
       <tr id="backtest-line-<?= $bt->id  ?>" state="off">
       	<td><?= $bt->name ?></td>
         <td><?= $bt->type ?></td>
         <td style="width:200px!important">
-          <span class="dtime"><?= $bt->start ?></span><br>
-          <span class="dtime"><?= $bt->end ?></span><br>
+          <span class="dtime2 dtime-editable" onclick="chdatetime($(this),'btstart');"><?= $bt->start ?></span><br>
+          <span class="dtime2 dtime-editable" onclick="chdatetime($(this),'btend');"><?= $bt->end ?></span><br>
         </td>
-        <!-- <td class="dtime"><?= $bt->end ?></td>  -->     	
-        <td style="width:220px!important"> <?= $strat->name ?></td>
+        
+        <td style="width:220px!important"> <?= $bt->strategy_name ?></td>
 
-        <td style="text-align:center">
+        <td style="text-align:left">
           <span class="label label-inverse" 
                 id="statuslbl" 
-                style="width:90px;padding-bottom:5px;padding-top:5px"
                 labelrunning="<?= $lang_array['app']['qate_mode']['running']  ?>" 
                 labelpreparing="<?= $lang_array['app']['qate_mode']['preparing'] ?>"
                 labelstopped="<?= $lang_array['app']['qate_mode']['off'] ?>" 
@@ -114,6 +108,33 @@
   </table>
 
   <script type="text/javascript">
+
+
+    function chdatetime(dtspan, lbl) {
+
+      if ( $('input', dtspan).length == 0  ) {
+        var dtstr = dtspan.html();
+        dtspan.html('<input id="' + lbl + '" style="width:130px" type="text" value="' + dtstr + '"/>' );
+        $('input[id="' + lbl + '"]').focus();
+      }
+
+      else {
+
+        var btid = dtspan.parent().parent().attr('id').replace('backtest-line-','');
+        var dtstr = $('input[id="' + lbl + '"]').val();
+        var fname = (lbl == 'btstart') ? 'start': 'end'; 
+
+        console.log(dtstr);
+        console.log(strtotime(dtstr));
+
+        //update time
+        qateUpdateBacktest(btid, fname, strtotime(dtstr));
+        dtspan.html(dtstr);
+
+      }
+
+
+    }
 
     $('.btn-qatebacktest-edit').each(function() {
 

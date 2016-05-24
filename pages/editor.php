@@ -187,13 +187,7 @@ $themes = listThemes();
           </tr>
 
         </table>
-
-
-
       </div>
-
-
-
       </div>      
 
 

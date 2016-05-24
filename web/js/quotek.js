@@ -9,6 +9,9 @@ function strtotime(strtime) {
   return d.getTime() / 1000;
 }
 
+
+
+
 function tzOffset() {
   var d = new Date();
   return d.getTimezoneOffset() * -1 / 60;
@@ -31,6 +34,12 @@ function qateRefreshTable(tname) {
 
         formatDate($(this));
      });
+
+     $('.dtime2',t).each(function() {
+        $(this).html( formatDate2($(this).html()) );
+     });
+
+
 }
 
 
@@ -532,7 +541,7 @@ function qateGetBacktestDataToEdit(bid) {
     $('#input-backtest-start').val(formatDate2(backtest.start));
     $('#input-backtest-end').val(formatDate2(backtest.end));
     $('#input-backtest-config_id').val(backtest.config_id);
-    $('#input-backtest-strategy_id').val(backtest.strategy_id);
+    $('#input-backtest-strategy_name').val(backtest.strategy_name);
     $('#input-backtest-genetics_population').val(backtest.genetics_population);
     $('#input-backtest-genetics_survivors').val(backtest.genetics_survivors);
     $('#input-backtest-genetics_converge_thold').val(backtest.genetics_converge_thold);
@@ -540,6 +549,19 @@ function qateGetBacktestDataToEdit(bid) {
   }
 
   else processError(r);
+}
+
+
+//special for dates update
+function qateUpdateBacktest(id,field,data) {
+
+  backtest = {};
+  backtest[field] = data;
+  backtest.id = id;
+
+  var r = qateObject('add','backtest', backtest,-1);
+  
+
 }
 
 
@@ -551,7 +573,6 @@ function qateSaveBacktest(id) {
                'type' : null,
                'start': null,
                'end' : null,
-               'speed' : null,
                'config_id': null,
                'strategy_id': null,
                'genetics_population' : null
@@ -563,7 +584,7 @@ function qateSaveBacktest(id) {
   backtest.end = strtotime($('#input-backtest-end').val());
   //backtest.type = $('#input-backtest-type').val();
   backtest.config_id = $('#input-backtest-config_id').val();
-  backtest.strategy_id = $('#input-backtest-strategy_id').val();
+  backtest.strategy_name = $('#input-backtest-strategy_name').val();
   backtest.genetics_population = $('#input-backtest-genetics_population').val();
   backtest.genetics_survivors = $('#input-backtest-genetics_survivors').val();
   backtest.genetics_converge_thold = $('#input-backtest-genetics_converge_thold').val();
@@ -1544,12 +1565,12 @@ function qateGetSelectContent(objs,type) {
 function qateChangeBacktestEditorView() {
   if ( $('#input-backtest-type').val() == 'normal' ) {
     $('#genetics').hide();
-    $('#input-backtest-strategy_id').html(qateGetSelectContent('strategies','normal') );
+    $('#input-backtest-strategy_name').html(qateGetSelectContent('strategies','normal') );
   }
 
   else {
     $('#genetics').show();
-    $('#input-backtest-strategy_id').html(qateGetSelectContent('strategies','genetics'));
+    $('#input-backtest-strategy_name').html(qateGetSelectContent('strategies','genetics'));
   }
 }
      
@@ -1776,7 +1797,8 @@ function qateShowBacktestViewer(backtest_id) {
         async:          false
         });
     
-  modalInst(700,610,gt.responseText);
+  modalInst(550,500,gt.responseText);
+
 
 }
 

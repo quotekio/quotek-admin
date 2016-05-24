@@ -10,11 +10,11 @@ $strats_ct = "";
 $strats_gen_ct = "";
 
 foreach($strats as $strat) {
-  $strats_ct .= '<option value="' . $strat->id . '">' . $strat->name . '</option>';
+  $strats_ct .= '<option value="' . $strat->name . '">' . $strat->name . '</option>';
 }
 
 foreach($strats_gen as $strat) {
-  $strats_gen_ct .= '<option value="' . $strat->id . '">' . $strat->name . '</option>';
+  $strats_gen_ct .= '<option value="' . $strat->name . '">' . $strat->name . '</option>';
 }
 
  
@@ -77,7 +77,7 @@ foreach($strats_gen as $strat) {
            <span class="help-block">Indiquez la configuration Qate que vous souhaitez appliquer pour cette simulation</span>
 
            <label><b><?= $lang_array['app']['strat'] ?></b></label>
-           <select id="input-backtest-strategy_id" style="height:27px;width:150px;padding-top:1px">
+           <select id="input-backtest-strategy_name" style="height:27px;width:150px;padding-top:1px">
              <?= $strats_ct ?>
            </select>
            <span class="help-block">Indiquez la strategie à tester pour cette simulation.</span>

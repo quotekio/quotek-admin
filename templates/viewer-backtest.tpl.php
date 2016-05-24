@@ -20,80 +20,107 @@
          </div>
          
 
-                <div class="app-headed-white-frame" style="height:80px">
-                  <div class="app-headed-frame-header" style="margin-bottom:0px">
-                      <h4><?= $lang_array['app']['progress'] ?></h4>
+               
+                <div class="row-fluid">
+                  <div>
+                    <h4><?= $lang_array['app']['progress'] ?></h4>
+                  </div>
+                  <div class="progress progress-info">
+                    <div class="bar" style="width: 0.1%" id="editor-bt-progress"></div>
                   </div>
 
-                 <div style="padding:15px">
-                  <div class="progress progress-info" id="viewer-backtest-progress">
-                     <div class="bar" id="backtest-progress-bar" style="width: 10%">10%</div>
-                  </div>
-                 </div>
-                </div>
- 
-                <div class="app-headed-white-frame" style="height:250px;margin-top:20px">
-                  <div class="app-headed-frame-header" style="margin-bottom:0px">
-                      <h4><?= $lang_array['app']['graphics'] ?></h4>
-                  </div>
- 
-                  <div style="padding:15px">
-
-                  <div class="row-fluid">
-                    <div class="span6">
-                      <div id="backtest-graph-pnl" style="width:250px;height:190px"></div>
-                    </div>
-
-                    <div class="span6">
-                      <div id="backtest-graph-nbpos" style="width:250px;height:190px"></div>
-                    </div>
-
-                  </div>
-
-
-                  </div>
-                
                 </div>
 
-                <div class="app-headed-white-frame" style="height:150px;margin-top:20px">
-                  <div class="app-headed-frame-header" style="margin-bottom:0px">
-                      <h4><?= $lang_array['app']['lastlog'] ?></h4>
+                <div class="row-fluid" style="text-align:center;overflow:hidden">
+
+                  <div style="text-align:left">
+                    <h4><?= $lang_array['app']['performance'] ?></h4>
                   </div>
-                  <div id="backtest-lastlogs" style="background-color:#202020;color:#38b7e5;height:105px;overflow-y:scroll"></div>
+
+                  <div id="editor-bt-perfgraph" style="width:500px;height:130px;margin-left:auto;margin-right:auto;">
+
+                  </div>
+
                 </div>
 
+                <hr>
+
+                <div class="row-fluid">
+
+                <div class="span6" style="text-align:center">
+                  <div id="editor-bt-winloss" style="width:120px;height:120px;margin-left:auto;margin-right:auto;"></div>
+                  <div id="editor-bt-winloss-label" style="width:115px;text-align:center;color:#cccccc;font-size:23px;font-weight:bold;position:absolute;margin-top:-70px;margin-left:67px">0/0</div>
+                </div>
+
+                <div class="span6">
+
+                  <table class="table" style="font-size:20px">
+
+                    <tr>
+                      <td>Realized PNL</td>
+                      <td id="editor-bt-rpnl">0</td>
+                    </tr>
+
+                    <tr>
+                      <td>Max Drawdown</td>
+                      <td id="editor-bt-mdd">0</td>
+                    </tr>
+
+                    <tr>
+                      <td>Profit Factor</td>
+                      <td id="editor-bt-pf">0</td>
+                    </tr>
+
+                  </table>
+                </div>
+                </div>
 
 
       <script type="text/javascript">
 
-      var pnldata = { 'label' : 'PNL', 
-                      'lines' : { 'fill': false, 'lineWidth' : 2 },
-                      'color' : '#779148',
-                      'data' : []
-                    };
-      
-      var nbposdata = { 'label' : 'NBPOS', 
-                      'lines' : { 'fill': false, 'lineWidth' : 2 },
-                      'color' : '#6E97AA',
-                      'data' : []
-                    };
+      var bt_wloptions = { series: {
+              pie: {
+                    innerRadius: 0.8,
+                    radius: 1,
+                    show: true,
+                    label: { show:false },
+                    stroke:{
+                      width:0
+                    }
+                  },
+              },
+              legend: {
+                show: false,
+              },
+        };
+
+        var bt_perf_options = {  series: {
+                                           lines: {
+                                           show: true,
+                                           fill: true
+                                           }
+                                },
+
+                                xaxis: {
+                                      mode: "time",
+                              
+                                },   
+                                grid: {
+                                     show: true,
+                                     borderWidth: 0,
+                                },
+                                legend: {
+                                  show: false
+                                }
+                              };
+
+
+      $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
+      $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
 
       
-      function qateRedreshBacktestInfos() {
 
-         qateUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
-         qateUpdateBacktestProgress(<?= $bt->id ?>);
-         qateUpdateBacktestLogs(<?= $bt->id ?>);
 
-         if ( $('#modal_win').is(':visible') ) {
-           setTimeout('qateRedreshBacktestInfos()',2000);
-         }
-         else return false;
-      }
-        
-      qateUpdateBacktestGraphs(<?=  $bt->id ?>,pnldata,nbposdata);
-      qateUpdateBacktestProgress(<?= $bt->id ?>);
-      qateUpdateBacktestLogs(<?= $bt->id ?>);
-      setTimeout('qateRedreshBacktestInfos()', 2000);
+
       </script>
       

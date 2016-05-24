@@ -33,6 +33,10 @@
       <i class="icon-white icon-cog"></i> <?= $lang_array['app']['strats']?></a>
   </li>
 
+  <li>
+    <a class="left-menu-link" onclick="appLoadDisp('qatebacktest',true);appUpdateLeft($(this));">
+      <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
+  </li>
 
     <div class="accordion" id="app-left-wizzards-accordion">
       <div class="accordion-group" style="border:0px">
@@ -71,13 +75,7 @@
   </div>
 
 
-  <!-- Not implemented yet -->
-  <!--
-  <li>
-    <a class="left-menu-link" onclick="appLoadDisp('qatebacktest',true);appUpdateLeft($(this));">
-      <i class="icon-white icon-arrow-left"></i> <?= $lang_array['app']['backtest']?></a>
-  </li> -->
-
+  
 
    <div class="accordion" id="app-left-wizzards-accordion">
       <div class="accordion-group" style="border:0px">

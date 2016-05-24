@@ -85,6 +85,7 @@ class qatectl {
    
     $ec = new executor($EXEC_QUEUE_FILE);
     $ec->enqueue($cmd);
+    
     return  "ws://" . $_SERVER['SERVER_NAME'] . ":" . ($port + 1) ;
 
   }
@@ -129,8 +130,8 @@ class qatectl {
     $this->mode = 'off';
   }
 
-/*//POTENTIALLY DEPRECATED ! 
-  //(but might still be useful if we launch qate foreground, inside  a screen)
+  
+  //UNDEPRECATED, still required for backtests.
   function setPID($pid,$pidfile=null) {
     global $QATE_PIDFILE;
     if ($pidfile == null) {
@@ -152,7 +153,7 @@ class qatectl {
     else return "";
 
   }
-  */
+
 
   function getPID($pid_f=null) {
     global $QATE_PIDFILE;
