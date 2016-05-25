@@ -1,6 +1,6 @@
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
-     <h3 id="editor-title" ><?= $lang_array['app']['git_newbranch_title'] ?></h3>
+     <h4 id="editor-title" ><?= $lang_array['app']['git_newbranch_title'] ?></h4>
      </div>
      <div class="modal-body" style="padding-bottom:10px">
          <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
@@ -17,8 +17,9 @@
           </div>
         </form>
     
-        <a class="btn btn-warning" style="float:right" id="btn-git-createb"><?= $lang_array['app']['create'] ?></a>
-
+     </div>
+     <div class="modal-footer2">
+            <a id="btn-git-createb" class="btn btn-warning"><?= $lang_array['app']['create'] ?></a>
      </div>
 
      <script type="text/javascript">
