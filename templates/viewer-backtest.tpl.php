@@ -1,12 +1,6 @@
 <?php
 
-   include("backtest.php");
-
-   if (!isset($_REQUEST['backtest_id'])) die("ERROR: No backtest id");
-
-   $bt = new backtest();
-   $bt->id = $_REQUEST['backtest_id'];
-   @$bt->load();
+  $ws = $_REQUEST['websocket'];
 
 ?>
 
@@ -78,6 +72,8 @@
 
       <script type="text/javascript">
 
+      
+
       var bt_wloptions = { series: {
               pie: {
                     innerRadius: 0.8,
@@ -118,9 +114,91 @@
       $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
       $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
 
-      
 
+      function backtest_WSUpdate(data) {
 
+        pdata = $.parseJSON(data);
+        $('#editor-bt-progress').css('width', pdata.btsnap.progress + '%');
 
+        $.plot($('#editor-bt-perfgraph'), [{ label: "foo", data: pdata.btsnap.histgraph , color:'#1AB394'}], bt_perf_options);
+
+        if ( pdata.btsnap.progress == 100) {
+
+          $('#editor-bt-launchbtn').click(function() { qbacktest() });
+          $('#editor-bt-launchbtn').removeClass('disabled');
+          $('#editor-bt-launchbtn').addClass('btn-info');
+
+        }
+        
+        tstats = pdata.btsnap.tradestats;
+        losing = parseInt(tstats.losing);
+        winning = parseInt(tstats.winning);
+
+        if ( winning + losing == 0  ) {
+          $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc' }], bt_wloptions);            
+          $('#editor-bt-winloss-label').html('0/0');
+          $('#editor-bt-winloss-label').css('color','#cccccc');
+        }
+
+        else {
+
+          wlcolor = '';
+          if ( winning > losing ) {
+            wlcolor = '#1AB394';
+          }
+          else wlcolor = '#ED5565';
+
+          $.plot($('#editor-bt-winloss'), [
+            { label: "winning", data: ( winning / (winning + losing) ) , color: '#1AB394' },
+            { label: "losing", data: ( losing / (winning + losing) ) , color: '#ED5565' },
+
+            ], bt_wloptions);
+          $('#editor-bt-winloss-label').html( tstats.winning + '/' + ( winning + losing ) );
+          $('#editor-bt-winloss-label').css('color', wlcolor);
+
+          
+        }
+
+        $('#editor-bt-rpnl').html(pdata.btsnap.pnl);
+
+        if (pdata.btsnap.pnl > 0) $('#editor-bt-rpnl').css('color','#1AB394');
+        else if (pdata.btsnap.pnl < 0) $('#editor-bt-rpnl').css('color','#ED5565');
+        else $('#editor-bt-rpnl').css('color','#cccccc');
+
+        $('#editor-bt-mdd').html(tstats.max_drawdown);
+        if (tstats.max_drawdown == 0) $('#editor-bt-mdd').css('color','#cccccc');
+        else $('#editor-bt-mdd').css('color','#ED5565');
+        
+        $('#editor-bt-pf').html(tstats.profit_factor);
+        if (tstats.profit_factor >= 2 || tstats.profit_factor == "inf") $('#editor-bt-pf').css('color','#1AB394');
+        else if (tstats.profit_factor < 2 && tstats.profit_factor > 0 ) $('#editor-bt-pf').css('color','#ED5565');
+        else if (tstats.profit_factor == 0) $('#editor-bt-pf').css('color','#cccccc');
+
+        
+      }
+
+      function backtest_WSStart(nbret, addr) {
+
+        WS = new WebSocket(addr);
+        WS.onerror = function() {
+
+          console.log('websocket unavailable, retrying in .5s');
+
+          setTimeout(function(){
+            nbret++;
+            backtest_WSStart(nbret, addr);
+          }, 500);
+        }
+
+        WS.onmessage = function (event) {
+          console.log(event.data);
+          backtest_WSUpdate(event.data);
+
+        }
+
+      }
+
+      backtest_WSStart(5,'<?= $ws ?>');
+ 
       </script>
       

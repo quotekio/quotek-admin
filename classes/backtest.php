@@ -76,10 +76,12 @@ class backtestctl extends qatectl {
   //retrieves websocket when want to reconnect.
   function getWebSocket() {
 
-    $btid = $this->backtest->id;
-    $port =  file_get_contents("$QATE_TMP/backtests/$btid/qate.aep.port");
+    global $QATE_TMP;
 
-    if (! is_int($port)) return "none";
+    $btid = $this->backtest->id;
+    $port = file_get_contents("$QATE_TMP/backtests/$btid/qate.aep.port");
+         
+    if (! is_numeric($port)) return "none";
 
     return  "ws://" . $_SERVER['SERVER_NAME'] . ":" . ($port + 1) ;
 

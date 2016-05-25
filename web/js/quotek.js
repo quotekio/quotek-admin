@@ -743,6 +743,20 @@ function qateToggleBacktest(bid) {
 }
 
 
+function qateFindBTWebSocket(id) {
+
+  var ws = $.ajax({
+         url:            '/async/app/backtestctl',
+         type:           'POST',
+         data:           {'action' : 'getWebSocket', 'id': id },
+         cache:          false,
+         async:          false
+         });
+
+  return ws.responseText.trim();
+
+}
+
 function qateStartBacktest(id) {
 
  var st = $.ajax({
@@ -750,10 +764,18 @@ function qateStartBacktest(id) {
         type:           'POST',
         data:           {'action' : 'start', 'id': id },
         cache:          false,
-        async:          false
+        async:          true,
+        success: function() {
+
+          ws = st.responseText.trim();
+          qateShowBacktestViewer(ws);
+
+        }
         });
 
- qateShowBacktestViewer(id);
+  
+
+ 
 }
 
 function qateStopBacktest(id) {
@@ -891,7 +913,8 @@ function qateUpdateAll() {
           //qateUpdateCorestats_NoFetch(alldata.qatecorestats);
           //qateUpdateLastLogs_NoFetch(alldata.qatelastlogs);
           qateUpdateStatus_NoFetch(alldata.qatestatus);
-          //qateUpdateAllBacktests_NoFetch(alldata.backteststatuses);
+          
+          qateUpdateAllBacktests_NoFetch(alldata.backteststatuses);
 
         }
         });
@@ -1578,7 +1601,9 @@ function qateChangeBacktestEditorView() {
 function qateUpdateAllBacktests_NoFetch(bt_statuses) {
 
   for (i=0;i<bt_statuses.length;i++) {
+
     var bt_status = bt_statuses[i];
+
     var line = $('#backtest-line-'+ bt_status.id);
     var resbtn = $('#btn-qatebacktest-results',line);
 
@@ -1605,8 +1630,9 @@ function qateUpdateAllBacktests_NoFetch(bt_statuses) {
       var viewbtn = $('#btn-qatebacktest-view',line);
       var toglbtn = $('#btn-toggle-backtest',line);
       var statuslbl = $('#statuslbl',line);
+      
       //running-state
-      if (bt_status.state == 'real') {
+      if (bt_status.state == 'on') {
 
         statuslbl.addClass('label-success');
         statuslbl.removeClass('label-info');
@@ -1618,29 +1644,14 @@ function qateUpdateAllBacktests_NoFetch(bt_statuses) {
         viewbtn.off('click');
         viewbtn.click(
         function() {
-          qateShowBacktestViewer($(this).attr('btid'));
+          ws = qateFindBTWebSocket($(this).attr('btid'));
+          qateShowBacktestViewer(ws);
         });
 
         toglbtn.removeClass('btn-success');
         toglbtn.addClass('btn-danger');
         $('i',toglbtn).removeClass('icon-start');
         $('i',toglbtn).addClass('icon-stop');
-      }
-
-      //Preparing state (export)
-      else if (bt_status.state == 'preparing') {
-        statuslbl.addClass('label-info');
-        statuslbl.removeClass('label-success');
-        statuslbl.removeClass('label-inverse');
-        statuslbl.html( statuslbl.attr('labelpreparing'));
-
-        toglbtn.off('click');
-        toglbtn.addClass('disabled');
-
-        viewbtn.removeClass('btn-info');
-        viewbtn.addClass('disabled');
-        viewbtn.off('click');
-
       }
 
       //Off
@@ -1703,26 +1714,21 @@ function qateUpdateAllBacktests() {
               }
 
               //running-state
-              if (bt_status.state == 'real') {
+              if (bt_status.state == 'on') {
 
                 $('#btn-qatebacktest-view',line).addClass('btn-info');
                 $('#btn-qatebacktest-view',line).removeClass('disabled');
                 $('#btn-qatebacktest-view',line).off('click');
                 $('#btn-qatebacktest-view',line).click(
                 function() {
-
-                  qateShowBacktestViewer(bt_status.id);
+                  ws = qateFindBTWebSocket(bt_status.id);
+                  qateShowBacktestViewer(ws);
                 });
 
                 $('#btn-toggle-backtest',line).removeClass('btn-success');
                 $('#btn-toggle-backtest',line).addClass('btn-danger');
                 $('#btn-toggle-backtest i',line).removeClass('icon-start');
                 $('#btn-toggle-backtest i',line).addClass('icon-stop');
-
-              }
-
-              //Preparing state (export)
-              else if (bt_status.state == 'preparing') {
 
               }
 
@@ -1787,12 +1793,12 @@ function qateShowBacktestResults(backtest_id) {
 }
 
 
-function qateShowBacktestViewer(backtest_id) {
+function qateShowBacktestViewer(ws) {
 
    var gt = $.ajax({
         url:            '/async/gettemplate',
         type:           'POST',
-        data:           {tpl: 'viewer-backtest', 'backtest_id' : backtest_id  },
+        data:           {tpl: 'viewer-backtest', 'websocket': ws},
         cache:          false,
         async:          false
         });
