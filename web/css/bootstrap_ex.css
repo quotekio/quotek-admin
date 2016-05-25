@@ -1,5 +1,19 @@
 /* Bootstrap overridings */
 
+
+.modal-header {
+  padding-top:0px;
+  padding-bottom:0px;
+}
+
+.modal-footer2 {
+  background:#303030;
+  padding:10px;
+  text-align: right;
+
+}
+
+
 .btn-info, .label-info {
   background-color:#23C6C8!important;
 }

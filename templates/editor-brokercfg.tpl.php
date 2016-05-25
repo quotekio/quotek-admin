@@ -6,14 +6,14 @@
 
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
-     <h3 id="editor-title" ></h3>
+     <h4 id="editor-title" ></h4>
      </div>
      <div class="modal-body" style="padding-bottom:0px">
          <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
            <div id="modal-alert"></div>
       </div>
           
-      <div class="valuecfg-editor-frame well" id="brokercfg-editor-general" style="overflow-y:scroll;height:460px"> 
+      <div class="valuecfg-editor-frame well" id="brokercfg-editor-general" style="overflow-y:scroll;height:445px"> 
       <form style="padding-bottom:0px;margin-bottom:0px">
        
            <label><b><?= $lang_array['app']['name'] ?></b></label>
@@ -55,7 +55,8 @@
           
           </form>
           </div>
+     </div>
 
-          <a class="btn btn-large btn-warning" style="float:right" id="editor-action"></a>
-
+     <div class="modal-footer2">
+            <a id ="editor-action" class="btn btn-warning"><?= $lang_array['app']['save'] ?></a>
      </div>

@@ -1542,6 +1542,8 @@ function modalInst(modwidth,modheight,content) {
   }
   else $('#modal_win').css('height','auto');
 
+  $('#modal_win').css('top','50px');
+
   $('#modal_win').html(content);
   $('#modal_win').show();
 }
@@ -1775,7 +1777,7 @@ function qateShowBacktestEditor() {
         async:          false
         });
     
-    modalInst(700,630,gt.responseText);
+    modalInst(950,'auto',gt.responseText);
 
 }
 
@@ -1832,7 +1834,7 @@ function qateShowBrokercfgEditor() {
         cache:          false,
         async:          false
         });
-    modalInst(700,670,gt.responseText);
+    modalInst(950,'auto',gt.responseText);
 }
 
 
@@ -1846,7 +1848,7 @@ function qateShowCorecfgEditor() {
         async:          false
         });
     
-    modalInst(700,635,gt.responseText);
+    modalInst(950,'auto',gt.responseText);
 
 }
 
@@ -1860,7 +1862,7 @@ function qateShowUserEditor() {
         async:          false
         });
     
-    modalInst(700,635,gt.responseText);
+    modalInst(950,'auto',gt.responseText);
 
 }
 
@@ -1874,7 +1876,7 @@ function qateShowValueEditor() {
         async:          false
         });
 
-    modalInst(700,615,gt.responseText);
+    modalInst(950,'auto',gt.responseText);
 }
 
 

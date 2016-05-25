@@ -1,6 +1,6 @@
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
-     <h3 id="editor-title" ></h3>
+     <h4 id="editor-title" ></h4>
      </div>
      <div class="modal-body" style="padding-bottom:0px">
          <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
@@ -68,7 +68,8 @@
 
           </form>
           </div>
+     </div>
 
-          <a class="btn btn-large btn-warning" style="float:right" id="editor-action"></a>
-
+     <div class="modal-footer2">
+            <a id ="editor-action" class="btn btn-warning"><?= $lang_array['app']['save'] ?></a>
      </div>
