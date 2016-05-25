@@ -140,7 +140,7 @@
   $lang_array['app']['qatecfg_editor_create_title'] = "Nouvelle Configuration <small>Creer une nouvelle configuration</small>";
   $lang_array['app']['qatecfg_editor_edit_title'] = "Editer la Configuration <small>modifier la configuration</small>";
   $lang_array['app']['qatecfg_editor_strats_title'] = "Nouvelle Strategie <small>Creez une nouvelle strategie d'investissement</small>"; 
-  $lang_array['app']['qatevalue_editor_create_title'] = "Creer une nouvelle valeur";
+  $lang_array['app']['qatevalue_editor_create_title'] = "Creer un nouvel actif";
   $lang_array['app']['backtest_resviewer_title'] = 'Résultats du backtest';
   $lang_array['app']['qatevalue_editor_edit_title'] = "Editer la valeur";
 
@@ -188,7 +188,7 @@
   $lang_array['app']['strategy_actions_clone'] = "Cloner la stratégie";
 
 
-  $lang_array['app']['valuecfg_actions_edit'] = "Editer la valeur";
+  $lang_array['app']['valuecfg_actions_edit'] = "Editer l'actif";
   $lang_array['app']['valuecfg_actions_delete'] = "Supprimer la valeur";
   $lang_array['app']['valuecfg_actions_clone'] = "Cloner la valeur";
 
