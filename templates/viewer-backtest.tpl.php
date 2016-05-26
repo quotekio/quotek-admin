@@ -6,7 +6,7 @@
 
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
-     <h3 id="backtest-viewer-title" ><?=  $lang_array['app']['backtest_viewer_title']  ?></h3>
+     <h4 id="backtest-viewer-title" ><?=  $lang_array['app']['backtest_viewer_title']  ?></h4>
      </div>
      <div class="modal-body" style="padding-bottom:0px">
          <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
@@ -17,7 +17,7 @@
                
                 <div class="row-fluid">
                   <div>
-                    <h4><?= $lang_array['app']['progress'] ?></h4>
+                    <label><b><?= $lang_array['app']['progress'] ?></b></label>
                   </div>
                   <div class="progress progress-info">
                     <div class="bar" style="width: 0.1%" id="editor-bt-progress"></div>
@@ -28,7 +28,7 @@
                 <div class="row-fluid" style="text-align:center;overflow:hidden">
 
                   <div style="text-align:left">
-                    <h4><?= $lang_array['app']['performance'] ?></h4>
+                    <label><b><?= $lang_array['app']['performance'] ?></b></label>
                   </div>
 
                   <div id="editor-bt-perfgraph" style="width:500px;height:130px;margin-left:auto;margin-right:auto;">
@@ -66,13 +66,32 @@
                     </tr>
 
                   </table>
-                </div>
-                </div>
+        </div>
+      </div>
+
+    </div>
+
+      <div class="modal-footer2" style="text-align:center">
+        <a id="bt-hide-progress" class="btn btn-danger"><?= $lang_array['app']['close'] ?></a>
+      </div>
 
 
       <script type="text/javascript">
 
-      
+      var WS;
+
+      $('#bt-hide-progress').click(function() {
+
+        //debug
+        //console.log(WS);
+
+        //Hack to make the websocket to stop updating data.
+        WS.close();
+        WS.onmessage = function(event) { console.log('WS stubbed !'); };
+        modalDest();
+
+
+      });
 
       var bt_wloptions = { series: {
               pie: {
@@ -180,6 +199,7 @@
       function backtest_WSStart(nbret, addr) {
 
         WS = new WebSocket(addr);
+
         WS.onerror = function() {
 
           console.log('websocket unavailable, retrying in .5s');

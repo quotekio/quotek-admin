@@ -1805,7 +1805,7 @@ function qateShowBacktestViewer(ws) {
         async:          false
         });
     
-  modalInst(550,500,gt.responseText);
+  modalInst(550,'auto',gt.responseText);
 
 
 }
