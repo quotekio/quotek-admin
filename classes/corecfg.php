@@ -277,7 +277,7 @@ function exportCfg($cfg_id = null,$strat_id = null,$dest = null,$nr = true) {
   fclose($fh);
 
   
-  if ($nr) {
+  if ($nr === true) {
     $fh2 = fopen("/tmp/qate/needs_restart","w");
     fwrite($fh2,"1");
     fclose($fh2);

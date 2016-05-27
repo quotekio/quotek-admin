@@ -30,12 +30,12 @@ function qateRefreshTable(tname) {
 
      var t = $('#' + tname);
      $('a[rel=tooltip]',t).tooltip({placement: 'bottom', container: 'body'});
-     $('.dtime',t).each(function() {
 
+     $('.dtime').each(function() {
         formatDate($(this));
      });
 
-     $('.dtime2',t).each(function() {
+     $('.dtime2').each(function() {
         $(this).html( formatDate2($(this).html()) );
      });
 
