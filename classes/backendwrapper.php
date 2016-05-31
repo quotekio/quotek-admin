@@ -153,8 +153,22 @@ class backendWrapper {
   function influx13_query_history($tinf, $tsup, $time_offset = 0) {
 
     $result = array();
-    return $result;
+    
+    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
+    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
 
+    $query = "SELECT * from __history__ WHERE time >'" . $tinf . "' AND time <'" . $tsup . "';";
+
+    try {$ires = $this->dbh->query($query, array("epoch": "s" ));}catch(Exception $e){return $result;}
+
+    $points = $ires->getPoints();
+
+    foreach( $points as $rec  ) {
+      $rec["time"] = $rec["time"] + 3600 * $time_offset;
+      $result[] = $rec;
+    }
+
+    return $result;
   }
 
 
