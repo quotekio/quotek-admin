@@ -48,6 +48,13 @@ class backendWrapper {
 
     }
 
+    else if ($this->backend->module_name == "influxdbbe13") {
+
+      $this->client = new InfluxDB\Client($this->backend_params['host'], $this->backend_params['port']);
+      $this->dbh = $this->client->selectDB($this->backend_params['database']);
+
+    }
+
   }
 
   function query($indice_name,$tinf,$tsup, $mean, $time_offset = 0) {
@@ -57,6 +64,11 @@ class backendWrapper {
       return $this->influx_query($indice_name,$tinf,$tsup,$mean,$time_offset);
     }
 
+    //influxdb13 query
+    else if ($this->backend->module_name == "influxdbbe13") {
+      return $this->influx13_query($indice_name,$tinf,$tsup,$mean,$time_offset);
+    }
+    
     //sql query
     else {
       return $this->sql_query($indice_name,$tinf,$tsup,$mean,$time_offset); 
@@ -69,6 +81,11 @@ class backendWrapper {
     if ($this->backend->module_name == "influxdbbe") {
       return $this->influx_query_ohlc($indice_name,$tinf,$tsup,$mean,$time_offset);
     }
+
+    else if ($this->backend->module_name == "influxdbbe13") {
+      return $this->influx13_query_ohlc($indice_name,$tinf,$tsup,$mean,$time_offset);
+    }
+    
     else {
       return $this->sql_query_ohlc($indice_name,$tinf,$tsup,$mean,$time_offset);
     }
@@ -80,6 +97,11 @@ class backendWrapper {
     if ($this->backend->module_name == "influxdbbe") {
       return $this->influx_query_history($tinf, $tsup, $time_offset);
     }
+
+    else if ($this->backend->module_name == "influxdbbe13") {
+      return $this->influx13_query_history($tinf, $tsup, $time_offset);
+    }    
+
     else {
       return $this->sql_query_history($tinf,$tsup,$time_offset);
     }
@@ -126,6 +148,15 @@ class backendWrapper {
 
     return $result;
   }
+
+
+  function influx13_query_history($tinf, $tsup, $time_offset = 0) {
+
+    $result = array();
+    return $result;
+
+  }
+
 
 
   function sql_query($indice_name, $tinf, $tsup,$mean, $time_offset = 0) {
@@ -200,9 +231,7 @@ class backendWrapper {
 
     }
 
-    //echo $query . "\n\n<br><br>";
     $ires = $this->dbh->query($query);
-    //echo "NBRECS:" . count($ires);
 
     foreach( $ires as $rec  ) {
       $result[] = array( ( $rec->time + 3600 * $time_offset ) * 1000 , $rec->value);
@@ -211,6 +240,51 @@ class backendWrapper {
     return $result;
 
   }
+
+  function influx13_query($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
+
+    $result = array();
+
+    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
+    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
+
+    if ($mean != 0) {
+      $query = "SELECT  mean(value) AS value FROM " . 
+                        $indice_name . 
+                        " WHERE time > '" . 
+                        $tinf . 
+                        "' AND time < '" . 
+                        $tsup . 
+                        "' GROUP BY time($mean);";
+    }
+
+    else {
+    
+      $query = "SELECT time, value FROM " . 
+                        $indice_name . 
+                        " WHERE time > '" . 
+                        $tinf . 
+                        "' AND time < '" . 
+                        $tsup . 
+                        "';";
+
+    }
+
+    $ires = $this->dbh->query($query, array('epoch' => 's') );
+    $points = $ires->getPoints();
+    
+    //echo "NBRECS:" . count($points);
+
+    foreach( $points as $rec  ) {
+
+      $result[] = array( ( $rec["time"] + 3600 * $time_offset ) * 1000 , $rec["value"]);
+    }
+
+    return $result;
+
+  }
+
+
 
 
   function sql_query_ohlc($indice_name, $tinf, $tsup,$mean, $time_offset = 0) {
@@ -242,6 +316,7 @@ class backendWrapper {
   }
 
 
+
   function influx_query_ohlc($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
 
     $result = array();
@@ -270,6 +345,40 @@ class backendWrapper {
     return $result;
 
   }
+
+    function influx13_query_ohlc($indice_name, $tinf, $tsup, $mean, $time_offset = 0) {
+
+    $result = array();
+
+    if (is_integer($tinf)) $tinf = date('Y-m-d H:i:s', $tinf);
+    if (is_integer($tsup)) $tsup = date('Y-m-d H:i:s', $tsup);
+
+    
+      $query = "SELECT time, first(value) AS open, " . 
+               " max(value) AS high, min(value) AS low, last(value) as close FROM " .
+                $indice_name . 
+                " WHERE time > '" . 
+                  $tinf . 
+                  "s' AND time < '" . 
+                  $tsup . 
+                  "s' GROUP BY time('$mean');";
+
+    //echo $query . "\n\n<br><br>";
+    $ires = $this->dbh->query($query);
+    $points = $ires->getPoints();
+
+    //echo "NBRECS:" . count($points);
+
+    foreach( $points as $rec  ) {
+      $result[] = array( ( $rec->time + 3600 * $time_offset ) * 1000 , $rec->open, $rec->close, $rec->low, $rec->high );
+    }
+
+    return $result;
+
+  }
+
+
+
 
 
 
