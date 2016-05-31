@@ -1,5 +1,9 @@
 {
     "require": {
         "gitonomy/gitlib": "dev-master"
+    },
+
+    "require": {
+        "influxdb/influxdb-php" : "dev-master"
     }
 }
