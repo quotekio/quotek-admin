@@ -1,3 +1,43 @@
+/* ======= JS Global Variables ======== */
+
+var bt_wloptions = { series: {
+        pie: {
+              innerRadius: 0.8,
+              radius: 1,
+              show: true,
+              label: { show:false },
+              stroke:{
+                width:0
+              }
+            },
+        },
+        legend: {
+          show: false,
+        },
+  };
+
+var bt_perf_options = {  series: {
+                                     lines: {
+                                     show: true,
+                                     fill: true
+                                     }
+                          },
+
+                          xaxis: {
+                                mode: "time",
+                        
+                          },   
+                          grid: {
+                               show: true,
+                               borderWidth: 0,
+                          },
+                          legend: {
+                            show: false
+                          }
+                        };
+
+/* ====================================== */
+
 
 function qateDebug(data) {
   $('#debug').show();
@@ -791,64 +831,6 @@ function qateStopBacktest(id) {
 }
 
 
-
-function qateGraphBTTimeline(positions,from,to) {
-
-  var data = [];
-  
-  var placeholder = $('#result_pos_timeline');
-
-  var options = {
-            xaxis: {
-                mode: "time",
-                min: (( from +  3600 * tzOffset()) * 1000 ) ,
-                max: (( to +  3600 * tzOffset()) * 1000)
-            },   
-            grid: {
-                   show: true,
-             },
-            yaxis:{ticks:[   ],
-                   min: 0,
-                   max: positions.length +1 }
-  };
-
-  
-  $.each(positions, function(i,item) {
-
-    var linepos = -1;
-    $.each(options.yaxis.ticks, function(j,tickname) {
-      if ( tickname[1] == item.asset + " " + item.way ) {
-        linepos = j+1;
-      }
-    });
-
-    if (linepos == -1) {
-      linepos = i+1;
-      options.yaxis.ticks.push([linepos, item.asset + " " + item.way ]);
-
-    } 
-
-    var pcolor = ''
-    if (item.pnl > 0) { pcolor =  '#00FF00'; }
-    else { pcolor = '#FF0032'; }
-
-    var pos_data =   {  color: pcolor,
-                        lines: { lineWidth: 5 + item.nbc  },  
-                        data:[ [ item.open_time * 1000, linepos ], [ item.close_time * 1000, linepos ] ]};
-
-    data.push( pos_data );
-
-  });
-
-  //temporarly show placeholder for rendering.
-  var was_graph_hidden = placeholder.parent().is(":hidden");
-  placeholder.parent().show();
-  $.plot(placeholder,data,options);
-  if ( was_graph_hidden ) placeholder.parent().hide();
-
-}
-
-
 function qateLoadBTResult(id,result) {
 
   var br = $.ajax({
@@ -863,6 +845,8 @@ function qateLoadBTResult(id,result) {
   //alert(tresp);
   var r = $.parseJSON(tresp);
   var result = $.parseJSON($.trim(r.result));
+
+  console.log(result);
 
   $('#result_from').html(result.from);
   $('#result_to').html(result.to);
@@ -888,19 +872,12 @@ function qateLoadBTResult(id,result) {
   if ( (fromct[1] + fromct[2] + fromct[3]) == ( toct[1] + toct[2] + toct[3] )  ) {
     $('#result_to').html(toct[4]);
   }
-  
-  
-  $('#result_values_selector').html('');
-  $.each(result.astats, function(i, item) {
-     $('#result_values_selector').append( new Option( item.name , JSON.stringify(item) ) ); 
-  });
 
   $('#result_logs_container').html('');
   $.each(result.logs, function(i, item) {
      $('#result_logs_container').append(item + "<br>"); 
   });
 
-  qateGraphBTTimeline(result.positions,result.from,result.to);
 
 }
 
@@ -2040,20 +2017,6 @@ function appUpdateLeft(element) {
   //alert(element.html());
   //element.css('border-bottom','2px solid #FF9200');
 }
-
-
-// function which updates display of backtest 
-// values when an asset is selected.
-function qateChangeBTResultValues() {
-  var asstat = $.parseJSON( $('#result_values_selector').val()[0]  );
-  $('#result_value_name').html(asstat.name);
-  $('#result_value_highest').html(asstat.highest);
-  $('#result_value_lowest').html(asstat.lowest);
-  $('#result_value_variation').html(asstat.variation);
-  $('#result_value_deviation').html(asstat.deviation);
-
-}
-
 
 function qateSaveUser(id) {
 

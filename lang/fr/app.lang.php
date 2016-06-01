@@ -441,4 +441,6 @@
   $lang_array['app']['autoreboot_enable'] = 'Activer le redémarrage automatique';
   $lang_array['hint']['config_autoreboot'] = 'Cette option vous permet d\'activer une securité du robot: en cas de crash ou d\'erreur de manipulation, celui-ci peut tenter de se relancer automatiquement (5 essais par heure).';
 
+  $lang_array['app']['infos'] = 'Infos';
+
 ?>

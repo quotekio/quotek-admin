@@ -93,43 +93,7 @@
 
       });
 
-      var bt_wloptions = { series: {
-              pie: {
-                    innerRadius: 0.8,
-                    radius: 1,
-                    show: true,
-                    label: { show:false },
-                    stroke:{
-                      width:0
-                    }
-                  },
-              },
-              legend: {
-                show: false,
-              },
-        };
-
-        var bt_perf_options = {  series: {
-                                           lines: {
-                                           show: true,
-                                           fill: true
-                                           }
-                                },
-
-                                xaxis: {
-                                      mode: "time",
-                              
-                                },   
-                                grid: {
-                                     show: true,
-                                     borderWidth: 0,
-                                },
-                                legend: {
-                                  show: false
-                                }
-                              };
-
-
+      
       $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
       $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
 

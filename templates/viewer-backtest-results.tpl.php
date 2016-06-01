@@ -10,6 +10,17 @@
 
    $results = $bt->getResultsList();
 
+   if ($bt->type == "batch" || $bt->type == "genetics") {
+     $iter_enable = true;
+     $perf_graph_width = 500;
+   }
+
+   else {
+     $iter_enable = false;
+     $perf_graph_width = 600;
+   }
+
+
 ?>
 
      <div class="modal-header">
@@ -49,22 +60,24 @@
           <label><b><?= $lang_array['app']['results'] ?></b></label>
 
           <div class="row-fluid">
+
+            <?php if ($iter_enable) { ?>
             <!-- Results iterator list -->
             <div class="span2">
               <div class="well" style="height:280px!important"></div>
             </div>
+            <?php } ?>
             
-
-            <div class="span10">
+            <div class="span<?=  ($iter_enable) ? "10" : "12" ?>">
               <ul class="nav nav-tabs">
-                 <li class="active">
-                    <a onclick="qateResultNav($(this));" class="result-navlink" id ="main"><?= $lang_array['app']['main'] ?></a>
+                 <li>
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id ="main"><?= $lang_array['app']['infos'] ?></a>
                   </li>
-                 <li>
-                    <a onclick="qateResultNav($(this));" class="result-navlink" id="positions"><?= $lang_array['app']['pos'] ?></a>
-                  </li> 
-                 <li>
-                    <a onclick="qateResultNav($(this));" class="result-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
+                 <li class="active">
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id="performance"><?= $lang_array['app']['performance'] ?></a>
+                  </li>
+                  <li>
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id="history"><?= $lang_array['app']['history'] ?></a>
                   </li>
                   <li>
                     <a onclick="qateResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
@@ -99,57 +112,52 @@
 
                </div>
 
-               <!-- Positions Result Frame -->
-               <div class="result-frame well" id="result-frame-positions">
-                 <div id="result_pos_timeline" style="width:645px;height:220px;"></div>
+               <!-- Performance Result Frame -->
+               <div class="result-frame well" id="result-frame-performance" style="display:block">
+                  <div class="row-fluid">
+                    <div class="span9" style="background:brown">
+                      <div id="result-bt-perfgraph" style="width:<?= $perf_graph_width ?>px;height:220px;background:blue"></div>
+                    </div>
+
+                    <div class="span3">
+
+                      <div id="winloss-ct" style="text-align:center">
+                        <div id="result-bt-winloss" style="width:120px;height:120px;margin-left:auto;margin-right:auto"></div>
+                        <div id="result-bt-winloss-label" style="width:120px;text-align:center;color:#cccccc;font-size:20px;font-weight:bold;position:absolute">0/0</div>
+
+                      </div>
+
+                      <div style="margin-top:5px">
+                        <table class="table" style="font-size:<?=  ($iter_enable) ? "13" : "16" ?>px">
+
+                          <tr>
+                            <td>PNL</td>
+                            <td id="result-bt-rpnl">0</td>
+                          </tr>
+
+                          <tr>
+                            <td>Max Drawdown</td>
+                            <td id="result-bt-mdd">0</td>
+                          </tr>
+
+                          <tr>
+                            <td>Profit Factor</td>
+                            <td id="result-bt-pf">0</td>
+                          </tr>
+
+                        </table>
+                      </div>
+
+                    </div>
+                  </div>
+               </div>
+
+
+               <!-- Pos History Result Frame -->
+               <div class="result-frame well" id="result-frame-history">
+                 
                </div>
      
-
-               <!-- Assets Result Frame -->
-               <div class="result-frame well" id="result-frame-values">
-
-                <div class="row-fluid">
-
-                    <div class="span4">
-
-                      <select id="result_values_selector" style="width:100%;height:220px;" MULTIPLE>
- 
-                      </select>
-
-                    </div>
-
-                    <div class="span8">
-
-                       <table class="table table-stripped">
-                         <tr>
-                           <td><?= $lang_array['app']['name'] ?></td>
-                           <td id="result_value_name"></td>
-                         </tr>
-
-                         <tr>
-                           <td><?= $lang_array['app']['highest'] ?></td>
-                           <td id="result_value_highest"></td>
-                         </tr>
-
-                         <tr>
-                           <td><?= $lang_array['app']['lowest'] ?></td>
-                           <td id="result_value_lowest"></td>
-                         </tr>
-
-                         <tr>
-                           <td><?= $lang_array['app']['variation'] ?></td>
-                           <td id="result_value_variation"></td>
-                         </tr>
-
-                         <tr>
-                           <td><?= $lang_array['app']['stddev'] ?></td>
-                           <td id="result_value_deviation"></td>
-                         </tr>
-                        </table>
-                    </div>
-                 </div>
-               </div>
-
 
                <!-- Logs Result Frame -->
                <div class="result-frame well" id="result-frame-rlogs">
@@ -169,32 +177,30 @@
      </div>
 
       <script type="text/javascript">
+
+        $.plot($('#result-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
+        $.plot($('#result-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
+
         <?php if (count($results) > 0 ) { ?>
           qateLoadBTResult(<?= $bt->id ?>, <?= $results[0]['tstamp'] ?> );
         <?php } ?>
         
-        /*
-        $('#viewer-backtest-resultslist').change(function() {
-                                                
-          qateLoadBTResult(<?= $bt->id  ?>, $('#viewer-backtest-resultslist').val()[0] );
-
-        });
-        */
-
-       $('#result_values_selector').change(function() {
-         qateChangeBTResultValues();
-       });
-
-       $('#result_values_selector option:eq(0)').prop('selected', true);
-       qateChangeBTResultValues();
-
-       
+        
      function qateResultNav(obj) {
        $('.result-frame').hide();
        $('#result-frame-' +  obj.attr('id') ).show();
        $('.result-navlink').parent().removeClass('active');
        obj.parent().addClass('active');
+
+       //updates winloss label pos
+       $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
+       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 50) + 'px' });
+
      }
 
+
+      //updates winloss label pos
+      $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
+      $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 50) + 'px' });
 
       </script>

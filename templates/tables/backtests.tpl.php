@@ -144,13 +144,15 @@
           qateShowBacktestEditor();
           $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
           $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-         
-          //qateChangeBacktestEditorView();
+          
           qateGetBacktestDataToEdit(bid);
           $('#editor-action').off();
           $('#editor-action').click(function() {
             qateSaveBacktest(bid);
           });
+
+          //disable type change if edit.
+          $('#input-backtest-type').attr('disabled', 'disabled');
 
        });
 
@@ -158,59 +160,6 @@
     
 
     $('.table-backtests a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
-
-    /*
-    $('.btn-toggle-backtest').each(function(){
-
-      var bid = $(this).parent().parent().parent().attr('id');
-      bid = parseInt(bid.replace(/backtest-line-/g,""));
-
-      $(this).off();
-      $(this).click(function() {
-         qateStartBacktest(bid);
-      });             
-
-    });
-    */
-
-    /*
-    $('.btn-del-backtest').each(function() {
-      var bid = $(this).parent().parent().parent().attr('id');
-      bid = parseInt(bid.replace(/backtest-line-/g,""));
-      $(this).off();
-      $(this).click(function() {
-         qateDelBacktest(bid);
-      });
-
-    });
-    */
-    /*
-    $('.btn-qatebacktest-view').each(function() {
-
-      var bid = $(this).parent().parent().parent().attr('id');
-      bid = parseInt(bid.replace(/backtest-line-/g,""));
-
-      $(this).off();
-      $(this).click(function() {
-         qateShowBacktestViewer(bid);
-      });
-
-    });
-    */
-    /*
-    $('.btn-qatebacktest-results').each(function() {
-
-      var bid = $(this).parent().parent().parent().attr('id');
-      bid = parseInt(bid.replace(/backtest-line-/g,""));
-
-      $(this).off();
-      $(this).click(function() {
-
-        qateShowBacktestResults(bid);
-      });
-
-    });
-    */
 
 
   </script>

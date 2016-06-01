@@ -57,6 +57,7 @@ foreach($strats_gen as $strat) {
            <label><b><?= $lang_array['app']['type'] ?></b></label>
            <select id="input-backtest-type" style="height:27px;width:150px;padding-top:1px">
             <option value="normal">Normal</option>
+            <option value="batch">Batch</option>
             <option value="genetics">Genetics</option>
            </select>
            <span class="help-block">Indiquez le type de simulation que vous voulez creer.</span>

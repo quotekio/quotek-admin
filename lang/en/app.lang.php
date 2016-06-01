@@ -427,5 +427,7 @@
   $lang_array['app']['autoreboot_enable'] = 'Enable Watchdog';
   $lang_array['hint']['config_autoreboot'] = 'This feature ensures that the robot is properly running and tries to restart itself automatically (up to 5 times in 1 hour) in case of crash or control error.';
 
+  $lang_array['app']['infos'] = 'Infos';
+ 
 
 ?>
