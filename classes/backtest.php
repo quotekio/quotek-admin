@@ -41,8 +41,9 @@ class backtestctl extends qatectl {
     $poffset = $this->findPorts();
     $port = $QATE_AEP_PORT + $poffset;
     $cfg = "$QATE_TMP/backtests/$btid/qate.conf";
+    $btresult_file = "$QATE_TMP/backtests/$btid/results/" . time();
 
-    $cmd = "$QATE_PATH/bin/qate -c ${cfg} --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -s ${strat} &";
+    $cmd = "$QATE_PATH/bin/qate -c ${cfg} --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -s ${strat} --backtest-result ${btresult_file} &";
 
     if ($this->checkStatus($this->supid) == 'off') {
       
