@@ -443,4 +443,7 @@
 
   $lang_array['app']['infos'] = 'Infos';
 
+  $lang_array['app']['duration'] = 'Durée';
+
+
 ?>

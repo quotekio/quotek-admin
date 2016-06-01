@@ -88,26 +88,43 @@
                <div class="result-frame well" id="result-frame-main">
 
                 <table class="table">
+
+                     <tr>
+                       <td><b><?= $lang_array['app']['name']?></b></td>
+                       <td>
+                         <span id="result_btname"><?= $bt->name ?></span>
+                       </td>
+                     </tr>
+
+                     <tr>
+                       <td><b><?= $lang_array['app']['type']?></b></td>
+                       <td>
+                         <span id="result_bttype"><?= $bt->type ?></span>
+                       </td>
+                     </tr>
+
                      <tr>
                        <td><b><?= $lang_array['app']['period']?></b></td>
                        <td>
-                       <span id="result_from"></span> - <span id="result_to"></span>
+                         <span id="result_from"></span> - <span id="result_to"></span>
+                       </td>
                      </tr>
 
                      <tr>
-                       <td><b><?= $lang_array['app']['pnl']?></b></td>
-                       <td id="result_pnl"></td>
+                       <td><b><?= $lang_array['app']['duration']?></b></td>
+                       <td> 
+                        <span id="result_duration"></span>
+                       </td>
                      </tr>
 
                      <tr>
-                       <td><b><?= $lang_array['app']['takenpos']?></b></td>
-                       <td id="result_takenpos"></td>
+                       <td><b><?= $lang_array['app']['strat']?></b></td>
+                       <td> 
+                        <span id="result_strat"><?= $bt->strategy_name ?></span>
+                       </td>
                      </tr>
 
-                     <tr>
-                       <td><b><?= $lang_array['app']['remainingpos']?></b></td>
-                       <td id="result_remainingpos"></td>
-                     </tr>
+                     
                     </table>
 
                </div>
