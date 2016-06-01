@@ -14,66 +14,67 @@
 
      <div class="modal-header">
      <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="modalDest();" >&times;</button>
-     <h3 id="backtest-resviewer-title" ><?=  $lang_array['app']['backtest_resviewer_title']  ?>: <?=  $bt->name  ?></h3>
+     <h4 id="backtest-resviewer-title" ><?=  $lang_array['app']['backtest_resviewer_title']  ?>: <?=  $bt->name  ?></h4>
      </div>
+
      <div class="modal-body" style="padding-bottom:0px">
-         <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
-           <div id="modal-alert"></div>
-         </div>
 
-                <div class="app-headed-white-frame" style="height:150px;margin-top:20px">
-                  <div class="app-headed-frame-header" style="margin-bottom:0px">
-                      <h4><?= $lang_array['app']['backtests'] ?></h4>
-                  </div>
- 
-                  <div id="viewer-backtest-resultslist" style="height:120px;width:100%;border:0px;overflow-y:scroll;">
-       
-                    <table class="table table-hover" style="color:#38b7e5">
+        <div id="modal-alert-enveloppe" class="alert alert-error" style="display:none">
+          <div id="modal-alert"></div>
+        </div>
 
-                  <?php foreach ($results as $result) { 
-                    $result['date'] = date('d-m-Y H:i:s',$result['date']);
-                  ?>
-                    <tr id="result-line-<?= $result['tstamp'] ?>">
-                      <td style="cursor:pointer" onclick="qateLoadBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>) "><?= $lang_array['app']['btof'] . " " . $result['date'] ?></td>
-                      <td style="text-align:right;padding-right:15px">
-                        <a onclick="qateDeleteBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>)" class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['backtest_result_delete'] ?>">
-                          <i class="icon-white icon-remove-sign" ></i>
-                        </a>
-                      </td>
-                    </tr>
-                  <?php } ?>
+        <label><b><?= $lang_array['app']['backtests'] ?></b></label>
+                  
+        <div id="viewer-backtest-resultslist" style="height:120px;width:100%;border:1px solid #cccccc;border-top:0px;overflow-y:scroll;">
 
-                   </table>
+          <table class="table table-hover table-striped" style="color:#38b7e5">
 
-                  </div>
-                
-                </div>
+        <?php foreach ($results as $result) { 
+          $result['date'] = date('d-m-Y H:i:s',$result['date']);
+        ?>
+          <tr id="result-line-<?= $result['tstamp'] ?>">
+            <td style="cursor:pointer" onclick="qateLoadBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>) "><?= $lang_array['app']['btof'] . " " . $result['date'] ?></td>
+            <td style="text-align:right;padding-right:15px">
+              <a onclick="qateDeleteBTResult(<?= $bt->id ?>,<?= $result['tstamp']  ?>)" class="btn btn-small btn-danger" rel="tooltip" title="<?= $lang_array['app']['backtest_result_delete'] ?>">
+                <i class="icon-white icon-remove-sign" ></i>
+              </a>
+            </td>
+          </tr>
+        <?php } ?>
+         </table>
+        </div>
 
-                <div class="app-headed-white-frame" style="height:320px;margin-top:20px">
-                  <div class="app-headed-frame-header" style="margin-bottom:0px">
-                      <h4><?= $lang_array['app']['results'] ?></h4>
-                  </div>
+        <div style="height:360px;margin-top:10px">
 
-                  <ul class="nav nav-tabs">
-                     <li class="active">
-                        <a onclick="qateResultNav($(this));" class="result-navlink" id ="main"><?= $lang_array['app']['main'] ?></a>
-                      </li>
-                     <li>
-                        <a onclick="qateResultNav($(this));" class="result-navlink" id="positions"><?= $lang_array['app']['pos'] ?></a>
-                      </li> 
-                     <li>
-                        <a onclick="qateResultNav($(this));" class="result-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
-                      </li>
-                      <li>
-                        <a onclick="qateResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
-                      </li>
-                  </ul>
+          <label><b><?= $lang_array['app']['results'] ?></b></label>
 
+          <div class="row-fluid">
+            <!-- Results iterator list -->
+            <div class="span2">
+              <div class="well" style="height:280px!important"></div>
+            </div>
+            
 
-                  <div class="result-frame" id="result-frame-main" style="display:block;">
+            <div class="span10">
+              <ul class="nav nav-tabs">
+                 <li class="active">
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id ="main"><?= $lang_array['app']['main'] ?></a>
+                  </li>
+                 <li>
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id="positions"><?= $lang_array['app']['pos'] ?></a>
+                  </li> 
+                 <li>
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id="values"><?= $lang_array['app']['values'] ?></a>
+                  </li>
+                  <li>
+                    <a onclick="qateResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
+                  </li>
+              </ul>
 
-                    <table class="table">
+               <!-- "Main" Result Frame -->
+               <div class="result-frame well" id="result-frame-main">
 
+                <table class="table">
                      <tr>
                        <td><b><?= $lang_array['app']['period']?></b></td>
                        <td>
@@ -94,23 +95,24 @@
                        <td><b><?= $lang_array['app']['remainingpos']?></b></td>
                        <td id="result_remainingpos"></td>
                      </tr>
-                    </table>                  
-                  </div>
+                    </table>
 
-                  <div class="result-frame" id="result-frame-positions">
+               </div>
 
-                    <div id="result_pos_timeline" style="width:645px;height:220px;">
-                    </div>
+               <!-- Positions Result Frame -->
+               <div class="result-frame well" id="result-frame-positions">
+                 <div id="result_pos_timeline" style="width:645px;height:220px;"></div>
+               </div>
+     
 
-                  </div>
+               <!-- Assets Result Frame -->
+               <div class="result-frame well" id="result-frame-values">
 
-                  <div class="result-frame" id="result-frame-values">
-
-                    <div class="row-fluid">
+                <div class="row-fluid">
 
                     <div class="span4">
 
-                      <select id="result_values_selector" style="width:100%;height:220px;color:#38b7e5" MULTIPLE>
+                      <select id="result_values_selector" style="width:100%;height:220px;" MULTIPLE>
  
                       </select>
 
@@ -119,7 +121,6 @@
                     <div class="span8">
 
                        <table class="table table-stripped">
-
                          <tr>
                            <td><?= $lang_array['app']['name'] ?></td>
                            <td id="result_value_name"></td>
@@ -144,29 +145,28 @@
                            <td><?= $lang_array['app']['stddev'] ?></td>
                            <td id="result_value_deviation"></td>
                          </tr>
-                        
-                         </table>
-
-                       </div>
-
+                        </table>
                     </div>
-          
-                   </div>
-
-                   <div class="result-frame" id="result-frame-rlogs">
-
-                     <div id="result_logs_container" style="width:100%;height:220px;overflow-y:scroll;color:#38b7e5">
-                     </div>
-
-                  </div>
+                 </div>
+               </div>
 
 
-                  </div>
+               <!-- Logs Result Frame -->
+               <div class="result-frame well" id="result-frame-rlogs">
+                 <div id="result_logs_container" style="width:100%;height:220px;overflow-y:scroll;color:#38b7e5"></div>
+               </div>
+            </div>
 
-                  <!-- <div id="backtest-result-content" style="background-color:white;height:290px;overflow-y:scroll"></div> -->
-                </div>
+          </div>
+        </div>
 
+              
+     </div>
+     <!-- end modal body -->
 
+     <div class="modal-footer2" style="text-align:right">
+       <a id="bt-hide-progress" onclick="modalDest();" class="btn btn-danger"><?= $lang_array['app']['close'] ?></a>
+     </div>
 
       <script type="text/javascript">
         <?php if (count($results) > 0 ) { ?>

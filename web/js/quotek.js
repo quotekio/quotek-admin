@@ -1796,7 +1796,7 @@ function qateShowBacktestResults(backtest_id) {
         cache:          false,
         async:          false
         });
-  modalInst(700,610,gt.responseText);
+  modalInst(950,'auto',gt.responseText);
   
 }
 
@@ -1886,21 +1886,6 @@ function qateShowValueEditor() {
 }
 
 
-
-function showLangForm(){
-
-  $('#modal_bg').show();
-  var gt = $.ajax({
-        url:            '/async/gettemplate',
-        type:           'POST',
-        data:           {tpl: 'languages'},
-        cache:          false,
-        async:          false
-        });
-
-  modalInst(420,150,gt.responseText);
-}
-
 function login() {
 
   var iusername = $('#login_username').val();
@@ -1921,24 +1906,6 @@ function login() {
   }
   else chiliModalert(ans.replace('ERR:',''));
 
-}
-
-
-function showPreviewWindow(icid) {
-  
-   $('#modal_bg').show();
-   var gt = $.ajax({
-        url:            '/async/gettemplate',
-        type:           'POST',
-        data:           {tpl: 'preview',cid:icid},
-        cache:          false,
-        async:          false
-        });
-
-  modalInst(900,500,gt.responseText);
-  $('#modal_win').css('height','auto');
-  $('#modal_win').css('top','90px');
-  
 }
 
 
