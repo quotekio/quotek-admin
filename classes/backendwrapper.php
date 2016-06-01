@@ -159,7 +159,7 @@ class backendWrapper {
 
     $query = "SELECT * from __history__ WHERE time >'" . $tinf . "' AND time <'" . $tsup . "';";
 
-    try {$ires = $this->dbh->query($query, array("epoch": "s" ));}catch(Exception $e){return $result;}
+    try {$ires = $this->dbh->query($query, array("epoch" => "s" ));}catch(Exception $e){return $result;}
 
     $points = $ires->getPoints();
 
