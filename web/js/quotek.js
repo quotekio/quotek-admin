@@ -867,7 +867,11 @@ function qateLoadBTResult(id,result) {
   $('#result_from').html(result.from);
   $('#result_to').html(result.to);
   $('#result_pnl').html( result.pnl );
-  $('#result_takenpos').html( result.positions.length )
+
+  if (typeof result.positions != 'undefined') {
+    $('#result_takenpos').html( result.positions.length );
+  }
+
   $('#result_remainingpos').html( result.remainingpos );
 
   formatDate($('#result_from'));
