@@ -831,6 +831,20 @@ function qateStopBacktest(id) {
 }
 
 
+function qateGraphBTPerformance(positions) {
+
+  var pdata = [];
+
+  pnl = 0;
+
+  $.each(positions, function(index,i) {
+    pnl += i.pnl;
+    pdata.push( [ i.close_date * 1000 , pnl ]    );
+  });
+
+  $.plot($('#result-bt-perfgraph'), [{ label: "perf", data: pdata , color: '#1AB394'}], bt_perf_options);
+
+}
 
 function qateLoadBTUnitResult(result) {
 
@@ -850,11 +864,29 @@ function qateLoadBTUnitResult(result) {
 
   $('#result_duration').html(result.duration + 's');
 
-
   if (typeof result.trades_history == 'undefined') {
     result["trades_history"] = [];
   }
 
+  //fills the performance frame
+  result_total = ( result.trades.winning + result.trades.losing );
+  wr = result.trades.winning / result_total;
+  lr = result.trades.losing / result_total;
+
+  $.plot($('#result-bt-winloss'), [{ label: "winning", data: wr , color: '#1AB394'}, 
+                                   { label: "losing", data: lr , color: '#ED5565'} ], bt_wloptions);
+  
+  $('#result-bt-winloss-label').html( result.trades.winning + '/' + result_total );
+
+  $('#result-bt-rpnl').html(result.pnl);
+  $('#result-bt-mdd').html(result.max_drawdown);
+  $('#result-bt-pf').html(result.max_profit_factor);
+
+  qateGraphBTPerformance(result.trades_history);
+
+
+
+  //fills the Trades history frame.
   if ( result.trades_history.length == 0 ) {
    $('#result_trades').hide();
    $('#no-element-trades').show();
@@ -866,9 +898,24 @@ function qateLoadBTUnitResult(result) {
     $('#no-element-trades').hide();
     $('#result_trades').show();
 
+    $('.thist_line').remove();
+
+    //fills the trades history table
     $.each(result.trades_history, function(index,i) {
 
       $('#result_trades_table').append(
+
+       '<tr class="thist_line">' +
+       '<td>' + i.name + '</td>' +
+       '<td>' + i.size + '</td>' +
+       '<td>' + i.open + '</td>' +
+       '<td>' + i.stop + '</td>' +
+       '<td>' + i.limit + '</td>' +
+       '<td>' + '</td>' +
+       '<td>' + i.pnl + '</td>' +
+       '<td>' + i.pnl_peak + '</td>' +
+
+       '</tr>'
 
       );
 
