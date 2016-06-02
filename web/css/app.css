@@ -2,6 +2,16 @@ a:hover {
   cursor:pointer;
 }
 
+.no-element-mid {
+  background-image: url('/img/no-element.png');
+  background-size: 220px 220px;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align:center;
+  font-size:22px;
+  font-weight: bold;
+}
+
 #app-mainview {
   display:none;
   margin-top:0px;
@@ -609,4 +619,5 @@ padding:10px;
 
 .dtime-editable:hover {
   cursor:cell;
-};
+}
+

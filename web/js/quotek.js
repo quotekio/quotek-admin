@@ -831,6 +831,63 @@ function qateStopBacktest(id) {
 }
 
 
+
+function qateLoadBTUnitResult(result) {
+
+  $('#result_from').html(result.from);
+  $('#result_to').html(result.to);
+
+  formatDate($('#result_from'));
+  formatDate($('#result_to'));
+
+  //shorten result
+  var fromct = $('#result_from').html().split(" ");
+  var toct = $('#result_to').html().split(" ");
+  
+  if ( (fromct[1] + fromct[2] + fromct[3]) == ( toct[1] + toct[2] + toct[3] )  ) {
+    $('#result_to').html(toct[4]);
+  }
+
+  $('#result_duration').html(result.duration + 's');
+
+
+  if (typeof result.trades_history == 'undefined') {
+    result["trades_history"] = [];
+  }
+
+  if ( result.trades_history.length == 0 ) {
+   $('#result_trades').hide();
+   $('#no-element-trades').show();
+  }
+
+  else {
+ 
+    //enable positions array
+    $('#no-element-trades').hide();
+    $('#result_trades').show();
+
+    $.each(result.trades_history, function(index,i) {
+
+      $('#result_trades_table').append(
+
+      );
+
+    });
+
+  }
+
+  
+
+  
+
+  $('#result_logs_container').html('');
+  $.each(result.logs, function(i, item) {
+     $('#result_logs_container').append(item + "<br>"); 
+  });
+
+}
+
+
 function qateLoadBTResult(id,result) {
 
   var br = $.ajax({
@@ -846,38 +903,7 @@ function qateLoadBTResult(id,result) {
   var r = $.parseJSON(tresp);
   var result = $.parseJSON($.trim(r.result));
 
-  console.log(result);
-
-  $('#result_from').html(result.from);
-  $('#result_to').html(result.to);
-  $('#result_pnl').html( result.pnl );
-
-  if (typeof result.positions == 'undefined') {
-    result["positions"] = [];
-  }
-
-  $('#result_takenpos').html( result.positions.length );
-
-  $('#result_remainingpos').html( result.remainingpos );
-
-  formatDate($('#result_from'));
-  formatDate($('#result_to'));
-
-
-  //shorten result
-
-  var fromct = $('#result_from').html().split(" ");
-  var toct = $('#result_to').html().split(" ");
-  
-  if ( (fromct[1] + fromct[2] + fromct[3]) == ( toct[1] + toct[2] + toct[3] )  ) {
-    $('#result_to').html(toct[4]);
-  }
-
-  $('#result_logs_container').html('');
-  $.each(result.logs, function(i, item) {
-     $('#result_logs_container').append(item + "<br>"); 
-  });
-
+  qateLoadBTUnitResult(result);
 
 }
 

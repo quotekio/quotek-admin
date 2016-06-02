@@ -172,7 +172,24 @@
 
                <!-- Pos History Result Frame -->
                <div class="result-frame well" id="result-frame-history">
-                 
+               
+                <div class="no-element-mid" id="no-element-trades" style="height:120px;padding-top:100px;display:none"><?= $lang_array['app']['bt_notrade'] ?></div>
+
+                <div id="result_trades" style="overflow-y:scroll;height:220px">
+                  <table class="table" id="result_trades_table">
+                      <tr>
+                        <th><?=  $lang_array['app']['name'] ?></th>
+                        <th><?= $lang_array['app']['size'] ?></th>
+                        <th><?= $lang_array['app']['open'] ?></th>
+                        <th><?= $lang_array['app']['stop'] ?></th>
+                        <th><?= $lang_array['app']['limit'] ?></th>
+                        <th><?= $lang_array['app']['period'] ?></th>
+                        <th>PNL</th>
+                        <th> PNL Peak</th>
+                      </tr>
+                  </table>
+                </div>
+
                </div>
      
 

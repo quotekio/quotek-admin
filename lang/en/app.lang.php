@@ -430,6 +430,8 @@
   $lang_array['app']['infos'] = 'Infos';
   $lang_array['app']['duration'] = 'Duration';
 
+  $lang_array['app']['bt_notrade'] = 'This backtest did not trigger any trade.'; 
+
  
 
 ?>

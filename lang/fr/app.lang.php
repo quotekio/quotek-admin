@@ -445,5 +445,7 @@
 
   $lang_array['app']['duration'] = 'Durée';
 
+  $lang_array['app']['bt_notrade'] = 'Ce backtest n\'a genéré aucun trade.'; 
+
 
 ?>
