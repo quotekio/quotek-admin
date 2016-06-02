@@ -864,8 +864,8 @@ function qateLoadBTUnitResult(result) {
 
   $('#result_duration').html(result.duration + 's');
 
-  if (typeof result.trades_history == 'undefined') {
-    result["trades_history"] = [];
+  if (typeof result.trades.list == 'undefined') {
+    result["trades"]["list"] = [];
   }
 
   //fills the performance frame
@@ -882,9 +882,9 @@ function qateLoadBTUnitResult(result) {
   else $('#result-bt-winloss-label').css('color', '#1AB394');
 
 
-  $('#result-bt-rpnl').html(result.pnl);
-  $('#result-bt-mdd').html(result.max_drawdown);
-  $('#result-bt-pf').html(result.profit_factor);
+  $('#result-bt-rpnl').html(result.pnl.toFixed(2));
+  $('#result-bt-mdd').html(result.max_drawdown.toFixed(1));
+  $('#result-bt-pf').html(result.profit_factor.toFixed(2));
 
   if ( result.pnl <= 0 ) {
     $('#result-bt-rpnl').css('color','#ED5565'); 
@@ -904,12 +904,12 @@ function qateLoadBTUnitResult(result) {
 
 
 
-  qateGraphBTPerformance(result.trades_history);
+  qateGraphBTPerformance(result.trades.list);
 
 
 
   //fills the Trades history frame.
-  if ( result.trades_history.length == 0 ) {
+  if ( result.trades.list.length == 0 ) {
    $('#result_trades').hide();
    $('#no-element-trades').show();
   }
@@ -923,7 +923,7 @@ function qateLoadBTUnitResult(result) {
     $('.thist_line').remove();
 
     //fills the trades history table
-    $.each(result.trades_history, function(index,i) {
+    $.each(result.trades.list, function(index,i) {
 
       $('#result_trades_table').append(
 
@@ -935,7 +935,7 @@ function qateLoadBTUnitResult(result) {
        '<td>' + i.limit + '</td>' +
        '<td>' + formatDate3(i.open_date) + '<br>'  + formatDate3(i.close_date)  + '</td>' +
        '<td class="colorable">' + i.pnl + '</td>' +
-       '<td class="colorable">' + i.pnl_peak + '</td>' +
+       '<td class="colorable">' + i.stats.pnl_peak + '</td>' +
 
        '</tr>'
 

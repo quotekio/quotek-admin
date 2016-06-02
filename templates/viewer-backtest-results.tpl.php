@@ -149,7 +149,7 @@
 
                           <tr>
                             <td>PNL</td>
-                            <td id="result-bt-rpnl">0</td>
+                            <td style="font-weight:bold" id="result-bt-rpnl">0</td>
                           </tr>
 
                           <tr>
