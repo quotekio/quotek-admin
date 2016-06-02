@@ -71,7 +71,7 @@
 
     </div>
 
-      <div class="modal-footer2" style="text-align:center">
+      <div class="modal-footer2">
         <a id="bt-hide-progress" class="btn btn-danger"><?= $lang_array['app']['close'] ?></a>
       </div>
 
