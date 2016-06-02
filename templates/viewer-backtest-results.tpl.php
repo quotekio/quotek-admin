@@ -12,12 +12,12 @@
 
    if ($bt->type == "batch" || $bt->type == "genetics") {
      $iter_enable = true;
-     $perf_graph_width = 500;
+     $perf_graph_width = 530;
    }
 
    else {
      $iter_enable = false;
-     $perf_graph_width = 600;
+     $perf_graph_width = 650;
    }
 
 
@@ -132,8 +132,8 @@
                <!-- Performance Result Frame -->
                <div class="result-frame well" id="result-frame-performance" style="display:block">
                   <div class="row-fluid">
-                    <div class="span9" style="background:brown">
-                      <div id="result-bt-perfgraph" style="width:<?= $perf_graph_width ?>px;height:220px;background:blue"></div>
+                    <div class="span9">
+                      <div id="result-bt-perfgraph" style="width:<?= $perf_graph_width ?>px;height:220px;"></div>
                     </div>
 
                     <div class="span3">

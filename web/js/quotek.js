@@ -878,9 +878,31 @@ function qateLoadBTUnitResult(result) {
   
   $('#result-bt-winloss-label').html( result.trades.winning + '/' + result_total );
 
+  if ( wr <= lr ) $('#result-bt-winloss-label').css('color', '#ED5565');
+  else $('#result-bt-winloss-label').css('color', '#1AB394');
+
+
   $('#result-bt-rpnl').html(result.pnl);
   $('#result-bt-mdd').html(result.max_drawdown);
-  $('#result-bt-pf').html(result.max_profit_factor);
+  $('#result-bt-pf').html(result.profit_factor);
+
+  if ( result.pnl <= 0 ) {
+    $('#result-bt-rpnl').css('color','#ED5565'); 
+  }
+  else {
+    $('#result-bt-rpnl').css('color','#1AB394');   
+  }
+
+  if ( result.profit_factor < 2 ) {
+    $('#result-bt-pf').css('color','#ED5565'); 
+  }
+  else {
+    $('#result-bt-pf').css('color','#1AB394');   
+  }
+
+  $('#result-bt-mdd').css('color','#ED5565');
+
+
 
   qateGraphBTPerformance(result.trades_history);
 
@@ -911,13 +933,28 @@ function qateLoadBTUnitResult(result) {
        '<td>' + i.open + '</td>' +
        '<td>' + i.stop + '</td>' +
        '<td>' + i.limit + '</td>' +
-       '<td>' + '</td>' +
-       '<td>' + i.pnl + '</td>' +
-       '<td>' + i.pnl_peak + '</td>' +
+       '<td>' + formatDate3(i.open_date) + '<br>'  + formatDate3(i.close_date)  + '</td>' +
+       '<td class="colorable">' + i.pnl + '</td>' +
+       '<td class="colorable">' + i.pnl_peak + '</td>' +
 
        '</tr>'
 
       );
+
+    });
+
+    $('.colorable').each(function(index,i) {
+
+      $(this).css('font-weight','bold');
+
+      if ( parseInt($(this).html()) > 0  ) {
+        $(this).css('color','#1AB394');
+      }
+
+      else {
+        $(this).css('color','#ED5565');  
+      }
+
 
     });
 
@@ -1536,6 +1573,15 @@ function formatDate2(dt) {
                   padStr(temp.getSeconds());
    return datestr;
 }
+
+function formatDate3(dt) {
+     var d = new Date(0);
+     d.setUTCSeconds(parseInt(dt));
+     return d.toLocaleString().replace(/(CET|CEST|EST|PST)/g,'');
+}
+
+
+
 
 function modalDest() {
   $('#modal_win').html();
