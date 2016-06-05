@@ -846,7 +846,29 @@ function qateGraphBTPerformance(positions) {
 
 }
 
-function qateLoadBTUnitResult(result) {
+var btresult = [];
+var btresult_pos = 0;
+
+function qateBTResultNav(pnum) {
+
+  $('.result-bt-rline').css('background', 'transparent');
+  $('.result-bt-rline').css('color','inherit');
+  $('.result-bt-rline').eq(pnum).css('background', '#333333');
+  $('.result-bt-rline').eq(pnum).css('color', '#38b7e5');
+
+
+
+  qateLoadBTUnitResult(pnum);
+
+}
+
+
+function qateLoadBTUnitResult(nres) {
+
+  result = btresult.results[nres];
+
+  console.log(nres);
+  console.log(result);
 
   $('#result_from').html(result.from);
   $('#result_to').html(result.to);
@@ -960,14 +982,20 @@ function qateLoadBTUnitResult(result) {
 
   }
 
-  
-
-  
-
+  //Fills logs panel
   $('#result_logs_container').html('');
   $.each(result.logs, function(i, item) {
      $('#result_logs_container').append(item + "<br>"); 
   });
+
+  //Fills Batch Panel
+  $('#result-bt-batchlist').html('');
+  if ( typeof result.batch != 'undefined' ) {
+    $.each(result.batch, function(i, item) {
+     $('#result-bt-batchlist').append('<tr><td>' + item + '</td></tr>' ); 
+    });
+  }
+
 
 }
 
@@ -985,9 +1013,26 @@ function qateLoadBTResult(id,result) {
   var tresp = $.trim(br.responseText);
   //alert(tresp);
   var r = $.parseJSON(tresp);
-  var result = $.parseJSON($.trim(r.result));
+  btresult = $.parseJSON($.trim(r.result));
 
-  qateLoadBTUnitResult(result);
+  if ( btresult.results.length > 1  ) {
+    $('#result-bt-rtable').html('');
+    for (i=0; i< btresult.results.length; i++ ) {
+      $('#result-bt-rtable').append('<tr class="result-bt-rline"><td>iter ' + (i+1) + '</td></tr>');
+    }
+
+    $('.result-bt-rline').each(function(index,i){
+      $(this).click(function(){
+        qateBTResultNav(index);
+        btresult_pos = index;
+      });
+    });
+
+   qateBTResultNav(0);
+
+  }
+
+  qateLoadBTUnitResult(0);
 
 }
 

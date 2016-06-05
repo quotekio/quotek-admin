@@ -122,12 +122,12 @@
                   <table class="table" style="width:100%;text-align:center">
                     <tr>
                       <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="line" CHECKED></td>
-                      <!-- <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="candle"></td> -->
+                      <td><input linked-asset="<?= $v->name ?>" type="radio" name="charttype-radio-<?= $v->name ?>" value="candle"></td>
                      
                     </tr>
                     <tr>
                       <td><?= $lang_array['app']['ctype_line'] ?></td>
-                      <!-- <td><?= $lang_array['app']['ctype_candle'] ?></td> -->
+                      <td><?= $lang_array['app']['ctype_candle'] ?></td>
 
                     </tr>
                   </table>

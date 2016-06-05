@@ -64,7 +64,10 @@
             <?php if ($iter_enable) { ?>
             <!-- Results iterator list -->
             <div class="span2">
-              <div class="well" style="height:280px!important"></div>
+              <div class="well" style="height:310px!important;overflow-y:scroll;padding:0px!important;">
+                <table class="table" id="result-bt-rtable">
+                </table>
+              </div>
             </div>
             <?php } ?>
             
@@ -82,6 +85,17 @@
                   <li>
                     <a onclick="qateResultNav($(this));" class="result-navlink" id="rlogs"><?= $lang_array['app']['logs'] ?></a>
                   </li>
+                  
+                  <?php if ($iter_enable) {?>
+
+                    <li>
+                      <a onclick="qateResultNav($(this));" class="result-navlink" id="itervars"><?= ucfirst($bt->type) ?></a>
+                    </li>
+
+
+                  <?php } ?> 
+
+
               </ul>
 
                <!-- "Main" Result Frame -->
@@ -197,6 +211,15 @@
                <div class="result-frame well" id="result-frame-rlogs">
                  <div id="result_logs_container" style="width:100%;height:220px;overflow-y:scroll;color:#38b7e5"></div>
                </div>
+
+               <!-- Itervars Result Frame -->
+               <div class="result-frame well" id="result-frame-itervars">
+                 <div style="width:100%;height:220px;overflow-y:scroll;">
+                   <table class="table" id="result-bt-batchlist">
+                   </table>
+                 </div>
+               </div>
+
             </div>
 
           </div>
@@ -220,6 +243,36 @@
         <?php } ?>
         
         
+
+       <?php
+         if ($iter_enable) {
+       ?>
+
+       $(document).unbind('keydown').keydown(function(e) {
+
+           console.log('arrow pressed!');
+
+           switch(e.which) {
+               case 37: // left
+                 btresult_pos--;
+                 if (btresult_pos == -1) btresult_pos = btresult.length - 1;
+                 qateBTResultNav(btresult_pos);
+               break;
+
+               case 39: // right
+                 btresult_pos++;
+                 if (btresult_pos == btresult.length ) btresult_pos = 0;
+                 qateBTResultNav(btresult_pos);
+               break;
+
+               default: return; // exit this handler for other keys
+           }
+           e.preventDefault(); // prevent the default action (scroll / move caret)
+       });
+
+       <?php } ?>
+
+
      function qateResultNav(obj) {
        $('.result-frame').hide();
        $('#result-frame-' +  obj.attr('id') ).show();

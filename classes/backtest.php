@@ -38,12 +38,16 @@ class backtestctl extends qatectl {
     $strat = $this->backtest->strategy_name;
     $to = $this->backtest->end;
 
+    if ( $this->backtest->type == "genetics" ) $bt_type_flag = "--genetics";
+    else if ( $this->backtest->type == "batch" ) $bt_type_flag = "--batch";
+    else $bt_type_flag = "--backtest";
+    
     $poffset = $this->findPorts();
     $port = $QATE_AEP_PORT + $poffset;
     $cfg = "$QATE_TMP/backtests/$btid/qate.conf";
     $btresult_file = "$QATE_TMP/backtests/$btid/results/" . time();
 
-    $cmd = "$QATE_PATH/bin/qate -c ${cfg} --backtest -e --backtest-from ${from} --backtest-to ${to} -p ${port} -s ${strat} --backtest-result ${btresult_file} &";
+    $cmd = "$QATE_PATH/bin/qate -c ${cfg} ${bt_type_flag} -e --backtest-from ${from} --backtest-to ${to} -p ${port} -s ${strat} --backtest-result ${btresult_file} &";
 
     if ($this->checkStatus($this->supid) == 'off') {
       

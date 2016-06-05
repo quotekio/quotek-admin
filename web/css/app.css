@@ -621,3 +621,7 @@ padding:10px;
   cursor:cell;
 }
 
+.result-bt-rline {
+  cursor: pointer;
+}
+
