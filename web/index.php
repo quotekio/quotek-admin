@@ -19,8 +19,21 @@ require_once ('classes/vhmodule.php');
 $vhms = loadVHModules();
 
 
-if (! include('pages/' . $routing[$corrected_uri])) {
-  header('HTTP/1.0 404 Not Found');
+foreach($routing as $k => $v  ) {
+
+  $reg = "/^" . str_replace("/", "\\/", $k) . "$/";
+
+  if ( preg_match($reg, $corrected_uri)  ) {
+
+    if (! include('pages/' . $v ) ) {
+      header('HTTP/1.0 404 Not Found');
+    }
+    
+    break;
+  }
+
 }
+
+
 
 ?>

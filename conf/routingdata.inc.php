@@ -5,6 +5,7 @@
                     '/app/signout' => 'app.php',
                     '/install' => 'install.php',
                     '/app/editor' => 'editor.php',
+                    '/app/notebooks/(.*)' => 'notebooks.php',
 
 		    		'/async/auth' => 'async/auth.php',
 		    		'/async/chlang' => 'async/chlang.php',
@@ -27,7 +28,9 @@
                     '/async/app/histview' => 'async/app/histview.php',
                     
                     '/async/app/stats/trades' => 'async/app/stats/trades.php',
-                    '/async/app/stats/perf' => 'async/app/stats/perf.php'
+                    '/async/app/stats/perf' => 'async/app/stats/perf.php',
+
+
 
 
 

@@ -62,6 +62,12 @@ foreach ($strats as $strat) {
         </a>
       </div>
 
+      <div class="btn-group">
+          <a class="btn btn-warning" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $strat->name ?>">
+            <i class="icon-white icon-book" ></i>
+          </a>
+        </div>
+
     </td>
   </tr>
 
@@ -111,6 +117,12 @@ foreach ($strats as $strat) {
           </a>
           <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
             <i class="icon-white icon-remove-sign" ></i>
+          </a>
+        </div>
+
+        <div class="btn-group">
+          <a class="btn btn-warning" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $smodule->name ?>">
+            <i class="icon-white icon-book" ></i>
           </a>
         </div>
 

@@ -432,6 +432,8 @@
 
   $lang_array['app']['bt_notrade'] = 'This backtest did not trigger any trade.'; 
 
+  $lang_array['app']['strategy_actions_notebook'] = 'Show the Notebook.';
+
  
 
 ?>

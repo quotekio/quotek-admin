@@ -68,6 +68,12 @@ $themes = listThemes();
      <script type="text/javascript" src="/js/flot/jquery.flot.pie.min.js"></script>
      <script type="text/javascript" src="/js/flot/jquery.flot.symbol.min.js"></script>
 
+     <!-- Squire Notebook -->
+     <script type="text/javascript" src="/js/squire/squire-raw.js"></script>
+     <script type="text/javascript" src="/js/squire/squire-ui.js"></script>
+     <link rel="stylesheet" href="/js/squire/squire-ui.css">
+
+     
      <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
      <title>Quotek Strategy Editor</title>
   </head>
@@ -83,15 +89,18 @@ $themes = listThemes();
 
   <div id="editor-console">
 
-    <div style="position:absolute;margin-left:350px;margin-top:7px">
+    <!-- <div style="position:absolute;margin-left:350px;margin-top:7px">
       <a style="" id="backtest_notice_btn"><?= $lang_array['app']['backtest_notice_title'] ?></a>
-    </div>
+    </div> -->
+
 
     <ul class="nav nav-tabs">
       <li class="console-tentry active" id="console-tentry-compile">
         <a onclick="toggleConsoleTabs('compile')" href="#"><?= $lang_array['app']['compiler'] ?> <span id="editor-compiler-nberrors" class="label">0</span></a>
       </li>
       <li class="console-tentry" id="console-tentry-backtest"><a onclick="toggleConsoleTabs('backtest')" href="#">Backtester</a></li>
+      <li class="console-tentry" id="console-tentry-notebook"><a onclick="toggleConsoleTabs('notebook')" href="#">Notebook</a></li>
+
     </ul>
 
      <div class="console-tab well" id="console-compile">
@@ -190,8 +199,12 @@ $themes = listThemes();
       </div>
       </div>      
 
+    </div>
 
+     <div class="console-tab well" id="console-notebook" style="display:none;overflow:hidden">
+      
 
+      <textarea id="console-notebook-editor"></textarea>
 
     </div>
 
@@ -382,6 +395,12 @@ $themes = listThemes();
                               };
 
 
+        $(document).ready(function() {
+          UI = new SquireUI({replace: 'textarea#console-notebook-editor' });
+
+          $('iframe').get(0).contentWindow.editor.setHTML("<?= addslashes($strat->notebook) ?>");
+
+        });
 
         var editor_theme = localStorage.getItem("theme");
         if (editor_theme == null) editor_theme = "monokai";
@@ -519,6 +538,26 @@ $themes = listThemes();
 
         function toggleConsoleTabs(tab) {
 
+            if (tab == 'notebook') {
+              ec = $('#editor-console');
+              ec.width( $('#editor').width() * 0.6  );
+              ec.css('margin-left', -1 * ec.width() -1 );
+
+              $('iframe').height( ec.height() - 170 );
+              $('iframe').width( ec.width() - 55 );
+
+
+            }
+
+            else {
+              ec = $('#editor-console');
+              ec.width( $('#editor').width() * 2/5  );
+              ec.css('margin-left', -1 * ec.width() -1 ); 
+            }
+
+            $('#editor-console-btn').css('margin-left', -1 * ec.width() - 13 );
+
+            
             $('.console-tentry').removeClass('active');
             $('#console-tentry-' + tab).addClass('active');
 
@@ -580,10 +619,12 @@ $themes = listThemes();
 
           }
 
-          function showConsole(tab) {
+          function showConsole(tab, ratio ) {
 
-            var tab = (typeof tab != 'undefined') ? tab : null ;
-            if (tab != null) toggleConsoleTabs(tab);
+            var ratio = (typeof ratio == 'undefined') ? 2/5 : ratio ;
+
+            var tab = (typeof tab != 'undefined' && tab != 'undefined'  ) ? tab : null ;
+            if (tab != null ) toggleConsoleTabs(tab);
 
             $('.console-tab').height( $('#editor').height() - 100 );
             $('.console-tab').css('margin-bottom','0px');
@@ -601,11 +642,15 @@ $themes = listThemes();
   
               ec = $('#editor-console');
               ec.height($('#editor').height());
-              ec.width( $('#editor').width() * 2 / 5  );
+              ec.width( $('#editor').width() * ratio  );
               ec.css('margin-left', -1 * ec.width() -1 );
               ec.css('top', $('#editor').position().top );
             
               $('#editor-console-btn').css('margin-left', -1 * ec.width() - 13 );
+
+              if ( $('#console-tentry-notebook').hasClass('active') ) {
+                toggleConsoleTabs('notebook');              
+              }
 
                ec.show();
              }
@@ -678,11 +723,16 @@ $themes = listThemes();
  
            strat = { 'name': null,
                      'type': null,
-                     'content': null };
+                     'content': null,
+                     'notebook': null };
               
               strat.name = name;
               strat.type = type;
-              strat.content = editor.getValue() ;
+              strat.content = editor.getValue();
+              strat.notebook =  $('iframe').get(0).contentWindow.editor.getHTML();
+              
+              
+
               var r = qateObject('add','strategy',strat,-1);
 
               if (r.status == 'OK') {

@@ -24,9 +24,13 @@ class strategy extends qateobject {
     
     //global $repository;
     global $GIT_LOCATION;
-  
+
+    $this->name_noext = preg_replace('/\.(qs|qsm)$/', '', $this->name);
+
+    $nbname = $this->name_noext . ".qnb";
+
     $this->content = file_get_contents($GIT_LOCATION . '/' . $this->name);
-    $this->name_noext = preg_replace('/\.(qs|qsm)/', '', $this->name);
+    $this->notebook = file_get_contents($GIT_LOCATION . '/notebooks/' . $nbname );
 
     $this->loadState();
 
@@ -51,7 +55,11 @@ class strategy extends qateobject {
     if ( $this->type == 'normal' && ! endsWith($this->name,'.qs') ) $this->name .= ".qs";
     if ( $this->type == 'module' && ! endsWith($this->name,'.qsm') ) $this->name .= ".qsm";
 
+    $this->name_noext = preg_replace('/\.(qs|qsm)$/', '',$this->name);
+    $nbname = $this->name_noext . ".qnb";
+
     $fh = fopen($GIT_LOCATION . '/' . $this->name,'w');
+    $fh2 = fopen($GIT_LOCATION . '/notebooks/' . $nbname,'w');
 
     if ($fh) {
       fwrite($fh,$this->content);
@@ -59,13 +67,27 @@ class strategy extends qateobject {
     }
     else {
     }
+
+    if ($fh2) {
+      fwrite($fh2,$this->notebook);
+      fclose($fh2);
+    }
+    else {
+    }
+    
+
   }
 
 
   function delete() {
     global $GIT_LOCATION;
     unlink($GIT_LOCATION . '/' . $this->name);
-    
+
+    $this->name_noext = preg_replace('/\.(qs|qsm)$/', '',$this->name);
+    $nbname = $this->name_noext . ".qnb";
+
+    unlink($GIT_LOCATION . '/notebooks/' . $nbname);
+
   }
  
   function duplicate() {
