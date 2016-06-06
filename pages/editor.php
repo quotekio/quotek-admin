@@ -68,10 +68,8 @@ $themes = listThemes();
      <script type="text/javascript" src="/js/flot/jquery.flot.pie.min.js"></script>
      <script type="text/javascript" src="/js/flot/jquery.flot.symbol.min.js"></script>
 
-     <!-- Squire Notebook -->
-     <script type="text/javascript" src="/js/squire/squire-raw.js"></script>
-     <script type="text/javascript" src="/js/squire/squire-ui.js"></script>
-     <link rel="stylesheet" href="/js/squire/squire-ui.css">
+     <!-- NoteBook -->
+     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
      
      <LINK REL="SHORTCUT ICON" href="/img/quotek_q.png">
@@ -203,8 +201,9 @@ $themes = listThemes();
 
      <div class="console-tab well" id="console-notebook" style="display:none;overflow:hidden">
       
+      
 
-      <textarea id="console-notebook-editor"></textarea>
+      <textarea id="console-notebook-editor" style="width:100%;height:400px"><?= (isset($strat)) ? $strat->notebook : '' ?></textarea>
 
     </div>
 
@@ -259,11 +258,11 @@ $themes = listThemes();
  </div>
 
  <!-- Save Modal -->
- <div id="saveas" class="modal hide fade" role="dialog">
-   <div class="modal-dialog">
+ <div id="saveas" class="modal hide fade" role="dialog" style="height:auto!important;">
+   <!-- <div class="modal-dialog"> -->
 
      <!-- Modal content-->
-     <div class="modal-content">
+     <!-- <div class="modal-content">-->
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal">&times;</button>
          <h4 class="modal-title"><?= $lang_array['app']['saveas'] ?></h4>
@@ -286,12 +285,11 @@ $themes = listThemes();
        </div>
 
        </div>
-       <div class="modal-footer">
-         <button id="codesaveas" type="button" class="btn btn-warning" data-dismiss="modal"><?= $lang_array['save'] ?></button>
+       <div class="modal-footer2">
+         <a id="codesaveas" class="btn btn-warning" data-dismiss="modal"><?= $lang_array['save'] ?></a>
+       <!-- </div> -->
+     <!-- </div> -->
        </div>
-     </div>
-
-   </div>
  </div>
 
 	<div class="navbar-inner" id="codeeditor_nav">
@@ -396,9 +394,13 @@ $themes = listThemes();
 
 
         $(document).ready(function() {
-          UI = new SquireUI({replace: 'textarea#console-notebook-editor' });
-
-          $('iframe').get(0).contentWindow.editor.setHTML("<?= addslashes($strat->notebook) ?>");
+          
+          
+          tinymce.init({ selector: '#console-notebook-editor',
+                         plugins: "link image",
+                         link_assume_external_targets: true
+                         
+                        });
 
         });
 
@@ -407,12 +409,12 @@ $themes = listThemes();
         var fsize = localStorage.getItem("fontsize");
         if (fsize == null) fsize = 11;
 
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/" + editor_theme );
-        editor.getSession().setMode("ace/mode/c_cpp");
-        editor.setFontSize(parseInt(fsize));
-        editor.setValue($("#editor-preload").val());
-        editor.clearSelection();
+        var ceditor = ace.edit("editor");
+        ceditor.setTheme("ace/theme/" + editor_theme );
+        ceditor.getSession().setMode("ace/mode/c_cpp");
+        ceditor.setFontSize(parseInt(fsize));
+        ceditor.setValue($("#editor-preload").val());
+        ceditor.clearSelection();
 
         $('#editor-bt-launchbtn').click(function() {
           qbacktest();
@@ -513,7 +515,7 @@ $themes = listThemes();
           to = -1,
           cfg= $('#editor-bt-config').val();
           
-          source = editor.getValue();
+          source = ceditor.getValue();
 
           var qbtr = $.ajax({
           url: '/async/app/qatectl',
@@ -542,10 +544,6 @@ $themes = listThemes();
               ec = $('#editor-console');
               ec.width( $('#editor').width() * 0.6  );
               ec.css('margin-left', -1 * ec.width() -1 );
-
-              $('iframe').height( ec.height() - 170 );
-              $('iframe').width( ec.width() - 55 );
-
 
             }
 
@@ -580,7 +578,7 @@ $themes = listThemes();
             
             toggleConsoleTabs('compile');
 
-            source = editor.getValue();
+            source = ceditor.getValue();
 
             var rq = $.ajax({
               url: '/async/app/qatectl',
@@ -701,7 +699,7 @@ $themes = listThemes();
 
 
           function chTheme(theme) {
-            editor.setTheme("ace/theme/" + theme);
+            ceditor.setTheme("ace/theme/" + theme);
             localStorage.setItem("theme",theme);
           }
 
@@ -728,8 +726,8 @@ $themes = listThemes();
               
               strat.name = name;
               strat.type = type;
-              strat.content = editor.getValue();
-              strat.notebook =  $('iframe').get(0).contentWindow.editor.getHTML();
+              strat.content = ceditor.getValue();
+              strat.notebook =  tinyMCE.activeEditor.getContent();
               
               
 
@@ -804,7 +802,7 @@ $themes = listThemes();
               e.preventDefault();
               fsize--;
               localStorage.setItem("fontsize",fsize);
-              editor.setFontSize(fsize);
+              ceditor.setFontSize(fsize);
               
             }
             //zoom +
@@ -812,7 +810,7 @@ $themes = listThemes();
               e.preventDefault();
               fsize++;
               localStorage.setItem("fontsize",fsize);
-              editor.setFontSize(fsize);
+              ceditor.setFontSize(fsize);
               
 
             }

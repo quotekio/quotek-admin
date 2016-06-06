@@ -434,6 +434,12 @@
 
   $lang_array['app']['strategy_actions_notebook'] = 'Show the Notebook.';
 
+  $lang_array['app']['insertimage'] = 'Insert Image';
+  $lang_array['app']['insertlink'] = 'Insert Link';
+  $lang_array['app']['cancel'] = 'Cancel';
+  $lang_array['app']['insert'] = 'Insert';
+
+
  
 
 ?>
