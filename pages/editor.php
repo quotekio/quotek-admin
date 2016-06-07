@@ -545,6 +545,8 @@ $themes = listThemes();
               ec.width( $('#editor').width() * 0.6  );
               ec.css('margin-left', -1 * ec.width() -1 );
 
+              $('#console-notebook-editor_ifr').height(ec.height() - 200);
+
             }
 
             else {
