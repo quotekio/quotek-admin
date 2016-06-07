@@ -215,7 +215,7 @@
                <!-- Itervars Result Frame -->
                <div class="result-frame well" id="result-frame-itervars">
                  <div style="width:100%;height:220px;overflow-y:scroll;">
-                   <table class="table" id="result-bt-batchlist">
+                   <table class="table" id="result-bt-itervars">
                    </table>
                  </div>
                </div>

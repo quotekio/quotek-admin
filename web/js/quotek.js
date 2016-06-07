@@ -895,13 +895,21 @@ function qateLoadBTUnitResult(nres) {
   wr = result.trades.winning / result_total;
   lr = result.trades.losing / result_total;
 
-  $.plot($('#result-bt-winloss'), [{ label: "winning", data: wr , color: '#1AB394'}, 
+  if (result_total == 0) {
+    $.plot($('#result-bt-winloss'), [{ label: "none", data: [1] , color: '#cccccc'}], bt_wloptions);    
+    $('#result-bt-winloss-label').css('color', '#cccccc');
+  }
+  else {
+    $.plot($('#result-bt-winloss'), [{ label: "winning", data: wr , color: '#1AB394'}, 
                                    { label: "losing", data: lr , color: '#ED5565'} ], bt_wloptions);
   
+    if ( wr <= lr ) $('#result-bt-winloss-label').css('color', '#ED5565');
+    else $('#result-bt-winloss-label').css('color', '#1AB394');
+  }
+
   $('#result-bt-winloss-label').html( result.trades.winning + '/' + result_total );
 
-  if ( wr <= lr ) $('#result-bt-winloss-label').css('color', '#ED5565');
-  else $('#result-bt-winloss-label').css('color', '#1AB394');
+  
 
 
   $('#result-bt-rpnl').html(result.pnl.toFixed(2));
@@ -989,10 +997,22 @@ function qateLoadBTUnitResult(nres) {
   });
 
   //Fills Batch Panel
-  $('#result-bt-batchlist').html('');
   if ( typeof result.batch != 'undefined' ) {
+    $('#result-bt-itervars').html('');
     $.each(result.batch, function(i, item) {
-     $('#result-bt-batchlist').append('<tr><td>' + item + '</td></tr>' ); 
+     $('#result-bt-itervars').append('<tr><td>' + item + '</td></tr>' ); 
+    });
+  }
+
+  //Fills Genetics Panel
+  if ( typeof result.genes != 'undefined' ) {
+    $('#result-bt-itervars').html('');
+ 
+    $('#result-bt-itervars').append('<tr><td>generation: ' + result.generation + '</td></tr>' );
+    $('#result-bt-itervars').append('<tr><td>individual: ' + result.individual + '</td></tr>' );
+
+    $.each(result.genes, function(i, item) {
+     $('#result-bt-itervars').append('<tr><td>' + item + '</td></tr>' ); 
     });
   }
 
