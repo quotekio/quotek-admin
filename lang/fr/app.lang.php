@@ -454,6 +454,10 @@
   $lang_array['app']['cancel'] = 'Annuler';
   $lang_array['app']['insert'] = 'Inserer';
 
+  $lang_array['app']['sortby'] = 'Trier par';
+  $lang_array['app']['sortby_apnl'] = 'PNL Croissant';
+  $lang_array['app']['sortby_dpnl'] = 'PNL Decroissant';
+
 
 
 ?>

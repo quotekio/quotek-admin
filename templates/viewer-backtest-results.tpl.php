@@ -64,7 +64,21 @@
             <?php if ($iter_enable) { ?>
             <!-- Results iterator list -->
             <div class="span2">
-              <div class="well" style="height:310px!important;overflow-y:scroll;padding:0px!important;">
+              
+                <div class="btn-group">
+                    <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#" style="width:100%!important">
+                      <?= $lang_array['app']['sortby'] ?>
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#" onclick="qateResultSortBy('apnl')"><?= $lang_array['app']['sortby_apnl'] ?></a></li>
+                       <li><a href="#" onclick="qateResultSortBy('dpnl')"><?= $lang_array['app']['sortby_dpnl'] ?></a></li>
+                    </ul>
+                </div>
+
+              <div class="well" style="margin-top:5px;height:280px!important;overflow-y:scroll;padding:0px!important;">
+
+              
                 <table class="table" id="result-bt-rtable">
                 </table>
               </div>

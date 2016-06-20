@@ -439,7 +439,8 @@
   $lang_array['app']['cancel'] = 'Cancel';
   $lang_array['app']['insert'] = 'Insert';
 
-
- 
+  $lang_array['app']['sortby'] = 'Sort By';
+  $lang_array['app']['sortby_apnl'] = 'Ascending PNL';
+  $lang_array['app']['sortby_dpnl'] = 'Descending PNL';
 
 ?>

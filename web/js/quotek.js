@@ -856,8 +856,6 @@ function qateBTResultNav(pnum) {
   $('.result-bt-rline').eq(pnum).css('background', '#333333');
   $('.result-bt-rline').eq(pnum).css('color', '#38b7e5');
 
-
-
   qateLoadBTUnitResult(pnum);
 
 }
@@ -867,8 +865,8 @@ function qateLoadBTUnitResult(nres) {
 
   result = btresult.results[nres];
 
-  console.log(nres);
-  console.log(result);
+  //console.log(nres);
+  //console.log(result);
 
   $('#result_from').html(result.from);
   $('#result_to').html(result.to);
@@ -1020,6 +1018,51 @@ function qateLoadBTUnitResult(nres) {
 }
 
 
+function qateResultSortBy(stype) {
+
+  apnl_sort = function(a,b) {
+    return a.pnl - b.pnl;
+  }
+
+  dpnl_sort = function(a,b) {
+    return b.pnl - a.pnl ;
+  }
+
+
+  if (stype== 'apnl') btresult.results.sort(apnl_sort);
+  else if (stype == 'dpnl') btresult.results.sort(dpnl_sort);
+
+  qateDispBTResult();
+  
+}
+
+
+
+function qateDispBTResult() {
+
+  if ( btresult.results.length > 1  ) {
+    $('#result-bt-rtable').html('');
+    for (i=0; i< btresult.results.length; i++ ) {
+      $('#result-bt-rtable').append('<tr class="result-bt-rline" id="result-bt-rline-' + i + '"><td>gen' 
+        + btresult.results[i].generation + '-i' 
+        + btresult.results[i].individual + '</td></tr>');
+    }
+
+    $('.result-bt-rline').each(function(index,i){
+      $(this).click(function(){
+        qateBTResultNav(index);
+        btresult_pos = index;
+      });
+    });
+
+   qateBTResultNav(0);
+
+  }
+
+}
+
+
+
 function qateLoadBTResult(id,result) {
 
   var br = $.ajax({
@@ -1035,22 +1078,8 @@ function qateLoadBTResult(id,result) {
   var r = $.parseJSON(tresp);
   btresult = $.parseJSON($.trim(r.result));
 
-  if ( btresult.results.length > 1  ) {
-    $('#result-bt-rtable').html('');
-    for (i=0; i< btresult.results.length; i++ ) {
-      $('#result-bt-rtable').append('<tr class="result-bt-rline"><td>iter ' + (i+1) + '</td></tr>');
-    }
-
-    $('.result-bt-rline').each(function(index,i){
-      $(this).click(function(){
-        qateBTResultNav(index);
-        btresult_pos = index;
-      });
-    });
-
-   qateBTResultNav(0);
-
-  }
+  
+  qateDispBTResult();
 
   qateLoadBTUnitResult(0);
 
