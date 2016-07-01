@@ -15,7 +15,7 @@ class executor {
     while(1) {
 
       $queue_data = file_get_contents($this->queue_file);
-      $queue_entries = split("\n", $queue_data);
+      $queue_entries = explode("\n", $queue_data);
       foreach ($queue_entries as $entry) {
       
         if ($entry != "") {
