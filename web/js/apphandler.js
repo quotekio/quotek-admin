@@ -83,10 +83,14 @@ function loadApp() {
 
   /* DATATABLES */
   $("head").append($("<script type='text/javascript' src='/js/datatables.min.js'></script>"));
-  $("head").append($("<script type='text/javascript' src='/js/dataTables.select.min.js'></script>"));
+  $("head").append($("<script type='text/javascript' src='/js/dataTables.bootstrap.min.js'></script>"));
 
+  $("head").append($("<link rel='stylesheet' href='/css/dataTables.bootstrap.css' type='text/css'>"));
+
+
+  /* DATATABLES SELECT*/
+  $("head").append($("<script type='text/javascript' src='/js/dataTables.select.min.js'></script>"));
   $("head").append($("<link rel='stylesheet' href='/css/dataTables.select.min.css' type='text/css'>"));
-  $("head").append($("<link rel='stylesheet' href='/css/datatables.min.css' type='text/css'>"));
 
 
   /* FLOT */
