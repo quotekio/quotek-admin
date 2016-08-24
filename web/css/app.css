@@ -157,7 +157,7 @@ div.legend > table {
    padding-right:0px;
    color:white;
    text-decoration:none;
-   background:#F8AC59;
+   background:#00CCFF;
    opacity:0.9!important;
    width:173px!important;
    margin-left:5px;
@@ -178,10 +178,6 @@ div.legend > table {
 .left-menu-link i, .left-menu-link-top i, .left-menu-link img {
   margin-right:8px;
 }
-
-
-
-
 
 
 #app-left-wizzards-accordion {
@@ -221,224 +217,9 @@ div.legend > table {
   border-bottom:#404040;
 }
 
-
-#app-builder-horiz-dotted-steplist-container {
-
-  background:#F1F1F1;
-  border-top:1px solid #cccccc;
-  border-bottom:1px solid #cccccc;
-  padding:15px;
-  overflow:hidden;
-  margin-bottom:20px;
-  text-align:center;
-} 
-
-#app-builder-treeview {
-
-border-radius: 0px 12px 12px 0px;
-height:400px;
-width:170px;
-float:left;
-background:#cccccc;
-margin-left:-10px;
-margin-right:20px;
-padding:15px;
-}
-
-
-
-
-
-.app-builder-step {
-  display:none;
-  text-align:center;
-}
-
-.app-builder-step-illus {
-
-  position:relative;
-  width:96px;
-  left:100%;
-  margin-left:-140px;
-  display:none;
-}
-
-
-.app-builder-question {
-
-  padding:25px;
-  padding-top:10px;
-
-}
-
-
-.app-builder-input[type="text"], .app-builder-input[type="password"], .app-builder-obj-input[type="text"], .app-builder-obj-input[type="password"] {
-
-  height:30px;
-  width:220px;
-
-}
-
-
-.app-builder-nav-btn {
-  width:80px;
-  height:80px;
-  border-radius:40px;
-  border: 3px solid #cccccc;
-  background:#333333;
-  color:#cccccc;
-  font-size:30px;
-  font-weight:bold;
-  text-align:center;
-
-}
-
-.app-builder-nav-btn2 {
-
-  background:#171717;
-  color:#cccccc;
-  font-size:60px;
-  text-align:center;
-  font-weight:bold;
-  border-radius:0px 8px 8px 0px;
-  padding-top:25px;
-  padding-bottom:25px;
-}
-
-.app-builder-nav-btn2:hover {
-  background:#FF993A;
-  color:white;
-  text-decoration:none;
-}
-
-.app-builder-nav-btn:hover{
-  background:#FF993A;
-  color:white;
-}
-
-#myconf-menu, .app-pillsnav {
-
-  background:#F1F1F1;
-  border-top:1px solid #cccccc;
-  border-bottom:1px solid #cccccc;
-  padding:15px;
-  overflow:hidden;
-  margin-top:20px;
-  margin-bottom:20px;
-
-}
-
-
-.stepdot {
-  float:left;
-  height:40px;
-  width:40px;
-  border-radius:30px;
-  background:#f1f1f1;
-  box-shadow:inset 0 0 2px #404040;
-  z-index:2;
-  position:relative;
-  text-align:center;
-  padding:10px;
-  
-}
-
-.stepdot:hover , .stepdot_passed:hover {
- box-shadow:inset 0 0 2px #FF0032;
- cursor: pointer;
-}
-
-.stepdot_cur {
-  box-shadow:inset 0 0 2px #FF0032;
-}
-
-
-.stepdot_passed {
-  box-shadow:inset 0 0 2px #FF993A;
-}
-
-.stepline {
- float:left;
- width:30px;
- height:20px;
- margin-top:20px;
- background:transparent;
- z-index:1;
-
-
-}
-
-.stepline_passed {
- float:left;
- width:30px;
- height:10px;
- margin-top:15px;
- background:#FF993A;
- z-index:1;
-}
-
-.label-chilired {
-
-    background:#FF0032!important;
-}
-
-.app-active-pill {
-}
-
-.app-active-pill:hover {
-  
-}
-
-.app-active-pill a {
-  background:#FF993A;
-  border-radius:7px;
-  color:white!important;
-}
-
-.app-active-pill a:hover {
-  background:#FF993A!important;
-  border-radius:5px;
-  color:white!important;
-}
-
-.app-settings {
-  background:white !important;
-  min-height:200px;
-  display:none;
-  padding-top:0px;
-}
-
-.app-settings input {
-  height:30px;
-  width:220px;
-}
-
-.app-settings label {
-  margin-top:10px;
-}
-
-
-
-#app-settings-account {
-  display:block;
-}
-
-
-.app-preview-screen {
-  display:none;
-}
-
-.app-file-preview {
-  display:none;
-
-}
-
 .input-append input[type="password"] {
-
   height:30px;
-
 }
-
 
 .app-leftmenu {
   width:200px;
@@ -494,7 +275,7 @@ padding:15px;
 #codeeditor_nav{
   height:40px;
   width:100%;
-  background:#F3F3F4!important;
+  background:white!important;
   border-radius:0px!important;
 }
 
@@ -552,7 +333,7 @@ padding:10px;
 }
 
 .newbtn {
-  background:#FF9200;
+  background:#00ccff;
   border-radius:30px 0px 0px 30px ;
   cursor:pointer;
   color: white;

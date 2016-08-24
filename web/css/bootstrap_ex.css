@@ -1,6 +1,7 @@
 /* Bootstrap overridings */
 
 
+
 .modal-header {
   padding-top:0px;
   padding-bottom:0px;
@@ -23,13 +24,20 @@
 }
 
 
-.btn-warning, .label-warning {
-  background-color:#F8AC59!important;
+.btn-warning {
+  background-color:#00ccff!important;
+  opacity:.9!important;
 }
 
 .btn-warning:hover {
-  background-color: #EDA455!important;
+  background-color: #00ccff!important;
+  opacity:1!important;
 }
+
+.label-warning {
+  background-color:#F8AC59!important; 
+}
+
 
 
 .btn-success, .label-success {
@@ -51,9 +59,23 @@
 
 
 .progress-warning .bar {
-  background:#F8AC59!important;
+  background:#00ccff!important;
 }
 
 .progress-info .bar {
   background:#23C6C8!important;
+}
+
+
+a {
+  color: #00ccff;
+  opacity:.9;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #00ccff;
+  opacity:1;
+  text-decoration: underline;
 }

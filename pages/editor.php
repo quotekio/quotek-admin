@@ -297,7 +297,7 @@ $themes = listThemes();
 	  <div class="row-fluid">
 
     
-	        <div class="span4" style="margin-top:10px;font-weight:bold;color:white">
+	        <div class="span4" style="margin-top:10px;font-weight:bold;color:#00ccff">
 	          QSE 2.0
 	        </div>
 
