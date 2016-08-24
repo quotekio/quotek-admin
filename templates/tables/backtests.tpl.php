@@ -22,15 +22,17 @@
 
 <table class="table table-striped backtests-table" id="backtests-table" style="margin-top:20px">
 
-    <tr>
-      <th><?= $lang_array['app']['name'] ?></th>
-      <th><?= $lang_array['app']['type'] ?></th>
-      <th><?= $lang_array['app']['period'] ?></th>
-      <th><?= $lang_array['app']['strat']?></th>
-      <th><?= $lang_array['app']['status'] ?></th>
-      <th><?= $lang_array['app']['actions'] ?></th>
-    </tr>
-    
+    <thead>
+      <tr>
+        <th><?= $lang_array['app']['name'] ?></th>
+        <th><?= $lang_array['app']['type'] ?></th>
+        <th><?= $lang_array['app']['period'] ?></th>
+        <th><?= $lang_array['app']['strat']?></th>
+        <th><?= $lang_array['app']['status'] ?></th>
+        <th><?= $lang_array['app']['actions'] ?></th>
+      </tr>
+    </thead>
+    <tbody>
     <?php
     foreach($backtests as $bt) {
 
@@ -104,12 +106,12 @@
       </tr>
 
     <?php } ?>
-
+    </tbody>
   </table>
 
   <script type="text/javascript">
 
-
+  
     function chdatetime(dtspan, lbl) {
 
       if ( $('input', dtspan).length == 0  ) {
@@ -136,30 +138,43 @@
 
     }
 
-    $('.btn-qatebacktest-edit').each(function() {
+    $(document).ready(function() {
 
-       var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/backtest-line-/g,""));
-       $(this).off();
-       $(this).click(function() {
-          qateShowBacktestEditor();
-          $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
-          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-          
-          qateGetBacktestDataToEdit(bid);
-          $('#editor-action').off();
-          $('#editor-action').click(function() {
-            qateSaveBacktest(bid);
-          });
+      $('#backtests-table').DataTable( {
+            "paging":   true,
+            "ordering": true,
+            "info":     false,
+            "select":   true,
+            "bFilter":  false,
+            "bLengthChange": false
+        } );
 
-          //disable type change if edit.
-          $('#input-backtest-type').attr('disabled', 'disabled');
+      $('.btn-qatebacktest-edit').each(function() {
+
+         var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/backtest-line-/g,""));
+         $(this).off();
+         $(this).click(function() {
+            qateShowBacktestEditor();
+            $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
+            $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
+            
+            qateGetBacktestDataToEdit(bid);
+            $('#editor-action').off();
+            $('#editor-action').click(function() {
+              qateSaveBacktest(bid);
+            });
+
+            //disable type change if edit.
+            $('#input-backtest-type').attr('disabled', 'disabled');
+
+         });
 
        });
+      
 
-     });
-    
+      $('.table-backtests a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
 
-    $('.table-backtests a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
 
+    });
 
   </script>

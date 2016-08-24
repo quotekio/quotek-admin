@@ -11,15 +11,18 @@
 ?>
 
 <table class="table table-striped" id="strategies-table" style="margin-top:20px">
-  <tr>
-    <th><?= $lang_array['app']['name'] ?></th>
-    <th><?= $lang_array['app']['type'] ?></th>
-    <th><?= $lang_array['app']['author'] ?></th>
-    <th><?= $lang_array['app']['status'] ?></th>
-    <th><?= $lang_array['app']['createdon'] ?></th>
-    <th><?= $lang_array['app']['updatedon'] ?></th>
-    <th><?= $lang_array['app']['actions'] ?></th>
-  </tr>
+  <thead>
+    <tr>
+      <th><?= $lang_array['app']['name'] ?></th>
+      <th><?= $lang_array['app']['type'] ?></th>
+      <th><?= $lang_array['app']['author'] ?></th>
+      <th><?= $lang_array['app']['status'] ?></th>
+      <th><?= $lang_array['app']['createdon'] ?></th>
+      <th><?= $lang_array['app']['updatedon'] ?></th>
+      <th><?= $lang_array['app']['actions'] ?></th>
+    </tr>
+  </thead>
+  <tbody>
 
 <?php
 
@@ -72,6 +75,7 @@ foreach ($strats as $strat) {
   </tr>
 
 <?php } } ?>
+</tbody>
 </table>
 
 <?php
@@ -137,5 +141,15 @@ foreach ($strats as $strat) {
 
 
 <script type="text/javascript">
+
+$(document).ready(function() {
+
+  $('#strategies-table').DataTable( {
+        "paging":   true,
+        "ordering": true,
+        "info":     false
+    } );
+
+});
 
 </script>

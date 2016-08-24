@@ -80,6 +80,15 @@ function loadApp() {
   /* BOOTSTRAP JS */
   $("head").append($("<script type='text/javascript' src='/js/bootstrap.js'></script>"));
 
+
+  /* DATATABLES */
+  $("head").append($("<script type='text/javascript' src='/js/datatables.min.js'></script>"));
+  $("head").append($("<script type='text/javascript' src='/js/dataTables.select.min.js'></script>"));
+
+  $("head").append($("<link rel='stylesheet' href='/css/dataTables.select.min.css' type='text/css'>"));
+  $("head").append($("<link rel='stylesheet' href='/css/datatables.min.css' type='text/css'>"));
+
+
   /* FLOT */
   $("head").append($("<script type='text/javascript' src='/js/flot/jquery.flot.js'></script>"));
   $("head").append($("<script type='text/javascript' src='/js/flot/jquery.flot.time.js'></script>"));
