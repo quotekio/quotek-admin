@@ -34,6 +34,18 @@
   opacity:1!important;
 }
 
+
+.btn-warning-2 {
+  background-color:#F8AC59!important;
+  opacity:.9!important;
+}
+
+.btn-warning-2:hover {
+  background-color: #F8AC59!important;
+  opacity:1!important;
+}
+
+
 .label-warning {
   background-color:#F8AC59!important; 
 }
@@ -67,15 +79,34 @@
 }
 
 
+ul.pagination {
+ padding :10px;
+}
+
+ul.pagination li {
+ display:inline;
+ padding:10px;
+ border: 1px solid #EAEAEA;
+ border-left:0px;
+}
+
+ul.pagination li:nth-child(1) {
+ border-left: 1px solid #EAEAEA;
+}
+
+
+
+
 a {
-  color: #00ccff;
+  color: #006680;
   opacity:.9;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #00ccff;
+  color: #006680;
   opacity:1;
   text-decoration: underline;
 }
+

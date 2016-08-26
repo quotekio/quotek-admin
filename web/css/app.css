@@ -41,6 +41,23 @@ a:hover {
   background-image:none!important;
 }
 
+
+.app-action-bar {
+  padding:10px;
+  background:#F1F1F1;
+}
+
+.app-action-bar i {
+  margin-top:1px!important;
+}
+
+.app-table {
+  margin-top:20px;
+  margin-left:20px;
+  padding-right:20px;
+}
+
+
 .app-display .title  {
   display:none;
 }

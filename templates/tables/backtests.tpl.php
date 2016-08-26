@@ -20,7 +20,54 @@
 
 ?>
 
-<table class="table table-striped backtests-table" id="backtests-table" style="margin-top:20px">
+
+<div class="app-action-bar">
+  <div class="btn-group">
+    <a id="app-action-edit" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    </a>
+    <a id="app-action-clone" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>">
+      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+    </a>
+    <a id="app-action-del" class="btn btn-danger " 
+       rel="tooltip" 
+       title="<?= $lang_array['app']['backtest_actions_delete'] ?>"
+       onclick="qateDelBacktest(<?= $bt->id ?>);">
+       <i class="icon-white icon-remove-sign"></i> <?= $lang_array['act']['del'] ?>
+    </a>
+  </div>
+
+  <div class="btn-group" style="margin-left:5px;">
+    <a class="btn btn-success btn-toggle-backtest"  
+       id="btn-toggle-backtest" 
+       rel="tooltip" 
+       btid="<?= $bt->id ?>"
+       title="<?= $lang_array['app']['backtest_actions_start'] ?>"
+       onclick="qateToggleBacktest(<?= $bt->id ?>)">
+       <i class="icon-white icon-play"></i> <?= $lang_array['act']['launch'] ?>
+    </a>
+  </div>
+
+  <div class="btn-group" style="margin-left:5px;width:30px!important">
+    <a class="btn disabled btn-qatebacktest-view" 
+       id="btn-qatebacktest-view" 
+       rel="tooltip" 
+       btid="<?= $bt->id ?>" 
+       title="<?= $lang_array['app']['backtest_actions_progress'] ?>">
+       
+      <i class="icon-white icon-eye-open"></i> <?= $lang_array['act']['progress'] ?>
+    </a>
+    <a class="btn btn-info btn-qatebacktest-results" 
+       id="btn-qatebacktest-results" 
+       rel="tooltip"
+       btid="<?= $bt->id ?>"  
+       title="<?= $lang_array['app']['backtest_actions_results'] ?>" 
+       onclick="qateShowBacktestResults(<?= $bt->id ?>);">
+       <i class="icon-white icon-list"></i> <?= $lang_array['act']['results'] ?>
+       </a>
+  </div>
+</div>
+
+<table class="table table-striped backtests-table app-table" id="backtests-table">
 
     <thead>
       <tr>
@@ -29,7 +76,6 @@
         <th><?= $lang_array['app']['period'] ?></th>
         <th><?= $lang_array['app']['strat']?></th>
         <th><?= $lang_array['app']['status'] ?></th>
-        <th><?= $lang_array['app']['actions'] ?></th>
       </tr>
     </thead>
     <tbody>
@@ -58,51 +104,6 @@
             <?= $lang_array['app']['qate_mode']['off'] ?>
           </span>
         </td>
-
-      	<td>
-
-          <div class="btn-group">
-            <a class="btn btn-inverse btn-qatebacktest-edit" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
-            <a onclick="$(this).tooltip('hide');qateCloneBacktest(<?= $bt->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
-            <a class="btn btn-danger btn-del-backtest" 
-               id="btn-del-backtest" 
-               rel="tooltip" 
-               title="<?= $lang_array['app']['backtest_actions_delete'] ?>"
-               onclick="qateDelBacktest(<?= $bt->id ?>);">
-               <i class="icon-white icon-remove-sign"></i>
-            </a>
-          </div>
-
-          <div class="btn-group" style="margin-left:5px;">
-            <a class="btn btn-success btn-toggle-backtest"  
-               id="btn-toggle-backtest" 
-               rel="tooltip" 
-               btid="<?= $bt->id ?>"
-               title="<?= $lang_array['app']['backtest_actions_start'] ?>"
-               onclick="qateToggleBacktest(<?= $bt->id ?>)">
-               <i class="icon-white icon-play"></i>
-            </a>
-          </div>
-
-          <div class="btn-group" style="margin-left:5px;width:30px!important">
-            <a class="btn disabled btn-qatebacktest-view" 
-               id="btn-qatebacktest-view" 
-               rel="tooltip" 
-               btid="<?= $bt->id ?>" 
-               title="<?= $lang_array['app']['backtest_actions_progress'] ?>">
-               
-              <i class="icon-white icon-eye-open"></i>
-            </a>
-            <a class="btn btn-info btn-qatebacktest-results" 
-               id="btn-qatebacktest-results" 
-               rel="tooltip"
-               btid="<?= $bt->id ?>"  
-               title="<?= $lang_array['app']['backtest_actions_results'] ?>" 
-               onclick="qateShowBacktestResults(<?= $bt->id ?>);">
-               <i class="icon-white icon-list"></i></a>
-          </div>
-
-      	</td>
       </tr>
 
     <?php } ?>
@@ -140,7 +141,7 @@
 
     $(document).ready(function() {
 
-      $('#backtests-table').DataTable( {
+      var bt_table = $('#backtests-table').DataTable( {
             "paging":   true,
             "ordering": true,
             "info":     false,
@@ -149,30 +150,51 @@
             "bLengthChange": false
         } );
 
-      $('.btn-qatebacktest-edit').each(function() {
+      bt_table.on( 'select', function ( e, dt, type, indexes ) {
 
-         var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/backtest-line-/g,""));
-         $(this).off();
-         $(this).click(function() {
-            qateShowBacktestEditor();
-            $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
-            $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-            
-            qateGetBacktestDataToEdit(bid);
-            $('#editor-action').off();
-            $('#editor-action').click(function() {
-              qateSaveBacktest(bid);
-            });
+ 
+          if ( type === 'row' ) {
+              var btid = bt_table.row( indexes ).id().replace(/backtest-line-/g,"");
+              bindBTActions(parseInt(btid));
+          }
+      } );
 
-            //disable type change if edit.
-            $('#input-backtest-type').attr('disabled', 'disabled');
+      function bindBTActions(btid) {
 
-         });
+        //We unbind all
+        $('#app-action-clone').off('click');
+        $('#app-action-del').off('click');
+        $('#app-action-edit').off('click');
 
-       });
+
+        //We rebind all
+        $('#app-action-edit').click(function() {
+
+          qateShowBacktestEditor();
+          $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
+          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
+          
+          qateGetBacktestDataToEdit(btid);
+          $('#editor-action').off();
+          $('#editor-action').click(function() {
+            qateSaveBacktest(btid);
+          });
+          //disable type change if edit.
+          $('#input-backtest-type').attr('disabled', 'disabled');
+
+        });
+
+        $('#app-action-clone').click(function() {
+          qateCloneBacktest(btid);
+        });
+
+        $('#app-action-del').click(function() {
+          qateDelBacktest(btid);
+        });
+
+      }
       
-
-      $('.table-backtests a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
+      $('.app-action-bar a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
 
 
     });

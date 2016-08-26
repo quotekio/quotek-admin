@@ -3,8 +3,25 @@
   $values = getValueConfigs(); 
 ?>
 
-<table class="table table-striped values-table" id="values-table" style="margin-top:20px">
 
+<div class="app-action-bar">
+
+  <div class="btn-group">
+    <a id="app-action-edit" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>">
+      <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    </a>
+    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_clone'] ?>">
+      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+    </a>
+    <a id="app-action-del" class="btn btn-danger disabled" id="btn-del-value" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_delete'] ?>">
+    <i class="icon-white icon-remove-sign"></i> <?= $lang_array['act']['del'] ?>
+    </a>
+  </div>
+
+</div>
+
+<table class="table table-striped values-table app-table" id="values-table">
+    <thead>
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>
       <th><?= $lang_array['app']['brokerid'] ?></th>
@@ -13,10 +30,10 @@
       <th><?= $lang_array['app']['stoploss'] ?></th>
       <th><?= $lang_array['app']['value_start_hour']?></th>
       <th><?= $lang_array['app']['value_end_hour']?></th>
-
-      <th><?= $lang_array['app']['actions'] ?></th>
     </tr>
-    
+    </thead>
+
+    <tbody>
     <?php
     foreach($values as $v) {
     ?>
@@ -29,29 +46,45 @@
       	<td><?= $v->min_stop ?> Points</td>
       	<td><?= $v->start_hour ?></td>
         <td><?= $v->end_hour ?></td>
-      	<td>
-
-          <div class="btn-group">
-            <a class="btn btn-inverse btn-qatevalue-edit" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
-            <a onclick="$(this).tooltip('hide');qateCloneValue(<?= $v->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
-            <a class="btn btn-danger btn-qatevalue-delete" id="btn-del-value" onclick="qateDelValue(<?= $v->id ?>);" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_delete'] ?>"><i class="icon-white icon-remove-sign"></i></a>
-          </div>
-
-      	</td>
       </tr>
 
     <?php } ?>
-
+    </tbody>
   </table>
 
 
   <script type="text/javascript">
 
-   $('.btn-qatevalue-edit').each(function() {
+   
+   $(document).ready(function() {
 
-     var vid = $(this).parent().parent().parent().attr('id').replace(/value-line-/g,""); 
+     values_table = $('#values-table').DataTable( {
+           "paging":   true,
+           "ordering": true,
+           "info":     false,
+           "select":   true,
+           "bFilter":  false,
+           "bLengthChange": false
+       } );
 
-     $(this).click(function() {
+     values_table.on( 'select', function ( e, dt, type, indexes ) {
+
+   
+         if ( type === 'row' ) {
+             var vid = values_table.row( indexes ).id().replace(/value-line-/g,"");
+             bindValueActions(parseInt(vid));
+         }
+     } );
+
+     function bindValueActions(vid) {
+
+       //We unbind all
+       $('#app-action-clone').off('click').removeClass('disabled');
+       $('#app-action-del').off('click').removeClass('disabled');
+       $('#app-action-edit').off('click').removeClass('disabled');
+
+       //We rebind all
+       $('#app-action-edit').click(function() {
 
          qateShowValueEditor();
          $('#editor-title').html("<?= $lang_array['app']['qatevalue_editor_edit_title'] ?>"); 
@@ -61,7 +94,21 @@
          $('#editor-action').click(function() {
              qateSaveValue(parseInt(vid));
          });
-     });
-  });
+
+       });
+
+       $('#app-action-clone').click(function() {
+         qateCloneValue(vid);
+       });
+
+       $('#app-action-del').click(function() {
+         qateDelValue(vid);
+       });
+
+     }
+     
+     $('.app-action-bar a[rel=tooltip]').tooltip({placement: 'bottom',container:'body'});
+
+   });
 
 </script>

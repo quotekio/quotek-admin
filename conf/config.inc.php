@@ -22,7 +22,7 @@
   $QATE_AEP_ADDR = "127.0.0.1";
   $QATE_AEP_PORT = 9999;
   
-  $VH_VERSION = "4.0 alpha1";
+  $VH_VERSION = "4.0 alpha2";
   $API_VERSION= "1.0.0";
   $API_LASTMOD = "2013-09-07";
 

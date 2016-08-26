@@ -31,5 +31,9 @@ case $1 in
     nginx
   ;;
 
+  common-only)
+    common
+  ;;
+
 esac
 

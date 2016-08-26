@@ -458,6 +458,16 @@
   $lang_array['app']['sortby_apnl'] = 'PNL Croissant';
   $lang_array['app']['sortby_dpnl'] = 'PNL Decroissant';
 
+  $lang_array['act']['edit'] = 'Modifier';
+  $lang_array['act']['clone'] = 'Cloner';
+  $lang_array['act']['del'] = 'Supprimer';
+  $lang_array['act']['launch'] = 'Lancer';
+  $lang_array['act']['stop'] = 'Arreter';
+
+  $lang_array['act']['progress'] = 'Progression';
+  $lang_array['act']['results'] = 'Resultats';
+
+
 
 
 ?>

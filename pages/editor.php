@@ -298,7 +298,7 @@ $themes = listThemes();
 
     
 	        <div class="span4" style="margin-top:10px;font-weight:bold;color:#00ccff">
-	          QSE 2.0
+	          <img src="/img/qse.png" style="height:20px"/>
 	        </div>
 
            <div class="span4" style="margin-top:4px;text-align:center">

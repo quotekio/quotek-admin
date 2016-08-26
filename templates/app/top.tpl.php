@@ -63,7 +63,7 @@
              title="<?= $lang_array['app']['qate_start'] ?>">
              <i class="icon-white icon-play"></i>
     </a>
-    <a class="btn btn-warning" id="app-restartqate" onclick="qateRestart();" rel="tooltip" title="<?= $lang_array['app']['qate_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
+    <a class="btn btn-warning-2" id="app-restartqate" onclick="qateRestart();" rel="tooltip" title="<?= $lang_array['app']['qate_restart'] ?>"><i class="icon-white icon-refresh"></i></a>
     
   </div> 
 

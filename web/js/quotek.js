@@ -418,9 +418,7 @@ function qateDelValue(vid) {
     var r = qateObject('del','valuecfg',{'null': ' null'},vid);
     if (r.status == 'OK') {
         var line = $('#value-line-' + vid);
-        $('#btn-del-value',line).tooltip('hide');
-        $('#btn-del-value',line).off();
-        line.remove();
+        values_table.row(line).remove().draw();
     }
     else processError(r);
 }

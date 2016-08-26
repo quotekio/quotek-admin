@@ -90,7 +90,7 @@ function loadApp() {
 
   /* DATATABLES SELECT*/
   $("head").append($("<script type='text/javascript' src='/js/dataTables.select.min.js'></script>"));
-  $("head").append($("<link rel='stylesheet' href='/css/dataTables.select.min.css' type='text/css'>"));
+  $("head").append($("<link rel='stylesheet' href='/css/select.bootstrap.css' type='text/css'>"));
 
 
   /* FLOT */
