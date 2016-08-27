@@ -2466,9 +2466,9 @@ function qateCheckPendingGitCommit() {
 
 
                              //Refresh only if new strat or module apears in list.
-                             var stable_len = $('#strategies-table tr').length -1;
-                             var mtable_len = $('#modules-table tr').length -1;
-                             
+                             var stable_len = strats_table.data().length;
+                             var mtable_len = mstrats_table.data().length;
+
                              if (res.nstrats != stable_len || res.nmods != mtable_len ) qateRefreshTable('strategies-table');
 
                           }

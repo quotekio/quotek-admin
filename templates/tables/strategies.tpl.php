@@ -14,24 +14,27 @@
 
   <div class="btn-group">
 
-    <a class="btn <?= $togglebtn_class ?> btn-toggle-strat">
-    <i class="icon-white icon-play"></i> Activer</a>
-
-    <a class="btn btn-inverse btn-strat-edit" target="_blank" href="/app/editor?strat=<?= $strat->name ?>"
+    <a id="app-action-toggle" class="btn disabled">
+      <i class="icon-white icon-play"></i> <?= $lang_array['act']['activate'] ?>
+    </a>
+     
+    <a id="app-action-edit" class="btn btn-inverse" target="_blank"
        rel="tooltip"
        title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
-        <i class="icon-whitte icon-edit"></i> <?= $lang_array['act']['edit'] ?>
-    </a>
-    <a class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+        <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    </a> 
+
+    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
       <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
-    <a class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
+    <a id="app-action-del" class="btn btn-danger disabled" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
       <i class="icon-white icon-remove-sign" ></i> <?= $lang_array['act']['del'] ?>
+    </a>
   </div>
 
      <div class="btn-group">
-      <a class="btn btn-warning-2" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $strat->name ?>">
-        <i class="icon-white icon-book" ></i> Notebook
+      <a id="app-action-notebook" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $strat->name ?>">
+        <i class="icon icon-book" ></i> Notebook
       </a>
     </div>
 </div>
@@ -85,22 +88,22 @@ foreach ($strats as $strat) {
 
   <div class="btn-group">
 
-    <a class="btn btn-inverse btn-strat-edit" target="_blank" href="/app/editor?strat=<?= $smodule->name ?>"
+    <a id="app-action-edit" class="btn btn-inverse disabled" target="_blank"
        rel="tooltip"
        title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
       <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
     </a>
-    <a class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
       <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
-    <a class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
+    <a id="app-action-del" class="btn btn-danger disabled" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
       <i class="icon-white icon-remove-sign" ></i> <?= $lang_array['act']['del'] ?>
     </a>
   </div>
 
   <div class="btn-group">
-    <a class="btn btn-warning-2" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $smodule->name ?>">
-      <i class="icon-white icon-book" ></i> Notebook
+    <a id="app-action-notebook" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $smodule->name ?>">
+      <i class="icon icon-book" ></i> Notebook
     </a>
   </div>
 
@@ -108,6 +111,7 @@ foreach ($strats as $strat) {
 
 
 <table class="table table-striped app-table" id="modules-table">
+  <thead>
   <tr>
     <th><?= $lang_array['app']['name'] ?></th>
     <th><?= $lang_array['app']['type'] ?></th>
@@ -115,6 +119,9 @@ foreach ($strats as $strat) {
     <th><?= $lang_array['app']['createdon'] ?></th>
     <th><?= $lang_array['app']['updatedon'] ?></th>
   </tr>
+  </thead>
+
+  <tbody>
 
   <?php foreach($smodules as $smodule)  { 
 
@@ -124,7 +131,7 @@ foreach ($strats as $strat) {
     ?>
 
     <tr id="strategy-line-<?= $smodule->name ?>">
-      <td><?=  $smodule->name ?></td>
+      <td id="msname"><?=  $smodule->name ?></td>
       <td><?=  $smodule->type ?></td>
       <td><?=  $smodule->author ?></td>
       
@@ -133,7 +140,7 @@ foreach ($strats as $strat) {
     </tr>
 
   <?php } ?>
-
+   </tbody>
  </table>
 
 <?php } ?>
@@ -143,7 +150,7 @@ foreach ($strats as $strat) {
 
 $(document).ready(function() {
 
-  $('#strategies-table').DataTable( {
+  strats_table = $('#strategies-table').DataTable( {
     "paging":   true,
     "ordering": true,
     "info":     false,
@@ -152,6 +159,95 @@ $(document).ready(function() {
     "bLengthChange": false
     } );
 
+
+  mstrats_table = $('#modules-table').DataTable( {
+    "paging":   true,
+    "ordering": true,
+    "info":     false,
+    "select":   true,
+    "bFilter":  false,
+    "bLengthChange": false
+    } );
+
+   strats_table.on( 'select', function ( e, dt, type, indexes ) {
+
+   
+       if ( type === 'row' ) {
+           var sname = strats_table.row( indexes ).id().replace(/strategy-line-/g,"");
+           bindStratActions(sname);
+       }
+   } );
+
+
+   mstrats_table.on( 'select', function ( e, dt, type, indexes ) {
+
+       if ( type === 'row' ) {
+           var smname = mstrats_table.row( indexes ).id().replace(/strategy-line-/g,"");
+           bindMStratActions(smname);
+       }
+   } );
+
 });
+
+
+function bindStratActions(sname,active) {
+
+  var sctl = $('#sctl');
+
+  //We unbind all
+  $('#app-action-clone', sctl).off('click').removeClass('disabled');
+  $('#app-action-del', sctl).off('click').removeClass('disabled');
+  $('#app-action-edit', sctl).off('click').removeClass('disabled');
+  $('#app-action-notebook', sctl).off('click').removeClass('disabled');
+
+  //We rebind all
+
+  $('#app-action-toggle') {
+    
+  }
+
+  $('#app-action-edit', sctl).attr('href','/app/editor?strat=' + sname );
+
+  $('#app-action-clone',sctl).click(function() {
+    qateCloneStrat(sname);
+  });
+
+  $('#app-action-del',sctl).click(function() {
+    qateDelStrat(sname);
+  });
+
+  $('#app-action-notebook',sctl).attr('href','/app/notebooks/' + sname);
+
+}
+
+function bindMStratActions(smname) {
+
+  var smctl = $('#smctl');
+
+  //We unbind all
+  $('#app-action-clone', smctl).off('click').removeClass('disabled');
+  $('#app-action-del', smctl).off('click').removeClass('disabled');
+  $('#app-action-edit', smctl).off('click').removeClass('disabled');
+  $('#app-action-notebook', smctl).off('click').removeClass('disabled');
+
+  //We rebind all
+  $('#app-action-edit', smctl).attr('href','/app/editor?strat=' + smname );
+
+  $('#app-action-clone',smctl).click(function() {
+    qateCloneStrat(smname);
+  });
+
+  $('#app-action-del',smctl).click(function() {
+
+    qateDelStrat(smname);
+
+  });
+
+  $('#app-action-notebook',smctl).attr('href','/app/notebooks/' + smname);
+
+
+}
+
+
 
 </script>
