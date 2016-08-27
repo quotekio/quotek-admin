@@ -5,17 +5,38 @@
   
 ?>
 
-  <table class="table table-striped corecfg-table" id="corecfg-table" style="margin-top:20px">
+  <div class="app-action-bar" id="cctl">
+    <div class="btn-group">
+      <a id="app-action-toggle" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_activate'] ?>">
+        <i class="icon-white icon-ok"></i> <?= $lang_array['act']['activate'] ?>
+      </a>
+      <a id="app-action-edit" class="btn btn-inverse disabled" 
+         rel="tooltip"
+         title="<?= $lang_array['app']['corecfg_actions_edit'] ?>">
+        <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+      </a>
+      <a id="app-action-clone"class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_clone'] ?>">
+        <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+      </a>
+      <a id="app-action-del" class="btn btn-danger disabled" id="btn-del-corecfg" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_delete'] ?>">
+        <i class="icon-white icon-remove-sign" ></i> <?= $lang_array['act']['del'] ?>
+      </a>
+    </div>
+  </div>
 
+  <table class="table table-striped corecfg-table app-table" id="corecfg-table">
+    <thead>
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>
+      <th><?= $lang_array['app']['status'] ?></th>
       <th><?= $lang_array['app']['createdon'] ?></th>
       <th><?= $lang_array['app']['updatedon'] ?></th>
       <th><?= $lang_array['app']['capital'] ?></th>
       <th><?= $lang_array['app']['broker'] ?></th>
-      <th><?= $lang_array['app']['actions'] ?></th>
     </tr>
+    </thead>
     
+    <tbody>
     <?php
     foreach($corecfgs as $ccfg) {
 
@@ -31,48 +52,78 @@
   
       <tr id="corecfg-line-<?= $ccfg->id ?>">
       	<td class="<?= $tdclass  ?>"><?= $ccfg->name ?></td>
+        <td class="<?= $tdclass  ?>"></td>
         <td class="dtime <?= $tdclass ?>"><?= $ccfg->created ?></td>
         <td class="dtime <?= $tdclass ?>"><?= $ccfg->updated ?></td>
       	<td class="<?= $tdclass  ?>"><?= $ccfg->mm_capital ?>€</td>
       	<td class="<?= $tdclass  ?>"><?= $b->name ?></td>
-      	<td class="<?= $tdclass  ?>">
-
-            <div class="btn-group">
-              <a class="btn <?= $actbtnclass ?> btn-activate-corecfg" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_activate'] ?>" id="btn-activate-corecfg" onclick="<?= $actbtnclick ?>" ><i class="icon-white icon-ok"></i></a>
-              <a class="btn btn-inverse btn-corecfg-edit" 
-                 rel="tooltip"
-                 title="<?= $lang_array['app']['corecfg_actions_edit'] ?>">
-                <i class="icon-white icon-edit"></i>
-              </a>
-              <a onclick="$(this).tooltip('hide');qateCloneCoreCfg(<?= $ccfg->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_clone'] ?>">
-                <i class="icon-white icon-leaf"></i>
-              </a>
-              <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-corecfg" rel="tooltip" title="<?= $lang_array['app']['corecfg_actions_delete'] ?>">
-                <i class="icon-white icon-remove-sign" ></i>
-              </a>
-            </div>
-
-      	</td>
       </tr>
 
     <?php } ?>
-
+    </tbody>
   </table>
 
   <script type="text/javascript">
 
-    $('.btn-corecfg-edit').each(function() {
-                                
-                                var ccid = $(this).parent().parent().parent().attr('id').replace(/corecfg-line-/g,"");
-                                $(this).click(function() {
-                                   qateShowCorecfgEditor();
-                                   $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
-                                   $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-                                   qateGetCoreCfgDataToEdit(ccid);
-                                   $('#editor-action').off();
-                                   $('#editor-action').click(function() {
-                                       qateSaveCoreCfg(parseInt(ccid));
-                                   });
-                               });
-                            });
+    $(document).ready(function() {
+
+      configs_table = $('#corecfg-table').DataTable( {
+            "paging":   true,
+            "ordering": true,
+            "info":     false,
+            "select":   true,
+            "bFilter":  false,
+            "bLengthChange": false
+        } );
+
+      configs_table.on( 'select', function ( e, dt, type, indexes ) {
+
+          if ( type === 'row' ) {
+              var cfgid = configs_table.row( indexes ).id().replace(/corecfg-line-/g,"");
+              bindCfgActions(parseInt(cfgid));
+          }
+      });
+
+
+     });
+
+
+
+     function bindCfgActions(cfgid) {
+     
+       var cctl = $('#cctl');
+
+       //We unbind all
+       $('#app-action-clone', cctl).off('click').removeClass('disabled');
+       $('#app-action-edit', cctl).off('click').removeClass('disabled');
+       $('#app-action-del', cctl).off('click').removeClass('disabled');
+
+        
+       $('#app-action-edit', cctl).click(function() {
+
+         qateShowCorecfgEditor();
+         $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
+         $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
+         qateGetCoreCfgDataToEdit(cfgid);
+         $('#editor-action').off();
+         $('#editor-action').click(function() {
+             qateSaveCoreCfg(parseInt(cfgid));
+         });
+
+       });
+
+       $('#app-action-clone', cctl).click(function() {
+         qateCloneCoreCfg(cfgid);
+       });
+
+       $('#app-action-del', cctl).click(function() {
+         qateDelCoreCfg(cfgid);
+       });
+
+
+     }
+
+
+
+
   </script>

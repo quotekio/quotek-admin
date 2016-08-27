@@ -148,9 +148,7 @@ function qateDelBrokerCfg(bid) {
    var r = qateObject('del','brokercfg',{},bid);
    if (r.status == 'OK') {
      var line = $('#brokercfg-line-' + bid);
-     $('#btn-del-brokercfg',line).tooltip('hide');
-     $('#btn-del-brokercfg',line).off();
-     line.remove();
+     brokers_table.rows(line).remove().draw();
    }
    else processError(r);
 }
@@ -298,9 +296,7 @@ function qateDelCoreCfg(cid) {
     var r = qateObject('del','corecfg',{},cid);
     if (r.status == 'OK') {
         var line = $('#corecfg-line-' + cid);
-        $('#btn-del-corecfg',line).tooltip('hide');
-        $('#btn-del-corecfg',line).off();
-        line.remove();
+        configs_table.rows(line).remove().draw();
     }
     else processError(r);
 }
@@ -2275,9 +2271,7 @@ function qateDelUser(uid) {
    var r = qateObject('del','user',{},uid);
    if (r.status == 'OK') {
      var line = $('#user-line-' + uid);
-     $('#btn-del-usercfg',line).tooltip('hide');
-     $('#btn-del-usercfg',line).off();
-     line.remove();
+     users_table.rows(line).remove().draw();
    }
    else processError(r);
 }

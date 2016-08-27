@@ -4,7 +4,7 @@
 ?>
 
 
-<div class="app-action-bar">
+<div class="app-action-bar" id="vctl">
 
   <div class="btn-group">
     <a id="app-action-edit" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>">
@@ -78,13 +78,15 @@
 
      function bindValueActions(vid) {
 
+       var vctl= $('#vctl');
+
        //We unbind all
-       $('#app-action-clone').off('click').removeClass('disabled');
-       $('#app-action-del').off('click').removeClass('disabled');
-       $('#app-action-edit').off('click').removeClass('disabled');
+       $('#app-action-clone', vctl).off('click').removeClass('disabled');
+       $('#app-action-del', vctl).off('click').removeClass('disabled');
+       $('#app-action-edit', vctl).off('click').removeClass('disabled');
 
        //We rebind all
-       $('#app-action-edit').click(function() {
+       $('#app-action-edit', vctl).click(function() {
 
          qateShowValueEditor();
          $('#editor-title').html("<?= $lang_array['app']['qatevalue_editor_edit_title'] ?>"); 
@@ -97,11 +99,11 @@
 
        });
 
-       $('#app-action-clone').click(function() {
+       $('#app-action-clone', vctl).click(function() {
          qateCloneValue(vid);
        });
 
-       $('#app-action-del').click(function() {
+       $('#app-action-del', vctl).click(function() {
          qateDelValue(vid);
        });
 

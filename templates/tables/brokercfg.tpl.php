@@ -3,15 +3,31 @@
   $brokers = getBrokerConfigs(); 
 
 ?>
-  <table class="table table-striped brokercfg-table" id="brokercfg-table" style="margin-top:20px">
+  <div class="app-action-bar" id="bctrl">
+    <div class="btn-group">
 
+      <a id="app-action-edit" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_edit'] ?>">
+        <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+      </a>
+      <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_clone'] ?>">
+         <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+      </a>
+      <a id="app-action-del" class="btn btn-danger disabled" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_delete'] ?>">
+        <i class="icon-white icon-remove-sign"></i> <?= $lang_array['act']['del'] ?>
+      </a>
+
+    </div>
+  </div>
+  <table class="table table-striped brokercfg-table app-table" id="brokercfg-table">
+    <thead>
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>
       <th><?= $lang_array['app']['creds'] ?></th>
       <th><?= $lang_array['app']['brokermodule'] ?></th>
-      <th><?= $lang_array['app']['actions'] ?></th>
     </tr>
+    </thead>
     
+    <tbody>
     <?php
     foreach($brokers as $b) {
       $bmod = $b->getBrokerModule();
@@ -21,90 +37,71 @@
       	<td><?= $b->name ?></td>
         <td><?= $b->username  ?> / *******</td>
         <td><?= $bmod['name'] ?></td>
-      	<td>
-
-          <div class="btn-group">
-            <a class="btn btn-inverse btn-qatebroker-edit" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_edit'] ?>"><i class="icon-white icon-edit"></i></a>
-            <a onclick="$(this).tooltip('hide');qateCloneBrokerCfg(<?= $b->id ?>);" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_clone'] ?>"><i class="icon-white icon-leaf"></i></a>
-            <a class="btn btn-danger" id="btn-del-brokercfg" rel="tooltip" title="<?= $lang_array['app']['brokercfg_actions_delete'] ?>" onclick="qateDelBrokerCfg(<?= $b->id ?>)"><i class="icon-white icon-remove-sign"></i></a>
-          </div>
-
-          <?php
-
-            if ($bmod['gateway_cmd'] != "") { ?>
-
-            <div class="btn-group" style="margin-left:10px">
-              
-              <a onclick="toggleGWBtn(<?= $b->id ?>)" 
-                 class="btn btn-info btn-togglegw" 
-                 id="btn-togglegw-<?= $b->id ?>" 
-                 rel="tooltip" 
-                 title="<?= $lang_array['app']['brokercfg_actions_startgw'] ?>"
-                 titlestart="<?= $lang_array['app']['brokercfg_actions_startgw'] ?>"  
-                 titlestop="<?= $lang_array['app']['brokercfg_actions_stopgw'] ?>"
-                >
-                <i class="icon-white icon-play"></i>
-              </a>
-            </div>
-
-           <?php } ?>
-
-
-      	</td>
       </tr>
 
     <?php } ?>
 
+  </tbody>
   </table>
 
   <script type="text/javascript">
 
+    $(document).ready(function() {
 
-     function toggleGWBtn(bid) {
+      brokers_table = $('#brokercfg-table').DataTable( {
+            "paging":   true,
+            "ordering": true,
+            "info":     false,
+            "select":   true,
+            "bFilter":  false,
+            "bLengthChange": false
+        } );
 
-       var gwbtn = $('#btn-togglegw-' + bid);
+      brokers_table.on( 'select', function ( e, dt, type, indexes ) {
 
-       //had play, switch to stop
-       if ($('i',gwbtn).hasClass('icon-play')) {
-         qateStartGW(bid);
-         $('i',gwbtn).addClass('icon-stop');
-         $('i',gwbtn).removeClass('icon-play');
+          if ( type === 'row' ) {
+              var brokerid = brokers_table.row( indexes ).id().replace(/brokercfg-line-/g,"");
+              bindBrokerActions(parseInt(brokerid));
+          }
+      });
 
-         gwbtn.tooltip('destroy');
-         gwbtn.attr('title','<?= $lang_array['app']['brokercfg_actions_stopgw'] ?>');
-         gwbtn.tooltip({placement: 'bottom', container: 'body'});
-       }
-       //had stop, switch to play
-       else {
-         qateStopGW(bid);
-         $('i',gwbtn).removeClass('icon-stop');
-         $('i',gwbtn).addClass('icon-play');
-
-         gwbtn.tooltip('destroy');
-         gwbtn.attr('title','<?= $lang_array['app']['brokercfg_actions_startgw'] ?>');
-         gwbtn.tooltip({placement: 'bottom', container: 'body'});
-       }
-
-     }
+    });
 
 
-    $('.btn-qatebroker-edit').each(function() {
+    function bindBrokerActions(brokerid) {
 
-       var bid = parseInt($(this).parent().parent().parent().attr('id').replace(/brokercfg-line-/g,""));
-       $(this).off();
-       $(this).click(function() {
-          qateShowBrokercfgEditor();
-          $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
-          $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
-          qateGetBrokerCfgDataToEdit(bid);
-          $('#editor-action').off();
-          $('#editor-action').click(function() {
-            qateSaveBrokerCfg(bid);
-          });
+      var bctrl = $('#bctrl');
 
+      $('#app-action-clone', bctrl).removeClass('disabled');
+
+      $('#app-action-clone', bctrl).off('click').removeClass('disabled');
+      $('#app-action-edit', bctrl).off('click').removeClass('disabled');
+      $('#app-action-del', bctrl).off('click').removeClass('disabled');
+
+      $('#app-action-edit', bctrl).click(function(){
+
+        qateShowBrokercfgEditor();
+        $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
+        $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
+        qateGetBrokerCfgDataToEdit(brokerid);
+        $('#editor-action').off();
+        $('#editor-action').click(function() {
+          qateSaveBrokerCfg(brokerid);
+        });
+
+      });
+
+      $('#app-action-clone', bctrl).click(function() {
+         qateCloneBrokerCfg(brokerid);
        });
 
-     });
+       $('#app-action-del', bctrl).click(function() {
+         qateDelBrokerCfg(brokerid);
+       });
+
+    }
+
+    
 
   </script>
 
