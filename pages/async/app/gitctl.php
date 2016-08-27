@@ -83,10 +83,27 @@
 
   else if ($action == 'checkpending') {
 
+    $pending = false;
+    $nstrats = 0;
+    $nmods = 0;
+
     $outp = $repository->run('status',array());
-    if (strstr($outp,'nothing to commit')  !== false ) echo json_encode(array('pending' => false));
-    else echo json_encode(array('pending' => true));
+
+    $pending = ( strstr($outp,'nothing to commit')  !== false ) ? false : true;
+
+    if ($pending) {
+
+      $outp = $repository->run('ls-files',array());    
+
+      $handle = opendir($GIT_LOCATION);
+      while(false !== ($entry = readdir($handle))) {
+        if ( endsWith( $entry, '.qsm' ) ) $nmods++;
+        else if ( endsWith( $entry, '.qs' )  ) $nstrats++;
+      }
+    }
     
+    echo json_encode(array('pending' => $pending , 'nstrats' => $nstrats, 'nmods' => $nmods));
+  
   }
 
 ?>
