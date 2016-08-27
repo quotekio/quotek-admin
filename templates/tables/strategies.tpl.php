@@ -10,33 +10,33 @@
 
 ?>
 
-<div class="app-action-bar">
+<div class="app-action-bar" id="sctl">
 
   <div class="btn-group">
 
-    <a class="btn <?= $togglebtn_class ?> btn-toggle-strat" id="btn-toggle-strat" onclick="<?= $actbtnclick ?>" ><i class="icon-white icon-play"></i> Activer</a>
+    <a class="btn <?= $togglebtn_class ?> btn-toggle-strat">
+    <i class="icon-white icon-play"></i> Activer</a>
 
     <a class="btn btn-inverse btn-strat-edit" target="_blank" href="/app/editor?strat=<?= $strat->name ?>"
        rel="tooltip"
        title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
-      <i class="icon-whitte icon-edit"></i> Editer
+        <i class="icon-whitte icon-edit"></i> <?= $lang_array['act']['edit'] ?>
     </a>
-    <a onclick="$(this).tooltip('hide');qateCloneStrat('<?= $strat->name ?>');" class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
-      <i class="icon-white icon-leaf"></i>Cloner
+    <a class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
-    <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
-      <i class="icon-white icon-remove-sign" ></i> Supprimer
-    </a>
+    <a class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
+      <i class="icon-white icon-remove-sign" ></i> <?= $lang_array['act']['del'] ?>
   </div>
 
-  <div class="btn-group">
+     <div class="btn-group">
       <a class="btn btn-warning-2" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $strat->name ?>">
-        <i class="icon-white icon-book" ></i> NoteBook
+        <i class="icon-white icon-book" ></i> Notebook
       </a>
     </div>
 </div>
 
-<table class="table table-striped" id="strategies-table" style="margin-top:20px">
+<table class="table table-striped app-table" id="strategies-table">
   <thead>
     <tr>
       <th><?= $lang_array['app']['name'] ?></th>
@@ -81,14 +81,39 @@ foreach ($strats as $strat) {
 
 <h3><?= $lang_array['app']['modules'] ?></h3>
 
-<table class="table table-striped" id="modules-table" style="margin-top:20px">
+<div class="app-action-bar" id="smctl">
+
+  <div class="btn-group">
+
+    <a class="btn btn-inverse btn-strat-edit" target="_blank" href="/app/editor?strat=<?= $smodule->name ?>"
+       rel="tooltip"
+       title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
+      <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    </a>
+    <a class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+    </a>
+    <a class="btn btn-danger" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
+      <i class="icon-white icon-remove-sign" ></i> <?= $lang_array['act']['del'] ?>
+    </a>
+  </div>
+
+  <div class="btn-group">
+    <a class="btn btn-warning-2" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $smodule->name ?>">
+      <i class="icon-white icon-book" ></i> Notebook
+    </a>
+  </div>
+
+</div>
+
+
+<table class="table table-striped app-table" id="modules-table">
   <tr>
     <th><?= $lang_array['app']['name'] ?></th>
     <th><?= $lang_array['app']['type'] ?></th>
     <th><?= $lang_array['app']['author'] ?></th>
     <th><?= $lang_array['app']['createdon'] ?></th>
     <th><?= $lang_array['app']['updatedon'] ?></th>
-    <th><?= $lang_array['app']['actions'] ?></th>
   </tr>
 
   <?php foreach($smodules as $smodule)  { 
@@ -105,29 +130,6 @@ foreach ($strats as $strat) {
       
       <td class="dtime"><?=  $smodule->created ?></td>
       <td class="dtime"><?=  $smodule->updated ?></td>
-      <td class="<?= $tdclass  ?>">
-        <div class="btn-group">
-
-          <a class="btn btn-inverse btn-strat-edit" target="_blank" href="/app/editor?strat=<?= $smodule->name ?>"
-             rel="tooltip"
-             title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
-            <i class="icon-white icon-edit"></i>
-          </a>
-          <a onclick="$(this).tooltip('hide');qateCloneStrat('<?= $smodule->name ?>');" class="btn btn-inverse" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
-            <i class="icon-white icon-leaf"></i>
-          </a>
-          <a onclick="<?= $deltbtnclick ?>" class="btn <?= $delbtnclass ?>" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
-            <i class="icon-white icon-remove-sign" ></i>
-          </a>
-        </div>
-
-        <div class="btn-group">
-          <a class="btn btn-warning" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_notebook'] ?>" target="_blank" href="/app/notebooks/<?= $smodule->name ?>">
-            <i class="icon-white icon-book" ></i>
-          </a>
-        </div>
-
-      </td>
     </tr>
 
   <?php } ?>
