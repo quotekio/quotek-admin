@@ -467,6 +467,7 @@
   $lang_array['act']['progress'] = 'Progression';
   $lang_array['act']['results'] = 'Resultats';
   $lang_array['act']['activate'] = 'Activer';
+  $lang_array['act']['disable'] = 'Desactiver';
 
 
 

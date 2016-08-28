@@ -38,11 +38,13 @@
 .btn-warning-2 {
   background-color:#F8AC59!important;
   opacity:.9!important;
+  color:white!important;
 }
 
 .btn-warning-2:hover {
   background-color: #F8AC59!important;
   opacity:1!important;
+  color:white!important;
 }
 
 

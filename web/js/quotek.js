@@ -512,26 +512,72 @@ function qateDelStrat(sid) {
     else processError(r);
 }
 
-function qateToggleStrat(btn) {
 
-  line = btn.parent().parent().parent();
+
+
+function qateToggleStrat2(sid, activate) {
+
+
+   var lnode = strats_table.row('#strategy-line-' + sid).node();
+   var lblnode = $('.label',$(lnode));
+
+  if (activate == true) {
+
+    var r = qateObject('activate','strategy',{},sid);
+    if (r.status == 'OK') {
+      
+      $(lnode).addClass('activated');
+      lblnode.removeClass('label-inverse');
+      lblnode.addClass('label-success');
+      lblnode.html( lblnode.attr('text-active') );
+      bindStratActions(sid,true);
+
+    }
+
+    else processError(r);
+
+  }
+
+  else {
+
+    var r = qateObject('disable','strategy',{},sid);
+    if (r.status == 'OK') {
+      
+      $(lnode).removeClass('activated');
+      lblnode.addClass('label-inverse');
+      lblnode.removeClass('label-success');
+      lblnode.html( lblnode.attr('text-disabled') );
+      bindStratActions(sid,false);
+      
+    }
+
+    else processError(r);
+
+  }
+}
+
+
+function qateToggleStrat(sid, btn) {
+
+  line = $('#strategy-line-' + sid);
   status_lbl = $('.label',line);
-  sid = line.attr('id').replace(/strategy-line-/g,"");
 
   if ( btn.hasClass("btn-success") ) {
+
     r = qateObject('activate','strategy',{},sid);
     if (r.status == 'OK') {
 
-      btn.removeClass('btn-success');
-      btn.addClass('btn-info');
+      btn.removeClass('btn-success').addClass('btn-warnoing-2');
+
       btn.html('<i class="icon-white icon-stop"></i>');
       status_lbl.removeClass('label-inverse');
       status_lbl.addClass('label-success');
       status_lbl.html( status_lbl.attr('text-active') );
 
-      $('#btn-del-strat',line).off('click');
+      /*$('#btn-del-strat',line).off('click');
       $('#btn-del-strat',line).addClass('disabled');
       $('#btn-del-strat',line).removeClass('btn-danger');
+      */
 
     }
 

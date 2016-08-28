@@ -15,7 +15,8 @@
   <div class="btn-group">
 
     <a id="app-action-toggle" class="btn disabled">
-      <i class="icon-white icon-play"></i> <?= $lang_array['act']['activate'] ?>
+      <i class="icon-white icon-play"></i> <span id="app-action-toggle-activate"><?= $lang_array['act']['activate'] ?></span>
+      <span id="app-action-toggle-disable" style="display:none"><?= $lang_array['act']['disable'] ?></span>
     </a>
      
     <a id="app-action-edit" class="btn btn-inverse" target="_blank"
@@ -58,14 +59,10 @@ foreach ($strats as $strat) {
     if ($strat->type == 'normal') {
 
       $tdclass = ($strat->active ==1 ) ? 'activated' : '';
-      $togglebtn_class = ($strat->active == 1) ? "btn-info" : "btn-success";
-      $togglebtn_icon = ($strat->active == 1) ? "icon-stop" : "icon-play";
-      $actbtnclick = "qateToggleStrat($(this));" ;
-      $delbtnclass = ($strat->active == 1) ? "disabled" : "btn-danger";
-      $deltbtnclick = ($strat->active == 1) ? "" :  "qateDelStrat('" . $strat->name . "');" ;    
+
 ?>
 
-  <tr id="strategy-line-<?= $strat->name ?>">
+  <tr class="<?= $tdclass ?>" id="strategy-line-<?= $strat->name ?>">
     <td class="<?= $tdclass  ?>"><?=  $strat->name ?></td>
     <td class="<?= $tdclass  ?>"><?=  $strat->author ?></td>
     
@@ -124,9 +121,6 @@ foreach ($strats as $strat) {
   <tbody>
 
   <?php foreach($smodules as $smodule)  { 
-
-    $delbtnclass = "btn-danger";
-    $deltbtnclick = "qateDelStrat('" . $smodule->name . "');" ;   
   
     ?>
 
@@ -173,8 +167,12 @@ $(document).ready(function() {
 
    
        if ( type === 'row' ) {
-           var sname = strats_table.row( indexes ).id().replace(/strategy-line-/g,"");
-           bindStratActions(sname);
+           
+           var sline = strats_table.row( indexes );
+           var sname = sline.id().replace(/strategy-line-/g,"");
+           var active = ($(sline.node()).hasClass('activated')) ? true : false ;
+
+           bindStratActions(sname, active);
        }
    } );
 
@@ -195,16 +193,36 @@ function bindStratActions(sname,active) {
   var sctl = $('#sctl');
 
   //We unbind all
+  $('#app-action-toggle', sctl).off('click').removeClass('disabled');
   $('#app-action-clone', sctl).off('click').removeClass('disabled');
   $('#app-action-del', sctl).off('click').removeClass('disabled');
   $('#app-action-edit', sctl).off('click').removeClass('disabled');
   $('#app-action-notebook', sctl).off('click').removeClass('disabled');
 
-  //We rebind all
+  //We tel if toggle btn must be activate or desactivate.
+  if (active == true) {
+    $('#app-action-toggle',sctl).removeClass('btn-success').addClass('btn-warning-2');
+    $('#app-action-toggle i', sctl).addClass('icon-stop').removeClass('icon-play');
+ 
+    $('#app-action-toggle-activate').hide();
+    $('#app-action-toggle-disable').show();
 
-  $('#app-action-toggle') {
-    
   }
+
+  else {
+    $('#app-action-toggle', sctl).removeClass('btn-warning-2').addClass('btn-success');
+    $('#app-action-toggle i', sctl).addClass('icon-play').removeClass('icon-stop');
+
+    $('#app-action-toggle-activate').show();
+    $('#app-action-toggle-disable').hide();
+
+  }
+
+
+  //We rebind all
+  $('#app-action-toggle', sctl).click(function() {
+     qateToggleStrat2(sname, ! active);
+  });
 
   $('#app-action-edit', sctl).attr('href','/app/editor?strat=' + sname );
 
