@@ -204,8 +204,8 @@ function bindStratActions(sname,active) {
     $('#app-action-toggle',sctl).removeClass('btn-success').addClass('btn-warning-2');
     $('#app-action-toggle i', sctl).addClass('icon-stop').removeClass('icon-play');
  
-    $('#app-action-toggle-activate').hide();
-    $('#app-action-toggle-disable').show();
+    $('#app-action-toggle-activate', sctl).hide();
+    $('#app-action-toggle-disable', sctl).show();
 
   }
 
@@ -213,8 +213,8 @@ function bindStratActions(sname,active) {
     $('#app-action-toggle', sctl).removeClass('btn-warning-2').addClass('btn-success');
     $('#app-action-toggle i', sctl).addClass('icon-play').removeClass('icon-stop');
 
-    $('#app-action-toggle-activate').show();
-    $('#app-action-toggle-disable').hide();
+    $('#app-action-toggle-activate', sctl).show();
+    $('#app-action-toggle-disable', sctl).hide();
 
   }
 

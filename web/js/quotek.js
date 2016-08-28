@@ -699,10 +699,7 @@ function qateDelBacktest(id) {
 
    var r = qateObject('del','backtest',{},id);
    if (r.status == 'OK') {
-     var line = $('#backtest-line-' + id);
-     $('#btn-del-backtest',line).tooltip('hide');
-     $('#btn-del-backtest',line).off();
-     line.remove();
+     bt_table.row($('#backtest-line-' + id)).remove().draw();
    }
    else processError(r);
 }
@@ -806,6 +803,19 @@ function qateSendOrder(order) {
         async:          true
         });
 
+}
+
+
+function qateToggleBacktest2(bid,activate) {
+
+  if (activate == true) {
+    qateStartBacktest(bid);
+  }
+
+  else {
+    qateStopBacktest(bid);
+  }
+  
 }
 
 

@@ -21,47 +21,43 @@
 ?>
 
 
-<div class="app-action-bar">
+<div class="app-action-bar" id="btctl">
   <div class="btn-group">
-    <a id="app-action-edit" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    <a id="app-action-edit" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
     </a>
-    <a id="app-action-clone" class="btn btn-inverse" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>">
+    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>">
       <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
-    <a id="app-action-del" class="btn btn-danger " 
+    <a id="app-action-del" class="btn btn-danger disabled" 
        rel="tooltip" 
-       title="<?= $lang_array['app']['backtest_actions_delete'] ?>"
-       onclick="qateDelBacktest(<?= $bt->id ?>);">
+       title="<?= $lang_array['app']['backtest_actions_delete'] ?>">
        <i class="icon-white icon-remove-sign"></i> <?= $lang_array['act']['del'] ?>
     </a>
   </div>
 
   <div class="btn-group" style="margin-left:5px;">
-    <a class="btn btn-success btn-toggle-backtest"  
-       id="btn-toggle-backtest" 
+    <a id="app-action-toggle" class="btn btn-success disabled"
        rel="tooltip" 
        btid="<?= $bt->id ?>"
-       title="<?= $lang_array['app']['backtest_actions_start'] ?>"
-       onclick="qateToggleBacktest(<?= $bt->id ?>)">
+       title="<?= $lang_array['app']['backtest_actions_start'] ?>">
        <i class="icon-white icon-play"></i> <?= $lang_array['act']['launch'] ?>
     </a>
   </div>
 
   <div class="btn-group" style="margin-left:5px;width:30px!important">
-    <a class="btn disabled btn-qatebacktest-view" 
-       id="btn-qatebacktest-view" 
+    <a id="app-action-progress" 
+       class="btn btn-info disabled" 
        rel="tooltip" 
        btid="<?= $bt->id ?>" 
        title="<?= $lang_array['app']['backtest_actions_progress'] ?>">
        
       <i class="icon-white icon-eye-open"></i> <?= $lang_array['act']['progress'] ?>
     </a>
-    <a class="btn btn-info btn-qatebacktest-results" 
-       id="btn-qatebacktest-results" 
+    <a class="btn btn-info disabled" 
+       id="app-action-results" 
        rel="tooltip"
        btid="<?= $bt->id ?>"  
        title="<?= $lang_array['app']['backtest_actions_results'] ?>" 
-       onclick="qateShowBacktestResults(<?= $bt->id ?>);">
        <i class="icon-white icon-list"></i> <?= $lang_array['act']['results'] ?>
        </a>
   </div>
@@ -141,7 +137,7 @@
 
     $(document).ready(function() {
 
-      var bt_table = $('#backtests-table').DataTable( {
+      bt_table = $('#backtests-table').DataTable( {
             "paging":   true,
             "ordering": true,
             "info":     false,
@@ -152,23 +148,51 @@
 
       bt_table.on( 'select', function ( e, dt, type, indexes ) {
 
- 
           if ( type === 'row' ) {
-              var btid = bt_table.row( indexes ).id().replace(/backtest-line-/g,"");
-              bindBTActions(parseInt(btid));
-          }
-      } );
+              var btline = bt_table.row( indexes );
+              var btid = btline.id().replace(/backtest-line-/g,"");
+              var active = (   $('.label', $(btline.node()) ).hasClass('label-inverse')  ) ? false : true ;
 
-      function bindBTActions(btid) {
+              bindBTActions(parseInt(btid), active);
+          }
+      });
+
+      function bindBTActions(btid, active) {
+
+        var btctl = $('#btctl');
 
         //We unbind all
-        $('#app-action-clone').off('click');
-        $('#app-action-del').off('click');
-        $('#app-action-edit').off('click');
+        $('#app-action-clone', btctl).off('click').removeClass('disabled');
+        $('#app-action-del', btctl).off('click').removeClass('disabled');
+        $('#app-action-edit', btctl).off('click').removeClass('disabled');
+        $('#app-action-toggle', btctl).off('click').removeClass('disabled');
+        $('#app-action-progress', btctl).off('click').removeClass('disabled');
+        $('#app-action-results', btctl).off('click').removeClass('disabled');
+        
+
+        if (active == true) {
+          $('#app-action-toggle',btctl).removeClass('btn-success').addClass('btn-warning-2');
+          $('#app-action-toggle i', btctl).addClass('icon-stop').removeClass('icon-play');
+        
+          //$('#app-action-toggle-activate').hide();
+          //$('#app-action-toggle-disable').show();
+
+        }
+
+        else {
+
+          $('#app-action-toggle', btctl).removeClass('btn-warning-2').addClass('btn-success');
+          $('#app-action-toggle i', btctl).addClass('icon-play').removeClass('icon-stop');
+
+          //$('#app-action-toggle-activate',btctl).show();
+          //$('#app-action-toggle-disable', btctl).hide();
+
+        }
+
 
 
         //We rebind all
-        $('#app-action-edit').click(function() {
+        $('#app-action-edit', btctl).click(function() {
 
           qateShowBacktestEditor();
           $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
@@ -184,13 +208,36 @@
 
         });
 
-        $('#app-action-clone').click(function() {
+        $('#app-action-clone', btctl).click(function() {
           qateCloneBacktest(btid);
         });
 
-        $('#app-action-del').click(function() {
+        $('#app-action-del',btctl).click(function() {
           qateDelBacktest(btid);
         });
+
+
+        $('#app-action-toggle', btctl).click(function() {
+
+          qateToggleBacktest2(btid,! active);
+
+        });
+
+        $('#app-action-progress', btctl).click(function() {
+
+          ws = qateFindBTWebSocket(btid);
+          qateShowBacktestViewer(ws);
+
+        });
+
+
+        $('#app-action-results', btctl).click(function() {
+
+          qateShowBacktestResults(btid);
+
+        });
+
+
 
       }
       
