@@ -90,7 +90,7 @@ foreach($strats_gen as $strat) {
                <label><b><?= $lang_array['app']['start'] ?></b></label>
                  <div id="backtest-editor-start" class="input-append date">
                  <input id="input-backtest-start" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:20px "></input>
-                 <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
+                 <span class="add-on btn" style="height:20px!important;padding-top:4px!important;padding-bottom:4px!important">
                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                    </i>
                  </span>
@@ -101,7 +101,7 @@ foreach($strats_gen as $strat) {
                <label><b><?= $lang_array['app']['end'] ?></b></label>
                <div id="backtest-editor-end" class="input-append date">
                  <input id="input-backtest-end" data-format="yyyy-MM-dd hh:mm:ss" type="text" style="font-size:13px!important;height:20px "></input>
-                 <span class="add-on btn-success" style="height:18px!important;padding-top:4px!important;padding-bottom:4px!important">
+                 <span class="add-on btn" style="height:20px!important;padding-top:4px!important;padding-bottom:4px!important">
                    <i data-time-icon="icon-time" data-date-icon="icon-calendar">
                    </i>
                  </span>
