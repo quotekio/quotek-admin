@@ -469,6 +469,7 @@
   $lang_array['act']['activate'] = 'Activer';
   $lang_array['act']['disable'] = 'Desactiver';
 
-
+  $lang_array['app']['currency'] = 'Devise';
+  $lang_array['hint']['config_currency'] = 'Selectionnez la devise principale avec laquelle vous tradez.';
 
 ?>

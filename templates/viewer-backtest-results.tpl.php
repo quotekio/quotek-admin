@@ -20,6 +20,10 @@
      $perf_graph_width = 650;
    }
 
+  include ("corecfg.php");
+  $acfg = getActiveCfg();
+  $currency = $CURRENCY_MAP[$acfg->currency];
+
 
 ?>
 
@@ -176,12 +180,12 @@
                         <table class="table" style="font-size:<?=  ($iter_enable) ? "13" : "16" ?>px">
 
                           <tr>
-                            <td>PNL</td>
+                            <td>PNL (<?= $currency ?>)</td>
                             <td style="font-weight:bold" id="result-bt-rpnl">0</td>
                           </tr>
 
                           <tr>
-                            <td>Max Drawdown</td>
+                            <td>Max Drawdown (<?= $currency ?>)</td>
                             <td id="result-bt-mdd">0</td>
                           </tr>
 

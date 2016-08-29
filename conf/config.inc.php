@@ -38,6 +38,15 @@
   $TWITTER_ACCESS_TOKEN_SECRET = 'szrpOO7X8f66irda1HyjLlpkDGyAW2R9TfSy3ZFhJJFOb';
 
 
+  $CURRENCY_MAP = array( 'euro' => '&euro;',
+                        'usdollar' => '&dollar;',
+                        'candollar' => '&dollar;',
+                        'pound' => '&pound;',
+                        'yen' => '&yen;',
+                        'yuan' => '&yen;',
+                        'chf' => 'CHF');
+
+
   $SOURCE_DEFAULT = <<<EOT
 class newstrat: public strategy {
   public:

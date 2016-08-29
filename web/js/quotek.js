@@ -198,7 +198,8 @@ function qateSaveCoreCfg(ccid) {
   ccid = (typeof ccid == 'undefined' ) ? -1 : ccid;
 
   var corecfg = {'name': null,
-                 'mm_capital': null,                 
+                 'mm_capital': null, 
+                 'currency': null,                
                  'eval_ticks':null,
                  'getval_ticks': null,
                  'broker_id': null,
@@ -228,8 +229,10 @@ function qateSaveCoreCfg(ccid) {
       corecfg.id = ccid;
   }
 
+
   corecfg.name = $('#input-corecfg-name').val();
   corecfg.mm_capital = parseInt($('#input-corecfg-mm_capital').val());
+  corecfg.currency = $('#input-corecfg-currency').val();
   corecfg.broker_id = parseInt($('#input-corecfg-broker_id').val());
   corecfg.eval_ticks = parseInt($('#input-corecfg-eval_ticks').val());
   corecfg.getval_ticks = parseInt($('#input-corecfg-getval_ticks').val());
@@ -411,6 +414,8 @@ function qateGetCoreCfgDataToEdit(ccid) {
 
     $('#input-corecfg-name').val(ccfg.name);
     $('#input-corecfg-mm_capital').val(ccfg.mm_capital);
+
+    $('#input-corecfg-currency').val(ccfg.currency);
     
     $('#input-corecfg-eval_ticks').val(ccfg.eval_ticks);
     $('#input-corecfg-getval_ticks').val(ccfg.getval_ticks);

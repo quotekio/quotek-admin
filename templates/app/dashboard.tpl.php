@@ -2,6 +2,8 @@
 
   $hrv = hasDashboardRightViews($vhms);
 
+  $acfg = getActiveCfg();
+  $currency = $CURRENCY_MAP[$acfg->currency];
 ?>
 
 <div class="app-display" id="dashboard">
@@ -21,7 +23,7 @@
         <div id="perf-dashboard-ct" class="app-headed-white-frame" style="height:160px;width:100%">
           <div class="app-headed-frame-header">
               <div class="span2">
-                <h4><?= $lang_array['app']['performance'] ?></h4>
+                <h4><?= $lang_array['app']['performance'] ?> (<?= $currency ?>) </h4>
               </div>
               <div class="span10" style="margin-top:8px;text-align:right">
                 <a id="perf-scale" class="btn btn-warning" onclick="qateChangePerformanceScale()" scale="day"><?= $lang_array['app']['day'] ?></a>
@@ -116,7 +118,7 @@
                 <table class="table table-bordered">
                   <tr>
                     <th>Profit Factor</th>
-                    <th>Max Drawdown</th>
+                    <th>Max Drawdown (<?= $currency ?>)</th>
                   </tr>
                   <tr>
                     <td id="pf-daily">0</td>
@@ -141,7 +143,7 @@
                 <table class="table table-bordered">
                   <tr>
                     <th>Profit Factor</th>
-                    <th>Max Drawdown</th>
+                    <th>Max Drawdown (<?= $currency ?>)</th>
                   </tr>
                   <tr>
                     <td id="pf-weekly">0</td>
@@ -165,7 +167,7 @@
                 <table class="table table-bordered">
                   <tr>
                     <th>Profit Factor</th>
-                    <th>Max Drawdown</th>
+                    <th>Max Drawdown (<?= $currency ?>)</th>
                   </tr>
                   <tr>
                     <td id="pf-monthly">0</td>

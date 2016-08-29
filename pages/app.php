@@ -12,6 +12,11 @@
   $lang='en';
   selectLanguage();
   include "lang/$lang/app.lang.php";
+
+  include "classes/corecfg.php";
+  $acfg = getActiveCfg();
+  $currency = $CURRENCY_MAP[$acfg->currency];
+
   
 ?>
 
@@ -70,7 +75,7 @@
      <div id="statusbar" style="display:none!important">
 
        <div id="pnlcontainer" style="width:300px;float:left">
-           <h4>PNL(UNR) <span id="status-pnl-lbl" class="label">0</span></h4>  
+           <h4>PNL(UNR) <span id="status-pnl-lbl" class="label">0</span> <?= $currency ?></h4>  
        </div>
 
        <div id="pnlcontainer" style="width:300px;float:left">

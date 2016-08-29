@@ -39,6 +39,11 @@ function listThemes() {
 
 $themes = listThemes();
 
+
+$acfg = getActiveCfg();
+$currency = $CURRENCY_MAP[$acfg->currency];
+
+
 ?>
 
 <!DOCTYPE HTML>
@@ -180,12 +185,12 @@ $themes = listThemes();
         <table class="table" style="font-size:20px">
 
           <tr>
-            <td>Realized PNL</td>
+            <td>Realized PNL (<?= $currency ?>)</td>
             <td id="editor-bt-rpnl">0</td>
           </tr>
 
           <tr>
-            <td>Max Drawdown</td>
+            <td>Max Drawdown (<?= $currency ?>)</td>
             <td id="editor-bt-mdd">0</td>
           </tr>
 

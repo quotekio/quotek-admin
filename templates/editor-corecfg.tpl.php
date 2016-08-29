@@ -53,6 +53,21 @@ $backends = getBackends();
            <input id="input-corecfg-mm_capital" style="height:27px;width:100px" type="text" value="2000">
            <span class="help-block"><?= $lang_array['hint']['config_capital'] ?></span>
 
+           <label><b><?= $lang_array['app']['currency'] ?></b></label>
+           <select id="input-corecfg-currency" style="height:27px;width:170px">
+             <option value="euro" DEFAULT>Euro &euro;</option>
+             <option value="usdollar" DEFAULT>Dollar US &dollar;</option>
+             <option value="candollar" DEFAULT>Dollar CAN &dollar;</option>
+             <option value="chf" DEFAULT>Franc Suisse CHF</option>
+             <option value="pound" DEFAULT>Pound &pound;</option>
+             <option value="yuan" DEFAULT>Yuan &yen;</option>
+             <option value="yen" DEFAULT>Yen &yen;</option>
+
+           </select>
+           <span class="help-block"><?= $lang_array['hint']['config_currency'] ?></span>
+
+
+
            <label><b><?= $lang_array['app']['broker'] ?></b></label>
            <select id="input-corecfg-broker_id" style="height:27px;width:150px;padding-top:1px">
             <?php foreach($brokers as $broker) { ?>
