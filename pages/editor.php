@@ -160,8 +160,9 @@ $themes = listThemes();
         <div style="text-align:left"><label><b><?= $lang_array['app']['performance'] ?></b></label></div>
 
         <div id="editor-bt-perfgraph" style="width:500px;height:90px;margin-left:auto;margin-right:auto;">
-
         </div>
+
+       
 
       </div>
 
@@ -633,9 +634,6 @@ $themes = listThemes();
             //$('#editor-bt-perfgraph').height(60);
             //$('#editor-bt-perfgraph').width();
 
-            $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
-            $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
-
             $('#editor-console-btn i').toggleClass('icon-chevron-left icon-chevron-right');
 
             if ( $('#editor-console-btn i').hasClass('icon-chevron-right') ) {
@@ -659,6 +657,14 @@ $themes = listThemes();
                ec.hide();
                $('#editor-console-btn').css('margin-left', - 14 );
              }
+
+
+             console.log(ec.width());
+             $("#editor-bt-perfgraph").css('width', ( ec.width() - 40 ) + 'px');
+
+             $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
+             $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
+
 
           }
 
