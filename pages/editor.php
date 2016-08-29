@@ -332,7 +332,7 @@ $themes = listThemes();
 	          <a class="btn dropdown-toggle" data-toggle="dropdown">
 	             &nbsp;<span class="caret"></span>
 	          </a>
-	           <ul class="dropdown-menu" style="text-align:left">
+	           <ul class="dropdown-menu" style="text-align:left;font-size:10px!important">
 	              <li><a target="__new" href="http://docs.quotek.io/sdk/data_struct.html"><?= $lang_array['app']['doc_datastruct']  ?></a> </li>
 	              <li><a target="__new" href="http://docs.quotek.io/sdk/quant.html"><?= $lang_array['app']['doc_quant']  ?></a> </li>
 	              <li><a target="__new" href="http://docs.quotek.io/sdk/ml.html"><?= $lang_array['app']['doc_ml']  ?></a> </li>
