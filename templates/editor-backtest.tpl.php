@@ -51,7 +51,7 @@ foreach($strats_gen as $strat) {
       
            <label><b><?= $lang_array['app']['name'] ?></b></label>
            <input id="input-backtest-name" style="height:27px;width:170px" type="text" value="">
-           <span class="help-block">Donnez un nom à la simulation pour l'identifier.</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_name'] ?></span>
 
           
            <label><b><?= $lang_array['app']['type'] ?></b></label>
@@ -60,7 +60,7 @@ foreach($strats_gen as $strat) {
             <option value="batch">Batch</option>
             <option value="genetics">Genetics</option>
            </select>
-           <span class="help-block">Indiquez le type de simulation que vous voulez creer.</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_type'] ?></span>
           
 
            <label><b><?= $lang_array['app']['qatecfg'] ?></b></label>
@@ -74,13 +74,13 @@ foreach($strats_gen as $strat) {
 
 
            </select>
-           <span class="help-block">Indiquez la configuration Qate que vous souhaitez appliquer pour cette simulation</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_cfg'] ?></span>
 
            <label><b><?= $lang_array['app']['strat'] ?></b></label>
            <select id="input-backtest-strategy_name" style="height:27px;width:150px;padding-top:1px">
              <?= $strats_ct ?>
            </select>
-           <span class="help-block">Indiquez la strategie à tester pour cette simulation.</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_strat'] ?></span>
           
          </div>
 
@@ -95,7 +95,7 @@ foreach($strats_gen as $strat) {
                    </i>
                  </span>
                </div>
-               <span class="help-block">Indiquez la date de début de la simulation.</span>
+               <span class="help-block"><?= $lang_array['hint']['backtest_beg'] ?></span>
 
 
                <label><b><?= $lang_array['app']['end'] ?></b></label>
@@ -106,7 +106,7 @@ foreach($strats_gen as $strat) {
                    </i>
                  </span>
                </div>
-               <span class="help-block">Indiquez Date de fin de la simualtion.</span>
+               <span class="help-block"><?= $lang_array['hint']['backtest_end'] ?></span>
 
          </div>
 
@@ -116,22 +116,21 @@ foreach($strats_gen as $strat) {
       
            <label><b><?= $lang_array['app']['population'] ?></b></label>
            <input id="input-backtest-genetics_population" style="height:27px;width:80px" type="text" value="50">
-           <span class="help-block">Définissez la taille de la population initiale.</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_genetics_size'] ?></span>
 
           
            <label><b><?= $lang_array['app']['survivors'] ?></b></label>
            <input id="input-backtest-genetics_survivors" style="height:27px;width:80px" type="text" value="5">
-           <span class="help-block">Indiquez le nombre de survivants par génération.</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_genetics_survivors'] ?></span>
           
 
            <label><b><?= $lang_array['app']['converge_thold'] ?></b></label>
             <input id="input-backtest-genetics_converge_thold" style="height:27px;width:80px" type="text" value="500">
-           <span class="help-block">Indiquez le profit (€) vers lequel la simulation doit converger 
-                                    (0, la simulation ne converge jamais) .</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_genetics_thold'] ?></span>
           
            <label><b><?= $lang_array['app']['max_generations'] ?></b></label>
             <input id="input-backtest-genetics_max_generations" style="height:27px;width:80px" type="text" value="20">
-           <span class="help-block">Arrête la simulation au bout de n générations si celle-ci n'a pas convergé.</span>
+           <span class="help-block"><?= $lang_array['hint']['backtest_genetics_mgen'] ?></span>
          </div>
         </form>
      </div>

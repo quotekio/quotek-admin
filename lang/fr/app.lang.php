@@ -472,4 +472,19 @@
   $lang_array['app']['currency'] = 'Devise';
   $lang_array['hint']['config_currency'] = 'Selectionnez la devise principale avec laquelle vous tradez.';
 
+  $lang_array['hint']['backtest_name'] = 'Donnez un nom à la simulation pour l\'identifier.';
+  $lang_array['hint']['backtest_type'] = 'Indiquez le type de simulation que vous voulez creer.';
+
+  $lang_array['hint']['backtest_cfg'] = 'Indiquez la configuration Qate que vous souhaitez appliquer pour cette simulation.';
+  $lang_array['hint']['backtest_strat'] = 'Indiquez la strategie à tester pour cette simulation.';
+
+  $lang_array['hint']['backtest_beg'] = 'Indiquez la date de début de la simulation.';
+  $lang_array['hint']['backtest_end'] = 'Indiquez Date de fin de la simualtion.';
+
+  $lang_array['hint']['backtest_genetics_size'] = 'Définissez la taille de la population initiale.';
+  $lang_array['hint']['backtest_genetics_survivors'] = 'Indiquez le nombre de survivants par génération.';
+  $lang_array['hint']['backtest_genetics_thold'] = 'Indiquez le profit (€) vers lequel la simulation doit converger (0, la simulation ne converge jamais).';
+  $lang_array['hint']['backtest_genetics_mgen'] = 'Arrête la simulation au bout de n générations si celle-ci n\'a pas convergé.';
+
+
 ?>

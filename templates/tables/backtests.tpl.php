@@ -195,7 +195,7 @@
         $('#app-action-edit', btctl).click(function() {
 
           qateShowBacktestEditor();
-          $('#editor-title').html("<?= $lang_array['app']['qatecfg_editor_edit_title']  ?>");
+          $('#editor-title').html("<?= $lang_array['app']['qatebacktest_editor_edit_title']  ?>");
           $('#editor-action').html("<?= $lang_array['app']['edit'] ?>");
           
           qateGetBacktestDataToEdit(btid);

@@ -459,5 +459,18 @@
   $lang_array['hint']['config_currency'] = 'Select the main currency you\'re using to trade.';
 
 
+  $lang_array['hint']['backtest_name'] = 'Give a name to this backtest to identify it later.';
+  $lang_array['hint']['backtest_type'] = 'Select the kind of backtest you want to perform.';
+
+  $lang_array['hint']['backtest_cfg'] = 'Select the QATE config you want to use for this backtest.';
+  $lang_array['hint']['backtest_strat'] = 'Select the strategy to test during this backtest.';
+
+  $lang_array['hint']['backtest_beg'] = 'Provide the starting date of the backtest.';
+  $lang_array['hint']['backtest_end'] = 'Provide the ending data of the backtest.';
+
+  $lang_array['hint']['backtest_genetics_size'] = 'Define the size of the initial population.';
+  $lang_array['hint']['backtest_genetics_survivors'] = 'Define the number of survivors for each generation.';
+  $lang_array['hint']['backtest_genetics_thold'] = 'Define the profit (€) toward which the backtest must go (0, backtest never converges).';
+  $lang_array['hint']['backtest_genetics_mgen'] = 'Stops the backttest after n-generations if the algo didn\'t converge';
 
 ?>
