@@ -2,7 +2,8 @@ table.dataTable tbody > tr.selected,
 table.dataTable tbody > tr > .selected,
 table.dataTable tbody > tr.selected > td 
  {
-  background-color: #006680;
+  background-color: #d9edf7;
+  color:#3a87ad!important;
 }
 table.dataTable.stripe tbody > tr.odd.selected,
 table.dataTable.stripe tbody > tr.odd > .selected, table.dataTable.display tbody > tr.odd.selected,

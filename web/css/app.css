@@ -169,14 +169,14 @@ div.legend > table {
 
 .left-menu-link-top {
    display:block;
-   padding:16px;
+   padding:10px;
    margin-top:15px;
    padding-right:0px;
    color:white;
    text-decoration:none;
    background:#00CCFF;
    opacity:0.9!important;
-   width:173px!important;
+   width:150px!important;
    margin-left:5px;
    border-radius:3px;
 }

@@ -14,19 +14,19 @@
 
   <div class="btn-group">
 
-    <a id="app-action-toggle" class="btn disabled">
+    <a id="app-action-toggle" class="btn btn-success disabled">
       <i class="icon-white icon-play"></i> <span id="app-action-toggle-activate"><?= $lang_array['act']['activate'] ?></span>
       <span id="app-action-toggle-disable" style="display:none"><?= $lang_array['act']['disable'] ?></span>
     </a>
      
-    <a id="app-action-edit" class="btn btn-inverse" target="_blank"
+    <a id="app-action-edit" class="btn disabled" target="_blank"
        rel="tooltip"
        title="<?= $lang_array['app']['strategy_actions_edit'] ?>">
-        <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+        <i class="icon icon-edit"></i> <?= $lang_array['act']['edit'] ?>
     </a> 
 
-    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
-      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+    <a id="app-action-clone" class="btn disabled" rel="tooltip"  title="<?= $lang_array['app']['strategy_actions_clone'] ?>">
+      <i class="icon icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
     <a id="app-action-del" class="btn btn-danger disabled" id="btn-del-strat" rel="tooltip" title="<?= $lang_array['app']['strategy_actions_delete'] ?>">
       <i class="icon-white icon-remove-sign" ></i> <?= $lang_array['act']['del'] ?>

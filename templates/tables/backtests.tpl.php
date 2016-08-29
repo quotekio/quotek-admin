@@ -23,10 +23,10 @@
 
 <div class="app-action-bar" id="btctl">
   <div class="btn-group">
-    <a id="app-action-edit" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    <a id="app-action-edit" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_edit'] ?>"><i class="icon icon-edit"></i> <?= $lang_array['act']['edit'] ?>
     </a>
-    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>">
-      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+    <a id="app-action-clone" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['backtest_actions_clone'] ?>">
+      <i class="icon icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
     <a id="app-action-del" class="btn btn-danger disabled" 
        rel="tooltip" 
@@ -46,14 +46,14 @@
 
   <div class="btn-group" style="margin-left:5px;width:30px!important">
     <a id="app-action-progress" 
-       class="btn btn-info disabled" 
+       class="btn disabled" 
        rel="tooltip" 
        btid="<?= $bt->id ?>" 
        title="<?= $lang_array['app']['backtest_actions_progress'] ?>">
        
       <i class="icon-white icon-eye-open"></i> <?= $lang_array['act']['progress'] ?>
     </a>
-    <a class="btn btn-info disabled" 
+    <a class="btn disabled" 
        id="app-action-results" 
        rel="tooltip"
        btid="<?= $bt->id ?>"  

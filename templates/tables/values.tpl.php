@@ -7,11 +7,11 @@
 <div class="app-action-bar" id="vctl">
 
   <div class="btn-group">
-    <a id="app-action-edit" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>">
-      <i class="icon-white icon-edit"></i> <?= $lang_array['act']['edit'] ?>
+    <a id="app-action-edit" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_edit'] ?>">
+      <i class="icon icon-edit"></i> <?= $lang_array['act']['edit'] ?>
     </a>
-    <a id="app-action-clone" class="btn btn-inverse disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_clone'] ?>">
-      <i class="icon-white icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
+    <a id="app-action-clone" class="btn disabled" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_clone'] ?>">
+      <i class="icon icon-leaf"></i> <?= $lang_array['act']['clone'] ?>
     </a>
     <a id="app-action-del" class="btn btn-danger disabled" id="btn-del-value" rel="tooltip" title="<?= $lang_array['app']['valuecfg_actions_delete'] ?>">
     <i class="icon-white icon-remove-sign"></i> <?= $lang_array['act']['del'] ?>

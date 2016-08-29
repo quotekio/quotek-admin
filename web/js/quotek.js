@@ -306,37 +306,7 @@ function qateActivateCoreCfg(cid) {
    var r = qateObject('activate','corecfg',{},cid);
 
    if (r.status == 'OK') {
-
-        $('.btn-activate-corecfg').each(function() {
-
-           if ($(this).hasClass('disabled')) {
-
-               var line2 =  $(this).parent().parent().parent();
-
-               line2.children().each(function() {  $(this).removeClass('activated');    } );
-
-               var cid2 = line2.attr('id').replace(/corecfg-line-/g,"");
-
-               $('#btn-activate-corecfg',line2).click(function(){ qateActivateCoreCfg(cid2); } );
-               $('#btn-activate-corecfg',line2).addClass('btn-success');
-               $('#btn-activate-corecfg',line2).removeClass('disabled');
-
-               $('#btn-del-corecfg',line2).click(function(){ qateDelCoreCfg(cid2); } );
-               $('#btn-del-corecfg',line2).addClass('btn-danger');
-               $('#btn-del-corecfg',line2).removeClass('disabled');
-
-           }
-        });
-
-        var line = $('#corecfg-line-' + cid);
-        $('#btn-activate-corecfg',line).off('click');
-        $('#btn-activate-corecfg',line).addClass('disabled');
-        $('#btn-activate-corecfg',line).removeClass('btn-success');
-
-        $('#btn-del-corecfg',line).off('click');
-        $('#btn-del-corecfg',line).addClass('disabled');
-        $('#btn-del-corecfg',line).removeClass('btn-danger');
-        line.children().each(function() {  $(this).addClass('activated');    } );
+     qateRefreshTable('corecfg-table');
    }
 
    //Errors handling
