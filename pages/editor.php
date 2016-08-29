@@ -170,9 +170,9 @@ $themes = listThemes();
 
       <div class="row-fluid">
 
-      <div class="span6" style="text-align:center">
+      <div class="span6" id="winloss-ct" style="text-align:center">
         <div id="editor-bt-winloss" style="width:120px;height:120px;margin-left:auto;margin-right:auto;"></div>
-        <div id="editor-bt-winloss-label" style="width:115px;text-align:center;color:#cccccc;font-size:23px;font-weight:bold;position:absolute;margin-top:-70px;margin-left:67px">0/0</div>
+        <div id="editor-bt-winloss-label" style="width:115px;position:absolute">0/0</div>
       </div>
 
       <div class="span6">
@@ -541,6 +541,7 @@ $themes = listThemes();
 
         function toggleConsoleTabs(tab) {
 
+
             if (tab == 'notebook') {
               ec = $('#editor-console');
               ec.width( $('#editor').width() * 0.6  );
@@ -558,13 +559,30 @@ $themes = listThemes();
 
             $('#editor-console-btn').css('margin-left', -1 * ec.width() - 13 );
 
-            
             $('.console-tentry').removeClass('active');
             $('#console-tentry-' + tab).addClass('active');
 
             $('.console-tab').hide();
             ctab = $('#console-' + tab);
             ctab.show();
+
+            //Must draw the inside of BT console AFTER SHOW!
+            if (tab == 'backtest') {
+
+              $("#editor-bt-perfgraph").css('width', ( ec.width() - 40 ) + 'px');
+
+              $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
+              $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
+
+              var wlct_top = $('#winloss-ct').position().top;
+              var wlct_left = $('#winloss-ct').position().left;
+              var wlct_height = $('#winloss-ct').height();
+              var wlct_width = $('#winloss-ct').width();
+
+              $('#editor-bt-winloss-label').css({ 'top': (wlct_top +  (wlct_height - 20 ) / 2) + 'px' , 'left': (wlct_left  + ( wlct_width - 115) / 2 )   + 'px' });
+
+            }
+            
         }
 
         $(document).ready(function() {
@@ -627,6 +645,9 @@ $themes = listThemes();
             var tab = (typeof tab != 'undefined' && tab != 'undefined'  ) ? tab : null ;
             if (tab != null ) toggleConsoleTabs(tab);
 
+            //Hack to force redraw of backtest components
+            if ( $('#console-backtest').is(':visible') ) toggleConsoleTabs('backtest');
+
             $('.console-tab').height( $('#editor').height() - 100 );
             $('.console-tab').css('margin-bottom','0px');
             $('#console-output').height($('.console-tab').height() -20 );
@@ -657,14 +678,6 @@ $themes = listThemes();
                ec.hide();
                $('#editor-console-btn').css('margin-left', - 14 );
              }
-
-
-             console.log(ec.width());
-             $("#editor-bt-perfgraph").css('width', ( ec.width() - 40 ) + 'px');
-
-             $.plot($('#editor-bt-winloss'), [{ label: "nulldata", data: 1 , color: '#cccccc'}], bt_wloptions);
-             $.plot($('#editor-bt-perfgraph'), [{ label: "nulldata", data: [[1000,1], [2000,2]], color: '#cccccc'}], bt_perf_options);
-
 
           }
 
