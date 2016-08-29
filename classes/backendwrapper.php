@@ -107,6 +107,8 @@ class backendWrapper {
     }
   }
 
+
+  
   function insert($indice_name,$t,$v,$spread)  {
     $this->dbh->insert($indice_name, array('time' => $t, 'value' => $v , 'spread' => $spread) );
   }
@@ -392,9 +394,20 @@ class backendWrapper {
   }
 
 
+  function insert_history($pos) {
 
+    if ($this->backend->module_name == "influxdbbe") {
+      return $this->influx_insert_history($pos);
+    } 
 
+  }
 
+  function influx_insert_history($pos) {
+     //appends extra data to $pos;
+     $pos['time'] =  $pos['close_date'] ;
+
+    $this->dbh->insert('__history__', $pos);    
+  }
 
 }
 

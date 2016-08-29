@@ -59,6 +59,12 @@ function generateToken() {
    return md5(rand(0,1000000000));
 }
 
+function randstr($nchars) {
+  return substr(generateToken(),0,$nchars);
+}
+
+
+
 function checkFields($farray) {
 
   foreach($farray as $field) {
