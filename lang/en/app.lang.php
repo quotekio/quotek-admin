@@ -443,4 +443,21 @@
   $lang_array['app']['sortby_apnl'] = 'Ascending PNL';
   $lang_array['app']['sortby_dpnl'] = 'Descending PNL';
 
+
+  $lang_array['act']['edit'] = 'Edit';
+  $lang_array['act']['clone'] = 'Clone';
+  $lang_array['act']['del'] = 'Delete';
+  $lang_array['act']['launch'] = 'Launch';
+  $lang_array['act']['stop'] = 'Stop';
+
+  $lang_array['act']['progress'] = 'Progress';
+  $lang_array['act']['results'] = 'Results';
+  $lang_array['act']['activate'] = 'Enable';
+  $lang_array['act']['disable'] = 'Disable';
+
+  $lang_array['app']['currency'] = 'Currency';
+  $lang_array['hint']['config_currency'] = 'Select the main currency you\'re using to trade.';
+
+
+
 ?>
