@@ -37,15 +37,15 @@ while($ctime < $end_time ) {
 
     $pos = new stdClass();
 
-    $pos->pnl = random_float($max_loss, $max_return );
+    $pos->pnl = round(random_float($max_loss, $max_return ),2);
     $pos->indice = 'DAX' ;
     $pos->epic = 'IX.D.DAX.IMF.IP';
     $pos->identifier = 'default.qs@DAX';
 
-    $pos->open = 10000 + random_float(-100,100);
-    $pos->close = 10000 + random_float(-100,100);
-    $pos->limit = 10000 + random_float(-100,100);
-    $pos->stop = 10000 + random_float(-100,100);
+    $pos->open = 10000 + round(random_float(-100,100),2);
+    $pos->close = 10000 + round(random_float(-100,100),2);
+    $pos->limit = 10000 + round(random_float(-100,100),2);
+    $pos->stop = 10000 + round(random_float(-100,100),2);
     
     $pos->dealid = randstr(6);
 
