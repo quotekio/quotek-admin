@@ -160,48 +160,60 @@ $currency = $CURRENCY_MAP[$acfg->currency];
  
       <hr>
 
-      <div class="row-fluid" style="text-align:center">
+      <ul class="nav nav-tabs">
+        <li class="console-subentry active" id="console-subentry-performance"><a onclick="toggleCST('performance')" href="#"><?= $lang_array['app']['performance'] ?></a></li>
+        <li class="console-subentry" id="console-subentry-logs"><a onclick="toggleCST('logs')" href="#"><?= $lang_array['app']['logs'] ?></a></li>
+      </ul>
 
-        <div style="text-align:left"><label><b><?= $lang_array['app']['performance'] ?></b></label></div>
 
-        <div id="editor-bt-perfgraph" style="width:500px;height:90px;margin-left:auto;margin-right:auto;">
+      <!-- Performance Tab Start -->
+      <div class="console-subtab" id="cst-performance">
+        <div class="row-fluid" style="text-align:center">
+          <div id="editor-bt-perfgraph" style="width:500px;height:90px;margin-left:auto;margin-right:auto;">
+          </div>
         </div>
 
-       
+        <hr>
 
+        <div class="row-fluid">
+
+        <div class="span6" id="winloss-ct" style="text-align:center">
+          <div id="editor-bt-winloss" style="width:120px;height:120px;margin-left:auto;margin-right:auto;"></div>
+          <div id="editor-bt-winloss-label" style="width:115px;position:absolute">0/0</div>
+        </div>
+
+        <div class="span6">
+
+          <table class="table" style="font-size:20px">
+
+            <tr>
+              <td>Realized PNL (<?= $currency ?>)</td>
+              <td id="editor-bt-rpnl">0</td>
+            </tr>
+
+            <tr>
+              <td>Max Drawdown (<?= $currency ?>)</td>
+              <td id="editor-bt-mdd">0</td>
+            </tr>
+
+            <tr>
+              <td>Profit Factor</td>
+              <td id="editor-bt-pf">0</td>
+            </tr>
+
+          </table>
+        </div>
+        </div>
       </div>
+      <!-- Performance tab End -->
 
-      <hr>
 
-      <div class="row-fluid">
-
-      <div class="span6" id="winloss-ct" style="text-align:center">
-        <div id="editor-bt-winloss" style="width:120px;height:120px;margin-left:auto;margin-right:auto;"></div>
-        <div id="editor-bt-winloss-label" style="width:115px;position:absolute">0/0</div>
+      <!-- Logs Tab Start -->
+      <div class="console-subtab" id="cst-logs" style="display:none">
+        <div class="lastlogs" id="editor-bt-logs" style="width:calc(100% - 10px);height:250px;background:white" ></div>
       </div>
+      <!-- Logs Tab End -->
 
-      <div class="span6">
-
-        <table class="table" style="font-size:20px">
-
-          <tr>
-            <td>Realized PNL (<?= $currency ?>)</td>
-            <td id="editor-bt-rpnl">0</td>
-          </tr>
-
-          <tr>
-            <td>Max Drawdown (<?= $currency ?>)</td>
-            <td id="editor-bt-mdd">0</td>
-          </tr>
-
-          <tr>
-            <td>Profit Factor</td>
-            <td id="editor-bt-pf">0</td>
-          </tr>
-
-        </table>
-      </div>
-      </div>      
 
     </div>
 
@@ -432,6 +444,8 @@ $currency = $CURRENCY_MAP[$acfg->currency];
           pdata = $.parseJSON(data);
           $('#editor-bt-progress').css('width', pdata.btsnap.progress + '%');
 
+          
+
           $.plot($('#editor-bt-perfgraph'), [{ label: "foo", data: pdata.btsnap.histgraph , color:'#1AB394'}], bt_perf_options);
 
           if ( pdata.btsnap.progress == 100) {
@@ -439,6 +453,8 @@ $currency = $CURRENCY_MAP[$acfg->currency];
             $('#editor-bt-launchbtn').click(function() { qbacktest() });
             $('#editor-bt-launchbtn').removeClass('disabled');
             $('#editor-bt-launchbtn').addClass('btn-info');
+
+            $('#editor-bt-logs').html(pdata.btsnap.logs);
 
           }
           
@@ -543,6 +559,20 @@ $currency = $CURRENCY_MAP[$acfg->currency];
           });
 
         }
+
+
+
+
+        function toggleCST(tab) {
+
+           $('.console-subentry').removeClass('active');
+           $('#console-subentry-' + tab).addClass('active');
+
+           $('.console-subtab').hide();
+           $('#cst-' + tab).show();
+
+        }
+
 
         function toggleConsoleTabs(tab) {
 
