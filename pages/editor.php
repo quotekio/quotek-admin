@@ -454,7 +454,10 @@ $currency = $CURRENCY_MAP[$acfg->currency];
             $('#editor-bt-launchbtn').removeClass('disabled');
             $('#editor-bt-launchbtn').addClass('btn-info');
 
-            $('#editor-bt-logs').html(pdata.btsnap.logs);
+            $('#editor-bt-logs').html('');
+            $.each(pdata.btsnap.logs, function(index,i) {
+              $('#editor-bt-logs').append(i + '<br>');
+            });
 
           }
           
