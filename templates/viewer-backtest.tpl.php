@@ -2,7 +2,7 @@
 
   $ws = $_REQUEST['websocket'];
 
-  include ("corecfg.php");
+  require_once ("corecfg.php");
   $acfg = getActiveCfg();
   $currency = $CURRENCY_MAP[$acfg->currency];
 

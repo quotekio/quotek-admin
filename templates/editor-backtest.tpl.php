@@ -1,6 +1,6 @@
 <?php
 
-include ('classes/corecfg.php');
+require_once ('classes/corecfg.php');
 include ('classes/strategy.php');
 $cfgs = getCoreConfigs();
 $strats = getStratsList('normal');
