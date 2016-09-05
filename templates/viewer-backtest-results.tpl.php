@@ -171,13 +171,13 @@
                     <div class="span3">
 
                       <div id="winloss-ct" style="text-align:center">
-                        <div id="result-bt-winloss" style="width:120px;height:120px;margin-left:auto;margin-right:auto"></div>
-                        <div id="result-bt-winloss-label" style="width:120px;text-align:center;color:#cccccc;font-size:20px;font-weight:bold;position:absolute">0/0</div>
+                        <div id="result-bt-winloss" style="width:90px;height:90px;margin-left:auto;margin-right:auto"></div>
+                        <div id="result-bt-winloss-label" style="width:90px;text-align:center;color:#cccccc;font-size:20px;font-weight:bold;position:absolute">0/0</div>
 
                       </div>
 
                       <div style="margin-top:5px">
-                        <table class="table" style="font-size:<?=  ($iter_enable) ? "13" : "16" ?>px">
+                        <table class="table" style="font-size:<?=  ($iter_enable) ? "10" : "13" ?>px">
 
                           <tr>
                             <td>PNL (<?= $currency ?>)</td>
