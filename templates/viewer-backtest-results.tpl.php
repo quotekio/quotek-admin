@@ -185,6 +185,11 @@
                           </tr>
 
                           <tr>
+                            <td>Sharpe Ratio</td>
+                            <td id="result-bt-sr">0</td>
+                          </tr>                          
+
+                          <tr>
                             <td>Max Drawdown (<?= $currency ?>)</td>
                             <td id="result-bt-mdd">0</td>
                           </tr>

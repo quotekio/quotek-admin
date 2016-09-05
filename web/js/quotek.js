@@ -937,6 +937,7 @@ function qateLoadBTUnitResult(nres) {
 
   $('#result-bt-rpnl').html(result.pnl.toFixed(2));
   $('#result-bt-mdd').html(result.max_drawdown.toFixed(1));
+  $('#result-bt-sr').html(result.sharpe_ratio.toFixed(1));
   $('#result-bt-pf').html(result.profit_factor.toFixed(2));
 
   if ( result.pnl <= 0 ) {

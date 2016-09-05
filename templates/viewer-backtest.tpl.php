@@ -61,6 +61,11 @@
                     </tr>
 
                     <tr>
+                      <td>Sharpe Ratio</td>
+                      <td id="editor-bt-sr">0</td>
+                    </tr>
+
+                    <tr>
                       <td>Max Drawdown (<?= $currency ?>)</td>
                       <td id="editor-bt-mdd">0</td>
                     </tr>
@@ -156,6 +161,12 @@
         $('#editor-bt-mdd').html(tstats.max_drawdown);
         if (tstats.max_drawdown == 0) $('#editor-bt-mdd').css('color','#cccccc');
         else $('#editor-bt-mdd').css('color','#ED5565');
+        
+
+        $('#editor-bt-sr').html(tstats.sharpe_ratio);
+        if (tstats.sharpe_ratio == 0) $('#editor-bt-sr').css('color','#cccccc');
+        else if (tstats.sharpe_ratio < 1) $('#editor-bt-sr').css('color','#ED5565');
+        else  $('#editor-bt-sr').css('color','#1AB394');
         
         $('#editor-bt-pf').html(tstats.profit_factor);
         if (tstats.profit_factor >= 2 || tstats.profit_factor == "inf") $('#editor-bt-pf').css('color','#1AB394');
