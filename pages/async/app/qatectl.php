@@ -52,8 +52,9 @@
     $from = $_REQUEST['from'];
     $to = $_REQUEST['to'];
     $cfgid = $_REQUEST['cfg'];
+    $fixed_time = ( isset($_REQUEST['fixed_time']) ) ? $_REQUEST['fixed_time'] : false;
 
-    $res = $ac->qbacktest($source, $cfgid, $from, $to);
+    $res = $ac->qbacktest($source, $cfgid, $from, $to, $fixed_time);
     $resp['message'] = $res;
 
     echo json_encode($resp);

@@ -64,7 +64,7 @@ class qatectl {
   }
 
   //quick backtest for non-saved strats, without saving.
-  function qbacktest($data, $cfgid, $from, $to) {
+  function qbacktest($data, $cfgid, $from, $to, $fixed_time = false) {
 
     global $QATE_PATH;
     global $QATE_TMP;
@@ -73,6 +73,20 @@ class qatectl {
 
     $poffset = $this->findPorts();
     $port = $QATE_AEP_PORT + $poffset;
+
+    //very useful for reusing cache.
+    if ($fixed_time === true) {
+
+      if ( ($from - $to)  <= 86400) {
+        $from = strtotime("midnight", $from);
+        $to = strtotime("tomorrow", $from) - 1;
+      }
+
+      else {
+        $from = strtotime("midnight", $from);
+        $to = strtotime("tomorrow", $to) - 1;
+      } 
+    }
 
     $tmp_cpath = "${QATE_TMP}/cenv/";
     file_put_contents("${tmp_cpath}/temp.qs", $data);

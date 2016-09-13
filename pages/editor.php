@@ -549,7 +549,8 @@ $currency = $CURRENCY_MAP[$acfg->currency];
                   'source': source,
                   'from' : from,
                   'to': to,
-                  'cfg': cfg  },
+                  'cfg': cfg,
+                  'fixed_time': true },
           cache: false,
           async: true,
           success: function() {
