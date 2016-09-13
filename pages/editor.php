@@ -543,6 +543,8 @@ $currency = $CURRENCY_MAP[$acfg->currency];
           $('#editor-bt-launchbtn').addClass('disabled');
           $('#editor-bt-progress').css('width', '0%');
 
+          $('#editor-bt-logs').html('');
+
           from = $('#editor-bt-period').val();
           to = -1,
           cfg= $('#editor-bt-config').val();
