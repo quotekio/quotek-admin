@@ -329,6 +329,13 @@ $currency = $CURRENCY_MAP[$acfg->currency];
 
 	        <div class="span4" style="text-align:right;margin-top:4px">
 
+            <div id="fontsize-group" class="btn-group">
+
+              <a id="zoom_out" class="btn" rel="tooltip" title="<?= $lang_array['app']['reduce_font'] ?>"><i class="icon icon-zoom-out"></i></a>
+              <a id="zoom_in" class="btn" rel="tooltip" title="<?= $lang_array['app']['increase_font'] ?>"><i class="icon icon-zoom-in"></i></a>
+
+            </div>
+
             <div id="chtheme-group" class="btn-group">
 
             <a id="chtheme" class="btn" data-toggle="dropdown" title="<?= $lang_array['app']['chtheme'] ?>" rel="tooltip"><i class="icon icon-tint"></i></a>
@@ -758,6 +765,18 @@ $currency = $CURRENCY_MAP[$acfg->currency];
           }
 
 
+          function zoomOut() {
+            fsize--;
+            localStorage.setItem("fontsize",fsize);
+            ceditor.setFontSize(fsize);
+          }
+
+          function zoomIn() {
+            fsize++;
+            localStorage.setItem("fontsize",fsize);
+            ceditor.setFontSize(fsize); 
+          }
+
           function chTheme(theme) {
             ceditor.setTheme("ace/theme/" + theme);
             localStorage.setItem("theme",theme);
@@ -835,6 +854,14 @@ $currency = $CURRENCY_MAP[$acfg->currency];
             showConsole('backtest'); 
           });
 
+          $('#zoom_in').click(function() {
+            zoomIn();
+          });
+
+          $('#zoom_out').click(function() {
+            zoomOut();
+          });
+
 
           onkeydown = function(e){
             if(e.ctrlKey && e.keyCode == 'S'.charCodeAt(0)){
@@ -860,17 +887,13 @@ $currency = $CURRENCY_MAP[$acfg->currency];
             //zoom -
             if (  e.ctrlKey && e.keyCode == 187 && ! e.shiftKey ) {
               e.preventDefault();
-              fsize--;
-              localStorage.setItem("fontsize",fsize);
-              ceditor.setFontSize(fsize);
+              zoomOut();
               
             }
             //zoom +
             if (  e.ctrlKey && e.keyCode == 187 && e.shiftKey ) {
               e.preventDefault();
-              fsize++;
-              localStorage.setItem("fontsize",fsize);
-              ceditor.setFontSize(fsize);
+              zoomIn();
               
 
             }
