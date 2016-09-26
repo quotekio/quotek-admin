@@ -82,6 +82,10 @@
 
                        <li><a href="#" onclick="qateResultSortBy('dtraderatio')"><?= $lang_array['app']['sortby_dtraderatio'] ?></a></li>
 
+                       <li><a href="#" onclick="qateResultSortBy('apf')"><?= $lang_array['app']['sortby_apf'] ?></a></li>
+                       
+                       <li><a href="#" onclick="qateResultSortBy('dpf')"><?= $lang_array['app']['sortby_dpf'] ?></a></li>
+
 
                     </ul>
                 </div>

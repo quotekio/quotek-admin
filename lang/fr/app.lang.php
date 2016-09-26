@@ -489,5 +489,7 @@
   $lang_array['app']['sortby_dtraderatio'] = 'Trade Ratio Décroissant';
   $lang_array['app']['sortby_atraderatio'] = 'Trade Ratio Croissant';
 
+  $lang_array['app']['sortby_dpf'] = 'Profit Factor Décroissant';
+  $lang_array['app']['sortby_apf'] = 'Profit Factor Croissant';
 
 ?>

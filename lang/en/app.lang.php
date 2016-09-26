@@ -476,6 +476,9 @@
   $lang_array['app']['sortby_dtraderatio'] = 'Descending Trade Ratio';
   $lang_array['app']['sortby_atraderatio'] = 'Ascending Trade Ratio';
 
+  $lang_array['app']['sortby_dpf'] = 'Descending Profit Factor';
+  $lang_array['app']['sortby_apf'] = 'Ascending Profit Factor';
+
 
 
 ?>

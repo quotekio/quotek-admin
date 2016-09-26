@@ -1071,11 +1071,21 @@ function qateResultSortBy(stype) {
 
   }
 
+  apf_sort = function(a,b) {
+   return a.profit_factor - b.profit_factor;
+  }
+
+  dpf_sort = function(a,b) {
+    return b.profit_factor - a.profit_factor;
+  }
 
   if (stype== 'apnl') btresult.results.sort(apnl_sort);
   else if (stype == 'dpnl') btresult.results.sort(dpnl_sort);
   else if (stype == 'atraderatio') btresult.results.sort(atraderatio_sort);
   else if (stype == 'dtraderatio') btresult.results.sort(dtraderatio_sort);
+
+  else if (stype == 'apf') btresult.results.sort(apf_sort);
+  else if (stype == 'dpf') btresult.results.sort(dpf_sort);
 
   qateDispBTResult();
   
