@@ -83,7 +83,7 @@
                        <li><a href="#" onclick="qateResultSortBy('dtraderatio')"><?= $lang_array['app']['sortby_dtraderatio'] ?></a></li>
 
                        <li><a href="#" onclick="qateResultSortBy('apf')"><?= $lang_array['app']['sortby_apf'] ?></a></li>
-                       
+
                        <li><a href="#" onclick="qateResultSortBy('dpf')"><?= $lang_array['app']['sortby_dpf'] ?></a></li>
 
 
@@ -182,7 +182,7 @@
 
                       <div id="winloss-ct" style="text-align:center">
                         <div id="result-bt-winloss" style="width:80px;height:80px;margin-left:auto;margin-right:auto"></div>
-                        <div id="result-bt-winloss-label" style="width:80px;text-align:center;color:#cccccc;font-size:20px;font-weight:bold;position:absolute">0/0</div>
+                        <div id="result-bt-winloss-label" style="width:80px;text-align:center;color:#cccccc;font-size:16px;font-weight:bold;position:absolute">0/0</div>
 
                       </div>
 
@@ -306,21 +306,23 @@
        <?php } ?>
 
 
+     //updates the winloss label pos correctly !
+     function wllabel_pos() {
+       //updates winloss label pos
+       $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
+       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 50) + 'px' });
+     }
+
      function qateResultNav(obj) {
        $('.result-frame').hide();
        $('#result-frame-' +  obj.attr('id') ).show();
        $('.result-navlink').parent().removeClass('active');
        obj.parent().addClass('active');
 
-       //updates winloss label pos
-       $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
-       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 50) + 'px' });
-
+       wllabel_pos();
+       
      }
 
-
-      //updates winloss label pos
-      $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
-      $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 50) + 'px' });
+     qateResultNav('performance');
 
       </script>
