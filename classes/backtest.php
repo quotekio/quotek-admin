@@ -192,7 +192,7 @@ class backtest extends qateobject {
     fwrite($fh,"genetics_survivors = " . $this->genetics_survivors . "\n" );
     fwrite($fh,"genetics_converge_thold = " . $this->genetics_converge_thold . "\n" );
     fwrite($fh,"genetics_max_generations = " . $this->genetics_max_generations . "\n" );
-    fwrite($fh,"genetics_recompute_winners = 0\n";
+    fwrite($fh,"genetics_recompute_winners = 0\n");
 
     fclose($fh);
   }
