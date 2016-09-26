@@ -310,7 +310,7 @@
      function wllabel_pos() {
        //updates winloss label pos
        $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
-       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 50) + 'px' });
+       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 30) + 'px' });
      }
 
      function qateResultNav(obj) {
@@ -322,7 +322,8 @@
        wllabel_pos();
        
      }
-     
+
+     qateResultNav($('#main'));
      qateResultNav($('#performance'));
 
       </script>
