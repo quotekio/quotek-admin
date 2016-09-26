@@ -322,7 +322,7 @@
        wllabel_pos();
        
      }
-
-     qateResultNav('performance');
+     
+     qateResultNav($('#performance'));
 
       </script>
