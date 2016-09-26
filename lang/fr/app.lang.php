@@ -486,5 +486,8 @@
   $lang_array['hint']['backtest_genetics_thold'] = 'Indiquez le profit (€) vers lequel la simulation doit converger (0, la simulation ne converge jamais).';
   $lang_array['hint']['backtest_genetics_mgen'] = 'Arrête la simulation au bout de n générations si celle-ci n\'a pas convergé.';
 
+  $lang_array['app']['sortby_dtraderatio'] = 'Trade Ratio Décroissant';
+  $lang_array['app']['sortby_atraderatio'] = 'Trade Ratio Croissant';
+
 
 ?>

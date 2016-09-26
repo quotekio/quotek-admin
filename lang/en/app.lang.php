@@ -473,4 +473,9 @@
   $lang_array['hint']['backtest_genetics_thold'] = 'Define the profit (€) toward which the backtest must go (0, backtest never converges).';
   $lang_array['hint']['backtest_genetics_mgen'] = 'Stops the backttest after n-generations if the algo didn\'t converge';
 
+  $lang_array['app']['sortby_dtraderatio'] = 'Descending Trade Ratio';
+  $lang_array['app']['sortby_atraderatio'] = 'Ascending Trade Ratio';
+
+
+
 ?>

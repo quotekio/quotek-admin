@@ -77,6 +77,12 @@
                     <ul class="dropdown-menu">
                       <li><a href="#" onclick="qateResultSortBy('apnl')"><?= $lang_array['app']['sortby_apnl'] ?></a></li>
                        <li><a href="#" onclick="qateResultSortBy('dpnl')"><?= $lang_array['app']['sortby_dpnl'] ?></a></li>
+
+                       <li><a href="#" onclick="qateResultSortBy('atraderatio')"><?= $lang_array['app']['sortby_atraderatio'] ?></a></li>
+
+                       <li><a href="#" onclick="qateResultSortBy('dtraderatio')"><?= $lang_array['app']['sortby_dtraderatio'] ?></a></li>
+
+
                     </ul>
                 </div>
 

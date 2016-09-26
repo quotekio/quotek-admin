@@ -1054,9 +1054,28 @@ function qateResultSortBy(stype) {
     return b.pnl - a.pnl ;
   }
 
+  atraderatio_sort = function(a,b) {
+
+    a_ratio = a.trades.winning / ( a.trades.winning + a.trades.losing );
+    b_ratio = b.trades.winning / ( b.trades.winning + b.trades.losing );
+
+    return  a_ratio - b_ratio ;
+  }
+
+  dtraderatio_sort = function(a,b) {
+
+    a_ratio = a.trades.winning / ( a.trades.winning + a.trades.losing );
+    b_ratio = b.trades.winning / ( b.trades.winning + b.trades.losing );
+
+    return b_ratio - a_ratio ;
+
+  }
+
 
   if (stype== 'apnl') btresult.results.sort(apnl_sort);
   else if (stype == 'dpnl') btresult.results.sort(dpnl_sort);
+  else if (stype == 'atraderatio') btresult.results.sort(atraderatio_sort);
+  else if (stype == 'dtraderatio') btresult.results.sort(dtraderatio_sort);
 
   qateDispBTResult();
   
