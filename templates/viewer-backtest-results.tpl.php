@@ -173,6 +173,9 @@
 
                <!-- Performance Result Frame -->
                <div class="result-frame well" id="result-frame-performance" style="display:block">
+
+                 <div id="result-bt-winloss-label">0/0</div>
+
                   <div class="row-fluid">
                     <div class="span9">
                       <div id="result-bt-perfgraph" style="width:<?= $perf_graph_width ?>px;height:220px;"></div>
@@ -182,8 +185,6 @@
 
                       <div id="winloss-ct" style="text-align:center">
                         <div id="result-bt-winloss" style="width:80px;height:80px;margin-left:auto;margin-right:auto"></div>
-                        <div id="result-bt-winloss-label" style="width:80px;text-align:center;color:#cccccc;font-size:16px;font-weight:bold;position:absolute">0/0</div>
-
                       </div>
 
                       <div style="margin-top:5px">
@@ -310,7 +311,7 @@
      function wllabel_pos() {
        //updates winloss label pos
        $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
-       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 30) + 'px' });
+       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 35) + 'px' });
      }
 
      function qateResultNav(obj) {

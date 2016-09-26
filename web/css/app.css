@@ -423,3 +423,11 @@ padding:10px;
   cursor: pointer;
 }
 
+#result-bt-winloss-label {
+  position:absolute;
+  width:80px;
+  text-align:center;
+  color:#cccccc;
+  font-size:16px;
+  font-weight:bold;
+}
