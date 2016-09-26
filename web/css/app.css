@@ -430,4 +430,8 @@ padding:10px;
   color:#cccccc;
   font-size:16px;
   font-weight:bold;
+  left:calc( 100% - 160px);
+  top: 305px;
+  background:transparent;
+  z-index:10;
 }

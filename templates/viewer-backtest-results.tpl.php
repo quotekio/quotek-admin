@@ -305,26 +305,13 @@
        });
 
        <?php } ?>
-
-
-     //updates the winloss label pos correctly !
-     function wllabel_pos() {
-       //updates winloss label pos
-       $('#result-bt-winloss-label').css( { left  : ($('#result-bt-winloss').position().left + ( $('#result-bt-winloss').parent().width() - $('#result-bt-winloss').width() ) /2)     + 'px' } );
-       $('#result-bt-winloss-label').css( { top   : ($('#result-bt-winloss').position().top + 35) + 'px' });
-     }
-
+       
      function qateResultNav(obj) {
        $('.result-frame').hide();
        $('#result-frame-' +  obj.attr('id') ).show();
        $('.result-navlink').parent().removeClass('active');
        obj.parent().addClass('active');
-
-       wllabel_pos();
        
      }
-
-     qateResultNav($('#main'));
-     qateResultNav($('#performance'));
 
       </script>
