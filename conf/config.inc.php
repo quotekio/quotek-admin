@@ -28,7 +28,7 @@
 
   $DEMO_MODE = false;
   $DEMO_BROKER_MODULE = 'igconnector3';
-  $DEMO_BROKER_PARAMS = '{"username":"***REMOVED***","password":"***REMOVED***","api_key":"***REMOVED***","api_url":"https://demo-api.ig.com"}';
+  $DEMO_BROKER_PARAMS = '{"username":"","password":"","api_key":"","api_url":""}';
 
   $LANG_LIST = array('en' => 'English' , 'fr' => 'Français');
 
