@@ -12,7 +12,7 @@ fi
 
 HAS_PREV_INST=0
 
-echo "* QWC INSTALLER *"
+echo "* Quotek Admin Installer *"
 
 if [ "$INSTALL_DIR" == "" ];then
   echo "Install Directory:"
@@ -21,7 +21,7 @@ fi
 
 if [ -d $INSTALL_DIR ]
 then
-  echo "A Previous version of QWC has been found. Do you want to back it up?"
+  echo "A Previous version of Quotek Admin was found. Do you want to back it up?"
   
   if [ $FY == 0 ]; then 
     read BACKUP_ANS
@@ -47,7 +47,7 @@ cp -rv classes lib vendor conf data include jobs processes lang pages templates 
 
 if [ $HAS_PREV_INST -eq 1 ]
 then
-  echo "Do you want to reimport data from previous install ?"
+  echo "Do you want to reimport config from previous install ?"
 
   if [ $FY == 0 ]; then 
     read REIMPORT_DATA
