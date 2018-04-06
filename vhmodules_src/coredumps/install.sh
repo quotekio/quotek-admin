@@ -1,13 +1,13 @@
 #!/bin/bash
 
-echo "* VISIBLE HAND visualiz MODULE INSTALL*"
-echo "Visible hand Install Directory:"
+echo "* Quotek Admin Coredump module installer *"
+echo "Quotek Admin Install Directory:"
 
 read INSTALL_DIR
 
 if ! [ -d $INSTALL_DIR/vhmodules ]
 then
-  echo "visible hand not found in directory, aborting install"
+  echo "Admin not found in directory, aborting install"
   exit 1
 fi
 
