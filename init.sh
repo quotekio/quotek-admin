@@ -10,6 +10,10 @@ function common() {
 
 
 function nginx() {
+
+  export DEBIAN_FRONTEND=noninteractive 
+  export DEBCONF_NONINTERACTIVE_SEEN=true
+
   apt-get -y update
   apt-get -y install nginx php-fpm php-sqlite3 php-cli php-curl php-common
 
