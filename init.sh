@@ -13,8 +13,7 @@ function common() {
 
 function nginx() {
   apt-get -y update
-  apt-get -y install nginx php-fpm php7.0-sqlite php-cli php-curl
-  common
+  apt-get -y install nginx php-fpm php-sqlite3 php-cli php-curl php-common
 
   cp ./install/etc/nginx/qwc.conf /etc/nginx/sites-available/
   ln -s /etc/nginx/sites-available/qwc.conf /etc/nginx/sites-enabled/qwc.conf
