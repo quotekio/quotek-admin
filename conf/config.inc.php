@@ -1,10 +1,10 @@
 <?php
-  $SITE_ROOT = '/usr/local/qate/admin/web';
-  $MODULES_PATH='/usr/local/qate/admin/vhmodules';
+  $SITE_ROOT = '/usr/local/quotek/admin/web';
+  $MODULES_PATH='/usr/local/quotek/admin/vhmodules';
   $MAIL_FROM = "no-reply@chiliconfig.com";
   $CONTACT_EMAIL = "clement@digi-nation.com";
 
-  $QATE_PATH = "/usr/local/qate/";
+  $QATE_PATH = "/usr/local/quotek/";
   $QATE_TMP = "/tmp/qate";
   
   $QATE_PIDFILE = "$QATE_TMP/qate.pid";
@@ -17,7 +17,7 @@
   $GIT_USER = 'git';
   $GIT_LOCATION='/quotek';
 
-  $QATE_BT_EXPORTS = "/usr/local/qate/admin/data/dumps";
+  $QATE_BT_EXPORTS = "/usr/local/quotek/admin/data/dumps";
 
   $QATE_AEP_ADDR = "127.0.0.1";
   $QATE_AEP_PORT = 9999;
@@ -71,13 +71,13 @@ class newstrat: public strategy {
 
 EOT;
 
-  $INCLUDE_PATHS = array ('/usr/local/qate/admin',
-			  '/usr/local/qate/admin/includes',
-			  '/usr/local/qate/admin/classes',
-			  '/usr/local/qate/admin/lib',
-			  '/usr/local/qate/admin/lib/influx',
-			  '/usr/local/qate/admin/templates',
-			  '/usr/local/qate/admin/lang'
+  $INCLUDE_PATHS = array ('/usr/local/quotek/admin',
+			  '/usr/local/quotek/admin/includes',
+			  '/usr/local/quotek/admin/classes',
+			  '/usr/local/quotek/admin/lib',
+			  '/usr/local/quotek/admin/lib/influx',
+			  '/usr/local/quotek/admin/templates',
+			  '/usr/local/quotek/admin/lang'
  			 );
 
   foreach($INCLUDE_PATHS as $incpath) {
