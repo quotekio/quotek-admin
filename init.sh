@@ -27,6 +27,7 @@ function nginx() {
 case $1 in
 
   nginx)
+    common
     nginx
   ;;
 
