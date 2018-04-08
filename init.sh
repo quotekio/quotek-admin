@@ -1,6 +1,35 @@
 #!/bin/bash
 
 
+function is_ip() {
+
+  fip=`echo "$1" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`
+  return ${fip:-"no"}
+
+}
+
+
+function config_host() {
+  echo "================================================"
+  echo "Please enter your server's public hostname or IP"
+  echo "================================================"
+  read host
+  iip=is_ip $host
+
+  if [ $iip == "no" ]; then
+	
+	sed -i "s/##SERVER_NAME##/$host/" ./install/etc/nginx/qwc.conf
+  
+  # When ip is provided, things get a bit messy.
+  else
+        sed -i 's/server_name ##SERVER_NAME##//' ./install/etc/nginx/qwc.conf
+        find *.php | sed -i "s/\$_SERVER['SERVER_NAME']/$host/"
+  fi 
+
+
+}
+
+
 function common() {
   echo 'www-data ALL=(ALL) NOPASSWD: /usr/bin/pkill, NOPASSWD: /usr/local/qate/bin/qate, NOPASSWD: /bin/kill, NOPASSWD: /bin/echo, NOPASSWD: /usr/bin/gdb, NOPASSWD: /usr/bin/screen, NOPASSWD: /etc/init.d/quotek, NOPASSWD: /bin/sh' >> /etc/sudoers
 
@@ -28,6 +57,7 @@ case $1 in
 
   nginx)
     common
+    config_host
     nginx
   ;;
 
