@@ -111,7 +111,7 @@ class qatectl {
 
     //$pidtries = 10;
 
-    $cmd = "sudo /etc/init.d/qate start";
+    $cmd = "sudo /etc/init.d/quotek start";
 
     if (file_exists("$QATE_TMP/needs_restart")) {
       unlink("$QATE_TMP/needs_restart");
@@ -140,7 +140,7 @@ class qatectl {
 
   function stop() {
     global $QATE_PIDFILE;
-    exec("sudo /etc/init.d/qate stop");
+    exec("sudo /etc/init.d/quotek stop");
     $this->mode = 'off';
   }
 
