@@ -13,7 +13,7 @@ function nginx() {
   export DEBCONF_NONINTERACTIVE_SEEN=true
 
   apt-get -y update
-  apt-get -y install nginx php-fpm php-sqlite3 php-cli php-curl php-common
+  apt-get -y install nginx sqlite3 php-fpm php-pgsql php-sqlite3 php-cli php-curl php-common
 
   cp ./install/etc/nginx/qwc.conf /etc/nginx/sites-available/
   ln -s /etc/nginx/sites-available/qwc.conf /etc/nginx/sites-enabled/qwc.conf
