@@ -23,7 +23,9 @@ function config_host() {
   # When ip is provided, things get a bit messy.
   else
         sed -i 's/server_name ##SERVER_NAME##//' ./install/etc/nginx/qwc.conf
-        find -name *.php  -exec sed -i "s/\$_SERVER['SERVER_NAME']/$host/" {} +
+        for i in `find -name *.php`; do
+           sed -i "s/\$_SERVER['SERVER_NAME']/$host/" $i
+        done
   fi 
 
 
