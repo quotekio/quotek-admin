@@ -4,7 +4,7 @@
 function is_ip() {
 
   fip=`echo "$1" | grep -Eo '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'`
-  return ${fip:-"no"}
+  iip=${fip:-"no"}
 
 }
 
@@ -14,7 +14,7 @@ function config_host() {
   echo "Please enter your server's public hostname or IP"
   echo "================================================"
   read host
-  iip=is_ip $host
+  is_ip $host
 
   if [ $iip == "no" ]; then
 	
@@ -23,7 +23,7 @@ function config_host() {
   # When ip is provided, things get a bit messy.
   else
         sed -i 's/server_name ##SERVER_NAME##//' ./install/etc/nginx/qwc.conf
-        find *.php | sed -i "s/\$_SERVER['SERVER_NAME']/$host/"
+        find -name *.php | sed -i "s/\$_SERVER['SERVER_NAME']/$host/"
   fi 
 
 
