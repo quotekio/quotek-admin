@@ -48,7 +48,7 @@ $exec = function() {
 
     $period = $cfg->notify_report_every;
 
-    if ( $hour % $period  == 0 && $min == 1 ) {
+    if ( $period != 0 && $hour % $period  == 0 && $min == 1 ) {
       $b = new backendwrapper();
       $hist = $b->query_history(gmmktime(0,0,0),time(0));
 

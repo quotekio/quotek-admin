@@ -1,0 +1,1 @@
+* * * * * php /usr/local/quotek/admin/jobs/scheduler.php 2>&1 >> /var/log/quotek-admin-scheduler.log
